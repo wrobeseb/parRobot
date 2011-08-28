@@ -45,11 +45,13 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.lbLog = new System.Windows.Forms.ListBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.tbControl = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox1.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.tbControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -218,11 +220,25 @@
             // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this.lbLog);
             this.groupBox5.Location = new System.Drawing.Point(6, 337);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(445, 125);
             this.groupBox5.TabIndex = 8;
             this.groupBox5.TabStop = false;
+            // 
+            // lbLog
+            // 
+            this.lbLog.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbLog.FormattingEnabled = true;
+            this.lbLog.Location = new System.Drawing.Point(9, 20);
+            this.lbLog.Name = "lbLog";
+            this.lbLog.ScrollAlwaysVisible = true;
+            this.lbLog.SelectionMode = System.Windows.Forms.SelectionMode.None;
+            this.lbLog.Size = new System.Drawing.Size(430, 93);
+            this.lbLog.TabIndex = 0;
+            this.lbLog.TabStop = false;
+            this.lbLog.UseWaitCursor = true;
             // 
             // groupBox6
             // 
@@ -287,6 +303,7 @@
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
             this.groupBox6.ResumeLayout(false);
             this.tbControl.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
@@ -316,6 +333,7 @@
         private System.Windows.Forms.TabControl tbControl;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
+        public System.Windows.Forms.ListBox lbLog;
     }
 }
 

@@ -6,8 +6,8 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Parafia.Properties;
 using Parafia.Enums;
+using Parafia.Properties;
 
 namespace Parafia
 {
@@ -48,9 +48,15 @@ namespace Parafia
 
         private void bSave_Click(object sender, EventArgs e)
         {
-            Settings.Default["useProxy"] = cbProxyYesOrNo.SelectedItem.Equals("Tak") ? true : false;
+            ApplicationConfig config = new ApplicationConfig();
+
+            config.UseProxy = cbProxyYesOrNo.SelectedItem.Equals("Tak") ? true : false;
+
+            Settings.Default["properties"] = config;
+
+            /*Settings.Default["useProxy"] = cbProxyYesOrNo.SelectedItem.Equals("Tak") ? true : false;
             Settings.Default["proxyHost"] = tbProxyHost.Text;
-            if (!String.IsNullOrEmpty(tbProxyPort.Text)) 
+            if (!String.IsNullOrEmpty(tbProxyPort.Text))
                 Settings.Default["proxyPort"] = int.Parse(tbProxyPort.Text);
             Settings.Default["proxyUser"] = tbProxyUser.Text;
             Settings.Default["proxyDomain"] = tbProxyDomain.Text;
@@ -58,17 +64,19 @@ namespace Parafia
             Settings.Default["parafiaUser"] = tbAccountUser.Text;
             Settings.Default["parafiaPassword"] = tbAccountUserPasswd.Text;
             Settings.Default["armyType"] = cbUnitType.SelectedItem.Equals("Obrona") ? ArmyType.Defense : ArmyType.Attack;
-            Settings.Default["sendPilgrimage"] = cbSendPilgrimage.Checked;
+            Settings.Default["sendPilgrimage"] = cbSendPilgrimage.Checked;*/
             Settings.Default.Save();
             this.Close();
         }
 
         private void ConfigForm_Load(object sender, EventArgs e)
         {
+            ApplicationConfig config = (ApplicationConfig)Settings.Default["properties"];
+
             cbProxyYesOrNo.SelectedItem = Settings.Default["useProxy"].Equals(true) ? "Tak" : "Nie";
             if (cbProxyYesOrNo.SelectedItem.Equals("Tak")) gbProxyConfig.Enabled = true;
             tbProxyHost.Text = new StringBuilder().Append(Settings.Default["proxyHost"]).ToString();
-            tbProxyPort.Text = new StringBuilder().Append(Settings.Default["proxyPort"]).ToString(); 
+            tbProxyPort.Text = new StringBuilder().Append(Settings.Default["proxyPort"]).ToString();
             tbProxyUser.Text = new StringBuilder().Append(Settings.Default["proxyUser"]).ToString();
             tbProxyDomain.Text = new StringBuilder().Append(Settings.Default["proxyDomain"]).ToString();
             tbProxyPassword.Text = new StringBuilder().Append(Settings.Default["proxyPassword"]).ToString();

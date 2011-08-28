@@ -13,23 +13,23 @@ namespace Parafia
 {
     public class Parafia
     {
-        public static DefaultHttpClient httpClient;
-        public static Attributes.Attributes attributes;
-        public static Units.Units units;
-        public static String csrf;
+        public DefaultHttpClient httpClient;
+        public Attributes.Attributes attributes;
+        public Units.Units units;
+        public String csrf;
 
-        public static QuestContainer questContainer;
+        public  QuestContainer questContainer;
 
-        public static bool papacyParty;
+        public bool papacyParty;
 
-        public static void initConnection(WebProxy webProxy)
+        public void initConnection(WebProxy webProxy)
         {
             httpClient = new DefaultHttpClient();
             if (webProxy != null)
                 httpClient.SetWebProxy = webProxy;
         }
 
-        public static void login(String user, String passwd)
+        public void login(String user, String passwd)
         {
             String responseContent = httpClient.SendHttpGetAndReturnResponseContent("http://parafia.biz/");
             csrf = HtmlUtils.GetStringValueByXPathExpression(responseContent, "//input[@name='login_csrf']");
@@ -56,7 +56,7 @@ namespace Parafia
             }
         }
 
-        public static void buyArmy(ArmyType armyType)
+        public void buyArmy(ArmyType armyType)
         {
             String urlAttack = "http://parafia.biz/units/buy/1/amount/";
             String urlDefense = "http://parafia.biz/units/buy/4/amount/";
@@ -77,12 +77,12 @@ namespace Parafia
             }
         }
 
-        public static void getUnitsInfo()
+        public void getUnitsInfo()
         {
             units = new Units.Units(httpClient.SendHttpGetAndReturnResponseContent("http://parafia.biz/units"));
         }
 
-        public static void sendPilgrimage(int hours)
+        public void sendPilgrimage(int hours)
         {
             if (units.hasUnits())
             {
@@ -94,26 +94,29 @@ namespace Parafia
                 units.putIntoFormData(formData);
                 formData.addValue("holy_submit", "");
 
-                httpClient.SendHttpPostAndReturnResponseContent("http://parafia.biz/units/to_holy_land", formData);
+                httpClient.SendHttpGetAndReturnResponseContent("http://parafia.biz/units/expeditions");
+                httpClient.SendHttpGetAndReturnResponseContent("http://parafia.biz/units/to_holy_land");
+
+                String content = httpClient.SendHttpPostAndReturnResponseContent("http://parafia.biz/units/to_holy_land", formData);
             }
         }
 
-        public static void getQuests()
+        public void getQuests()
         {
             questContainer = new QuestContainer(httpClient.SendHttpGetAndReturnResponseContent("http://parafia.biz/quests"));
         }
 
-        public static void goToPapacyParty()
+        public void goToPapacyParty()
         {
             httpClient.SendHttpGetAndReturnResponseContent("http://parafia.biz/papacy/party");
         }
 
-        public static void logout()
+        public void logout()
         {
             httpClient.SendHttpGetAndReturnResponseContent("http://parafia.biz/auth/logout");
         }
 
-        private static bool checkPapacParty(String responseContent)
+        private bool checkPapacParty(String responseContent)
         {
             return MainUtils.hasNumbers(HtmlUtils.GetStringValueByXPathExpression(responseContent, "//div[@class='mt20']/text()"));
         }
