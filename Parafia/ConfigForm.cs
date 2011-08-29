@@ -30,6 +30,18 @@ namespace Parafia
             }
         }
 
+        private void cbSentMail_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbSentMail.SelectedItem.Equals("Tak"))
+            {
+                gbMailConfig.Enabled = true;
+            }
+            else
+            {
+                gbMailConfig.Enabled = false;
+            }
+        }
+
         private void bReset_Click(object sender, EventArgs e)
         {
             cbProxyYesOrNo.SelectedItem = "Nie";
@@ -44,6 +56,16 @@ namespace Parafia
             tbAccountUserPasswd.Text = String.Empty;
             cbUnitType.SelectedItem = "Obrona";
             cbSendPilgrimage.Checked = false;
+
+            cbSentMail.SelectedItem = "Nie";
+            cbEnableSSL.Checked = false;
+
+            gbMailConfig.Enabled = false;
+
+            tbSmtpAccount.Text = String.Empty;
+            tbSmtpAccountPasswd.Text = String.Empty;
+            tbSmtpHost.Text = String.Empty;
+            tbSmtpPort.Text = String.Empty;
         }
 
         private void bSave_Click(object sender, EventArgs e)
@@ -51,39 +73,62 @@ namespace Parafia
             ApplicationConfig config = new ApplicationConfig();
 
             config.UseProxy = cbProxyYesOrNo.SelectedItem.Equals("Tak") ? true : false;
+            config.ProxyHost = tbProxyHost.Text;
+            if (!String.IsNullOrEmpty(tbProxyPort.Text))
+                config.ProxyPort = int.Parse(tbProxyPort.Text);
+            config.ProxyUser = tbProxyUser.Text;
+            config.ProxyDomain = tbProxyDomain.Text;
+            config.ProxyPassword = tbProxyPassword.Text;
+            config.AccountUser = tbAccountUser.Text;
+            config.AccountPassword = tbAccountUserPasswd.Text;
+            config.ArmyType = cbUnitType.SelectedItem.Equals("Obrona") ? ArmyType.Defense : ArmyType.Attack;
+            config.SendPilgrimage = cbSendPilgrimage.Checked;
+
+            config.SentMail = cbSentMail.SelectedItem.Equals("Tak") ? true : false;
+            config.SmtpHost = tbSmtpHost.Text;
+            if (!String.IsNullOrEmpty(tbSmtpPort.Text))
+                config.SmtpPort = int.Parse(tbSmtpPort.Text);
+            config.SmtpAccount = tbSmtpAccount.Text;
+            config.SmtpAccountPasswd = tbSmtpAccountPasswd.Text;
+            config.SmtpEnableSSL = cbEnableSSL.Checked;
 
             Settings.Default["properties"] = config;
-
-            /*Settings.Default["useProxy"] = cbProxyYesOrNo.SelectedItem.Equals("Tak") ? true : false;
-            Settings.Default["proxyHost"] = tbProxyHost.Text;
-            if (!String.IsNullOrEmpty(tbProxyPort.Text))
-                Settings.Default["proxyPort"] = int.Parse(tbProxyPort.Text);
-            Settings.Default["proxyUser"] = tbProxyUser.Text;
-            Settings.Default["proxyDomain"] = tbProxyDomain.Text;
-            Settings.Default["proxyPassword"] = tbProxyPassword.Text;
-            Settings.Default["parafiaUser"] = tbAccountUser.Text;
-            Settings.Default["parafiaPassword"] = tbAccountUserPasswd.Text;
-            Settings.Default["armyType"] = cbUnitType.SelectedItem.Equals("Obrona") ? ArmyType.Defense : ArmyType.Attack;
-            Settings.Default["sendPilgrimage"] = cbSendPilgrimage.Checked;*/
             Settings.Default.Save();
             this.Close();
         }
 
         private void ConfigForm_Load(object sender, EventArgs e)
         {
-            ApplicationConfig config = (ApplicationConfig)Settings.Default["properties"];
+            Object obj = Settings.Default["properties"];
+            if (obj != null)
+            {
+                ApplicationConfig config = (ApplicationConfig)obj;
 
-            cbProxyYesOrNo.SelectedItem = Settings.Default["useProxy"].Equals(true) ? "Tak" : "Nie";
-            if (cbProxyYesOrNo.SelectedItem.Equals("Tak")) gbProxyConfig.Enabled = true;
-            tbProxyHost.Text = new StringBuilder().Append(Settings.Default["proxyHost"]).ToString();
-            tbProxyPort.Text = new StringBuilder().Append(Settings.Default["proxyPort"]).ToString();
-            tbProxyUser.Text = new StringBuilder().Append(Settings.Default["proxyUser"]).ToString();
-            tbProxyDomain.Text = new StringBuilder().Append(Settings.Default["proxyDomain"]).ToString();
-            tbProxyPassword.Text = new StringBuilder().Append(Settings.Default["proxyPassword"]).ToString();
-            tbAccountUser.Text = new StringBuilder().Append(Settings.Default["parafiaUser"]).ToString();
-            tbAccountUserPasswd.Text = new StringBuilder().Append(Settings.Default["parafiaPassword"]).ToString();
-            cbUnitType.SelectedItem = Settings.Default["armyType"];
-            cbSendPilgrimage.Checked = (bool)Settings.Default["sendPilgrimage"];
+                if (config != null)
+                {
+                    cbProxyYesOrNo.SelectedItem = config.UseProxy ? "Tak" : "Nie";
+                    if (cbProxyYesOrNo.SelectedItem.Equals("Tak")) gbProxyConfig.Enabled = true;
+                    tbProxyHost.Text = config.ProxyHost;
+                    tbProxyPort.Text = new StringBuilder().Append(config.ProxyPort).ToString();
+                    tbProxyUser.Text = config.ProxyUser;
+                    tbProxyDomain.Text = config.ProxyDomain;
+                    tbProxyPassword.Text = config.ProxyPassword;
+                    tbAccountUser.Text = config.AccountUser;
+                    tbAccountUserPasswd.Text = config.AccountPassword;
+                    cbUnitType.SelectedItem = config.ArmyType;
+                    cbSendPilgrimage.Checked = config.SendPilgrimage;
+                    
+                    cbSentMail.SelectedItem = config.SentMail ? "Tak" : "Nie";
+                    if (cbSentMail.SelectedItem.Equals("Tak")) gbMailConfig.Enabled = true;
+                    tbSmtpHost.Text = config.SmtpHost;
+                    tbSmtpPort.Text = new StringBuilder().Append(config.SmtpPort).ToString();
+                    tbSmtpAccount.Text = config.SmtpAccount;
+                    tbSmtpAccountPasswd.Text = config.SmtpAccountPasswd;
+                    cbEnableSSL.Checked = config.SmtpEnableSSL;
+                }
+            }
         }
+
+
     }
 }

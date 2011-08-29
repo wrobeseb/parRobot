@@ -87,6 +87,7 @@
     <Compile Include="Model\Quest\Task.cs" />
     <Compile Include="Parafia.cs" />
     <Compile Include="ApplicationConfig.cs" />
+    <Compile Include="Service\MailService.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="Units\Units.cs" />
     <Compile Include="Worker.cs" />

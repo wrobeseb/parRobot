@@ -150,7 +150,7 @@
             this.tbUpTime.Size = new System.Drawing.Size(100, 13);
             this.tbUpTime.TabIndex = 4;
             this.tbUpTime.TabStop = false;
-            this.tbUpTime.Text = "00:00:00";
+            this.tbUpTime.Text = "00 00:00:00";
             this.tbUpTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // tbSystemTime

@@ -5,14 +5,10 @@ using System.Text;
 using System.Threading;
 using System.Net;
 using Parafia.Properties;
+using Parafia.Service;
 
 namespace Parafia
 {
-    public delegate void renderSystemTimeDelegate();
-    public delegate void startRenderUpTimeDelegate();
-    public delegate void startMainWorkDelegate(String proxyHost, int proxyPort, String proxyUser, String proxyDomain, String proxyPassword, String parafiaUser, String parafiaPassword, Enums.ArmyType armyType, bool sendPilgrimage);
-    public delegate void addLog(String log);
-
     public class Worker
     {
         private MainForm mainForm;
@@ -39,19 +35,24 @@ namespace Parafia
             {
                 if (systemTimeSemafor)
                 {
-                    mainForm.Invoke(new renderSystemTimeDelegate(setSystemTimeText));
+                    mainForm.Invoke((Action)(delegate
+                    {
+                        mainForm.tbSystemTime.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                    }));
                 }
                 if (upTimeSemafor)
                 {
-                    mainForm.Invoke(new startRenderUpTimeDelegate(setUpTimeText));
+                    mainForm.Invoke((Action)(delegate 
+                    {
+                        mainForm.tbUpTime.Text = DateTime.Now.Subtract(upTimeStart).ToString(@"dd' 'hh\:mm\:ss");
+                    }));
                     upTime++;
                 }
-                mainForm.Invoke(new addLog(printLog), "Czas: " + Thread.CurrentThread.Name);
                 Thread.Sleep(1000);
             }
         }
 
-        public void startMainWork(/*String proxyHost, String proxyPort, String proxyUser, String proxyDomain, String proxyPassword, String parafiaUser, String parafiaPassword, Enums.ArmyType armyType, bool sendPilgrimage*/)
+        public void startMainWork()
         {
             while (mainSemafor) 
             {
@@ -63,79 +64,53 @@ namespace Parafia
                         nextLoginDt = getNextLoginTime();
                         hitCount++;
 
-                        Parafia parafia = new Parafia();
+                        object obj = Settings.Default["properties"];
 
-                       /* WebProxy proxy = null;
-                        if (!String.IsNullOrEmpty(proxyHost))
+                        if (obj != null)
                         {
-                            proxy = new WebProxy(proxyHost, proxyPort);
-                            proxy.Credentials = new NetworkCredential(proxyUser, proxyPassword, proxyDomain);
+                            ApplicationConfig config = (ApplicationConfig)obj;
+                            if (config != null)
+                            {
+                                Parafia parafia = new Parafia();
+
+                                WebProxy proxy = null;
+                                if (!String.IsNullOrEmpty(config.ProxyHost))
+                                {
+                                    proxy = new WebProxy(config.ProxyHost, config.ProxyPort);
+                                    proxy.Credentials = new NetworkCredential(config.ProxyUser, config.ProxyPassword, config.ProxyDomain);
+                                }
+
+                                parafia.initConnection(proxy);
+                                parafia.login(config.AccountUser, config.AccountPassword); printLog("Zalogowany do portalu...");
+                                parafia.buyArmy(config.ArmyType); printLog("Wojska zakupione. Typ: " + config.ArmyType);
+                                parafia.getUnitsInfo(); printLog("Informacje o jednostkach zostały pobrane.");
+                               // if (config.SendPilgrimage) { parafia.sendPilgrimage(2); printLog("Pielgrzymka została wysłana."); }
+                                parafia.logout(); printLog("Pomyślne wylogowanie z portalu.");
+                                
+                                if (config.SentMail)
+                                    MailService.sendMail("sairo149240@gmail.com", "App", "Zakupy skończone... następne o godzinie: " + this.nextLoginDt.ToString("yyyy-MM-dd HH:mm:ss"));
+                               
+                                mainForm.Invoke((Action)(delegate
+                                {
+                                    mainForm.tbHitCount.Text = this.hitCount.ToString();
+                                    mainForm.tbNextLogin.Text = this.nextLoginDt.ToString("yyyy-MM-dd HH:mm:ss");
+                                }));
+                            }
                         }
-
-                        parafia.initConnection(proxy);
-                        parafia.login(parafiaUser, parafiaPassword);
-                       // Parafia.buyArmy(armyType);
-                        parafia.getUnitsInfo();
-                        if (sendPilgrimage) parafia.sendPilgrimage(2);
-                        parafia.logout();*/
-
-                        mainForm.Invoke(new startMainWorkDelegate(mainWork), getSettings()); 
                     }
                 }
-                mainForm.Invoke(new addLog(printLog), "Main: " + Thread.CurrentThread.Name);
                 Thread.Sleep(100);
             }
         }
 
         private void printLog(String log)
         {
-            mainForm.lbLog.Items.Add(log);
+            mainForm.Invoke((Action)(delegate 
+            {
+                mainForm.lbLog.Items.Add(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " --> " + log);
+            }));
         }
 
-        private object[] getSettings()
-        {
-            object useProxyObj = Settings.Default["useProxy"];
-
-            object[] objects = new object[] {
-                Settings.Default["proxyHost"],
-                Settings.Default["proxyPort"],
-                Settings.Default["proxyUser"],
-                Settings.Default["proxyDomain"],
-                Settings.Default["proxyPassword"],
-                Settings.Default["parafiaUser"],
-                Settings.Default["parafiaPassword"],
-                Settings.Default["armyType"],
-                Settings.Default["sendPilgrimage"]
-            };
-
-            return objects;
-        }
-
-        private void mainWork(String proxyHost, int proxyPort, String proxyUser, String proxyDomain, String proxyPassword, String parafiaUser, String parafiaPassword, Enums.ArmyType armyType, bool sendPilgrimage)
-        {
-            mainForm.tbHitCount.Text = this.hitCount.ToString();
-            mainForm.tbNextLogin.Text = this.nextLoginDt.ToString("yyyy-MM-dd HH:mm:ss");
-
-            /*WebProxy proxy = new WebProxy("126.179.0.200", 3128);
-            proxy.Credentials = new NetworkCredential("wrobese2", "#Sierpien2011#", "TP");
-
-            Parafia.initConnection(proxy);
-            Parafia.login("sairo", "sairoroan");
-            Parafia.buyArmy(Enums.ArmyType.Defense);
-            Parafia.getUnitsInfo();
-            Parafia.sendPilgrimage(2);
-            Parafia.logout();*/
-        }
-
-        private void setUpTimeText()
-        {
-            mainForm.tbUpTime.Text = DateTime.Now.Subtract(upTimeStart).ToString(@"hh\:mm\:ss");
-        }
-
-        private void setSystemTimeText()
-        {
-            mainForm.tbSystemTime.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-        }
 
         private DateTime getNextLoginTime()
         {
@@ -169,7 +144,7 @@ namespace Parafia
             this.hitCount = 0;
             mainForm.tbHitCount.Text = hitCount.ToString();
             this.upTime = 0;
-            mainForm.tbUpTime.Text = "00:00:00";
+            mainForm.tbUpTime.Text = "00 00:00:00";
         }
     }
 }

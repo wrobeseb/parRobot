@@ -50,13 +50,25 @@
             this.tbAccountUser = new System.Windows.Forms.TextBox();
             this.cbProxyYesOrNo = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
+            this.gbMailConfig = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.cbSentMail = new System.Windows.Forms.ComboBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.cbEnableSSL = new System.Windows.Forms.CheckBox();
+            this.tbSmtpHost = new System.Windows.Forms.TextBox();
+            this.tbSmtpPort = new System.Windows.Forms.TextBox();
+            this.tbSmtpAccount = new System.Windows.Forms.TextBox();
+            this.tbSmtpAccountPasswd = new System.Windows.Forms.TextBox();
             this.gbProxyConfig.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.gbMailConfig.SuspendLayout();
             this.SuspendLayout();
             // 
             // bSave
             // 
-            this.bSave.Location = new System.Drawing.Point(290, 141);
+            this.bSave.Location = new System.Drawing.Point(503, 141);
             this.bSave.Name = "bSave";
             this.bSave.Size = new System.Drawing.Size(98, 23);
             this.bSave.TabIndex = 0;
@@ -66,7 +78,7 @@
             // 
             // bReset
             // 
-            this.bReset.Location = new System.Drawing.Point(224, 141);
+            this.bReset.Location = new System.Drawing.Point(437, 141);
             this.bReset.Name = "bReset";
             this.bReset.Size = new System.Drawing.Size(60, 23);
             this.bReset.TabIndex = 1;
@@ -180,7 +192,7 @@
             this.groupBox2.Controls.Add(this.cbUnitType);
             this.groupBox2.Controls.Add(this.tbAccountUserPasswd);
             this.groupBox2.Controls.Add(this.tbAccountUser);
-            this.groupBox2.Location = new System.Drawing.Point(224, 12);
+            this.groupBox2.Location = new System.Drawing.Point(437, 12);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(164, 123);
             this.groupBox2.TabIndex = 3;
@@ -275,11 +287,123 @@
             this.label9.TabIndex = 5;
             this.label9.Text = "Korzystaj z proxy";
             // 
+            // gbMailConfig
+            // 
+            this.gbMailConfig.Controls.Add(this.tbSmtpAccountPasswd);
+            this.gbMailConfig.Controls.Add(this.tbSmtpAccount);
+            this.gbMailConfig.Controls.Add(this.tbSmtpPort);
+            this.gbMailConfig.Controls.Add(this.tbSmtpHost);
+            this.gbMailConfig.Controls.Add(this.cbEnableSSL);
+            this.gbMailConfig.Controls.Add(this.label12);
+            this.gbMailConfig.Controls.Add(this.label11);
+            this.gbMailConfig.Controls.Add(this.label10);
+            this.gbMailConfig.Enabled = false;
+            this.gbMailConfig.Location = new System.Drawing.Point(225, 43);
+            this.gbMailConfig.Name = "gbMailConfig";
+            this.gbMailConfig.Size = new System.Drawing.Size(206, 121);
+            this.gbMailConfig.TabIndex = 6;
+            this.gbMailConfig.TabStop = false;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(224, 19);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(72, 13);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "Wysyłaj maile";
+            // 
+            // cbSentMail
+            // 
+            this.cbSentMail.FormattingEnabled = true;
+            this.cbSentMail.Items.AddRange(new object[] {
+            "Tak",
+            "Nie"});
+            this.cbSentMail.Location = new System.Drawing.Point(322, 16);
+            this.cbSentMail.Name = "cbSentMail";
+            this.cbSentMail.Size = new System.Drawing.Size(109, 21);
+            this.cbSentMail.TabIndex = 5;
+            this.cbSentMail.Text = "Nie";
+            this.cbSentMail.SelectedIndexChanged += new System.EventHandler(this.cbSentMail_SelectedIndexChanged);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(6, 16);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(53, 13);
+            this.label10.TabIndex = 0;
+            this.label10.Text = "Host/Port";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(6, 42);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(61, 13);
+            this.label11.TabIndex = 1;
+            this.label11.Text = "Adres email";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(6, 68);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(36, 13);
+            this.label12.TabIndex = 2;
+            this.label12.Text = "Hasło";
+            // 
+            // cbEnableSSL
+            // 
+            this.cbEnableSSL.AutoSize = true;
+            this.cbEnableSSL.Location = new System.Drawing.Point(9, 93);
+            this.cbEnableSSL.Name = "cbEnableSSL";
+            this.cbEnableSSL.Size = new System.Drawing.Size(99, 17);
+            this.cbEnableSSL.TabIndex = 3;
+            this.cbEnableSSL.Text = "Korzystaj z SSL";
+            this.cbEnableSSL.UseVisualStyleBackColor = true;
+            // 
+            // tbSmtpHost
+            // 
+            this.tbSmtpHost.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbSmtpHost.Location = new System.Drawing.Point(78, 14);
+            this.tbSmtpHost.Name = "tbSmtpHost";
+            this.tbSmtpHost.Size = new System.Drawing.Size(85, 20);
+            this.tbSmtpHost.TabIndex = 4;
+            // 
+            // tbSmtpPort
+            // 
+            this.tbSmtpPort.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbSmtpPort.Location = new System.Drawing.Point(169, 14);
+            this.tbSmtpPort.Name = "tbSmtpPort";
+            this.tbSmtpPort.Size = new System.Drawing.Size(31, 20);
+            this.tbSmtpPort.TabIndex = 5;
+            // 
+            // tbSmtpAccount
+            // 
+            this.tbSmtpAccount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbSmtpAccount.Location = new System.Drawing.Point(78, 39);
+            this.tbSmtpAccount.Name = "tbSmtpAccount";
+            this.tbSmtpAccount.Size = new System.Drawing.Size(122, 20);
+            this.tbSmtpAccount.TabIndex = 6;
+            // 
+            // tbSmtpAccountPasswd
+            // 
+            this.tbSmtpAccountPasswd.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbSmtpAccountPasswd.Location = new System.Drawing.Point(78, 66);
+            this.tbSmtpAccountPasswd.Name = "tbSmtpAccountPasswd";
+            this.tbSmtpAccountPasswd.Size = new System.Drawing.Size(122, 20);
+            this.tbSmtpAccountPasswd.TabIndex = 7;
+            this.tbSmtpAccountPasswd.UseSystemPasswordChar = true;
+            // 
             // ConfigForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(400, 175);
+            this.ClientSize = new System.Drawing.Size(638, 173);
+            this.Controls.Add(this.cbSentMail);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.gbMailConfig);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.cbProxyYesOrNo);
             this.Controls.Add(this.groupBox2);
@@ -299,6 +423,8 @@
             this.gbProxyConfig.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.gbMailConfig.ResumeLayout(false);
+            this.gbMailConfig.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -328,5 +454,16 @@
         private System.Windows.Forms.TextBox tbAccountUser;
         private System.Windows.Forms.ComboBox cbProxyYesOrNo;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.GroupBox gbMailConfig;
+        private System.Windows.Forms.TextBox tbSmtpAccountPasswd;
+        private System.Windows.Forms.TextBox tbSmtpAccount;
+        private System.Windows.Forms.TextBox tbSmtpPort;
+        private System.Windows.Forms.TextBox tbSmtpHost;
+        private System.Windows.Forms.CheckBox cbEnableSSL;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox cbSentMail;
     }
 }
