@@ -3,8 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.IO;
 using System.Text;
+
 using HttpUtils;
+using HtmlAgilityPack;
+
 using System.Net;
+using System.Threading;
 using Parafia.Exceptions;
 using Parafia.Enums;
 using Parafia.Model.Quest;
@@ -29,30 +33,38 @@ namespace Parafia
                 httpClient.SetWebProxy = webProxy;
         }
 
-        public void login(String user, String passwd)
+        public bool login(String user, String passwd)
         {
             String responseContent = httpClient.SendHttpGetAndReturnResponseContent("http://parafia.biz/");
             csrf = HtmlUtils.GetStringValueByXPathExpression(responseContent, "//input[@name='login_csrf']");
 
-            FormData formData = new FormData();
-            formData.addValue("formo_login_form", "login_form");
-            formData.addValue("login_csrf", csrf);
-            formData.addValue("user_name", user);
-            formData.addValue("user_pass", passwd);
-            formData.addValue("login_submit", "");
-
-            responseContent = httpClient.SendHttpPostAndReturnResponseContent("http://parafia.biz/", formData);
-
-            String errorMessage = HtmlUtils.GetStringValueByXPathExpression(responseContent, "//div[@class='form-error']/text()");
-
-            if (!String.IsNullOrEmpty(errorMessage))
+            if (checkDependencies(responseContent, new String[] { "formo_login_form", "login_csrf", "user_name", "user_pass", "login_submit" }))
             {
-                throw new LoginException(errorMessage);
+                FormData formData = new FormData();
+                formData.addValue("formo_login_form", "login_form");
+                formData.addValue("login_csrf", csrf);
+                formData.addValue("user_name", user);
+                formData.addValue("user_pass", passwd);
+                formData.addValue("login_submit", "");
+
+                responseContent = httpClient.SendHttpPostAndReturnResponseContent("http://parafia.biz/", formData);
+
+                String errorMessage = HtmlUtils.GetStringValueByXPathExpression(responseContent, "//div[@class='form-error']/text()");
+
+                if (!String.IsNullOrEmpty(errorMessage))
+                {
+                    throw new LoginException(errorMessage);
+                }
+                else
+                {
+                    attributes = new Attributes.Attributes(responseContent);
+                    papacyParty = !checkPapacParty(responseContent);
+                }
+                return true;
             }
             else
             {
-                attributes = new Attributes.Attributes(responseContent);
-                papacyParty = !checkPapacParty(responseContent);
+                return false;
             }
         }
 
@@ -99,6 +111,21 @@ namespace Parafia
 
                 String content = httpClient.SendHttpPostAndReturnResponseContent("http://parafia.biz/units/to_holy_land", formData);
             }
+        }
+
+        public bool checkDependencies(String content, String[] values)
+        {
+            foreach (String value in values)
+            {
+                HtmlNode node = HtmlUtils.GetSingleNodeByXPathExpression(content, "//*[@id='" + value + "']");
+                if (node == null)
+                {
+                    node = HtmlUtils.GetSingleNodeByXPathExpression(content, "//*[@name='" + value + "']");
+                    if (node == null) 
+                        return false;
+                }
+            }
+            return true;
         }
 
         public void getQuests()

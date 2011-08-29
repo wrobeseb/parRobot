@@ -14,12 +14,14 @@ namespace ParafiaTest
         [TestMethod]
         public void TestMethod()
         {
-            WebProxy proxy = new WebProxy("126.179.0.200", 3128);
-            proxy.Credentials = new NetworkCredential("wrobese2", "#Sierpien2011#", "TP");
+           // WebProxy proxy = new WebProxy("126.179.0.200", 3128);
+           // proxy.Credentials = new NetworkCredential("wrobese2", "#Sierpien2011#", "TP");
 
-            Parafia.Parafia.initConnection(proxy);
-            Parafia.Parafia.login("sairo", "sairoroan");
-            Parafia.Parafia.getQuests();
+            Parafia.Parafia parafia = new Parafia.Parafia();
+
+            parafia.initConnection(null);
+            parafia.login("sairo", "sairoroan");
+           // parafia.getQuests();
 
             //Parafia.Parafia.buyArmy(Parafia.Enums.ArmyType.Defense);
             //Parafia.Parafia.getUnitsInfo();
