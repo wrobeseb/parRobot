@@ -23,9 +23,9 @@ namespace ForexIoC
                     if (forex == null)
                     {
                         forex = new Forex();
-                        WebProxy proxy = new WebProxy("126.179.0.200", 3128);
-                        proxy.Credentials = new NetworkCredential("wrobese2", "#Sierpien2011#", "TP");
-                        forex.initConnection(proxy);
+                        //WebProxy proxy = new WebProxy("126.179.0.200", 3128);
+                        //proxy.Credentials = new NetworkCredential("wrobese2", "#Sierpien2011#", "TP");
+                        forex.initConnection(null);
                         forex.login("sairo149240@gmail.com", "sairoroan");
                     }
                     forex.ping();

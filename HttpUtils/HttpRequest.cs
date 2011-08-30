@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.IO;
+using System.Net.Cache;
 
 namespace HttpUtils
 {
@@ -41,6 +42,12 @@ namespace HttpUtils
         {
             HttpWebRequest request = DefaultPostHttpRequest(url);
             request.Headers.Add(headers);
+            RequestCachePolicy policy = new RequestCachePolicy(RequestCacheLevel.NoCacheNoStore);
+            request.CachePolicy = policy;
+            request.KeepAlive = true;
+            request.Host = "trade.plus500.com";
+            request.Referer = "https://trade.plus500.com/Login?forceDisplay=True&IsRealMode=False";
+            request.UserAgent = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/13.0.782.215 Safari/535.1";
             WriteFormData(request, formData);
             return request;
         }

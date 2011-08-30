@@ -30,6 +30,12 @@ namespace HttpUtils
             cookieContainer.Add(cookie);
         }
 
+        public CookieContainer CookieContainer
+        {
+            get { return this.cookieContainer; }
+            set { this.cookieContainer = value; }
+        }
+
         public HttpWebResponse HttpPost(String url, FormData formData, NameValueCollection headers)
         {
             HttpWebRequest request = HttpRequest.SendPost(url, formData, headers);
@@ -47,6 +53,11 @@ namespace HttpUtils
         public String SendHttpPostAndReturnResponseContent(String url, FormData formData)
         {
             return HtmlUtils.GetContentForResponse(HttpPost(url, formData));
+        }
+
+        public String SendHttpPostAndReturnResponseContent(String url, FormData formData, NameValueCollection headers)
+        {
+            return HtmlUtils.GetContentForResponse(HttpPost(url, formData, headers));
         }
 
         public HttpWebResponse HttpGet(String url)
