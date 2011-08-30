@@ -18,6 +18,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParafiaTest", "ParafiaTest\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParafiaIoC", "ParafiaIoC\ParafiaIoC.csproj", "{808C585C-3ECC-4FB0-B7D0-90E3E3BF8556}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ForexIoC", "ForexIoC\ForexIoC.csproj", "{CD64D930-FD5A-4D4F-AE95-1943B9699657}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = HttpUtils.vsmdi
@@ -81,6 +83,16 @@ Global
 		{808C585C-3ECC-4FB0-B7D0-90E3E3BF8556}.Release|Mixed Platforms.Build.0 = Release|x86
 		{808C585C-3ECC-4FB0-B7D0-90E3E3BF8556}.Release|x86.ActiveCfg = Release|x86
 		{808C585C-3ECC-4FB0-B7D0-90E3E3BF8556}.Release|x86.Build.0 = Release|x86
+		{CD64D930-FD5A-4D4F-AE95-1943B9699657}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{CD64D930-FD5A-4D4F-AE95-1943B9699657}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{CD64D930-FD5A-4D4F-AE95-1943B9699657}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{CD64D930-FD5A-4D4F-AE95-1943B9699657}.Debug|x86.ActiveCfg = Debug|x86
+		{CD64D930-FD5A-4D4F-AE95-1943B9699657}.Debug|x86.Build.0 = Debug|x86
+		{CD64D930-FD5A-4D4F-AE95-1943B9699657}.Release|Any CPU.ActiveCfg = Release|x86
+		{CD64D930-FD5A-4D4F-AE95-1943B9699657}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{CD64D930-FD5A-4D4F-AE95-1943B9699657}.Release|Mixed Platforms.Build.0 = Release|x86
+		{CD64D930-FD5A-4D4F-AE95-1943B9699657}.Release|x86.ActiveCfg = Release|x86
+		{CD64D930-FD5A-4D4F-AE95-1943B9699657}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

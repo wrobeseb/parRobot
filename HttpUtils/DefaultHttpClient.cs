@@ -25,6 +25,11 @@ namespace HttpUtils
             cookieContainer = new CookieContainer();
         }
 
+        public void AddCookie(Cookie cookie)
+        {
+            cookieContainer.Add(cookie);
+        }
+
         public HttpWebResponse HttpPost(String url, FormData formData, NameValueCollection headers)
         {
             HttpWebRequest request = HttpRequest.SendPost(url, formData, headers);

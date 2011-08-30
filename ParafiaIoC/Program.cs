@@ -16,11 +16,15 @@ namespace ParafiaIoC
         [STAThread]
         static void Main()
         {
-            IApplicationContext ctx = ContextRegistry.GetContext();  
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(true);
 
-            //Application.EnableVisualStyles();
-           // Application.SetCompatibleTextRenderingDefault(false);
-           // Application.Run(new Form1());
+            IApplicationContext ctx = ContextRegistry.GetContext();
+
+            MainForm mainForm = (MainForm)ctx.GetObject("mainForm");
+
+            
+            Application.Run(mainForm);
         }
     }
 }
