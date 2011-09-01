@@ -8,6 +8,9 @@ using System.Text;
 using System.Windows.Forms;
 using System.Threading;
 
+using Parafia.Properties;
+using Parafia.Model.Quest;
+
 namespace Parafia
 {
     public partial class MainForm : Form
@@ -38,6 +41,23 @@ namespace Parafia
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            Object obj = Settings.Default["quests"];
+            if (obj != null)
+            {
+                QuestContainer container = (QuestContainer)obj;
+                foreach (Quest quest in container.GetAllQuests)
+                {
+                    ListViewItem item = new ListViewItem();
+                    ListViewItem.ListViewSubItem siName = new ListViewItem.ListViewSubItem(item, quest.Name);
+                    ListViewItem.ListViewSubItem siProgress = new ListViewItem.ListViewSubItem(item, quest.GetProgress().ToString("F2") + " %");
+
+                    item.SubItems.Add(siName);
+                    item.SubItems.Add(siProgress);
+
+                    lvQuests.Items.Add(item);
+                }
+            }
+
             worker = new Worker(this);
             threadList = new List<Thread>();
 

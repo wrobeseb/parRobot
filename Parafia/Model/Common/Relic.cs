@@ -9,9 +9,17 @@ namespace Parafia.Model.Common
     {
         private String name;
 
+        public Relic() {}
+
+        public Relic(String name)
+        {
+            this.name = name;
+        }
+
         public String Name
         {
             get { return this.name; }
+            set { this.name = value; }
         }
     }
 }

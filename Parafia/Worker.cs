@@ -82,9 +82,10 @@ namespace Parafia
 
                                 parafia.initConnection(proxy);
                                 parafia.login(config.AccountUser, config.AccountPassword); printLog("Zalogowany do portalu...");
-                                parafia.buyArmy(config.ArmyType); printLog("Wojska zakupione. Typ: " + config.ArmyType);
-                                parafia.getUnitsInfo(); printLog("Informacje o jednostkach zostały pobrane.");
-                               // if (config.SendPilgrimage) { parafia.sendPilgrimage(2); printLog("Pielgrzymka została wysłana."); }
+                                //parafia.buyArmy(config.ArmyType); printLog("Wojska zakupione. Typ: " + config.ArmyType);
+                                //parafia.getUnitsInfo(); printLog("Informacje o jednostkach zostały pobrane.");
+                                parafia.getQuests();
+                                // if (config.SendPilgrimage) { parafia.sendPilgrimage(2); printLog("Pielgrzymka została wysłana."); }
                                 parafia.logout(); printLog("Pomyślne wylogowanie z portalu.");
                                 
                                 if (config.SentMail)

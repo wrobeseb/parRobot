@@ -42,26 +42,24 @@
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.bConfig = new System.Windows.Forms.Button();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.lbLog = new System.Windows.Forms.ListBox();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.tbControl = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.lvQuests = new System.Windows.Forms.ListView();
+            this.chCheckbox = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chQuestName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chQuestProgress = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lbLog = new System.Windows.Forms.ListBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox1.SuspendLayout();
-            this.groupBox5.SuspendLayout();
-            this.groupBox6.SuspendLayout();
             this.tbControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btStart
             // 
-            this.btStart.Location = new System.Drawing.Point(6, 10);
+            this.btStart.Location = new System.Drawing.Point(469, 364);
             this.btStart.Name = "btStart";
-            this.btStart.Size = new System.Drawing.Size(143, 51);
+            this.btStart.Size = new System.Drawing.Size(143, 48);
             this.btStart.TabIndex = 0;
             this.btStart.TabStop = false;
             this.btStart.Text = "Start";
@@ -71,7 +69,7 @@
             // btStop
             // 
             this.btStop.Enabled = false;
-            this.btStop.Location = new System.Drawing.Point(6, 67);
+            this.btStop.Location = new System.Drawing.Point(469, 418);
             this.btStop.Name = "btStop";
             this.btStop.Size = new System.Drawing.Size(143, 23);
             this.btStop.TabIndex = 1;
@@ -193,7 +191,7 @@
             // 
             // bConfig
             // 
-            this.bConfig.Location = new System.Drawing.Point(6, 96);
+            this.bConfig.Location = new System.Drawing.Point(469, 447);
             this.bConfig.Name = "bConfig";
             this.bConfig.Size = new System.Drawing.Size(143, 23);
             this.bConfig.TabIndex = 5;
@@ -201,55 +199,6 @@
             this.bConfig.Text = "Ustawienia";
             this.bConfig.UseVisualStyleBackColor = true;
             this.bConfig.Click += new System.EventHandler(this.bConfig_Click);
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Location = new System.Drawing.Point(6, 113);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(230, 218);
-            this.groupBox3.TabIndex = 6;
-            this.groupBox3.TabStop = false;
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Location = new System.Drawing.Point(242, 113);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(370, 218);
-            this.groupBox4.TabIndex = 7;
-            this.groupBox4.TabStop = false;
-            // 
-            // groupBox5
-            // 
-            this.groupBox5.Controls.Add(this.lbLog);
-            this.groupBox5.Location = new System.Drawing.Point(6, 337);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(445, 125);
-            this.groupBox5.TabIndex = 8;
-            this.groupBox5.TabStop = false;
-            // 
-            // lbLog
-            // 
-            this.lbLog.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbLog.FormattingEnabled = true;
-            this.lbLog.Location = new System.Drawing.Point(9, 20);
-            this.lbLog.Name = "lbLog";
-            this.lbLog.ScrollAlwaysVisible = true;
-            this.lbLog.SelectionMode = System.Windows.Forms.SelectionMode.None;
-            this.lbLog.Size = new System.Drawing.Size(430, 93);
-            this.lbLog.TabIndex = 0;
-            this.lbLog.TabStop = false;
-            this.lbLog.UseWaitCursor = true;
-            // 
-            // groupBox6
-            // 
-            this.groupBox6.Controls.Add(this.btStop);
-            this.groupBox6.Controls.Add(this.btStart);
-            this.groupBox6.Controls.Add(this.bConfig);
-            this.groupBox6.Location = new System.Drawing.Point(457, 337);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(155, 125);
-            this.groupBox6.TabIndex = 9;
-            this.groupBox6.TabStop = false;
             // 
             // tbControl
             // 
@@ -259,31 +208,80 @@
             this.tbControl.Location = new System.Drawing.Point(2, 7);
             this.tbControl.Name = "tbControl";
             this.tbControl.SelectedIndex = 0;
-            this.tbControl.Size = new System.Drawing.Size(627, 496);
+            this.tbControl.Size = new System.Drawing.Size(627, 505);
             this.tbControl.TabIndex = 10;
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.lvQuests);
+            this.tabPage1.Controls.Add(this.btStop);
+            this.tabPage1.Controls.Add(this.lbLog);
+            this.tabPage1.Controls.Add(this.btStart);
+            this.tabPage1.Controls.Add(this.bConfig);
             this.tabPage1.Controls.Add(this.groupBox1);
-            this.tabPage1.Controls.Add(this.groupBox6);
             this.tabPage1.Controls.Add(this.groupBox2);
-            this.tabPage1.Controls.Add(this.groupBox5);
-            this.tabPage1.Controls.Add(this.groupBox3);
-            this.tabPage1.Controls.Add(this.groupBox4);
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(619, 467);
+            this.tabPage1.Size = new System.Drawing.Size(619, 476);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Automat";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // lvQuests
+            // 
+            this.lvQuests.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lvQuests.CheckBoxes = true;
+            this.lvQuests.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.chCheckbox,
+            this.chQuestName,
+            this.chQuestProgress});
+            this.lvQuests.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvQuests.Location = new System.Drawing.Point(242, 113);
+            this.lvQuests.MultiSelect = false;
+            this.lvQuests.Name = "lvQuests";
+            this.lvQuests.ShowGroups = false;
+            this.lvQuests.Size = new System.Drawing.Size(370, 245);
+            this.lvQuests.TabIndex = 6;
+            this.lvQuests.TabStop = false;
+            this.lvQuests.UseCompatibleStateImageBehavior = false;
+            this.lvQuests.View = System.Windows.Forms.View.Details;
+            // 
+            // chCheckbox
+            // 
+            this.chCheckbox.Text = "";
+            this.chCheckbox.Width = 25;
+            // 
+            // chQuestName
+            // 
+            this.chQuestName.Text = "";
+            this.chQuestName.Width = 270;
+            // 
+            // chQuestProgress
+            // 
+            this.chQuestProgress.Text = "";
+            this.chQuestProgress.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.chQuestProgress.Width = 57;
+            // 
+            // lbLog
+            // 
+            this.lbLog.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbLog.FormattingEnabled = true;
+            this.lbLog.Location = new System.Drawing.Point(6, 364);
+            this.lbLog.Name = "lbLog";
+            this.lbLog.ScrollAlwaysVisible = true;
+            this.lbLog.SelectionMode = System.Windows.Forms.SelectionMode.None;
+            this.lbLog.Size = new System.Drawing.Size(457, 106);
+            this.lbLog.TabIndex = 0;
+            this.lbLog.TabStop = false;
+            this.lbLog.UseWaitCursor = true;
             // 
             // tabPage2
             // 
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(619, 467);
+            this.tabPage2.Size = new System.Drawing.Size(619, 476);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Obsługa Ręczna";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -292,7 +290,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(630, 504);
+            this.ClientSize = new System.Drawing.Size(630, 517);
             this.Controls.Add(this.tbControl);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -303,8 +301,6 @@
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.groupBox5.ResumeLayout(false);
-            this.groupBox6.ResumeLayout(false);
             this.tbControl.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -326,13 +322,13 @@
         public System.Windows.Forms.TextBox tbHitCount;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button bConfig;
-        private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.TabControl tbControl;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.ListView lvQuests;
+        private System.Windows.Forms.ColumnHeader chCheckbox;
+        private System.Windows.Forms.ColumnHeader chQuestName;
+        private System.Windows.Forms.ColumnHeader chQuestProgress;
         public System.Windows.Forms.ListBox lbLog;
     }
 }

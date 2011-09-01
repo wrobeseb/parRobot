@@ -12,6 +12,10 @@ using System.Threading;
 using Parafia.Exceptions;
 using Parafia.Enums;
 using Parafia.Model.Quest;
+using Parafia.Properties;
+
+using System.Xml;
+using System.Xml.Serialization;
 
 namespace Parafia
 {
@@ -23,6 +27,8 @@ namespace Parafia
         public String csrf;
 
         public  QuestContainer questContainer;
+
+        private List<Quest> newQuests;
 
         public bool papacyParty;
 
@@ -130,7 +136,32 @@ namespace Parafia
 
         public void getQuests()
         {
-            questContainer = new QuestContainer(httpClient.SendHttpGetAndReturnResponseContent("http://parafia.biz/quests"));
+            QuestContainer savedQuestContainer = null;
+            Object obj = Settings.Default["quests"];
+            if (obj != null) {
+                savedQuestContainer = (QuestContainer)obj;
+            }
+
+            questContainer = new QuestContainer(httpClient, httpClient.SendHttpGetAndReturnResponseContent("http://parafia.biz/quests"));
+
+            if (savedQuestContainer != null)
+                newQuests = savedQuestContainer.compare(questContainer);
+            else
+            {
+                /*MemoryStream memoryStream = new MemoryStream();
+
+                using (XmlTextWriter xmlTextWriter = new XmlTextWriter(memoryStream, Encoding.UTF8))
+                {
+                    XmlSerializer xmlSerializer = new XmlSerializer(typeof(QuestContainer));
+                    xmlSerializer.Serialize(xmlTextWriter, questContainer);
+
+                    memoryStream = (MemoryStream)xmlTextWriter.BaseStream;
+                }
+
+                String xml = Encoding.UTF8.GetString(memoryStream.ToArray());*/
+                Settings.Default["quests"] = questContainer;
+                Settings.Default.Save();
+            }
         }
 
         public void goToPapacyParty()
