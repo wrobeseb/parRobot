@@ -26,6 +26,9 @@ namespace Parafia
 
         private volatile bool doQuests = false;
 
+        private DateTime nextQuestWorkDt;
+        private DateTime lastQuestWorkDt;
+
         private int upTime = 0;
         private DateTime upTimeStart;
 
@@ -90,6 +93,33 @@ namespace Parafia
                 mainForm.pQuestsButtons.Enabled = true;
                 mainForm.lvQuests.Enabled = true;
             }));
+        }
+
+        public void doQuestWork()
+        {
+            while (mainSemafor)
+            {
+                if (doQuests)
+                {
+                    long interval = (nextQuestWorkDt.Ticks - DateTime.Now.Ticks) / 1000000;
+                    if (interval == 0)
+                    {
+                        lastQuestWorkDt = nextQuestWorkDt;
+                        nextQuestWorkDt = getNextQuestWorkDt();
+
+                        Parafia parafia = getInstance();
+                        if (parafia != null)
+                        {
+                            lock (loggedInlockObject)
+                            {
+                                parafia.login(); printLog("QUEST: Zalogowany do portalu...");
+
+                            }
+                        }
+                    }
+                }
+                Thread.Sleep(100);
+            }
         }
 
         public void startMainWork()
@@ -162,6 +192,11 @@ namespace Parafia
         private DateTime getNextLoginTime()
         {
             return DateTime.Now.AddSeconds(new Random().Next(8400, 9000));
+        }
+
+        private DateTime getNextQuestWorkDt()
+        {
+            return DateTime.Now.AddSeconds(new Random().Next(6000, 8000));
         }
 
         public void StopAllThreads()
