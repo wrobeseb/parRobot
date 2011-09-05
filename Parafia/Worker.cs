@@ -7,6 +7,8 @@ using System.Net;
 using Parafia.Properties;
 using Parafia.Service;
 
+using System.Windows.Forms;
+
 namespace Parafia
 {
     public class Worker
@@ -16,6 +18,8 @@ namespace Parafia
         private volatile bool systemTimeSemafor = true;
         private volatile bool upTimeSemafor = false;
         private volatile bool mainWorkSemafor = false;
+
+        private volatile bool doQuests = false;
 
         private int upTime = 0;
         private DateTime upTimeStart;
@@ -83,8 +87,17 @@ namespace Parafia
                                 parafia.initConnection(proxy);
                                 parafia.login(config.AccountUser, config.AccountPassword); printLog("Zalogowany do portalu...");
                                 //parafia.buyArmy(config.ArmyType); printLog("Wojska zakupione. Typ: " + config.ArmyType);
-                                //parafia.getUnitsInfo(); printLog("Informacje o jednostkach zostały pobrane.");
+                                parafia.getUnitsInfo(); printLog("Informacje o jednostkach zostały pobrane.");
                                 parafia.getQuests();
+
+                                if (config.DoQuests) { 
+                                    ListView.SelectedListViewItemCollection selectedItems;
+                                    mainForm.Invoke((Action)(delegate
+                                    {
+                                        selectedItems = mainForm.lvQuests.SelectedItems;
+                                    }));
+
+                                }
                                 // if (config.SendPilgrimage) { parafia.sendPilgrimage(2); printLog("Pielgrzymka została wysłana."); }
                                 parafia.logout(); printLog("Pomyślne wylogowanie z portalu.");
                                 
@@ -115,7 +128,7 @@ namespace Parafia
 
         private DateTime getNextLoginTime()
         {
-            return DateTime.Now.AddSeconds(new Random().Next(6200, 9800));
+            return DateTime.Now.AddSeconds(new Random().Next(8400, 9000));
         }
 
         public void StopSystemTime()
