@@ -21,6 +21,7 @@ namespace Parafia
 {
     public class Parafia
     {
+        public ApplicationConfig config;
         public DefaultHttpClient httpClient;
         public Attributes.Attributes attributes;
         public Units.Units units;
@@ -32,14 +33,31 @@ namespace Parafia
 
         public bool papacyParty;
 
-        public void initConnection(WebProxy webProxy)
+        public void initConnection(ApplicationConfig config)
         {
-            httpClient = new DefaultHttpClient();
-            if (webProxy != null)
-                httpClient.SetWebProxy = webProxy;
+            if (config != null)
+            {
+                this.config = config;
+                WebProxy proxy = null;
+                if (!String.IsNullOrEmpty(config.ProxyHost))
+                {
+                    proxy = new WebProxy(config.ProxyHost, config.ProxyPort);
+                    proxy.Credentials = new NetworkCredential(config.ProxyUser, config.ProxyPassword, config.ProxyDomain);
+                }
+                httpClient = new DefaultHttpClient();
+                if (proxy != null)
+                    httpClient.SetWebProxy = proxy;
+            }
         }
 
-        public bool login(String user, String passwd)
+        public TimeSpan getSerwerTime()
+        {
+            String temp = MainUtils.removeAllNotNumberCharacters(HtmlUtils.GetSingleNodeByXPathExpression(httpClient.SendHttpGetAndReturnResponseContent("http://blog.parafia.biz/czas/"), "//body").InnerText).Replace(" ", String.Empty);
+            String[] tempTable = temp.Split(',');
+            return new TimeSpan(0, int.Parse(tempTable[0]), int.Parse(tempTable[1]), int.Parse(tempTable[2]), 0);
+        }
+
+        public bool login()
         {
             String responseContent = httpClient.SendHttpGetAndReturnResponseContent("http://parafia.biz/");
             csrf = HtmlUtils.GetStringValueByXPathExpression(responseContent, "//input[@name='login_csrf']");
@@ -49,8 +67,8 @@ namespace Parafia
                 FormData formData = new FormData();
                 formData.addValue("formo_login_form", "login_form");
                 formData.addValue("login_csrf", csrf);
-                formData.addValue("user_name", user);
-                formData.addValue("user_pass", passwd);
+                formData.addValue("user_name", config.AccountUser);
+                formData.addValue("user_pass", config.AccountPassword);
                 formData.addValue("login_submit", "");
 
                 responseContent = httpClient.SendHttpPostAndReturnResponseContent("http://parafia.biz/", formData);
@@ -146,19 +164,9 @@ namespace Parafia
 
             if (savedQuestContainer != null)
                 newQuests = savedQuestContainer.compare(questContainer);
-            else
+
+            if (questContainer != null)
             {
-                /*MemoryStream memoryStream = new MemoryStream();
-
-                using (XmlTextWriter xmlTextWriter = new XmlTextWriter(memoryStream, Encoding.UTF8))
-                {
-                    XmlSerializer xmlSerializer = new XmlSerializer(typeof(QuestContainer));
-                    xmlSerializer.Serialize(xmlTextWriter, questContainer);
-
-                    memoryStream = (MemoryStream)xmlTextWriter.BaseStream;
-                }
-
-                String xml = Encoding.UTF8.GetString(memoryStream.ToArray());*/
                 Settings.Default["quests"] = questContainer;
                 Settings.Default.Save();
             }

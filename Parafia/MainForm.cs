@@ -41,24 +41,9 @@ namespace Parafia
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            Object obj = Settings.Default["quests"];
-            if (obj != null)
-            {
-                QuestContainer container = (QuestContainer)obj;
-                foreach (Quest quest in container.GetAllQuests)
-                {
-                    ListViewItem item = new ListViewItem();
-                    ListViewItem.ListViewSubItem siName = new ListViewItem.ListViewSubItem(item, quest.Name);
-                    ListViewItem.ListViewSubItem siProgress = new ListViewItem.ListViewSubItem(item, quest.GetProgress().ToString("F2") + " %");
-
-                    item.SubItems.Add(siName);
-                    item.SubItems.Add(siProgress);
-
-                    lvQuests.Items.Add(item);
-                }
-            }
-
             worker = new Worker(this);
+            worker.fillQuestsList();
+            worker.GetServerTime();
             threadList = new List<Thread>();
 
             Thread systemTimeThread = new Thread(worker.renderSystemTime);
@@ -93,6 +78,25 @@ namespace Parafia
             ConfigForm configForm = new ConfigForm();
             configForm.ShowDialog();
             
+        }
+
+        private void bQuestRefresh_Click(object sender, EventArgs e)
+        {
+            pQuestsButtons.Enabled = false;
+            lvQuests.Enabled = false;
+            Thread questsRefreshThread = new Thread(worker.questRefreshWork);
+            questsRefreshThread.Name = "QuestsRefreshThread";
+            questsRefreshThread.Start();
+        }
+
+        private void bQuestOn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void bQuestOff_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

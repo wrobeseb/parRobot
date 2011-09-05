@@ -9,19 +9,25 @@ namespace Parafia.Units
 {
     public class Units
     {
-        private int unit1;
-        private int unit2;
-        private int unit3;
-        private int unit4;
-        private int unit5;
-        private int unit6;
+        public double attack;
+        public double defense;
+
+        public int unit1;
+        public int unit2;
+        public int unit3;
+        public int unit4;
+        public int unit5;
+        public int unit6;
 
         public Units(String responseContent)
         {
             HtmlNodeCollection nodes = HtmlUtils.GetNodesCollectionByXPathExpression(responseContent, "//table[@class='items']");
 
-            HtmlNode attackNode = HtmlUtils.GetSingleNodeByXPathExpression(responseContent, "//table[2]");
-            HtmlNode defenseNode = HtmlUtils.GetSingleNodeByXPathExpression(responseContent, "//table[3]");
+            String attackTxt = HtmlUtils.GetStringValueByXPathExpression(responseContent, "//table[1]/tbody/tr[1]/td[2]/text()").Split(' ')[0];
+            String defenseTxt = HtmlUtils.GetStringValueByXPathExpression(responseContent, "//table[1]/tbody/tr[2]/td[2]/text()").Split(' ')[0];
+
+            attack = Double.Parse(attackTxt);
+            defense = Double.Parse(defenseTxt);
 
             this.unit1 = HtmlUtils.GetIntValueByXPathExpression(responseContent, "//table[2]/tbody/tr[1]/td[2]/text()");
             this.unit2 = HtmlUtils.GetIntValueByXPathExpression(responseContent, "//table[2]/tbody/tr[2]/td[2]/text()");
