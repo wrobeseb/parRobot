@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -35,6 +36,33 @@ namespace Parafia.Model.Quest
                 }
 
                 listOfQuests.Add(quest);
+            }
+        }
+
+        public void updateTaskProgress(String content, Task task)
+        {
+            HtmlNodeCollection tasksNodeCollection = HtmlUtils.GetNodesCollectionByXPathExpression(content, "//div[@class='quest mt20']");
+
+            foreach (HtmlNode taskNode in tasksNodeCollection)
+            {
+                Task temp = new Task(taskNode.InnerHtml);
+                if (task.Link.Equals(temp.Link))
+                {
+                    task.Progress = temp.Progress;
+                    break;
+                }
+            }
+        }
+
+        public void checkQuest(Quest quest)
+        {
+            foreach (Quest questFromList in listOfQuests)
+            {
+                if (questFromList.Link.Equals(quest.Link))
+                {
+                    questFromList.IsChecked = true;
+                    break;
+                }
             }
         }
 
@@ -105,6 +133,24 @@ namespace Parafia.Model.Quest
                 }
             }
             return null;
+        }
+
+        public ArrayList GetQuestByNameTable(String[] names)
+        {
+            ArrayList matchedQuests = new ArrayList();
+
+            foreach (Quest quest in listOfQuests)
+            {
+                foreach (String name in names)
+	            {
+                    if (quest.Name.Equals(name))
+                    {
+                        matchedQuests.Add(quest);
+                    }
+	            }
+            }
+
+            return matchedQuests;
         }
 
         public List<Quest> compare(QuestContainer questContainer)

@@ -46,12 +46,13 @@
             this.bConfig = new System.Windows.Forms.Button();
             this.tbControl = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.pQuestsButtons = new System.Windows.Forms.Panel();
             this.bQuestOff = new System.Windows.Forms.Button();
-            this.bQuestRefresh = new System.Windows.Forms.Button();
             this.bQuestOn = new System.Windows.Forms.Button();
+            this.bQuestRefresh = new System.Windows.Forms.Button();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tbNextQuestDt = new System.Windows.Forms.TextBox();
+            this.tbLastQuestDt = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
@@ -80,15 +81,14 @@
             this.chQuestProgress = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lbLog = new System.Windows.Forms.ListBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.pQuestsButtons = new System.Windows.Forms.Panel();
             this.groupBox1.SuspendLayout();
             this.tbControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.pQuestsButtons.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            this.pQuestsButtons.SuspendLayout();
             this.SuspendLayout();
             // 
             // btStart
@@ -292,8 +292,19 @@
             this.tabPage1.Text = "Automat";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // pQuestsButtons
+            // 
+            this.pQuestsButtons.Controls.Add(this.bQuestOff);
+            this.pQuestsButtons.Controls.Add(this.bQuestOn);
+            this.pQuestsButtons.Controls.Add(this.bQuestRefresh);
+            this.pQuestsButtons.Location = new System.Drawing.Point(446, 129);
+            this.pQuestsButtons.Name = "pQuestsButtons";
+            this.pQuestsButtons.Size = new System.Drawing.Size(285, 67);
+            this.pQuestsButtons.TabIndex = 0;
+            // 
             // bQuestOff
             // 
+            this.bQuestOff.Enabled = false;
             this.bQuestOff.Location = new System.Drawing.Point(3, 35);
             this.bQuestOff.Name = "bQuestOff";
             this.bQuestOff.Size = new System.Drawing.Size(95, 26);
@@ -302,17 +313,6 @@
             this.bQuestOff.Text = "OFF";
             this.bQuestOff.UseVisualStyleBackColor = true;
             this.bQuestOff.Click += new System.EventHandler(this.bQuestOff_Click);
-            // 
-            // bQuestRefresh
-            // 
-            this.bQuestRefresh.Location = new System.Drawing.Point(103, 5);
-            this.bQuestRefresh.Name = "bQuestRefresh";
-            this.bQuestRefresh.Size = new System.Drawing.Size(178, 56);
-            this.bQuestRefresh.TabIndex = 11;
-            this.bQuestRefresh.TabStop = false;
-            this.bQuestRefresh.Text = "Aktualizuj";
-            this.bQuestRefresh.UseVisualStyleBackColor = true;
-            this.bQuestRefresh.Click += new System.EventHandler(this.bQuestRefresh_Click);
             // 
             // bQuestOn
             // 
@@ -326,10 +326,21 @@
             this.bQuestOn.UseVisualStyleBackColor = true;
             this.bQuestOn.Click += new System.EventHandler(this.bQuestOn_Click);
             // 
+            // bQuestRefresh
+            // 
+            this.bQuestRefresh.Location = new System.Drawing.Point(103, 5);
+            this.bQuestRefresh.Name = "bQuestRefresh";
+            this.bQuestRefresh.Size = new System.Drawing.Size(178, 56);
+            this.bQuestRefresh.TabIndex = 11;
+            this.bQuestRefresh.TabStop = false;
+            this.bQuestRefresh.Text = "Aktualizuj";
+            this.bQuestRefresh.UseVisualStyleBackColor = true;
+            this.bQuestRefresh.Click += new System.EventHandler(this.bQuestRefresh_Click);
+            // 
             // groupBox7
             // 
-            this.groupBox7.Controls.Add(this.textBox2);
-            this.groupBox7.Controls.Add(this.textBox1);
+            this.groupBox7.Controls.Add(this.tbNextQuestDt);
+            this.groupBox7.Controls.Add(this.tbLastQuestDt);
             this.groupBox7.Controls.Add(this.label15);
             this.groupBox7.Controls.Add(this.label14);
             this.groupBox7.Location = new System.Drawing.Point(242, 129);
@@ -338,29 +349,29 @@
             this.groupBox7.TabIndex = 14;
             this.groupBox7.TabStop = false;
             // 
-            // textBox2
+            // tbNextQuestDt
             // 
-            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox2.Location = new System.Drawing.Point(125, 36);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(61, 13);
-            this.textBox2.TabIndex = 17;
-            this.textBox2.TabStop = false;
-            this.textBox2.Text = "00:00:00";
-            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tbNextQuestDt.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tbNextQuestDt.Location = new System.Drawing.Point(125, 36);
+            this.tbNextQuestDt.Name = "tbNextQuestDt";
+            this.tbNextQuestDt.ReadOnly = true;
+            this.tbNextQuestDt.Size = new System.Drawing.Size(61, 13);
+            this.tbNextQuestDt.TabIndex = 17;
+            this.tbNextQuestDt.TabStop = false;
+            this.tbNextQuestDt.Text = "00:00:00";
+            this.tbNextQuestDt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // textBox1
+            // tbLastQuestDt
             // 
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox1.Location = new System.Drawing.Point(125, 16);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(61, 13);
-            this.textBox1.TabIndex = 16;
-            this.textBox1.TabStop = false;
-            this.textBox1.Text = "00:00:00";
-            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tbLastQuestDt.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tbLastQuestDt.Location = new System.Drawing.Point(125, 16);
+            this.tbLastQuestDt.Name = "tbLastQuestDt";
+            this.tbLastQuestDt.ReadOnly = true;
+            this.tbLastQuestDt.Size = new System.Drawing.Size(61, 13);
+            this.tbLastQuestDt.TabIndex = 16;
+            this.tbLastQuestDt.TabStop = false;
+            this.tbLastQuestDt.Text = "00:00:00";
+            this.tbLastQuestDt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label15
             // 
@@ -647,16 +658,6 @@
             this.tabPage2.Text = "Obsługa Ręczna";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // pQuestsButtons
-            // 
-            this.pQuestsButtons.Controls.Add(this.bQuestOff);
-            this.pQuestsButtons.Controls.Add(this.bQuestOn);
-            this.pQuestsButtons.Controls.Add(this.bQuestRefresh);
-            this.pQuestsButtons.Location = new System.Drawing.Point(446, 129);
-            this.pQuestsButtons.Name = "pQuestsButtons";
-            this.pQuestsButtons.Size = new System.Drawing.Size(285, 67);
-            this.pQuestsButtons.TabIndex = 0;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -674,6 +675,7 @@
             this.groupBox1.PerformLayout();
             this.tbControl.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.pQuestsButtons.ResumeLayout(false);
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
             this.groupBox6.ResumeLayout(false);
@@ -682,7 +684,6 @@
             this.groupBox4.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            this.pQuestsButtons.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -738,8 +739,8 @@
         public System.Windows.Forms.Label label15;
         public System.Windows.Forms.Label label14;
         public System.Windows.Forms.Button bQuestOff;
-        public System.Windows.Forms.TextBox textBox2;
-        public System.Windows.Forms.TextBox textBox1;
+        public System.Windows.Forms.TextBox tbNextQuestDt;
+        public System.Windows.Forms.TextBox tbLastQuestDt;
         public System.Windows.Forms.Panel pQuestsButtons;
     }
 }

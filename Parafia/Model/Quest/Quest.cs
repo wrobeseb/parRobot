@@ -8,11 +8,12 @@ using HttpUtils;
 
 namespace Parafia.Model.Quest
 {
-    public class Quest
+    public class Quest : IComparable
     {
         private String name;
         private String link;
         private int priority;
+        private bool isChecked = false;
 
         [XmlArray("tasks"), XmlArrayItem("task", typeof(Task))]
         private List<Task> listOfTasks;
@@ -57,6 +58,12 @@ namespace Parafia.Model.Quest
             set { this.listOfTasks = value; }
         }
 
+        public bool IsChecked
+        {
+            get { return this.isChecked; }
+            set { this.isChecked = value; }
+        }
+
         public void AddTask(Task task)
         {
             if (listOfTasks == null)
@@ -77,6 +84,20 @@ namespace Parafia.Model.Quest
             progress = value / listOfTasks.Count;
 
             return progress;
+        }
+
+        public int CompareTo(object obj)
+        {
+            if (obj is Quest) {
+                Quest quest = (Quest)obj;
+                if (quest.Priority > this.priority)
+                    return -1;
+                if (quest.Priority < this.priority)
+                    return 1;
+
+                return 0;
+            }
+            throw new Exception();
         }
     }
 }

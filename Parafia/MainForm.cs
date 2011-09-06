@@ -54,8 +54,13 @@ namespace Parafia
             mainWorkThread.Name = "MainWorkThread";
             mainWorkThread.Start();
 
+            Thread questWorkThread = new Thread(worker.doQuestWork);
+            questWorkThread.Name = "QuestWorkThread";
+            questWorkThread.Start();
+
             threadList.Add(systemTimeThread);
             threadList.Add(mainWorkThread);
+            threadList.Add(questWorkThread);
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -91,12 +96,16 @@ namespace Parafia
 
         private void bQuestOn_Click(object sender, EventArgs e)
         {
-
+            bQuestOn.Enabled = false;
+            bQuestOff.Enabled = true;
+            worker.StartUpQuests();
         }
 
         private void bQuestOff_Click(object sender, EventArgs e)
         {
-
+            bQuestOn.Enabled = true;
+            bQuestOff.Enabled = false;
+            worker.StopQuests();
         }
     }
 }

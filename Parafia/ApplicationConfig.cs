@@ -26,6 +26,12 @@ namespace Parafia
         private String smtpAccountPasswd;
         private bool smtpEnableSSL;
 
+        private int armyTimeStart;
+        private int armyTimeStop;
+
+        private int questTimeStart;
+        private int questTimeStop;
+
         public bool UseProxy
         {
             get { return this.useProxy; }
@@ -120,6 +126,30 @@ namespace Parafia
         {
             get { return this.smtpEnableSSL; }
             set { this.smtpEnableSSL = value; }
+        }
+
+        public int ArmyTimeStart
+        {
+            get { return this.armyTimeStart; }
+            set { this.armyTimeStart = value; }
+        }
+
+        public int ArmyTimeStop
+        {
+            get { return this.armyTimeStop; }
+            set { this.armyTimeStop = value; }
+        }
+
+        public int QuestTimeStart
+        {
+            get { return this.questTimeStart; }
+            set { this.questTimeStart = value; }
+        }
+
+        public int QuestTimeStop
+        {
+            get { return this.questTimeStop; }
+            set { this.questTimeStop = value; }
         }
     }
 }

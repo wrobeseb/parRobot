@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -37,6 +38,9 @@ namespace Parafia
         private DateTime nextLoginDt;
 
         private TimeSpan serverDt;
+
+        private bool sendMail = false;
+        private Enums.ArmyType armyType = Enums.ArmyType.Defense;
 
         public Worker(MainForm mainForm)
         {
@@ -113,9 +117,19 @@ namespace Parafia
                             lock (loggedInlockObject)
                             {
                                 parafia.login(); printLog("QUEST: Zalogowany do portalu...");
-
+                                parafia.doQuestTasks(getListOfCheckedQuests()); printLog("QUEST: Robie questy...");
+                                parafia.logout(); printLog("QUEST: Wylogowany z portalu...");
+                                if (sendMail)
+                                    MailService.sendMail("sairo149240@gmail.com", "App", "Questy wykonane... następne o godzinie: " + this.nextQuestWorkDt.ToString("HH:mm:ss"));
                             }
                         }
+                        fillQuestsList();
+                        mainForm.Invoke((Action)(delegate
+                        {
+                            mainForm.tbLastQuestDt.Text = lastQuestWorkDt.ToString("HH:mm:ss");
+                            mainForm.tbNextQuestDt.Text = nextQuestWorkDt.ToString("HH:mm:ss");
+                        }));
+                        
                     }
                 }
                 Thread.Sleep(100);
@@ -140,24 +154,13 @@ namespace Parafia
                             lock (loggedInlockObject)
                             {
                                 parafia.login(); printLog("Zalogowany do portalu...");
-                                //parafia.buyArmy(config.ArmyType); printLog("Wojska zakupione. Typ: " + config.ArmyType);
+                                parafia.buyArmy(armyType); printLog("Wojska zakupione. Typ: " + armyType);
                                 parafia.getUnitsInfo(); printLog("Informacje o jednostkach zostały pobrane.");
-
-                                //parafia.getQuests();
-
-                                /*if (doQuests) { 
-                                    ListView.SelectedListViewItemCollection selectedItems;
-                                    mainForm.Invoke((Action)(delegate
-                                    {
-                                        selectedItems = mainForm.lvQuests.SelectedItems;
-                                    }));
-
-                                }*/
                                 // if (config.SendPilgrimage) { parafia.sendPilgrimage(2); printLog("Pielgrzymka została wysłana."); }
                                 parafia.logout(); printLog("Pomyślne wylogowanie z portalu.");
 
-                                // if (config.SentMail)
-                                //     MailService.sendMail("sairo149240@gmail.com", "App", "Zakupy skończone... następne o godzinie: " + this.nextLoginDt.ToString("yyyy-MM-dd HH:mm:ss"));
+                                if (sendMail)
+                                     MailService.sendMail("sairo149240@gmail.com", "App", "Zakupy skończone... następne o godzinie: " + this.nextLoginDt.ToString("yyyy-MM-dd HH:mm:ss"));
 
                                 mainForm.Invoke((Action)(delegate
                                 {
@@ -191,17 +194,57 @@ namespace Parafia
 
         private DateTime getNextLoginTime()
         {
-            return DateTime.Now.AddSeconds(new Random().Next(8400, 9000));
+            object obj = Settings.Default["properties"];
+
+            if (obj != null)
+            {
+                ApplicationConfig config = (ApplicationConfig)obj;
+                if (config != null)
+                {
+                    if (config.ArmyTimeStart != 0 && config.ArmyTimeStop != 0)
+                    {
+                        return DateTime.Now.AddSeconds(new Random().Next(config.ArmyTimeStart, config.ArmyTimeStop));
+                    }
+                }
+            }
+            throw new Exception();
         }
 
         private DateTime getNextQuestWorkDt()
         {
-            return DateTime.Now.AddSeconds(new Random().Next(6000, 8000));
+            object obj = Settings.Default["properties"];
+
+            if (obj != null)
+            {
+                ApplicationConfig config = (ApplicationConfig)obj;
+                if (config != null)
+                {
+                    if (config.QuestTimeStart != 0 && config.QuestTimeStop != 0)
+                    {
+                        return DateTime.Now.AddSeconds(new Random().Next(config.QuestTimeStart, config.QuestTimeStop));
+                    }
+                }
+            }
+            throw new Exception();
         }
 
         public void StopAllThreads()
         {
             mainSemafor = false;
+        }
+
+        public void StartUpQuests()
+        {
+            nextQuestWorkDt = DateTime.Now.AddSeconds(10);
+            mainForm.tbNextQuestDt.Text = nextQuestWorkDt.ToString("HH:mm:ss");
+            doQuests = true;
+        }
+
+        public void StopQuests()
+        {
+            doQuests = false;
+            mainForm.tbNextQuestDt.Text = "brak danych";
+            mainForm.tbLastQuestDt.Text = "brak danych";
         }
 
         public void StartUpTime()
@@ -233,6 +276,22 @@ namespace Parafia
                 serverDt = new TimeSpan(0, 0, 0, 0, 0);
         }
 
+        public String[] getListOfCheckedQuests()
+        {
+            List<String> listOfNames = new List<String>();
+
+            mainForm.Invoke((Action)(delegate
+            {
+                ListView.ListViewItemCollection collection = mainForm.lvQuests.Items;
+                foreach (ListViewItem item in collection) {
+                    if (item.Checked)
+                        listOfNames.Add(item.SubItems[1].Text);
+                }
+            }));
+
+            return listOfNames.ToArray<String>();
+        }
+
         public void fillQuestsList()
         {
             Object obj = Settings.Default["quests"];
@@ -250,6 +309,9 @@ namespace Parafia
                     ListViewItem.ListViewSubItem siName = new ListViewItem.ListViewSubItem(item, quest.Name);
                     ListViewItem.ListViewSubItem siProgress = new ListViewItem.ListViewSubItem(item, quest.GetProgress().ToString("F2") + " %");
 
+                    if (quest.IsChecked)
+                        item.Checked = true;
+
                     item.SubItems.Add(siName);
                     item.SubItems.Add(siProgress);
 
@@ -264,14 +326,21 @@ namespace Parafia
         public Parafia getInstance()
         {
             object obj = Settings.Default["properties"];
+            object obj1 = Settings.Default["quests"];
 
             if (obj != null)
             {
                 ApplicationConfig config = (ApplicationConfig)obj;
                 if (config != null)
                 {
+                    sendMail = config.SentMail;
+                    armyType = config.ArmyType;
                     Parafia parafia = new Parafia();
                     parafia.initConnection(config);
+                    if (obj1 != null)
+                    {
+                        parafia.questContainer = (QuestContainer)obj1;
+                    }
                     return parafia;
                 }
             }

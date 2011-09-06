@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.IO;
@@ -19,6 +20,7 @@ using System.Xml.Serialization;
 
 namespace Parafia
 {
+
     public class Parafia
     {
         public ApplicationConfig config;
@@ -150,6 +152,59 @@ namespace Parafia
                 }
             }
             return true;
+        }
+
+        public void doQuestTasks(String[] selectedNames)
+        {
+            ArrayList quests = questContainer.GetQuestByNameTable(selectedNames);
+
+            foreach (Quest quest in quests)
+            {
+                questContainer.checkQuest(quest);
+                if (quest.Progress < 98)
+                {
+                    foreach (Task task in quest.ListOfTasks)
+                    {
+                        bool flag = true;
+                        while (flag)
+                        {
+                            flag = false;
+                            if (task.Progress != 100)
+                            {
+                                if (task.Cost.energy < attributes.Energy.Actual)
+                                {
+                                    if (task.Cost.health < attributes.Health.Actual)
+                                    {
+                                        if (task.Cost.cash < attributes.Cash.Actual)
+                                        {
+                                            httpClient.SendHttpGetAndReturnResponseContent(task.Link);
+                                            String content = httpClient.SendHttpGetAndReturnResponseContent(quest.Link);
+                                            updateAttributes(content);
+                                            updateQuestInfo(content, task);
+                                            flag = true;
+                                        }
+                                    }
+                                }
+                            }
+                            if (!flag)
+                                break;
+                        }
+                    }
+                }
+            }
+
+            Settings.Default["quests"] = questContainer;
+            Settings.Default.Save();
+        }
+
+        public void updateAttributes(String content)
+        {
+            attributes = new Attributes.Attributes(content);
+        }
+
+        public void updateQuestInfo(String content, Task task)
+        {
+            questContainer.updateTaskProgress(content, task);
         }
 
         public void getQuests()
