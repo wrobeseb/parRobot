@@ -58,9 +58,14 @@ namespace Parafia
             questWorkThread.Name = "QuestWorkThread";
             questWorkThread.Start();
 
+            Thread relicsWorkThread = new Thread(worker.buyRelics);
+            relicsWorkThread.Name = "RelicsWorkThread";
+            relicsWorkThread.Start();
+
             threadList.Add(systemTimeThread);
             threadList.Add(mainWorkThread);
             threadList.Add(questWorkThread);
+            threadList.Add(relicsWorkThread);
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -106,6 +111,20 @@ namespace Parafia
             bQuestOn.Enabled = true;
             bQuestOff.Enabled = false;
             worker.StopQuests();
+        }
+
+        private void btRelicsOn_Click(object sender, EventArgs e)
+        {
+            btRelicsOff.Enabled = true;
+            btRelicsOn.Enabled = false;
+            worker.StartRelics();
+        }
+
+        private void btRelicsOff_Click(object sender, EventArgs e)
+        {
+            btRelicsOff.Enabled = false;
+            btRelicsOn.Enabled = true;
+            worker.StopRelics();
         }
     }
 }

@@ -46,15 +46,15 @@
             this.bConfig = new System.Windows.Forms.Button();
             this.tbControl = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.lvQuests = new System.Windows.Forms.ListView();
+            this.chCheckbox = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chQuestName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chQuestProgress = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pQuestsButtons = new System.Windows.Forms.Panel();
             this.bQuestOff = new System.Windows.Forms.Button();
             this.bQuestOn = new System.Windows.Forms.Button();
             this.bQuestRefresh = new System.Windows.Forms.Button();
-            this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.tbNextQuestDt = new System.Windows.Forms.TextBox();
-            this.tbLastQuestDt = new System.Windows.Forms.TextBox();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.tbGospo = new System.Windows.Forms.TextBox();
             this.tbMoher = new System.Windows.Forms.TextBox();
@@ -69,25 +69,31 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.tbNextQuestDt = new System.Windows.Forms.TextBox();
+            this.tbLastQuestDt = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.btRelicsOff = new System.Windows.Forms.Button();
+            this.btRelicsOn = new System.Windows.Forms.Button();
+            this.tbHourField = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label5 = new System.Windows.Forms.Label();
             this.tbDefense = new System.Windows.Forms.TextBox();
             this.tbAttack = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.lvQuests = new System.Windows.Forms.ListView();
-            this.chCheckbox = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.chQuestName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.chQuestProgress = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lbLog = new System.Windows.Forms.ListBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tbRelicName = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.tbControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.pQuestsButtons.SuspendLayout();
-            this.groupBox7.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            this.groupBox7.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -271,13 +277,14 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.groupBox8);
+            this.tabPage1.Controls.Add(this.lvQuests);
             this.tabPage1.Controls.Add(this.pQuestsButtons);
-            this.tabPage1.Controls.Add(this.groupBox7);
             this.tabPage1.Controls.Add(this.groupBox6);
             this.tabPage1.Controls.Add(this.groupBox4);
+            this.tabPage1.Controls.Add(this.groupBox7);
             this.tabPage1.Controls.Add(this.groupBox5);
             this.tabPage1.Controls.Add(this.groupBox3);
-            this.tabPage1.Controls.Add(this.lvQuests);
             this.tabPage1.Controls.Add(this.btStop);
             this.tabPage1.Controls.Add(this.lbLog);
             this.tabPage1.Controls.Add(this.btStart);
@@ -291,6 +298,49 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Automat";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // groupBox8
+            // 
+            this.groupBox8.Location = new System.Drawing.Point(242, 370);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Size = new System.Drawing.Size(483, 97);
+            this.groupBox8.TabIndex = 15;
+            this.groupBox8.TabStop = false;
+            // 
+            // lvQuests
+            // 
+            this.lvQuests.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lvQuests.CheckBoxes = true;
+            this.lvQuests.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.chCheckbox,
+            this.chQuestName,
+            this.chQuestProgress});
+            this.lvQuests.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvQuests.Location = new System.Drawing.Point(242, 201);
+            this.lvQuests.MultiSelect = false;
+            this.lvQuests.Name = "lvQuests";
+            this.lvQuests.ShowGroups = false;
+            this.lvQuests.Size = new System.Drawing.Size(483, 163);
+            this.lvQuests.TabIndex = 6;
+            this.lvQuests.TabStop = false;
+            this.lvQuests.UseCompatibleStateImageBehavior = false;
+            this.lvQuests.View = System.Windows.Forms.View.Details;
+            // 
+            // chCheckbox
+            // 
+            this.chCheckbox.Text = "";
+            this.chCheckbox.Width = 25;
+            // 
+            // chQuestName
+            // 
+            this.chQuestName.Text = "";
+            this.chQuestName.Width = 300;
+            // 
+            // chQuestProgress
+            // 
+            this.chQuestProgress.Text = "";
+            this.chQuestProgress.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.chQuestProgress.Width = 130;
             // 
             // pQuestsButtons
             // 
@@ -336,60 +386,6 @@
             this.bQuestRefresh.Text = "Aktualizuj";
             this.bQuestRefresh.UseVisualStyleBackColor = true;
             this.bQuestRefresh.Click += new System.EventHandler(this.bQuestRefresh_Click);
-            // 
-            // groupBox7
-            // 
-            this.groupBox7.Controls.Add(this.tbNextQuestDt);
-            this.groupBox7.Controls.Add(this.tbLastQuestDt);
-            this.groupBox7.Controls.Add(this.label15);
-            this.groupBox7.Controls.Add(this.label14);
-            this.groupBox7.Location = new System.Drawing.Point(242, 129);
-            this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(198, 61);
-            this.groupBox7.TabIndex = 14;
-            this.groupBox7.TabStop = false;
-            // 
-            // tbNextQuestDt
-            // 
-            this.tbNextQuestDt.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbNextQuestDt.Location = new System.Drawing.Point(125, 36);
-            this.tbNextQuestDt.Name = "tbNextQuestDt";
-            this.tbNextQuestDt.ReadOnly = true;
-            this.tbNextQuestDt.Size = new System.Drawing.Size(61, 13);
-            this.tbNextQuestDt.TabIndex = 17;
-            this.tbNextQuestDt.TabStop = false;
-            this.tbNextQuestDt.Text = "00:00:00";
-            this.tbNextQuestDt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // tbLastQuestDt
-            // 
-            this.tbLastQuestDt.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbLastQuestDt.Location = new System.Drawing.Point(125, 16);
-            this.tbLastQuestDt.Name = "tbLastQuestDt";
-            this.tbLastQuestDt.ReadOnly = true;
-            this.tbLastQuestDt.Size = new System.Drawing.Size(61, 13);
-            this.tbLastQuestDt.TabIndex = 16;
-            this.tbLastQuestDt.TabStop = false;
-            this.tbLastQuestDt.Text = "00:00:00";
-            this.tbLastQuestDt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(6, 36);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(110, 13);
-            this.label15.TabIndex = 15;
-            this.label15.Text = "Następne wykonanie:";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(6, 16);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(103, 13);
-            this.label14.TabIndex = 14;
-            this.label14.Text = "Ostatnie wykonanie:";
             // 
             // groupBox6
             // 
@@ -539,13 +535,100 @@
             this.label7.TabIndex = 2;
             this.label7.Text = "Ministranci:";
             // 
+            // groupBox7
+            // 
+            this.groupBox7.Controls.Add(this.tbNextQuestDt);
+            this.groupBox7.Controls.Add(this.tbLastQuestDt);
+            this.groupBox7.Controls.Add(this.label15);
+            this.groupBox7.Controls.Add(this.label14);
+            this.groupBox7.Location = new System.Drawing.Point(242, 129);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(198, 61);
+            this.groupBox7.TabIndex = 14;
+            this.groupBox7.TabStop = false;
+            // 
+            // tbNextQuestDt
+            // 
+            this.tbNextQuestDt.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tbNextQuestDt.Location = new System.Drawing.Point(125, 36);
+            this.tbNextQuestDt.Name = "tbNextQuestDt";
+            this.tbNextQuestDt.ReadOnly = true;
+            this.tbNextQuestDt.Size = new System.Drawing.Size(61, 13);
+            this.tbNextQuestDt.TabIndex = 17;
+            this.tbNextQuestDt.TabStop = false;
+            this.tbNextQuestDt.Text = "00:00:00";
+            this.tbNextQuestDt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // tbLastQuestDt
+            // 
+            this.tbLastQuestDt.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tbLastQuestDt.Location = new System.Drawing.Point(125, 16);
+            this.tbLastQuestDt.Name = "tbLastQuestDt";
+            this.tbLastQuestDt.ReadOnly = true;
+            this.tbLastQuestDt.Size = new System.Drawing.Size(61, 13);
+            this.tbLastQuestDt.TabIndex = 16;
+            this.tbLastQuestDt.TabStop = false;
+            this.tbLastQuestDt.Text = "00:00:00";
+            this.tbLastQuestDt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(6, 36);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(110, 13);
+            this.label15.TabIndex = 15;
+            this.label15.Text = "Następne wykonanie:";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(6, 16);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(103, 13);
+            this.label14.TabIndex = 14;
+            this.label14.Text = "Ostatnie wykonanie:";
+            // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this.tbRelicName);
+            this.groupBox5.Controls.Add(this.btRelicsOff);
+            this.groupBox5.Controls.Add(this.btRelicsOn);
+            this.groupBox5.Controls.Add(this.tbHourField);
             this.groupBox5.Location = new System.Drawing.Point(6, 370);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(719, 97);
+            this.groupBox5.Size = new System.Drawing.Size(230, 97);
             this.groupBox5.TabIndex = 8;
             this.groupBox5.TabStop = false;
+            // 
+            // btRelicsOff
+            // 
+            this.btRelicsOff.Enabled = false;
+            this.btRelicsOff.Location = new System.Drawing.Point(119, 68);
+            this.btRelicsOff.Name = "btRelicsOff";
+            this.btRelicsOff.Size = new System.Drawing.Size(105, 23);
+            this.btRelicsOff.TabIndex = 2;
+            this.btRelicsOff.Text = "OFF";
+            this.btRelicsOff.UseVisualStyleBackColor = true;
+            this.btRelicsOff.Click += new System.EventHandler(this.btRelicsOff_Click);
+            // 
+            // btRelicsOn
+            // 
+            this.btRelicsOn.Location = new System.Drawing.Point(9, 68);
+            this.btRelicsOn.Name = "btRelicsOn";
+            this.btRelicsOn.Size = new System.Drawing.Size(105, 23);
+            this.btRelicsOn.TabIndex = 1;
+            this.btRelicsOn.Text = "ON";
+            this.btRelicsOn.UseVisualStyleBackColor = true;
+            this.btRelicsOn.Click += new System.EventHandler(this.btRelicsOn_Click);
+            // 
+            // tbHourField
+            // 
+            this.tbHourField.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbHourField.Location = new System.Drawing.Point(9, 19);
+            this.tbHourField.Name = "tbHourField";
+            this.tbHourField.Size = new System.Drawing.Size(215, 20);
+            this.tbHourField.TabIndex = 0;
             // 
             // groupBox3
             // 
@@ -600,41 +683,6 @@
             this.label6.TabIndex = 1;
             this.label6.Text = "Atak:";
             // 
-            // lvQuests
-            // 
-            this.lvQuests.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.lvQuests.CheckBoxes = true;
-            this.lvQuests.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.chCheckbox,
-            this.chQuestName,
-            this.chQuestProgress});
-            this.lvQuests.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.lvQuests.Location = new System.Drawing.Point(242, 202);
-            this.lvQuests.MultiSelect = false;
-            this.lvQuests.Name = "lvQuests";
-            this.lvQuests.ShowGroups = false;
-            this.lvQuests.Size = new System.Drawing.Size(483, 162);
-            this.lvQuests.TabIndex = 6;
-            this.lvQuests.TabStop = false;
-            this.lvQuests.UseCompatibleStateImageBehavior = false;
-            this.lvQuests.View = System.Windows.Forms.View.Details;
-            // 
-            // chCheckbox
-            // 
-            this.chCheckbox.Text = "";
-            this.chCheckbox.Width = 25;
-            // 
-            // chQuestName
-            // 
-            this.chQuestName.Text = "";
-            this.chQuestName.Width = 300;
-            // 
-            // chQuestProgress
-            // 
-            this.chQuestProgress.Text = "";
-            this.chQuestProgress.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.chQuestProgress.Width = 130;
-            // 
             // lbLog
             // 
             this.lbLog.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -658,6 +706,14 @@
             this.tabPage2.Text = "Obsługa Ręczna";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // tbRelicName
+            // 
+            this.tbRelicName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbRelicName.Location = new System.Drawing.Point(9, 42);
+            this.tbRelicName.Name = "tbRelicName";
+            this.tbRelicName.Size = new System.Drawing.Size(215, 20);
+            this.tbRelicName.TabIndex = 3;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -676,12 +732,14 @@
             this.tbControl.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.pQuestsButtons.ResumeLayout(false);
-            this.groupBox7.ResumeLayout(false);
-            this.groupBox7.PerformLayout();
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            this.groupBox7.ResumeLayout(false);
+            this.groupBox7.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
@@ -742,6 +800,11 @@
         public System.Windows.Forms.TextBox tbNextQuestDt;
         public System.Windows.Forms.TextBox tbLastQuestDt;
         public System.Windows.Forms.Panel pQuestsButtons;
+        public System.Windows.Forms.GroupBox groupBox8;
+        public System.Windows.Forms.Button btRelicsOff;
+        public System.Windows.Forms.Button btRelicsOn;
+        public System.Windows.Forms.TextBox tbHourField;
+        public System.Windows.Forms.TextBox tbRelicName;
     }
 }
 

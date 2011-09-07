@@ -22,6 +22,7 @@ namespace Parafia
         private volatile bool upTimeSemafor = false;
         private volatile bool mainWorkSemafor = false;
         private volatile bool serverTimeSemafor = true;
+        private volatile bool relicsSemafor = false;
 
         private Object loggedInlockObject = new Object();
 
@@ -97,6 +98,86 @@ namespace Parafia
                 mainForm.pQuestsButtons.Enabled = true;
                 mainForm.lvQuests.Enabled = true;
             }));
+        }
+
+        public void buyRelics()
+        {
+            while (mainSemafor)
+            {
+                if (relicsSemafor)
+                {
+                    String dtFieldTxt = null;
+                    String relicName = null;
+                    mainForm.Invoke((Action)(delegate
+                    {
+                        dtFieldTxt = mainForm.tbHourField.Text;
+                        relicName = mainForm.tbRelicName.Text;
+                    }));
+
+                    String[] dtTextValues = null;
+                    bool flag = false;
+                    if (!String.IsNullOrEmpty(dtFieldTxt))
+                    {
+                        dtTextValues = dtFieldTxt.Split(',');
+                        foreach (String dtTextValue in dtTextValues)
+                        {
+                            DateTime dtValue = DateTime.MinValue;
+                            if (dtTextValue.Length == 8)
+                                dtValue = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, int.Parse(dtTextValue.Split(':')[0]), int.Parse(dtTextValue.Split(':')[1]), int.Parse(dtTextValue.Split(':')[2]));
+                            if (dtTextValue.Length == 19)
+                            {
+                                String dateText = dtTextValue.Split(' ')[0];
+                                String timeText = dtTextValue.Split(' ')[1];
+                                dtValue = new DateTime(int.Parse(dateText.Split('-')[0]), int.Parse(dateText.Split('-')[1]), int.Parse(dateText.Split('-')[2]), int.Parse(timeText.Split(':')[0]), int.Parse(timeText.Split(':')[1]), int.Parse(timeText.Split(':')[2]));
+                            }
+                            if (!dtValue.Equals(DateTime.MinValue))
+                            {
+                                long interval = (dtValue.Ticks - serverDt.Ticks) / 1000000;
+                                if (interval == 0)
+                                {
+                                    flag = true;
+                                }
+                            }
+                            else
+                            {
+                                printLog("Niepoprawny format daty dla pola kupowania relikwi!!!");
+                            }
+                        }
+                    }
+
+                    if (flag)
+                    {
+                        if (!String.IsNullOrEmpty(relicName))
+                        {
+                            Parafia parafia = getInstance();
+                            if (parafia != null)
+                            {
+                                lock (loggedInlockObject)
+                                {
+                                    parafia.login(); printLog("RELIKWIE: Zalogowany do portalu...");
+                                    int relicNo = 0;
+                                    Random rand = new Random();
+                                    while (true)
+                                    {
+                                        relicNo = parafia.buyRelic(relicName);
+                                        if (relicNo >= 0) break;
+                                        Thread.Sleep(rand.Next(1000,3000));
+                                    }
+                                    printLog("RELIKWIE: Relikwie zakupione... Ilość: " + relicNo);
+                                    parafia.logout(); printLog("RELIKWIE: Wylogowany z portalu...");
+                                    if (sendMail)
+                                        MailService.sendMail("sairo149240@gmail.com", "App", "Relikwie zakupione... Ilość: " + relicNo);
+                                }
+                            }
+                        }
+                        else
+                        {
+                            printLog("Nie podano nazwy relikwi!!!");
+                        }
+                    }
+                }
+                Thread.Sleep(100);
+            }
         }
 
         public void doQuestWork()
@@ -245,6 +326,16 @@ namespace Parafia
             doQuests = false;
             mainForm.tbNextQuestDt.Text = "brak danych";
             mainForm.tbLastQuestDt.Text = "brak danych";
+        }
+
+        public void StartRelics()
+        {
+            relicsSemafor = true;
+        }
+
+        public void StopRelics()
+        {
+            relicsSemafor = false;
         }
 
         public void StartUpTime()

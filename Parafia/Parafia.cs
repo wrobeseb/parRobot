@@ -154,6 +154,55 @@ namespace Parafia
             return true;
         }
 
+        public int buyRelic(String name)
+        {
+            String content = httpClient.SendHttpGetAndReturnResponseContent("http://parafia.biz/relics");
+
+            attributes = new Attributes.Attributes(content);
+
+            HtmlNodeCollection nodes = HtmlUtils.GetNodesCollectionByXPathExpression(content, "//ul[@class='relics-buy']/li/div[@class='info']");
+
+            int relicsNo = -1;
+
+            foreach (HtmlNode node in nodes)
+            {
+                String h3NodeText = HtmlUtils.GetStringValueByXPathExpression(node.InnerHtml, "//h3/text()");
+
+                if (h3NodeText.ToLower().Equals(name.ToLower()))
+                {
+                    HtmlNode linkAndCostNode = HtmlUtils.GetSingleNodeByXPathExpression(node.InnerHtml, "//a[@class='button']");
+
+                    if (linkAndCostNode != null)
+                    {
+                        String link = HtmlUtils.GetAttributeValueFromHtmlNode(linkAndCostNode, "href");
+                        String costTxt = HtmlUtils.GetAttributeValueFromHtmlNode(linkAndCostNode, "title");
+
+                        costTxt = MainUtils.removeAllNotNumberCharacters(costTxt).Replace(" ", "");
+
+                        int cost = int.Parse(costTxt);
+
+                        relicsNo = attributes.Cash.Actual / cost;
+
+                        for (int i = 0; i < relicsNo; i++)
+                        {
+                            Thread thread = new Thread((ThreadStart)delegate
+                            {
+                                httpClient.SendHttpGetAndReturnResponseContent(link);
+                            });
+                            thread.Start();
+                        }
+                    }
+                    else
+                    {
+                        relicsNo = 0;
+                        break;
+                    }
+                }
+            }
+
+            return relicsNo;
+        }
+
         public void doQuestTasks(String[] selectedNames)
         {
             ArrayList quests = questContainer.GetQuestByNameTable(selectedNames);
