@@ -10,6 +10,7 @@ using System.Threading;
 
 using Parafia.Properties;
 using Parafia.Model.Quest;
+using System.IO;
 
 namespace Parafia
 {
@@ -125,6 +126,46 @@ namespace Parafia
             btRelicsOff.Enabled = false;
             btRelicsOn.Enabled = true;
             worker.StopRelics();
+        }
+
+        private void btAttackList_Click(object sender, EventArgs e)
+        {
+            ofdAttackList.ShowDialog();
+            String fileName = ofdAttackList.FileName;
+
+            if (!String.IsNullOrEmpty(fileName))
+            {
+                TextReader reader = new StreamReader(fileName);
+
+                lvAttackList.Items.Clear();
+
+                String line;
+                while (!String.IsNullOrEmpty((line = reader.ReadLine())))
+                {
+                    ListViewItem item = new ListViewItem();
+                    ListViewItem.ListViewSubItem siName = new ListViewItem.ListViewSubItem(item, line);
+                    ListViewItem.ListViewSubItem siCash = new ListViewItem.ListViewSubItem(item, "0");
+
+                    item.SubItems.Add(siName);
+                    item.SubItems.Add(siCash);
+
+                    item.Checked = true;
+
+                    lvAttackList.Items.Add(item);
+                }
+
+                reader.Close();
+            }
+        }
+
+        private void btAttackOn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btAttackOFF_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

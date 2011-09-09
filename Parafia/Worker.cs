@@ -235,14 +235,19 @@ namespace Parafia
                             lock (loggedInlockObject)
                             {
                                 parafia.login(); printLog("Zalogowany do portalu...");
-                                parafia.buyArmy(armyType); printLog("Wojska zakupione. Typ: " + armyType);
+                                //parafia.buyArmy(armyType); printLog("Wojska zakupione. Typ: " + armyType);
                                 parafia.getUnitsInfo(); printLog("Informacje o jednostkach zostały pobrane.");
+                                String[] namesList = getListOfCheckedNames();
+                                //foreach (String name in namesList)
+	                           // {
+                                    parafia.attack(namesList[0]);
+	                            //}
                                 // if (config.SendPilgrimage) { parafia.sendPilgrimage(2); printLog("Pielgrzymka została wysłana."); }
                                 parafia.logout(); printLog("Pomyślne wylogowanie z portalu.");
 
-                                if (sendMail)
+                                /*if (sendMail)
                                      MailService.sendMail("sairo149240@gmail.com", "App", "Zakupy skończone... następne o godzinie: " + this.nextLoginDt.ToString("yyyy-MM-dd HH:mm:ss"));
-
+                                */
                                 mainForm.Invoke((Action)(delegate
                                 {
                                     mainForm.tbHitCount.Text = this.hitCount.ToString();
@@ -375,6 +380,23 @@ namespace Parafia
             {
                 ListView.ListViewItemCollection collection = mainForm.lvQuests.Items;
                 foreach (ListViewItem item in collection) {
+                    if (item.Checked)
+                        listOfNames.Add(item.SubItems[1].Text);
+                }
+            }));
+
+            return listOfNames.ToArray<String>();
+        }
+
+        public String[] getListOfCheckedNames()
+        {
+            List<String> listOfNames = new List<String>();
+
+            mainForm.Invoke((Action)(delegate
+            {
+                ListView.ListViewItemCollection collection = mainForm.lvAttackList.Items;
+                foreach (ListViewItem item in collection)
+                {
                     if (item.Checked)
                         listOfNames.Add(item.SubItems[1].Text);
                 }

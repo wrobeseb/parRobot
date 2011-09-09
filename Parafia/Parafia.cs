@@ -139,6 +139,22 @@ namespace Parafia
             }
         }
 
+        public String attack(String name)
+        {
+            FormData formData = new FormData();
+            formData.addValue("formo_battle_search", "battle_search");
+            formData.addValue("battle_csrf", csrf);
+            formData.addValue("opponent_name", name.ToLower());
+            formData.addValue("search_submit", "");
+            
+            httpClient.SendHttpGetAndReturnResponseContent("http://parafia.biz/start/dashboard");
+            httpClient.SendHttpGetAndReturnResponseContent("http://parafia.biz/battle/players");
+            //HttpWebResponse response = httpClient.HttpPost("http://parafia.biz/battle/players", formData);
+            String content = httpClient.SendHttpPostAndReturnResponseContent("http://parafia.biz/battle/players", formData);
+
+            return "success";
+        }
+
         public bool checkDependencies(String content, String[] values)
         {
             foreach (String value in values)

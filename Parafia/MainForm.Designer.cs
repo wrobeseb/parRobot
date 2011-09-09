@@ -42,7 +42,6 @@
             this.tbSystemTime = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.bConfig = new System.Windows.Forms.Button();
             this.tbControl = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -75,6 +74,7 @@
             this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.tbRelicName = new System.Windows.Forms.TextBox();
             this.btRelicsOff = new System.Windows.Forms.Button();
             this.btRelicsOn = new System.Windows.Forms.Button();
             this.tbHourField = new System.Windows.Forms.TextBox();
@@ -85,7 +85,14 @@
             this.label6 = new System.Windows.Forms.Label();
             this.lbLog = new System.Windows.Forms.ListBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tbRelicName = new System.Windows.Forms.TextBox();
+            this.lvAttackList = new System.Windows.Forms.ListView();
+            this.btAttackOn = new System.Windows.Forms.Button();
+            this.btAttackOFF = new System.Windows.Forms.Button();
+            this.chName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chCash = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chCheckB = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.btAttackList = new System.Windows.Forms.Button();
+            this.ofdAttackList = new System.Windows.Forms.OpenFileDialog();
             this.groupBox1.SuspendLayout();
             this.tbControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -245,14 +252,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Czas Systemowy:";
             // 
-            // groupBox2
-            // 
-            this.groupBox2.Location = new System.Drawing.Point(242, 6);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(483, 117);
-            this.groupBox2.TabIndex = 4;
-            this.groupBox2.TabStop = false;
-            // 
             // bConfig
             // 
             this.bConfig.Location = new System.Drawing.Point(584, 556);
@@ -277,6 +276,10 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.btAttackList);
+            this.tabPage1.Controls.Add(this.btAttackOFF);
+            this.tabPage1.Controls.Add(this.btAttackOn);
+            this.tabPage1.Controls.Add(this.lvAttackList);
             this.tabPage1.Controls.Add(this.groupBox8);
             this.tabPage1.Controls.Add(this.lvQuests);
             this.tabPage1.Controls.Add(this.pQuestsButtons);
@@ -290,7 +293,6 @@
             this.tabPage1.Controls.Add(this.btStart);
             this.tabPage1.Controls.Add(this.bConfig);
             this.tabPage1.Controls.Add(this.groupBox1);
-            this.tabPage1.Controls.Add(this.groupBox2);
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -601,6 +603,14 @@
             this.groupBox5.TabIndex = 8;
             this.groupBox5.TabStop = false;
             // 
+            // tbRelicName
+            // 
+            this.tbRelicName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbRelicName.Location = new System.Drawing.Point(9, 42);
+            this.tbRelicName.Name = "tbRelicName";
+            this.tbRelicName.Size = new System.Drawing.Size(215, 20);
+            this.tbRelicName.TabIndex = 3;
+            // 
             // btRelicsOff
             // 
             this.btRelicsOff.Enabled = false;
@@ -706,13 +716,57 @@
             this.tabPage2.Text = "Obsługa Ręczna";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // tbRelicName
+            // lvAttackList
             // 
-            this.tbRelicName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbRelicName.Location = new System.Drawing.Point(9, 42);
-            this.tbRelicName.Name = "tbRelicName";
-            this.tbRelicName.Size = new System.Drawing.Size(215, 20);
-            this.tbRelicName.TabIndex = 3;
+            this.lvAttackList.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lvAttackList.CheckBoxes = true;
+            this.lvAttackList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.chCheckB,
+            this.chName,
+            this.chCash});
+            this.lvAttackList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvAttackList.Location = new System.Drawing.Point(242, 17);
+            this.lvAttackList.Name = "lvAttackList";
+            this.lvAttackList.Size = new System.Drawing.Size(389, 106);
+            this.lvAttackList.TabIndex = 0;
+            this.lvAttackList.UseCompatibleStateImageBehavior = false;
+            this.lvAttackList.View = System.Windows.Forms.View.Details;
+            // 
+            // btAttackOn
+            // 
+            this.btAttackOn.Location = new System.Drawing.Point(637, 70);
+            this.btAttackOn.Name = "btAttackOn";
+            this.btAttackOn.Size = new System.Drawing.Size(75, 23);
+            this.btAttackOn.TabIndex = 16;
+            this.btAttackOn.Text = "ON";
+            this.btAttackOn.UseVisualStyleBackColor = true;
+            this.btAttackOn.Click += new System.EventHandler(this.btAttackOn_Click);
+            // 
+            // btAttackOFF
+            // 
+            this.btAttackOFF.Enabled = false;
+            this.btAttackOFF.Location = new System.Drawing.Point(637, 100);
+            this.btAttackOFF.Name = "btAttackOFF";
+            this.btAttackOFF.Size = new System.Drawing.Size(75, 23);
+            this.btAttackOFF.TabIndex = 17;
+            this.btAttackOFF.Text = "OFF";
+            this.btAttackOFF.UseVisualStyleBackColor = true;
+            this.btAttackOFF.Click += new System.EventHandler(this.btAttackOFF_Click);
+            // 
+            // btAttackList
+            // 
+            this.btAttackList.Location = new System.Drawing.Point(637, 17);
+            this.btAttackList.Name = "btAttackList";
+            this.btAttackList.Size = new System.Drawing.Size(75, 47);
+            this.btAttackList.TabIndex = 18;
+            this.btAttackList.Text = "Lista";
+            this.btAttackList.UseVisualStyleBackColor = true;
+            this.btAttackList.Click += new System.EventHandler(this.btAttackList_Click);
+            // 
+            // ofdAttackList
+            // 
+            this.ofdAttackList.FileName = "lista.txt";
+            this.ofdAttackList.Filter = "Plik textowy|*.txt|Wszystkie pliki|*.*";
             // 
             // MainForm
             // 
@@ -755,7 +809,6 @@
         public System.Windows.Forms.Label label2;
         public System.Windows.Forms.TextBox tbUpTime;
         public System.Windows.Forms.TextBox tbSystemTime;
-        public System.Windows.Forms.GroupBox groupBox2;
         public System.Windows.Forms.TextBox tbNextLogin;
         public System.Windows.Forms.Label label3;
         public System.Windows.Forms.TextBox tbHitCount;
@@ -805,6 +858,14 @@
         public System.Windows.Forms.Button btRelicsOn;
         public System.Windows.Forms.TextBox tbHourField;
         public System.Windows.Forms.TextBox tbRelicName;
+        public System.Windows.Forms.Button btAttackOFF;
+        public System.Windows.Forms.Button btAttackOn;
+        public System.Windows.Forms.ListView lvAttackList;
+        public System.Windows.Forms.ColumnHeader chCheckB;
+        public System.Windows.Forms.ColumnHeader chName;
+        public System.Windows.Forms.ColumnHeader chCash;
+        public System.Windows.Forms.Button btAttackList;
+        public System.Windows.Forms.OpenFileDialog ofdAttackList;
     }
 }
 
