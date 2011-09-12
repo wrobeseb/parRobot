@@ -23,6 +23,7 @@ namespace Parafia
         private volatile bool mainWorkSemafor = false;
         private volatile bool serverTimeSemafor = true;
         private volatile bool relicsSemafor = false;
+        private volatile bool attackSemafor = false;
 
         private Object loggedInlockObject = new Object();
 
@@ -57,6 +58,15 @@ namespace Parafia
                     mainForm.Invoke((Action)(delegate
                     {
                         mainForm.tbSystemTime.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                        if (mainWorkSemafor)
+                        {
+                            TimeSpan nextLoginInterval = new TimeSpan(nextLoginDt.Ticks - DateTime.Now.Ticks);
+                            mainForm.tbNextLogin.Text = nextLoginInterval.ToString(@"hh\:mm\:ss");
+                        }
+                        if (DateTime.Now.Minute % 15 == 0)
+                        {
+                            GetServerTime();
+                        }
                     }));
                 }
                 if (upTimeSemafor)
@@ -166,7 +176,7 @@ namespace Parafia
                                     printLog("RELIKWIE: Relikwie zakupione... Ilość: " + relicNo);
                                     parafia.logout(); printLog("RELIKWIE: Wylogowany z portalu...");
                                     if (sendMail)
-                                        MailService.sendMail("sairo149240@gmail.com", "App", "Relikwie zakupione... Ilość: " + relicNo);
+                                        MailService.sendMail("Relikwie zakupione... Ilość: " + relicNo);
                                 }
                             }
                         }
@@ -201,7 +211,7 @@ namespace Parafia
                                 parafia.doQuestTasks(getListOfCheckedQuests()); printLog("QUEST: Robie questy...");
                                 parafia.logout(); printLog("QUEST: Wylogowany z portalu...");
                                 if (sendMail)
-                                    MailService.sendMail("sairo149240@gmail.com", "App", "Questy wykonane... następne o godzinie: " + this.nextQuestWorkDt.ToString("HH:mm:ss"));
+                                    MailService.sendMail("Questy wykonane... następne o godzinie: " + this.nextQuestWorkDt.ToString("HH:mm:ss"));
                             }
                         }
                         fillQuestsList();
@@ -238,11 +248,52 @@ namespace Parafia
                                 parafia.buyArmy(armyType); printLog("Wojska zakupione. Typ: " + armyType);
                                 parafia.getUnitsInfo(); printLog("Informacje o jednostkach zostały pobrane.");
                                 // if (config.SendPilgrimage) { parafia.sendPilgrimage(2); printLog("Pielgrzymka została wysłana."); }
+                                int result = 0;
+                                if (attackSemafor && (hitCount % 4 == 0))
+                                {
+                                    String[] listOfNames = getListOfCheckedAttack();
+
+                                    if (listOfNames != null)
+                                    {
+                                        printLog("Atakowanie w trakcie...");
+                                        foreach (String name in listOfNames)
+                                        {
+                                            String url = parafia.getUserUrl(name);
+                                            int cash = 0;
+                                            if (!String.IsNullOrEmpty(url))
+                                            {
+                                                int temp;
+                                                do
+                                                {
+                                                    temp = 0;
+                                                    temp = parafia.attack(url);
+                                                    if (temp >= 0)
+                                                        cash += temp;
+
+                                                    if (temp != -1)
+                                                        updateAttackList(name, cash);
+                                                }
+                                                while (temp > 100000);
+                                                result += cash;
+                                            }
+                                        }
+
+                                        printLog("Zakończona atakowanie... resultat: " + result);
+                                    }
+                                }
                                 parafia.logout(); printLog("Pomyślne wylogowanie z portalu.");
 
                                 if (sendMail)
-                                     MailService.sendMail("sairo149240@gmail.com", "App", "Zakupy skończone... następne o godzinie: " + this.nextLoginDt.ToString("yyyy-MM-dd HH:mm:ss"));
+                                {
+                                    StringBuilder builder = new StringBuilder();
+                                    if (attackSemafor && (hitCount % 4 == 0))
+                                    {
+                                        builder.Append("Atak wykonany. Rezultat: ").Append(result).Append("\n");
+                                    }
 
+                                    builder.Append("Zakupy skończone... następne o godzinie: " + this.nextLoginDt.ToString("yyyy-MM-dd HH:mm:ss"));
+                                    MailService.sendMail(builder.ToString());
+                                }
                                 mainForm.Invoke((Action)(delegate
                                 {
                                     mainForm.tbHitCount.Text = this.hitCount.ToString();
@@ -338,11 +389,21 @@ namespace Parafia
             relicsSemafor = false;
         }
 
+        public void StartAttack()
+        {
+            attackSemafor = true;
+        }
+
+        public void StopAttack()
+        {
+            attackSemafor = false;
+        }
+
         public void StartUpTime()
         {
             upTimeStart = DateTime.Now;
             nextLoginDt = DateTime.Now.AddSeconds(10);
-            mainForm.tbNextLogin.Text = nextLoginDt.ToString("yyyy-MM-dd HH:mm:ss");
+            //mainForm.tbNextLogin.Text = nextLoginDt.ToString("yyyy-MM-dd HH:mm:ss");
             mainWorkSemafor = true;
             upTimeSemafor = true;
         }
@@ -360,11 +421,18 @@ namespace Parafia
 
         public void GetServerTime()
         {
-            Parafia parafia = getInstance();
-            if (parafia != null)
-                serverDt = getInstance().getSerwerTime();
-            else
+            try
+            {
+                Parafia parafia = getInstance();
+                if (parafia != null)
+                    serverDt = getInstance().getSerwerTime();
+                else
+                    serverDt = new TimeSpan(0, 0, 0, 0, 0);
+            }
+            catch
+            {
                 serverDt = new TimeSpan(0, 0, 0, 0, 0);
+            }
         }
 
         public String[] getListOfCheckedQuests()
@@ -381,6 +449,48 @@ namespace Parafia
             }));
 
             return listOfNames.ToArray<String>();
+        }
+
+        public String[] getListOfCheckedAttack()
+        {
+            List<String> listOfNames = new List<String>();
+
+            mainForm.Invoke((Action)(delegate
+            {
+                ListView.ListViewItemCollection collection = mainForm.lvAttackList.Items;
+                foreach (ListViewItem item in collection)
+                {
+                    if (item.Checked)
+                        listOfNames.Add(item.SubItems[1].Text);
+                }
+            }));
+
+            return listOfNames.ToArray<String>();
+        }
+
+        public void updateAttackList(String name, int cash)
+        {
+            mainForm.Invoke((Action)(delegate
+            {
+                ListView.ListViewItemCollection collection = mainForm.lvAttackList.Items;
+                foreach (ListViewItem item in collection)
+                {
+                    if (item.SubItems[1].Text.Equals(name))
+                    {
+                        if (cash != -2)
+                        {
+                            item.SubItems[2].Text = new StringBuilder().Append(cash + int.Parse(item.SubItems[2].Text)).ToString();
+                            item.SubItems[3].Text = new StringBuilder().Append(int.Parse(item.SubItems[3].Text) + 1).ToString();
+                            break;
+                        }
+                        else
+                        {
+                            item.SubItems[3].Text = new StringBuilder().Append(int.Parse(item.SubItems[3].Text) + 1).ToString();
+                            item.Checked = false;
+                        }
+                    }
+                }
+            }));
         }
 
         public void fillQuestsList()

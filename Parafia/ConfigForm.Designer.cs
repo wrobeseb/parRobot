@@ -62,15 +62,19 @@
             this.label4 = new System.Windows.Forms.Label();
             this.cbSentMail = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.tbArmyTimeStart = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
             this.tbArmyTimeStop = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.tbArmyTimeStart = new System.Windows.Forms.TextBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.tbQuestTimeStop = new System.Windows.Forms.TextBox();
+            this.tbQuestTimeStart = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
-            this.tbQuestTimeStart = new System.Windows.Forms.TextBox();
+            this.tbMailTo = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.tbMailSubject = new System.Windows.Forms.TextBox();
+            this.label18 = new System.Windows.Forms.Label();
             this.gbProxyConfig.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.gbMailConfig.SuspendLayout();
@@ -80,9 +84,9 @@
             // 
             // bSave
             // 
-            this.bSave.Location = new System.Drawing.Point(303, 254);
+            this.bSave.Location = new System.Drawing.Point(90, 299);
             this.bSave.Name = "bSave";
-            this.bSave.Size = new System.Drawing.Size(128, 39);
+            this.bSave.Size = new System.Drawing.Size(341, 39);
             this.bSave.TabIndex = 0;
             this.bSave.Text = "Zapisz";
             this.bSave.UseVisualStyleBackColor = true;
@@ -90,7 +94,7 @@
             // 
             // bReset
             // 
-            this.bReset.Location = new System.Drawing.Point(225, 254);
+            this.bReset.Location = new System.Drawing.Point(12, 299);
             this.bReset.Name = "bReset";
             this.bReset.Size = new System.Drawing.Size(72, 39);
             this.bReset.TabIndex = 1;
@@ -301,6 +305,10 @@
             // 
             // gbMailConfig
             // 
+            this.gbMailConfig.Controls.Add(this.label18);
+            this.gbMailConfig.Controls.Add(this.tbMailSubject);
+            this.gbMailConfig.Controls.Add(this.label17);
+            this.gbMailConfig.Controls.Add(this.tbMailTo);
             this.gbMailConfig.Controls.Add(this.tbSmtpAccountPasswd);
             this.gbMailConfig.Controls.Add(this.tbSmtpAccount);
             this.gbMailConfig.Controls.Add(this.tbSmtpPort);
@@ -312,7 +320,7 @@
             this.gbMailConfig.Enabled = false;
             this.gbMailConfig.Location = new System.Drawing.Point(225, 43);
             this.gbMailConfig.Name = "gbMailConfig";
-            this.gbMailConfig.Size = new System.Drawing.Size(206, 121);
+            this.gbMailConfig.Size = new System.Drawing.Size(206, 166);
             this.gbMailConfig.TabIndex = 6;
             this.gbMailConfig.TabStop = false;
             // 
@@ -352,7 +360,7 @@
             // cbEnableSSL
             // 
             this.cbEnableSSL.AutoSize = true;
-            this.cbEnableSSL.Location = new System.Drawing.Point(9, 93);
+            this.cbEnableSSL.Location = new System.Drawing.Point(9, 143);
             this.cbEnableSSL.Name = "cbEnableSSL";
             this.cbEnableSSL.Size = new System.Drawing.Size(99, 17);
             this.cbEnableSSL.TabIndex = 3;
@@ -414,52 +422,12 @@
             this.groupBox1.Controls.Add(this.label14);
             this.groupBox1.Controls.Add(this.label13);
             this.groupBox1.Controls.Add(this.tbArmyTimeStart);
-            this.groupBox1.Location = new System.Drawing.Point(225, 170);
+            this.groupBox1.Location = new System.Drawing.Point(225, 215);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(100, 78);
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Wojsko";
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.tbQuestTimeStop);
-            this.groupBox3.Controls.Add(this.tbQuestTimeStart);
-            this.groupBox3.Controls.Add(this.label15);
-            this.groupBox3.Controls.Add(this.label16);
-            this.groupBox3.Location = new System.Drawing.Point(331, 170);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(100, 78);
-            this.groupBox3.TabIndex = 9;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Questy";
-            // 
-            // tbArmyTimeStart
-            // 
-            this.tbArmyTimeStart.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbArmyTimeStart.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.tbArmyTimeStart.Location = new System.Drawing.Point(34, 19);
-            this.tbArmyTimeStart.Name = "tbArmyTimeStart";
-            this.tbArmyTimeStart.Size = new System.Drawing.Size(60, 20);
-            this.tbArmyTimeStart.TabIndex = 0;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(6, 21);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(22, 13);
-            this.label13.TabIndex = 2;
-            this.label13.Text = "od:";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(6, 47);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(22, 13);
-            this.label14.TabIndex = 3;
-            this.label14.Text = "do:";
             // 
             // tbArmyTimeStop
             // 
@@ -470,6 +438,46 @@
             this.tbArmyTimeStop.Size = new System.Drawing.Size(60, 20);
             this.tbArmyTimeStop.TabIndex = 4;
             // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(6, 47);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(22, 13);
+            this.label14.TabIndex = 3;
+            this.label14.Text = "do:";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(6, 21);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(22, 13);
+            this.label13.TabIndex = 2;
+            this.label13.Text = "od:";
+            // 
+            // tbArmyTimeStart
+            // 
+            this.tbArmyTimeStart.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbArmyTimeStart.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tbArmyTimeStart.Location = new System.Drawing.Point(34, 19);
+            this.tbArmyTimeStart.Name = "tbArmyTimeStart";
+            this.tbArmyTimeStart.Size = new System.Drawing.Size(60, 20);
+            this.tbArmyTimeStart.TabIndex = 0;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.tbQuestTimeStop);
+            this.groupBox3.Controls.Add(this.tbQuestTimeStart);
+            this.groupBox3.Controls.Add(this.label15);
+            this.groupBox3.Controls.Add(this.label16);
+            this.groupBox3.Location = new System.Drawing.Point(331, 215);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(100, 78);
+            this.groupBox3.TabIndex = 9;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Questy";
+            // 
             // tbQuestTimeStop
             // 
             this.tbQuestTimeStop.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -478,6 +486,15 @@
             this.tbQuestTimeStop.Name = "tbQuestTimeStop";
             this.tbQuestTimeStop.Size = new System.Drawing.Size(60, 20);
             this.tbQuestTimeStop.TabIndex = 8;
+            // 
+            // tbQuestTimeStart
+            // 
+            this.tbQuestTimeStart.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbQuestTimeStart.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tbQuestTimeStart.Location = new System.Drawing.Point(34, 19);
+            this.tbQuestTimeStart.Name = "tbQuestTimeStart";
+            this.tbQuestTimeStart.Size = new System.Drawing.Size(60, 20);
+            this.tbQuestTimeStart.TabIndex = 5;
             // 
             // label15
             // 
@@ -497,20 +514,45 @@
             this.label16.TabIndex = 6;
             this.label16.Text = "od:";
             // 
-            // tbQuestTimeStart
+            // tbMailTo
             // 
-            this.tbQuestTimeStart.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbQuestTimeStart.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.tbQuestTimeStart.Location = new System.Drawing.Point(34, 19);
-            this.tbQuestTimeStart.Name = "tbQuestTimeStart";
-            this.tbQuestTimeStart.Size = new System.Drawing.Size(60, 20);
-            this.tbQuestTimeStart.TabIndex = 5;
+            this.tbMailTo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbMailTo.Location = new System.Drawing.Point(78, 92);
+            this.tbMailTo.Name = "tbMailTo";
+            this.tbMailTo.Size = new System.Drawing.Size(122, 20);
+            this.tbMailTo.TabIndex = 8;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(7, 94);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(24, 13);
+            this.label17.TabIndex = 9;
+            this.label17.Text = "Do:";
+            // 
+            // tbMailSubject
+            // 
+            this.tbMailSubject.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbMailSubject.Location = new System.Drawing.Point(78, 118);
+            this.tbMailSubject.Name = "tbMailSubject";
+            this.tbMailSubject.Size = new System.Drawing.Size(122, 20);
+            this.tbMailSubject.TabIndex = 10;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(7, 120);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(35, 13);
+            this.label18.TabIndex = 11;
+            this.label18.Text = "Tytuł:";
             // 
             // ConfigForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(442, 303);
+            this.ClientSize = new System.Drawing.Size(442, 344);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.cbSentMail);
@@ -591,5 +633,9 @@
         private System.Windows.Forms.TextBox tbQuestTimeStart;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.TextBox tbMailSubject;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.TextBox tbMailTo;
     }
 }

@@ -26,28 +26,41 @@ namespace HttpUtils
             request.Headers.Add("Accept-Language", "pl-PL,pl;q=0.8,en-US;q=0.6,en;q=0.4");
             request.Headers.Add("Accept-Encoding", "gzip,deflate,sdch");
             request.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
+            request.UserAgent = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/13.0.782.215 Safari/535.1";
             request.AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip;
 
             if (request.Method.Equals("POST"))
                 request.ContentType = "application/x-www-form-urlencoded";
         }
 
-        public static HttpWebRequest SendPost(String url, FormData formData) 
+        public static HttpWebRequest SendPost(String url, CookieContainer cookieContainer, FormData formData) 
         {
             HttpWebRequest request = DefaultPostHttpRequest(url);
+            request.CookieContainer = cookieContainer;
             WriteFormData(request, formData);
             return request;
         }
-        public static HttpWebRequest SendPost(String url, FormData formData, NameValueCollection headers)
+
+        public static HttpWebRequest SendPostWithoutRedirection(String url, CookieContainer cookieContainer, FormData formData)
+        {
+            HttpWebRequest request = DefaultPostHttpRequest(url);
+            request.AllowAutoRedirect = false;
+            request.CookieContainer = cookieContainer;
+            WriteFormData(request, formData);
+            return request;
+        }
+
+        public static HttpWebRequest SendPost(String url, CookieContainer cookieContainer, FormData formData, NameValueCollection headers)
         {
             HttpWebRequest request = DefaultPostHttpRequest(url);
             request.Headers.Add(headers);
-            RequestCachePolicy policy = new RequestCachePolicy(RequestCacheLevel.NoCacheNoStore);
+            request.CookieContainer = cookieContainer;
+            /*RequestCachePolicy policy = new RequestCachePolicy(RequestCacheLevel.NoCacheNoStore);
             request.CachePolicy = policy;
             request.KeepAlive = true;
             request.Host = "trade.plus500.com";
             request.Referer = "https://trade.plus500.com/Login?forceDisplay=True&IsRealMode=False";
-            request.UserAgent = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/13.0.782.215 Safari/535.1";
+           */
             WriteFormData(request, formData);
             return request;
         }
@@ -60,6 +73,7 @@ namespace HttpUtils
         private static void WriteFormData(HttpWebRequest request, FormData formData)
         {
             byte[] buffer = formData.getBytes();
+            request.ContentLength = buffer.Length;
 
             Stream postData = request.GetRequestStream();
             postData.Write(buffer, 0, buffer.Length);

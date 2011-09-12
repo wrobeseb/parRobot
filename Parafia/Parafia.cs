@@ -115,6 +115,61 @@ namespace Parafia
             }
         }
 
+        public String getUserUrl(String name)
+        {
+            if (attributes.Energy.Actual >= 10 && attributes.Health.Actual >= 10)
+            {
+                String url = null;
+
+                FormData formData = new FormData();
+                formData.addValue("formo_battle_search", "battle_search");
+                formData.addValue("battle_csrf", csrf);
+                formData.addValue("opponent_name", name);
+                formData.addValue("search_submit", "");
+
+                HttpWebResponse response = httpClient.HttpPostWithoutRedirection("http://parafia.biz/battle/players", formData);
+
+                if (response.StatusCode == HttpStatusCode.Found)
+                {
+                    url = response.Headers["Location"];
+                }
+                response.Close();
+
+                return url;
+            }
+            return null;
+        }
+
+        public int attack(String url)
+        {
+            if (attributes.Energy.Actual >= 10 && attributes.Health.Actual >= 10)
+            {
+                if (!String.IsNullOrEmpty(url))
+                {
+                    String content = httpClient.SendHttpGetAndReturnResponseContent(url);
+
+                    updateAttributes(content);
+                    String battleResult = HtmlUtils.GetStringValueByXPathExpression(content, "//div[@class='content']/h2/text()");
+                    if (!String.IsNullOrEmpty(battleResult) && battleResult.Equals("Wygrałeś"))
+                    {
+                        String cashText = HtmlUtils.GetStringValueByXPathExpression(content, "//table[@class='items']/tr[4]/td[2]/ul/li[1]/text()");
+                        cashText = MainUtils.removeAllNotNumberCharacters(cashText).Replace(" ", "");
+                        int cash;
+                        if (int.TryParse(cashText, out cash))
+                            return cash;
+                        else
+                            return -1;
+                    }
+                    else
+                    {
+                        return -2;
+                    }
+                }
+            }
+            
+            return -1;
+        }
+
         public void getUnitsInfo()
         {
             units = new Units.Units(httpClient.SendHttpGetAndReturnResponseContent("http://parafia.biz/units"));
@@ -131,9 +186,6 @@ namespace Parafia
                 formData.addValue("time_hours", hours.ToString());
                 units.putIntoFormData(formData);
                 formData.addValue("holy_submit", "");
-
-                httpClient.SendHttpGetAndReturnResponseContent("http://parafia.biz/units/expeditions");
-                httpClient.SendHttpGetAndReturnResponseContent("http://parafia.biz/units/to_holy_land");
 
                 String content = httpClient.SendHttpPostAndReturnResponseContent("http://parafia.biz/units/to_holy_land", formData);
             }

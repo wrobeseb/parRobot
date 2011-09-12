@@ -10,7 +10,7 @@ namespace Parafia.Service
 {
     public class MailService
     {
-        public static bool sendMail(String to, String subject, String body)
+        public static bool sendMail(String body)
         {
             Object obj  = Settings.Default["properties"];
             if (obj != null) {
@@ -23,8 +23,8 @@ namespace Parafia.Service
                     SmtpClient smtpClient = new SmtpClient(config.SmtpHost);
 
                     mail.From = new MailAddress("sezam_cm@telekomunikacja.pl");
-                    mail.To.Add(to);
-                    mail.Subject = subject;
+                    mail.To.Add(config.SmtpTo);
+                    mail.Subject = config.SmtpSubject;
                     mail.Body = body;
 
                     smtpClient.Port = config.SmtpPort;

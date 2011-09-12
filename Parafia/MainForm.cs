@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Threading;
+using System.IO;
 
 using Parafia.Properties;
 using Parafia.Model.Quest;
@@ -126,5 +127,94 @@ namespace Parafia
             btRelicsOn.Enabled = true;
             worker.StopRelics();
         }
+
+        private void btAttackOFF_Click(object sender, EventArgs e)
+        {
+            btAttackON.Enabled = true;
+            btAttackOFF.Enabled = false;
+            worker.StopAttack();
+        }
+
+        private void btAttackON_Click(object sender, EventArgs e)
+        {
+            btAttackON.Enabled = false;
+            btAttackOFF.Enabled = true;
+            worker.StartAttack();
+        }
+
+        private void btAttackFile_Click(object sender, EventArgs e)
+        {
+            ofdAttackFile.ShowDialog();
+            String fileName = ofdAttackFile.FileName;
+
+            TextReader reader = new StreamReader(fileName);
+
+            String line;
+
+            lvAttackList.Items.Clear();
+
+            while (!String.IsNullOrEmpty(line = reader.ReadLine()))
+            {
+                ListViewItem item = new ListViewItem();
+                ListViewItem.ListViewSubItem siName = new ListViewItem.ListViewSubItem(item, line);
+                ListViewItem.ListViewSubItem siCash = new ListViewItem.ListViewSubItem(item, "0");
+                ListViewItem.ListViewSubItem siNo = new ListViewItem.ListViewSubItem(item, "0");
+
+                item.Checked = true;
+
+                item.SubItems.Add(siName);
+                item.SubItems.Add(siCash);
+                item.SubItems.Add(siNo);
+                lvAttackList.Items.Add(item);
+            }
+
+            reader.Close();
+        }
+
+        private void btAttackAdd_Click(object sender, EventArgs e)
+        {
+            ListView.ListViewItemCollection collection = lvAttackList.Items;
+            Boolean flag = false;
+            foreach (ListViewItem item in collection)
+            {
+                if (item.SubItems[1].Text.Equals(tbAttackName.Text))
+                {
+                    flag = true;
+                    break;
+                }
+            }
+            if (!flag)
+            {
+                ListViewItem item = new ListViewItem();
+                ListViewItem.ListViewSubItem siName = new ListViewItem.ListViewSubItem(item, tbAttackName.Text);
+                ListViewItem.ListViewSubItem siCash = new ListViewItem.ListViewSubItem(item, "0");
+                ListViewItem.ListViewSubItem siNo = new ListViewItem.ListViewSubItem(item, "0");
+
+                item.Checked = true;
+
+                item.SubItems.Add(siName);
+                item.SubItems.Add(siCash);
+                item.SubItems.Add(siNo);
+                lvAttackList.Items.Add(item);
+            }
+            else
+            {
+                MessageBox.Show("Uzytkownik jest juz na liscie...");
+            }
+        }
+
+        private void btAttackRemove_Click(object sender, EventArgs e)
+        {
+            ListView.ListViewItemCollection collection = lvAttackList.Items;
+            foreach (ListViewItem item in collection)
+            {
+                if (item.SubItems[1].Text.Equals(tbAttackName.Text))
+                {
+                    lvAttackList.Items.Remove(item);
+                    break;
+                }
+            }
+        }
+
     }
 }

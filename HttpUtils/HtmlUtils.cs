@@ -28,6 +28,7 @@ namespace HttpUtils
             String htmlContent = reader.ReadToEnd();
 
             stream.Close();
+            response.Close();
 
             return htmlContent;
         }

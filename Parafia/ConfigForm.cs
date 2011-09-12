@@ -66,6 +66,8 @@ namespace Parafia
             tbSmtpAccountPasswd.Text = String.Empty;
             tbSmtpHost.Text = String.Empty;
             tbSmtpPort.Text = String.Empty;
+            tbMailTo.Text = String.Empty;
+            tbMailSubject.Text = String.Empty;
 
             tbArmyTimeStart.Text = String.Empty;
             tbArmyTimeStop.Text = String.Empty;
@@ -95,6 +97,8 @@ namespace Parafia
                 config.SmtpPort = int.Parse(tbSmtpPort.Text);
             config.SmtpAccount = tbSmtpAccount.Text;
             config.SmtpAccountPasswd = tbSmtpAccountPasswd.Text;
+            config.SmtpTo = tbMailTo.Text;
+            config.SmtpSubject = tbMailSubject.Text;
             config.SmtpEnableSSL = cbEnableSSL.Checked;
             if (!String.IsNullOrEmpty(tbArmyTimeStart.Text))
                 config.ArmyTimeStart = int.Parse(tbArmyTimeStart.Text);
@@ -137,6 +141,8 @@ namespace Parafia
                     tbSmtpPort.Text = new StringBuilder().Append(config.SmtpPort).ToString();
                     tbSmtpAccount.Text = config.SmtpAccount;
                     tbSmtpAccountPasswd.Text = config.SmtpAccountPasswd;
+                    tbMailTo.Text = config.SmtpTo;
+                    tbMailSubject.Text = config.SmtpSubject;
                     cbEnableSSL.Checked = config.SmtpEnableSSL;
                     tbArmyTimeStart.Text = new StringBuilder().Append(config.ArmyTimeStart).ToString();
                     tbArmyTimeStop.Text = new StringBuilder().Append(config.ArmyTimeStop).ToString();

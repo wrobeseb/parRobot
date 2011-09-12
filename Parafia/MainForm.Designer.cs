@@ -42,10 +42,17 @@
             this.tbSystemTime = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.bConfig = new System.Windows.Forms.Button();
             this.tbControl = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btAttackFile = new System.Windows.Forms.Button();
+            this.btAttackON = new System.Windows.Forms.Button();
+            this.btAttackOFF = new System.Windows.Forms.Button();
+            this.lvAttackList = new System.Windows.Forms.ListView();
+            this.chCheck = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chCash = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chNo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.lvQuests = new System.Windows.Forms.ListView();
             this.chCheckbox = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -75,6 +82,7 @@
             this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.tbRelicName = new System.Windows.Forms.TextBox();
             this.btRelicsOff = new System.Windows.Forms.Button();
             this.btRelicsOn = new System.Windows.Forms.Button();
             this.tbHourField = new System.Windows.Forms.TextBox();
@@ -85,7 +93,17 @@
             this.label6 = new System.Windows.Forms.Label();
             this.lbLog = new System.Windows.Forms.ListBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tbRelicName = new System.Windows.Forms.TextBox();
+            this.ofdAttackFile = new System.Windows.Forms.OpenFileDialog();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.tbAttackCash = new System.Windows.Forms.TextBox();
+            this.tbAttackLast = new System.Windows.Forms.TextBox();
+            this.tbAttackNext = new System.Windows.Forms.TextBox();
+            this.tbAttackName = new System.Windows.Forms.TextBox();
+            this.btAttackAdd = new System.Windows.Forms.Button();
+            this.btAttackRemove = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.tbControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -95,13 +113,14 @@
             this.groupBox7.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // btStart
             // 
-            this.btStart.Location = new System.Drawing.Point(584, 473);
+            this.btStart.Location = new System.Drawing.Point(605, 473);
             this.btStart.Name = "btStart";
-            this.btStart.Size = new System.Drawing.Size(143, 48);
+            this.btStart.Size = new System.Drawing.Size(58, 48);
             this.btStart.TabIndex = 0;
             this.btStart.TabStop = false;
             this.btStart.Text = "Start";
@@ -111,9 +130,9 @@
             // btStop
             // 
             this.btStop.Enabled = false;
-            this.btStop.Location = new System.Drawing.Point(584, 527);
+            this.btStop.Location = new System.Drawing.Point(669, 473);
             this.btStop.Name = "btStop";
-            this.btStop.Size = new System.Drawing.Size(143, 23);
+            this.btStop.Size = new System.Drawing.Size(58, 48);
             this.btStop.TabIndex = 1;
             this.btStop.TabStop = false;
             this.btStop.Text = "Stop";
@@ -245,19 +264,11 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Czas Systemowy:";
             // 
-            // groupBox2
-            // 
-            this.groupBox2.Location = new System.Drawing.Point(242, 6);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(483, 117);
-            this.groupBox2.TabIndex = 4;
-            this.groupBox2.TabStop = false;
-            // 
             // bConfig
             // 
-            this.bConfig.Location = new System.Drawing.Point(584, 556);
+            this.bConfig.Location = new System.Drawing.Point(605, 527);
             this.bConfig.Name = "bConfig";
-            this.bConfig.Size = new System.Drawing.Size(143, 23);
+            this.bConfig.Size = new System.Drawing.Size(122, 50);
             this.bConfig.TabIndex = 5;
             this.bConfig.TabStop = false;
             this.bConfig.Text = "Ustawienia";
@@ -277,6 +288,14 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.btAttackRemove);
+            this.tabPage1.Controls.Add(this.btAttackAdd);
+            this.tabPage1.Controls.Add(this.tbAttackName);
+            this.tabPage1.Controls.Add(this.groupBox2);
+            this.tabPage1.Controls.Add(this.btAttackFile);
+            this.tabPage1.Controls.Add(this.btAttackON);
+            this.tabPage1.Controls.Add(this.btAttackOFF);
+            this.tabPage1.Controls.Add(this.lvAttackList);
             this.tabPage1.Controls.Add(this.groupBox8);
             this.tabPage1.Controls.Add(this.lvQuests);
             this.tabPage1.Controls.Add(this.pQuestsButtons);
@@ -290,7 +309,6 @@
             this.tabPage1.Controls.Add(this.btStart);
             this.tabPage1.Controls.Add(this.bConfig);
             this.tabPage1.Controls.Add(this.groupBox1);
-            this.tabPage1.Controls.Add(this.groupBox2);
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -299,11 +317,71 @@
             this.tabPage1.Text = "Automat";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // btAttackFile
+            // 
+            this.btAttackFile.Location = new System.Drawing.Point(605, 135);
+            this.btAttackFile.Name = "btAttackFile";
+            this.btAttackFile.Size = new System.Drawing.Size(122, 55);
+            this.btAttackFile.TabIndex = 19;
+            this.btAttackFile.Text = "Lista";
+            this.btAttackFile.UseVisualStyleBackColor = true;
+            this.btAttackFile.Click += new System.EventHandler(this.btAttackFile_Click);
+            // 
+            // btAttackON
+            // 
+            this.btAttackON.Location = new System.Drawing.Point(605, 92);
+            this.btAttackON.Name = "btAttackON";
+            this.btAttackON.Size = new System.Drawing.Size(58, 37);
+            this.btAttackON.TabIndex = 18;
+            this.btAttackON.Text = "ON";
+            this.btAttackON.UseVisualStyleBackColor = true;
+            this.btAttackON.Click += new System.EventHandler(this.btAttackON_Click);
+            // 
+            // btAttackOFF
+            // 
+            this.btAttackOFF.Enabled = false;
+            this.btAttackOFF.Location = new System.Drawing.Point(669, 92);
+            this.btAttackOFF.Name = "btAttackOFF";
+            this.btAttackOFF.Size = new System.Drawing.Size(58, 37);
+            this.btAttackOFF.TabIndex = 17;
+            this.btAttackOFF.Text = "OFF";
+            this.btAttackOFF.UseVisualStyleBackColor = true;
+            this.btAttackOFF.Click += new System.EventHandler(this.btAttackOFF_Click);
+            // 
+            // lvAttackList
+            // 
+            this.lvAttackList.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lvAttackList.CheckBoxes = true;
+            this.lvAttackList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.chCheck,
+            this.chName,
+            this.chCash,
+            this.chNo});
+            this.lvAttackList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvAttackList.Location = new System.Drawing.Point(242, 10);
+            this.lvAttackList.Name = "lvAttackList";
+            this.lvAttackList.Size = new System.Drawing.Size(355, 154);
+            this.lvAttackList.TabIndex = 16;
+            this.lvAttackList.UseCompatibleStateImageBehavior = false;
+            this.lvAttackList.View = System.Windows.Forms.View.Details;
+            // 
+            // chCheck
+            // 
+            this.chCheck.Width = 30;
+            // 
+            // chName
+            // 
+            this.chName.Width = 145;
+            // 
+            // chCash
+            // 
+            this.chCash.Width = 120;
+            // 
             // groupBox8
             // 
             this.groupBox8.Location = new System.Drawing.Point(242, 370);
             this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(483, 97);
+            this.groupBox8.Size = new System.Drawing.Size(355, 97);
             this.groupBox8.TabIndex = 15;
             this.groupBox8.TabStop = false;
             // 
@@ -320,7 +398,7 @@
             this.lvQuests.MultiSelect = false;
             this.lvQuests.Name = "lvQuests";
             this.lvQuests.ShowGroups = false;
-            this.lvQuests.Size = new System.Drawing.Size(483, 163);
+            this.lvQuests.Size = new System.Drawing.Size(355, 163);
             this.lvQuests.TabIndex = 6;
             this.lvQuests.TabStop = false;
             this.lvQuests.UseCompatibleStateImageBehavior = false;
@@ -334,30 +412,30 @@
             // chQuestName
             // 
             this.chQuestName.Text = "";
-            this.chQuestName.Width = 300;
+            this.chQuestName.Width = 230;
             // 
             // chQuestProgress
             // 
             this.chQuestProgress.Text = "";
             this.chQuestProgress.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.chQuestProgress.Width = 130;
+            this.chQuestProgress.Width = 100;
             // 
             // pQuestsButtons
             // 
             this.pQuestsButtons.Controls.Add(this.bQuestOff);
             this.pQuestsButtons.Controls.Add(this.bQuestOn);
             this.pQuestsButtons.Controls.Add(this.bQuestRefresh);
-            this.pQuestsButtons.Location = new System.Drawing.Point(446, 129);
+            this.pQuestsButtons.Location = new System.Drawing.Point(600, 263);
             this.pQuestsButtons.Name = "pQuestsButtons";
-            this.pQuestsButtons.Size = new System.Drawing.Size(285, 67);
+            this.pQuestsButtons.Size = new System.Drawing.Size(135, 101);
             this.pQuestsButtons.TabIndex = 0;
             // 
             // bQuestOff
             // 
             this.bQuestOff.Enabled = false;
-            this.bQuestOff.Location = new System.Drawing.Point(3, 35);
+            this.bQuestOff.Location = new System.Drawing.Point(69, 3);
             this.bQuestOff.Name = "bQuestOff";
-            this.bQuestOff.Size = new System.Drawing.Size(95, 26);
+            this.bQuestOff.Size = new System.Drawing.Size(58, 37);
             this.bQuestOff.TabIndex = 13;
             this.bQuestOff.TabStop = false;
             this.bQuestOff.Text = "OFF";
@@ -367,9 +445,9 @@
             // bQuestOn
             // 
             this.bQuestOn.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.bQuestOn.Location = new System.Drawing.Point(3, 5);
+            this.bQuestOn.Location = new System.Drawing.Point(5, 3);
             this.bQuestOn.Name = "bQuestOn";
-            this.bQuestOn.Size = new System.Drawing.Size(95, 26);
+            this.bQuestOn.Size = new System.Drawing.Size(58, 37);
             this.bQuestOn.TabIndex = 12;
             this.bQuestOn.TabStop = false;
             this.bQuestOn.Text = "ON";
@@ -378,9 +456,9 @@
             // 
             // bQuestRefresh
             // 
-            this.bQuestRefresh.Location = new System.Drawing.Point(103, 5);
+            this.bQuestRefresh.Location = new System.Drawing.Point(5, 46);
             this.bQuestRefresh.Name = "bQuestRefresh";
-            this.bQuestRefresh.Size = new System.Drawing.Size(178, 56);
+            this.bQuestRefresh.Size = new System.Drawing.Size(122, 55);
             this.bQuestRefresh.TabIndex = 11;
             this.bQuestRefresh.TabStop = false;
             this.bQuestRefresh.Text = "Aktualizuj";
@@ -541,19 +619,19 @@
             this.groupBox7.Controls.Add(this.tbLastQuestDt);
             this.groupBox7.Controls.Add(this.label15);
             this.groupBox7.Controls.Add(this.label14);
-            this.groupBox7.Location = new System.Drawing.Point(242, 129);
+            this.groupBox7.Location = new System.Drawing.Point(606, 196);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(198, 61);
+            this.groupBox7.Size = new System.Drawing.Size(122, 61);
             this.groupBox7.TabIndex = 14;
             this.groupBox7.TabStop = false;
             // 
             // tbNextQuestDt
             // 
             this.tbNextQuestDt.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbNextQuestDt.Location = new System.Drawing.Point(125, 36);
+            this.tbNextQuestDt.Location = new System.Drawing.Point(68, 36);
             this.tbNextQuestDt.Name = "tbNextQuestDt";
             this.tbNextQuestDt.ReadOnly = true;
-            this.tbNextQuestDt.Size = new System.Drawing.Size(61, 13);
+            this.tbNextQuestDt.Size = new System.Drawing.Size(48, 13);
             this.tbNextQuestDt.TabIndex = 17;
             this.tbNextQuestDt.TabStop = false;
             this.tbNextQuestDt.Text = "00:00:00";
@@ -562,10 +640,10 @@
             // tbLastQuestDt
             // 
             this.tbLastQuestDt.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbLastQuestDt.Location = new System.Drawing.Point(125, 16);
+            this.tbLastQuestDt.Location = new System.Drawing.Point(72, 16);
             this.tbLastQuestDt.Name = "tbLastQuestDt";
             this.tbLastQuestDt.ReadOnly = true;
-            this.tbLastQuestDt.Size = new System.Drawing.Size(61, 13);
+            this.tbLastQuestDt.Size = new System.Drawing.Size(44, 13);
             this.tbLastQuestDt.TabIndex = 16;
             this.tbLastQuestDt.TabStop = false;
             this.tbLastQuestDt.Text = "00:00:00";
@@ -576,18 +654,18 @@
             this.label15.AutoSize = true;
             this.label15.Location = new System.Drawing.Point(6, 36);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(110, 13);
+            this.label15.Size = new System.Drawing.Size(56, 13);
             this.label15.TabIndex = 15;
-            this.label15.Text = "Następne wykonanie:";
+            this.label15.Text = "Następne:";
             // 
             // label14
             // 
             this.label14.AutoSize = true;
             this.label14.Location = new System.Drawing.Point(6, 16);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(103, 13);
+            this.label14.Size = new System.Drawing.Size(49, 13);
             this.label14.TabIndex = 14;
-            this.label14.Text = "Ostatnie wykonanie:";
+            this.label14.Text = "Ostatnie:";
             // 
             // groupBox5
             // 
@@ -600,6 +678,14 @@
             this.groupBox5.Size = new System.Drawing.Size(230, 97);
             this.groupBox5.TabIndex = 8;
             this.groupBox5.TabStop = false;
+            // 
+            // tbRelicName
+            // 
+            this.tbRelicName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbRelicName.Location = new System.Drawing.Point(9, 42);
+            this.tbRelicName.Name = "tbRelicName";
+            this.tbRelicName.Size = new System.Drawing.Size(215, 20);
+            this.tbRelicName.TabIndex = 3;
             // 
             // btRelicsOff
             // 
@@ -686,15 +772,15 @@
             // lbLog
             // 
             this.lbLog.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.lbLog.Cursor = System.Windows.Forms.Cursors.Default;
             this.lbLog.FormattingEnabled = true;
             this.lbLog.Location = new System.Drawing.Point(6, 473);
             this.lbLog.Name = "lbLog";
             this.lbLog.ScrollAlwaysVisible = true;
             this.lbLog.SelectionMode = System.Windows.Forms.SelectionMode.None;
-            this.lbLog.Size = new System.Drawing.Size(572, 104);
+            this.lbLog.Size = new System.Drawing.Size(591, 104);
             this.lbLog.TabIndex = 0;
             this.lbLog.TabStop = false;
-            this.lbLog.UseWaitCursor = true;
             // 
             // tabPage2
             // 
@@ -706,13 +792,120 @@
             this.tabPage2.Text = "Obsługa Ręczna";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // tbRelicName
+            // ofdAttackFile
             // 
-            this.tbRelicName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbRelicName.Location = new System.Drawing.Point(9, 42);
-            this.tbRelicName.Name = "tbRelicName";
-            this.tbRelicName.Size = new System.Drawing.Size(215, 20);
-            this.tbRelicName.TabIndex = 3;
+            this.ofdAttackFile.FileName = "lista.txt";
+            this.ofdAttackFile.Filter = "Plik text|*.txt|Wszystkie pliki|*.*";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.tbAttackNext);
+            this.groupBox2.Controls.Add(this.tbAttackLast);
+            this.groupBox2.Controls.Add(this.tbAttackCash);
+            this.groupBox2.Controls.Add(this.label17);
+            this.groupBox2.Controls.Add(this.label18);
+            this.groupBox2.Controls.Add(this.label16);
+            this.groupBox2.Location = new System.Drawing.Point(605, 6);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(123, 80);
+            this.groupBox2.TabIndex = 20;
+            this.groupBox2.TabStop = false;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(6, 15);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(34, 13);
+            this.label16.TabIndex = 0;
+            this.label16.Text = "Kasa:";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(6, 35);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(49, 13);
+            this.label18.TabIndex = 2;
+            this.label18.Text = "Ostatnie:";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(6, 55);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(56, 13);
+            this.label17.TabIndex = 3;
+            this.label17.Text = "Następne:";
+            // 
+            // tbAttackCash
+            // 
+            this.tbAttackCash.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tbAttackCash.Location = new System.Drawing.Point(46, 15);
+            this.tbAttackCash.Name = "tbAttackCash";
+            this.tbAttackCash.ReadOnly = true;
+            this.tbAttackCash.Size = new System.Drawing.Size(74, 13);
+            this.tbAttackCash.TabIndex = 4;
+            this.tbAttackCash.TabStop = false;
+            this.tbAttackCash.Text = "0";
+            this.tbAttackCash.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // tbAttackLast
+            // 
+            this.tbAttackLast.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tbAttackLast.Location = new System.Drawing.Point(73, 35);
+            this.tbAttackLast.Name = "tbAttackLast";
+            this.tbAttackLast.ReadOnly = true;
+            this.tbAttackLast.Size = new System.Drawing.Size(47, 13);
+            this.tbAttackLast.TabIndex = 5;
+            this.tbAttackLast.TabStop = false;
+            this.tbAttackLast.Text = "00:00:00";
+            this.tbAttackLast.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // tbAttackNext
+            // 
+            this.tbAttackNext.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tbAttackNext.Location = new System.Drawing.Point(73, 55);
+            this.tbAttackNext.Name = "tbAttackNext";
+            this.tbAttackNext.ReadOnly = true;
+            this.tbAttackNext.Size = new System.Drawing.Size(47, 13);
+            this.tbAttackNext.TabIndex = 6;
+            this.tbAttackNext.TabStop = false;
+            this.tbAttackNext.Text = "00:00:00";
+            this.tbAttackNext.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // tbAttackName
+            // 
+            this.tbAttackName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbAttackName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.tbAttackName.Location = new System.Drawing.Point(242, 170);
+            this.tbAttackName.Name = "tbAttackName";
+            this.tbAttackName.Size = new System.Drawing.Size(273, 20);
+            this.tbAttackName.TabIndex = 21;
+            // 
+            // btAttackAdd
+            // 
+            this.btAttackAdd.Location = new System.Drawing.Point(521, 170);
+            this.btAttackAdd.Name = "btAttackAdd";
+            this.btAttackAdd.Size = new System.Drawing.Size(35, 20);
+            this.btAttackAdd.TabIndex = 22;
+            this.btAttackAdd.Text = "+";
+            this.btAttackAdd.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btAttackAdd.UseVisualStyleBackColor = true;
+            this.btAttackAdd.Click += new System.EventHandler(this.btAttackAdd_Click);
+            // 
+            // btAttackRemove
+            // 
+            this.btAttackRemove.Font = new System.Drawing.Font("Times New Roman", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.btAttackRemove.Location = new System.Drawing.Point(562, 170);
+            this.btAttackRemove.Margin = new System.Windows.Forms.Padding(0);
+            this.btAttackRemove.Name = "btAttackRemove";
+            this.btAttackRemove.Size = new System.Drawing.Size(35, 20);
+            this.btAttackRemove.TabIndex = 23;
+            this.btAttackRemove.Text = "-";
+            this.btAttackRemove.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btAttackRemove.UseVisualStyleBackColor = true;
+            this.btAttackRemove.Click += new System.EventHandler(this.btAttackRemove_Click);
             // 
             // MainForm
             // 
@@ -731,6 +924,7 @@
             this.groupBox1.PerformLayout();
             this.tbControl.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
             this.pQuestsButtons.ResumeLayout(false);
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
@@ -742,6 +936,8 @@
             this.groupBox5.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -755,7 +951,6 @@
         public System.Windows.Forms.Label label2;
         public System.Windows.Forms.TextBox tbUpTime;
         public System.Windows.Forms.TextBox tbSystemTime;
-        public System.Windows.Forms.GroupBox groupBox2;
         public System.Windows.Forms.TextBox tbNextLogin;
         public System.Windows.Forms.Label label3;
         public System.Windows.Forms.TextBox tbHitCount;
@@ -805,6 +1000,25 @@
         public System.Windows.Forms.Button btRelicsOn;
         public System.Windows.Forms.TextBox tbHourField;
         public System.Windows.Forms.TextBox tbRelicName;
+        public System.Windows.Forms.ListView lvAttackList;
+        public System.Windows.Forms.ColumnHeader chCheck;
+        public System.Windows.Forms.ColumnHeader chName;
+        public System.Windows.Forms.ColumnHeader chCash;
+        public System.Windows.Forms.ColumnHeader chNo;
+        public System.Windows.Forms.Button btAttackFile;
+        public System.Windows.Forms.Button btAttackON;
+        public System.Windows.Forms.Button btAttackOFF;
+        public System.Windows.Forms.OpenFileDialog ofdAttackFile;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.TextBox tbAttackNext;
+        private System.Windows.Forms.TextBox tbAttackLast;
+        private System.Windows.Forms.TextBox tbAttackCash;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Button btAttackRemove;
+        private System.Windows.Forms.Button btAttackAdd;
+        private System.Windows.Forms.TextBox tbAttackName;
     }
 }
 
