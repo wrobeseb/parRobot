@@ -20,7 +20,7 @@ namespace ParafiaIoC.Providers
             set { this.configForm = value; }
         }
 
-        public void setNextLoginDate(String nextLoginDt, String hitCount)
+        public void SetNextLoginDate(String nextLoginDt, String hitCount)
         {
             mainForm.Invoke((Action)(delegate
             {
@@ -29,7 +29,7 @@ namespace ParafiaIoC.Providers
             }));
         }
 
-        public void printLog(String log)
+        public void PrintLog(String log)
         {
             mainForm.Invoke((Action)(delegate
             {
@@ -37,7 +37,7 @@ namespace ParafiaIoC.Providers
             }));
         }
 
-        public void refreshSystemTime()
+        public void RefreshSystemTime()
         {
             mainForm.Invoke((Action)(delegate
             {
@@ -45,6 +45,13 @@ namespace ParafiaIoC.Providers
             }));
         }
 
-        public refreshUpTime(
+        public void RefreshUpTime(DateTime upTimeStart) {
+            mainForm.Invoke((Action)(delegate
+            {
+                mainForm.tbUpTime.Text = DateTime.Now.Subtract(upTimeStart).ToString(@"dd' 'hh\:mm\:ss");
+            }));
+        }
+
+
     }
 }

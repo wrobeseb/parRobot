@@ -45,6 +45,16 @@
             this.bConfig = new System.Windows.Forms.Button();
             this.tbControl = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btAttackRemove = new System.Windows.Forms.Button();
+            this.btAttackAdd = new System.Windows.Forms.Button();
+            this.tbAttackName = new System.Windows.Forms.TextBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.tbAttackNext = new System.Windows.Forms.TextBox();
+            this.tbAttackLast = new System.Windows.Forms.TextBox();
+            this.tbAttackCash = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
             this.btAttackFile = new System.Windows.Forms.Button();
             this.btAttackON = new System.Windows.Forms.Button();
             this.btAttackOFF = new System.Windows.Forms.Button();
@@ -53,7 +63,6 @@
             this.chName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chCash = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chNo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.lvQuests = new System.Windows.Forms.ListView();
             this.chCheckbox = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chQuestName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -94,26 +103,19 @@
             this.lbLog = new System.Windows.Forms.ListBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.ofdAttackFile = new System.Windows.Forms.OpenFileDialog();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.tbAttackCash = new System.Windows.Forms.TextBox();
-            this.tbAttackLast = new System.Windows.Forms.TextBox();
-            this.tbAttackNext = new System.Windows.Forms.TextBox();
-            this.tbAttackName = new System.Windows.Forms.TextBox();
-            this.btAttackAdd = new System.Windows.Forms.Button();
-            this.btAttackRemove = new System.Windows.Forms.Button();
+            this.btStatDownload = new System.Windows.Forms.Button();
+            this.chId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.pbStatDownload = new System.Windows.Forms.ProgressBar();
             this.groupBox1.SuspendLayout();
             this.tbControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.pQuestsButtons.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // btStart
@@ -288,6 +290,8 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.pbStatDownload);
+            this.tabPage1.Controls.Add(this.btStatDownload);
             this.tabPage1.Controls.Add(this.btAttackRemove);
             this.tabPage1.Controls.Add(this.btAttackAdd);
             this.tabPage1.Controls.Add(this.tbAttackName);
@@ -296,7 +300,6 @@
             this.tabPage1.Controls.Add(this.btAttackON);
             this.tabPage1.Controls.Add(this.btAttackOFF);
             this.tabPage1.Controls.Add(this.lvAttackList);
-            this.tabPage1.Controls.Add(this.groupBox8);
             this.tabPage1.Controls.Add(this.lvQuests);
             this.tabPage1.Controls.Add(this.pQuestsButtons);
             this.tabPage1.Controls.Add(this.groupBox6);
@@ -316,6 +319,116 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Automat";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // btAttackRemove
+            // 
+            this.btAttackRemove.Font = new System.Drawing.Font("Times New Roman", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.btAttackRemove.Location = new System.Drawing.Point(562, 170);
+            this.btAttackRemove.Margin = new System.Windows.Forms.Padding(0);
+            this.btAttackRemove.Name = "btAttackRemove";
+            this.btAttackRemove.Size = new System.Drawing.Size(35, 20);
+            this.btAttackRemove.TabIndex = 23;
+            this.btAttackRemove.Text = "-";
+            this.btAttackRemove.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btAttackRemove.UseVisualStyleBackColor = true;
+            this.btAttackRemove.Click += new System.EventHandler(this.btAttackRemove_Click);
+            // 
+            // btAttackAdd
+            // 
+            this.btAttackAdd.Location = new System.Drawing.Point(521, 170);
+            this.btAttackAdd.Name = "btAttackAdd";
+            this.btAttackAdd.Size = new System.Drawing.Size(35, 20);
+            this.btAttackAdd.TabIndex = 22;
+            this.btAttackAdd.Text = "+";
+            this.btAttackAdd.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btAttackAdd.UseVisualStyleBackColor = true;
+            this.btAttackAdd.Click += new System.EventHandler(this.btAttackAdd_Click);
+            // 
+            // tbAttackName
+            // 
+            this.tbAttackName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbAttackName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.tbAttackName.Location = new System.Drawing.Point(242, 170);
+            this.tbAttackName.Name = "tbAttackName";
+            this.tbAttackName.Size = new System.Drawing.Size(273, 20);
+            this.tbAttackName.TabIndex = 21;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.tbAttackNext);
+            this.groupBox2.Controls.Add(this.tbAttackLast);
+            this.groupBox2.Controls.Add(this.tbAttackCash);
+            this.groupBox2.Controls.Add(this.label17);
+            this.groupBox2.Controls.Add(this.label18);
+            this.groupBox2.Controls.Add(this.label16);
+            this.groupBox2.Location = new System.Drawing.Point(605, 6);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(123, 80);
+            this.groupBox2.TabIndex = 20;
+            this.groupBox2.TabStop = false;
+            // 
+            // tbAttackNext
+            // 
+            this.tbAttackNext.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tbAttackNext.Location = new System.Drawing.Point(73, 55);
+            this.tbAttackNext.Name = "tbAttackNext";
+            this.tbAttackNext.ReadOnly = true;
+            this.tbAttackNext.Size = new System.Drawing.Size(47, 13);
+            this.tbAttackNext.TabIndex = 6;
+            this.tbAttackNext.TabStop = false;
+            this.tbAttackNext.Text = "00:00:00";
+            this.tbAttackNext.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // tbAttackLast
+            // 
+            this.tbAttackLast.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tbAttackLast.Location = new System.Drawing.Point(73, 35);
+            this.tbAttackLast.Name = "tbAttackLast";
+            this.tbAttackLast.ReadOnly = true;
+            this.tbAttackLast.Size = new System.Drawing.Size(47, 13);
+            this.tbAttackLast.TabIndex = 5;
+            this.tbAttackLast.TabStop = false;
+            this.tbAttackLast.Text = "00:00:00";
+            this.tbAttackLast.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // tbAttackCash
+            // 
+            this.tbAttackCash.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tbAttackCash.Location = new System.Drawing.Point(46, 15);
+            this.tbAttackCash.Name = "tbAttackCash";
+            this.tbAttackCash.ReadOnly = true;
+            this.tbAttackCash.Size = new System.Drawing.Size(74, 13);
+            this.tbAttackCash.TabIndex = 4;
+            this.tbAttackCash.TabStop = false;
+            this.tbAttackCash.Text = "0";
+            this.tbAttackCash.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(6, 55);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(56, 13);
+            this.label17.TabIndex = 3;
+            this.label17.Text = "Następne:";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(6, 35);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(49, 13);
+            this.label18.TabIndex = 2;
+            this.label18.Text = "Ostatnie:";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(6, 15);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(34, 13);
+            this.label16.TabIndex = 0;
+            this.label16.Text = "Kasa:";
             // 
             // btAttackFile
             // 
@@ -354,6 +467,7 @@
             this.lvAttackList.CheckBoxes = true;
             this.lvAttackList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.chCheck,
+            this.chId,
             this.chName,
             this.chCash,
             this.chNo});
@@ -376,14 +490,6 @@
             // chCash
             // 
             this.chCash.Width = 120;
-            // 
-            // groupBox8
-            // 
-            this.groupBox8.Location = new System.Drawing.Point(242, 370);
-            this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(355, 97);
-            this.groupBox8.TabIndex = 15;
-            this.groupBox8.TabStop = false;
             // 
             // lvQuests
             // 
@@ -797,115 +903,28 @@
             this.ofdAttackFile.FileName = "lista.txt";
             this.ofdAttackFile.Filter = "Plik text|*.txt|Wszystkie pliki|*.*";
             // 
-            // groupBox2
+            // btStatDownload
             // 
-            this.groupBox2.Controls.Add(this.tbAttackNext);
-            this.groupBox2.Controls.Add(this.tbAttackLast);
-            this.groupBox2.Controls.Add(this.tbAttackCash);
-            this.groupBox2.Controls.Add(this.label17);
-            this.groupBox2.Controls.Add(this.label18);
-            this.groupBox2.Controls.Add(this.label16);
-            this.groupBox2.Location = new System.Drawing.Point(605, 6);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(123, 80);
-            this.groupBox2.TabIndex = 20;
-            this.groupBox2.TabStop = false;
+            this.btStatDownload.Location = new System.Drawing.Point(605, 375);
+            this.btStatDownload.Name = "btStatDownload";
+            this.btStatDownload.Size = new System.Drawing.Size(122, 23);
+            this.btStatDownload.TabIndex = 24;
+            this.btStatDownload.Text = "Pobierz Staty";
+            this.btStatDownload.UseVisualStyleBackColor = true;
+            this.btStatDownload.Click += new System.EventHandler(this.button1_Click);
             // 
-            // label16
+            // chId
             // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(6, 15);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(34, 13);
-            this.label16.TabIndex = 0;
-            this.label16.Text = "Kasa:";
+            this.chId.Text = "";
             // 
-            // label18
+            // pbStatDownload
             // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(6, 35);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(49, 13);
-            this.label18.TabIndex = 2;
-            this.label18.Text = "Ostatnie:";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(6, 55);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(56, 13);
-            this.label17.TabIndex = 3;
-            this.label17.Text = "Następne:";
-            // 
-            // tbAttackCash
-            // 
-            this.tbAttackCash.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbAttackCash.Location = new System.Drawing.Point(46, 15);
-            this.tbAttackCash.Name = "tbAttackCash";
-            this.tbAttackCash.ReadOnly = true;
-            this.tbAttackCash.Size = new System.Drawing.Size(74, 13);
-            this.tbAttackCash.TabIndex = 4;
-            this.tbAttackCash.TabStop = false;
-            this.tbAttackCash.Text = "0";
-            this.tbAttackCash.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // tbAttackLast
-            // 
-            this.tbAttackLast.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbAttackLast.Location = new System.Drawing.Point(73, 35);
-            this.tbAttackLast.Name = "tbAttackLast";
-            this.tbAttackLast.ReadOnly = true;
-            this.tbAttackLast.Size = new System.Drawing.Size(47, 13);
-            this.tbAttackLast.TabIndex = 5;
-            this.tbAttackLast.TabStop = false;
-            this.tbAttackLast.Text = "00:00:00";
-            this.tbAttackLast.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // tbAttackNext
-            // 
-            this.tbAttackNext.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbAttackNext.Location = new System.Drawing.Point(73, 55);
-            this.tbAttackNext.Name = "tbAttackNext";
-            this.tbAttackNext.ReadOnly = true;
-            this.tbAttackNext.Size = new System.Drawing.Size(47, 13);
-            this.tbAttackNext.TabIndex = 6;
-            this.tbAttackNext.TabStop = false;
-            this.tbAttackNext.Text = "00:00:00";
-            this.tbAttackNext.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // tbAttackName
-            // 
-            this.tbAttackName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbAttackName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.tbAttackName.Location = new System.Drawing.Point(242, 170);
-            this.tbAttackName.Name = "tbAttackName";
-            this.tbAttackName.Size = new System.Drawing.Size(273, 20);
-            this.tbAttackName.TabIndex = 21;
-            // 
-            // btAttackAdd
-            // 
-            this.btAttackAdd.Location = new System.Drawing.Point(521, 170);
-            this.btAttackAdd.Name = "btAttackAdd";
-            this.btAttackAdd.Size = new System.Drawing.Size(35, 20);
-            this.btAttackAdd.TabIndex = 22;
-            this.btAttackAdd.Text = "+";
-            this.btAttackAdd.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btAttackAdd.UseVisualStyleBackColor = true;
-            this.btAttackAdd.Click += new System.EventHandler(this.btAttackAdd_Click);
-            // 
-            // btAttackRemove
-            // 
-            this.btAttackRemove.Font = new System.Drawing.Font("Times New Roman", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.btAttackRemove.Location = new System.Drawing.Point(562, 170);
-            this.btAttackRemove.Margin = new System.Windows.Forms.Padding(0);
-            this.btAttackRemove.Name = "btAttackRemove";
-            this.btAttackRemove.Size = new System.Drawing.Size(35, 20);
-            this.btAttackRemove.TabIndex = 23;
-            this.btAttackRemove.Text = "-";
-            this.btAttackRemove.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btAttackRemove.UseVisualStyleBackColor = true;
-            this.btAttackRemove.Click += new System.EventHandler(this.btAttackRemove_Click);
+            this.pbStatDownload.Location = new System.Drawing.Point(242, 375);
+            this.pbStatDownload.Name = "pbStatDownload";
+            this.pbStatDownload.Size = new System.Drawing.Size(355, 23);
+            this.pbStatDownload.Step = 1;
+            this.pbStatDownload.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+            this.pbStatDownload.TabIndex = 25;
             // 
             // MainForm
             // 
@@ -917,7 +936,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "MainForm";
-            this.Text = "Parafia";
+            this.Text = "Parafia (brak danych)";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.groupBox1.ResumeLayout(false);
@@ -925,6 +944,8 @@
             this.tbControl.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.pQuestsButtons.ResumeLayout(false);
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
@@ -936,8 +957,6 @@
             this.groupBox5.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -995,7 +1014,6 @@
         public System.Windows.Forms.TextBox tbNextQuestDt;
         public System.Windows.Forms.TextBox tbLastQuestDt;
         public System.Windows.Forms.Panel pQuestsButtons;
-        public System.Windows.Forms.GroupBox groupBox8;
         public System.Windows.Forms.Button btRelicsOff;
         public System.Windows.Forms.Button btRelicsOn;
         public System.Windows.Forms.TextBox tbHourField;
@@ -1009,16 +1027,19 @@
         public System.Windows.Forms.Button btAttackON;
         public System.Windows.Forms.Button btAttackOFF;
         public System.Windows.Forms.OpenFileDialog ofdAttackFile;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.TextBox tbAttackNext;
-        private System.Windows.Forms.TextBox tbAttackLast;
-        private System.Windows.Forms.TextBox tbAttackCash;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Button btAttackRemove;
-        private System.Windows.Forms.Button btAttackAdd;
-        private System.Windows.Forms.TextBox tbAttackName;
+        public System.Windows.Forms.GroupBox groupBox2;
+        public System.Windows.Forms.TextBox tbAttackNext;
+        public System.Windows.Forms.TextBox tbAttackLast;
+        public System.Windows.Forms.TextBox tbAttackCash;
+        public System.Windows.Forms.Label label17;
+        public System.Windows.Forms.Label label18;
+        public System.Windows.Forms.Label label16;
+        public System.Windows.Forms.Button btAttackRemove;
+        public System.Windows.Forms.Button btAttackAdd;
+        public System.Windows.Forms.TextBox tbAttackName;
+        public System.Windows.Forms.Button btStatDownload;
+        public System.Windows.Forms.ColumnHeader chId;
+        public System.Windows.Forms.ProgressBar pbStatDownload;
     }
 }
 

@@ -85,6 +85,7 @@
     <Compile Include="Model\Quest\Quest.cs" />
     <Compile Include="Model\Quest\QuestContainer.cs" />
     <Compile Include="Model\Quest\Task.cs" />
+    <Compile Include="Model\Stat\Account.cs" />
     <Compile Include="Parafia.cs" />
     <Compile Include="ApplicationConfig.cs" />
     <Compile Include="Service\MailService.cs" />

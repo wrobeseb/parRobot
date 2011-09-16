@@ -111,6 +111,7 @@ namespace Parafia
 
             Settings.Default["properties"] = config;
             Settings.Default.Save();
+
             this.Close();
         }
 

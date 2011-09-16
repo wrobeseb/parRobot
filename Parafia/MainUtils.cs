@@ -39,6 +39,38 @@ namespace Parafia
             return builder.ToString().TrimEnd(',');
         }
 
+        public static String removeAllNotNumberCharactersForDouble(String content)
+        {
+            content = content.Replace(" ", "");
+
+            StringBuilder builder = new StringBuilder();
+            foreach (char character in content.ToCharArray())
+            {
+                if (((int)character < 48 || (int)character > 57) && (int)character != 44)
+                {
+                    builder.Append(" ");
+                }
+                else
+                {
+                    builder.Append(character);
+                }
+            }
+
+            String tempString = builder.ToString();
+
+            builder = new StringBuilder();
+
+            foreach (String value in tempString.Split(' '))
+            {
+                if (!String.IsNullOrEmpty(value))
+                {
+                    builder.Append(value).Append(";");
+                }
+            }
+
+            return builder.ToString().TrimEnd(';');
+        }
+
         public static bool hasNumbers(String content)
         {
             foreach (char character in content.ToCharArray())

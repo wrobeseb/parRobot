@@ -14,6 +14,9 @@ using Parafia.Model.Quest;
 
 namespace Parafia
 {
+
+    using Model.Stat;
+
     public partial class MainForm : Form
     {
         private Worker worker;
@@ -43,6 +46,7 @@ namespace Parafia
         private void MainForm_Load(object sender, EventArgs e)
         {
             worker = new Worker(this);
+            worker.setMainWindowTitle();
             worker.fillQuestsList();
             worker.GetServerTime();
             threadList = new List<Thread>();
@@ -63,20 +67,25 @@ namespace Parafia
             relicsWorkThread.Name = "RelicsWorkThread";
             relicsWorkThread.Start();
 
+            Thread onlyAttackThread = new Thread(worker.onlyAttackWork);
+            onlyAttackThread.Name = "OnlyAttackThread";
+            onlyAttackThread.Start();
+
             threadList.Add(systemTimeThread);
             threadList.Add(mainWorkThread);
             threadList.Add(questWorkThread);
             threadList.Add(relicsWorkThread);
+            threadList.Add(onlyAttackThread);
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             worker.StopAllThreads();
 
-            foreach (Thread thread in threadList)
+            /*foreach (Thread thread in threadList)
             {
                 thread.Join();
-            }
+            }*/
         }
 
         private void notifyIcon_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -88,7 +97,7 @@ namespace Parafia
         {
             ConfigForm configForm = new ConfigForm();
             configForm.ShowDialog();
-            
+            worker.setMainWindowTitle();
         }
 
         private void bQuestRefresh_Click(object sender, EventArgs e)
@@ -147,7 +156,7 @@ namespace Parafia
             ofdAttackFile.ShowDialog();
             String fileName = ofdAttackFile.FileName;
 
-            TextReader reader = new StreamReader(fileName);
+            TextReader reader = new StreamReader(fileName, Encoding.GetEncoding("Windows-1250"));
 
             String line;
 
@@ -155,20 +164,37 @@ namespace Parafia
 
             while (!String.IsNullOrEmpty(line = reader.ReadLine()))
             {
-                ListViewItem item = new ListViewItem();
-                ListViewItem.ListViewSubItem siName = new ListViewItem.ListViewSubItem(item, line);
-                ListViewItem.ListViewSubItem siCash = new ListViewItem.ListViewSubItem(item, "0");
-                ListViewItem.ListViewSubItem siNo = new ListViewItem.ListViewSubItem(item, "0");
-
-                item.Checked = true;
-
-                item.SubItems.Add(siName);
-                item.SubItems.Add(siCash);
-                item.SubItems.Add(siNo);
-                lvAttackList.Items.Add(item);
+                Account account = new Account(line);
+                if (account.Id != 0)
+                    worker.listOfAccountsInView.Add(account);
             }
 
             reader.Close();
+
+            worker.listOfAccountsInView.Sort();
+
+            foreach (Account account in worker.listOfAccountsInView)
+            {
+                if (account.Id != 0)
+                {
+                    ListViewItem item = new ListViewItem();
+                    item.Tag = account;
+                    ListViewItem.ListViewSubItem siId = new ListViewItem.ListViewSubItem(item, new StringBuilder().Append(account.Id).ToString());
+                    ListViewItem.ListViewSubItem siName = new ListViewItem.ListViewSubItem(item, account.UserName);
+                    ListViewItem.ListViewSubItem siCash = new ListViewItem.ListViewSubItem(item, new StringBuilder().Append(account.Cash).ToString());
+                    ListViewItem.ListViewSubItem siNo = new ListViewItem.ListViewSubItem(item, new StringBuilder().Append(account.DefeatHits).ToString());
+
+                    item.Checked = account.IsChecked;
+
+                    item.SubItems.Add(siId);
+                    item.SubItems.Add(siName);
+                    item.SubItems.Add(siCash);
+                    item.SubItems.Add(siNo);
+                    lvAttackList.Items.Add(item);
+
+                    
+                }
+            }
         }
 
         private void btAttackAdd_Click(object sender, EventArgs e)
@@ -214,6 +240,11 @@ namespace Parafia
                     break;
                 }
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            worker.downloadStats();
         }
 
     }

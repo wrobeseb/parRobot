@@ -46,7 +46,7 @@ namespace Parafia.Model.Quest
             foreach (HtmlNode taskNode in tasksNodeCollection)
             {
                 Task temp = new Task(taskNode.InnerHtml);
-                if (task.Link.Equals(temp.Link))
+                if (task.Name.Equals(temp.Name))
                 {
                     task.Progress = temp.Progress;
                     break;
@@ -135,19 +135,22 @@ namespace Parafia.Model.Quest
             return null;
         }
 
-        public ArrayList GetQuestByNameTable(String[] names)
+        public ArrayList GetQuestsByNameList(String[] names)
         {
             ArrayList matchedQuests = new ArrayList();
 
-            foreach (Quest quest in listOfQuests)
+            if (names != null)
             {
-                foreach (String name in names)
-	            {
-                    if (quest.Name.Equals(name))
+                foreach (Quest quest in listOfQuests)
+                {
+                    foreach (String name in names)
                     {
-                        matchedQuests.Add(quest);
+                        if (quest.Name.Equals(name))
+                        {
+                            matchedQuests.Add(quest);
+                        }
                     }
-	            }
+                }
             }
 
             return matchedQuests;

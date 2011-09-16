@@ -66,9 +66,5 @@ namespace ParafiaTest
             String responseContent = HtmlUtils.GetContentForResponse(response);
             String csrfValue = HtmlUtils.GetStringValueByXPathExpression(responseContent, "//input[@name='login_csrf']");
         }
-
-        
-
-        
     }
 }
