@@ -24,6 +24,8 @@ namespace Parafia
         private int smtpPort;
         private String smtpAccount;
         private String smtpAccountPasswd;
+        private String smtpTo;
+        private String smtpSubject;
         private bool smtpEnableSSL;
 
         private int armyTimeStart;
@@ -120,6 +122,18 @@ namespace Parafia
         {
             get { return this.smtpAccountPasswd; }
             set { this.smtpAccountPasswd = value; }
+        }
+
+        public String SmtpTo
+        {
+            get { return this.smtpTo; }
+            set { this.smtpTo = value; }
+        }
+
+        public String SmtpSubject
+        {
+            get { return this.smtpSubject; }
+            set { this.smtpSubject = value; }
         }
 
         public bool SmtpEnableSSL

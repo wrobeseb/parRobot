@@ -38,15 +38,20 @@ namespace HttpUtils
 
         public HttpWebResponse HttpPost(String url, FormData formData, NameValueCollection headers)
         {
-            HttpWebRequest request = HttpRequest.SendPost(url, formData, headers);
+            HttpWebRequest request = HttpRequest.SendPost(url, cookieContainer, formData, headers);
             request.CookieContainer = cookieContainer;
             return (HttpWebResponse)request.GetResponse();
         }
 
         public HttpWebResponse HttpPost(String url, FormData formData)
         {
-            HttpWebRequest request = HttpRequest.SendPost(url, formData);
-            request.CookieContainer = cookieContainer;
+            HttpWebRequest request = HttpRequest.SendPost(url, cookieContainer, formData);
+            return (HttpWebResponse)request.GetResponse();
+        }
+
+        public HttpWebResponse HttpPostWithoutRedirection(String url, FormData formData)
+        {
+            HttpWebRequest request = HttpRequest.SendPostWithoutRedirection(url, cookieContainer, formData);
             return (HttpWebResponse)request.GetResponse();
         }
 

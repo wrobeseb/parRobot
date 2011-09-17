@@ -11,7 +11,8 @@
     <RootNamespace>Parafia</RootNamespace>
     <AssemblyName>Parafia</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
@@ -52,10 +53,6 @@
     <Reference Include="HtmlAgilityPack">
       <HintPath>..\HttpUtils\bin\Debug\HtmlAgilityPack.dll</HintPath>
     </Reference>
-    <Reference Include="HttpUtils, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\HttpUtils\bin\Debug\HttpUtils.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -88,6 +85,7 @@
     <Compile Include="Model\Quest\Quest.cs" />
     <Compile Include="Model\Quest\QuestContainer.cs" />
     <Compile Include="Model\Quest\Task.cs" />
+    <Compile Include="Model\Stat\Account.cs" />
     <Compile Include="Parafia.cs" />
     <Compile Include="ApplicationConfig.cs" />
     <Compile Include="Service\MailService.cs" />
@@ -145,7 +143,12 @@
   <ItemGroup>
     <None Include="Resources\Parafia.ico" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\HttpUtils\HttpUtils.csproj">
+      <Project>{64161EC6-E310-4916-919D-4E5F417C488F}</Project>
+      <Name>HttpUtils</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

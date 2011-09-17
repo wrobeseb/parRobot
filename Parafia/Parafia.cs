@@ -20,6 +20,7 @@ using System.Xml.Serialization;
 
 namespace Parafia
 {
+    using Model.Stat;
 
     public class Parafia
     {
@@ -94,6 +95,99 @@ namespace Parafia
             }
         }
 
+        public void putIntoSafe()
+        {
+            int maxValue = attributes.Safe.Max - attributes.Safe.Actual;
+            if (maxValue != 0)
+            {
+                int value = 0;
+                if (attributes.Cash.Actual > maxValue) value = maxValue;
+                else value = attributes.Cash.Actual;
+
+                FormData formData = new FormData();
+                formData.addValue("formo_safe_deposit", "safe_deposit");
+                formData.addValue("safe_deposit_csrf", csrf);
+                formData.addValue("deposit_value", new StringBuilder().Append(value).ToString());
+                formData.addValue("safe_deposit_submit", "");
+
+                String responseContent = httpClient.SendHttpPostAndReturnResponseContent("http://parafia.biz/buildings/safe", formData);
+                attributes = new Attributes.Attributes(responseContent);
+            }
+        }
+
+        public void getFromSafe(int value)
+        {
+            if (attributes.Safe.Actual != 0 && attributes.Safe.Actual >= value)
+            {
+                FormData formData = new FormData();
+                formData.addValue("formo_safe_take", "safe_take");
+                formData.addValue("safe_take_csrf", csrf);
+                formData.addValue("take_value", new StringBuilder().Append(value).ToString());
+                formData.addValue("safe_take_submit", "");
+
+                String responseContent = httpClient.SendHttpPostAndReturnResponseContent("http://parafia.biz/buildings/safe", formData);
+                attributes = new Attributes.Attributes(responseContent);
+            }
+        }
+
+        public int getLastStatPage()
+        {
+            String content = httpClient.SendHttpGetAndReturnResponseContent("http://parafia.biz/stats/battle/all/page/24");
+            HtmlNodeCollection collection = HtmlUtils.GetNodesCollectionByXPathExpression(content, "//p[@class='pagination']/a");
+
+            HtmlNode node = collection[collection.Count - 2];
+
+            String href = node.GetAttributeValue("href", null);
+
+            if (href != null)
+            {
+                String[] temp = href.Split('/');
+
+                if (temp.Length == 8)
+                {
+                    return int.Parse(temp[7]);
+                }
+            }
+
+            return 0;
+        }
+
+        public List<Account> getAccountsFromStatePage(int page)
+        {
+            List<Account> accounts = new List<Account>();
+
+            if (page != 0)
+            {
+                String content = httpClient.SendHttpGetAndReturnResponseContent("http://parafia.biz/stats/battle/all/page/" + page);
+                HtmlNodeCollection collection = HtmlUtils.GetNodesCollectionByXPathExpression(content, "//table[@class='items']/tbody/tr");
+
+                foreach (HtmlNode node in collection)
+                {
+                    Account account = new Account();
+
+                    String idText = node.GetAttributeValue("id", null);
+                    if (!String.IsNullOrEmpty(idText))
+                    {
+                        account.Id = int.Parse(MainUtils.removeAllNotNumberCharacters(idText));
+                    }
+
+                    String html = node.InnerHtml;
+
+                    account.Lp = HtmlUtils.GetIntValueByXPathExpression(html, "//td[1]/text()");
+                    account.UserName = HtmlUtils.GetStringValueByXPathExpression(html, "//td[2]/div[2]/strong/text()");
+                    account.GroupName = HtmlUtils.GetSingleNodeByXPathExpression(html, "//td[2]/div[2]").InnerHtml.Split('\n')[3].Trim();
+                    account.Exp = HtmlUtils.GetIntValueByXPathExpression(html, "//td[3]/text()");
+                    account.Battles = HtmlUtils.GetIntValueByXPathExpression(html, "//td[4]/text()");
+                    account.Win = HtmlUtils.GetIntValueByXPathExpression(html, "//td[5]/text()");
+                    account.Relic = HtmlUtils.GetIntValueByXPathExpression(html, "//td[6]/text()");
+
+                    accounts.Add(account);
+                }
+            }
+
+            return accounts;
+        }
+
         public void buyArmy(ArmyType armyType)
         {
             String urlAttack = "http://parafia.biz/units/buy/1/amount/";
@@ -103,6 +197,19 @@ namespace Parafia
 
             if (maxBelivers != 0)
             {
+                int cashNeed = maxBelivers * 20;
+                if (attributes.Cash.Actual < cashNeed)
+                {
+                    int value = cashNeed - attributes.Cash.Actual;
+                    if (attributes.Safe.Actual < value)
+                        value = attributes.Safe.Actual;
+
+                    getFromSafe(value);
+                }
+
+                if (cashNeed > attributes.Cash.Actual)
+                    maxBelivers = attributes.Cash.Actual / 20;
+
                 switch (armyType)
                 {
                     case ArmyType.Attack:
@@ -113,6 +220,99 @@ namespace Parafia
                         break;
                 }
             }
+        }
+
+        public String getUserUrl(String name)
+        {
+            if (attributes.Energy.Actual >= 10 && attributes.Health.Actual >= 10)
+            {
+                String url = null;
+
+                FormData formData = new FormData();
+                formData.addValue("formo_battle_search", "battle_search");
+                formData.addValue("battle_csrf", csrf);
+                formData.addValue("opponent_name", name);
+                formData.addValue("search_submit", "");
+
+                HttpWebResponse response = httpClient.HttpPostWithoutRedirection("http://parafia.biz/battle/players", formData);
+
+                if (response.StatusCode == HttpStatusCode.Found)
+                {
+                    url = response.Headers["Location"];
+                }
+                response.Close();
+
+                return url;
+            }
+            return null;
+        }
+
+        public Boolean attack(ref Account account)
+        {
+            Boolean flag = false;
+            if (attributes.Energy.Actual >= 10 && attributes.Health.Actual >= 10)
+            {
+                String content = httpClient.SendHttpGetAndReturnResponseContent("http://parafia.biz/battle/attack/" + account.Id);
+                updateAttributes(content);
+                String battleResult = HtmlUtils.GetStringValueByXPathExpression(content, "//div[@class='content']/h2/text()");
+                if (!String.IsNullOrEmpty(battleResult) && battleResult.Equals("Wygrałeś"))
+                {
+                    String cashText = HtmlUtils.GetStringValueByXPathExpression(content, "//table[@class='items']/tr[4]/td[2]/ul/li[1]/text()");
+                    cashText = MainUtils.removeAllNotNumberCharacters(cashText).Replace(" ", "");
+                    int cash;
+                    int.TryParse(cashText, out cash);
+                    account.Cash += cash;
+                    account.WinHits++;
+                    flag = true;
+                }
+                else
+                    if (battleResult.Equals("Przegrałeś"))
+                    {
+                        account.DefeatHits++;
+                        flag = false;
+                    }
+
+                String defenseText = HtmlUtils.GetStringValueByXPathExpression(content, "//div[@class='content']/div[@class='left ml50 wp-45']/div[2]/text()");
+                defenseText = MainUtils.removeAllNotNumberCharactersForDouble(defenseText);
+
+                double temp;
+
+                double.TryParse(defenseText, out temp);
+
+                account.Defense = temp;
+            }
+
+            return flag;
+        }
+
+        public int attack(String url)
+        {
+            if (attributes.Energy.Actual >= 10 && attributes.Health.Actual >= 10)
+            {
+                if (!String.IsNullOrEmpty(url))
+                {
+                    String content = httpClient.SendHttpGetAndReturnResponseContent(url);
+
+                    updateAttributes(content);
+                    String battleResult = HtmlUtils.GetStringValueByXPathExpression(content, "//div[@class='content']/h2/text()");
+                    if (!String.IsNullOrEmpty(battleResult) && battleResult.Equals("Wygrałeś"))
+                    {
+                        String cashText = HtmlUtils.GetStringValueByXPathExpression(content, "//table[@class='items']/tr[4]/td[2]/ul/li[1]/text()");
+                        cashText = MainUtils.removeAllNotNumberCharacters(cashText).Replace(" ", "");
+                        int cash;
+                        if (int.TryParse(cashText, out cash))
+                            return cash;
+                        else
+                            return -1;
+                    }
+                    else
+                    {
+                        return -2;
+                    }
+                }
+            }
+            
+            return -1;
         }
 
         public void getUnitsInfo()
@@ -131,9 +331,6 @@ namespace Parafia
                 formData.addValue("time_hours", hours.ToString());
                 units.putIntoFormData(formData);
                 formData.addValue("holy_submit", "");
-
-                httpClient.SendHttpGetAndReturnResponseContent("http://parafia.biz/units/expeditions");
-                httpClient.SendHttpGetAndReturnResponseContent("http://parafia.biz/units/to_holy_land");
 
                 String content = httpClient.SendHttpPostAndReturnResponseContent("http://parafia.biz/units/to_holy_land", formData);
             }
@@ -221,12 +418,12 @@ namespace Parafia
 
         public void doQuestTasks(String[] selectedNames)
         {
-            ArrayList quests = questContainer.GetQuestByNameTable(selectedNames);
+            ArrayList quests = questContainer.GetQuestsByNameList(selectedNames);
 
             foreach (Quest quest in quests)
             {
                 questContainer.checkQuest(quest);
-                if (quest.Progress < 98)
+                if (quest.GetProgress() < 99)
                 {
                     foreach (Task task in quest.ListOfTasks)
                     {
@@ -236,16 +433,20 @@ namespace Parafia
                             flag = false;
                             if (task.Progress != 100)
                             {
-                                if (task.Cost.energy < attributes.Energy.Actual)
+                                if (task.Cost.energy <= attributes.Energy.Actual)
                                 {
-                                    if (task.Cost.health < attributes.Health.Actual)
+                                    if (task.Cost.health <= attributes.Health.Actual)
                                     {
-                                        if (task.Cost.cash < attributes.Cash.Actual)
+                                        if (task.Cost.cash <= attributes.Cash.Actual)
                                         {
-                                            httpClient.SendHttpGetAndReturnResponseContent(task.Link);
+                                            String questResult = httpClient.SendHttpGetAndReturnResponseContent(task.Link);
                                             String content = httpClient.SendHttpGetAndReturnResponseContent(quest.Link);
-                                            updateAttributes(content);
                                             updateQuestInfo(content, task);
+                                            
+                                            if (HtmlUtils.GetSingleNodeByXPathExpression(questResult, "//div[@class='flashinfo error']") != null)
+                                                break;
+
+                                            updateAttributes(content);
                                             flag = true;
                                         }
                                     }
