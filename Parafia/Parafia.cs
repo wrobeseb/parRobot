@@ -253,33 +253,50 @@ namespace Parafia
             if (attributes.Energy.Actual >= 10 && attributes.Health.Actual >= 10)
             {
                 String content = httpClient.SendHttpGetAndReturnResponseContent("http://parafia.biz/battle/attack/" + account.Id);
-                updateAttributes(content);
-                String battleResult = HtmlUtils.GetStringValueByXPathExpression(content, "//div[@class='content']/h2/text()");
-                if (!String.IsNullOrEmpty(battleResult) && battleResult.Equals("Wygrałeś"))
+                String errorMessage = HtmlUtils.GetStringValueByXPathExpression(content, "//div[@class='flashinfo_message']/text()");
+
+                if (String.IsNullOrEmpty(errorMessage))
                 {
-                    String cashText = HtmlUtils.GetStringValueByXPathExpression(content, "//table[@class='items']/tr[4]/td[2]/ul/li[1]/text()");
-                    cashText = MainUtils.removeAllNotNumberCharacters(cashText).Replace(" ", "");
-                    int cash;
-                    int.TryParse(cashText, out cash);
-                    account.Cash += cash;
-                    account.WinHits++;
-                    flag = true;
+                    updateAttributes(content);
+
+                    String battleResult = HtmlUtils.GetStringValueByXPathExpression(content, "//div[@class='content']/h2/text()");
+                    if (!String.IsNullOrEmpty(battleResult))
+                    {
+                        if (battleResult.Equals("Wygrałeś"))
+                        {
+                            String cashText = HtmlUtils.GetStringValueByXPathExpression(content, "//table[@class='items']/tr[4]/td[2]/ul/li[1]/text()");
+                            cashText = MainUtils.removeAllNotNumberCharacters(cashText).Replace(" ", "");
+                            int cash;
+                            int.TryParse(cashText, out cash);
+                            account.Cash += cash;
+                            account.WinHits++;
+                            flag = true;
+                        }
+                        else
+                            if (battleResult.Equals("Przegrałeś"))
+                            {
+                                account.DefeatHits++;
+                                flag = false;
+                            }
+
+                        HtmlNode defenseNode = HtmlUtils.GetSingleNodeByXPathExpression(content, "//div[@class='content']/div[@class='left ml50 wp-45']/div[2]");
+
+                        String defenseText = defenseNode.InnerText;
+                        defenseText = MainUtils.removeAllNotNumberCharactersForDouble(defenseText);
+
+                        double temp;
+
+                        double.TryParse(defenseText, out temp);
+
+                        account.Defense = temp;
+                    }
                 }
                 else
-                    if (battleResult.Equals("Przegrałeś"))
-                    {
-                        account.DefeatHits++;
-                        flag = false;
-                    }
-
-                String defenseText = HtmlUtils.GetStringValueByXPathExpression(content, "//div[@class='content']/div[@class='left ml50 wp-45']/div[2]/text()");
-                defenseText = MainUtils.removeAllNotNumberCharactersForDouble(defenseText);
-
-                double temp;
-
-                double.TryParse(defenseText, out temp);
-
-                account.Defense = temp;
+                {
+                    account.Cash = -1;
+                    account.IsChecked = false;
+                    flag = true;
+                }
             }
 
             return flag;
@@ -334,22 +351,6 @@ namespace Parafia
 
                 String content = httpClient.SendHttpPostAndReturnResponseContent("http://parafia.biz/units/to_holy_land", formData);
             }
-        }
-
-        public String attack(String name)
-        {
-            FormData formData = new FormData();
-            formData.addValue("formo_battle_search", "battle_search");
-            formData.addValue("battle_csrf", csrf);
-            formData.addValue("opponent_name", name.ToLower());
-            formData.addValue("search_submit", "");
-            
-            httpClient.SendHttpGetAndReturnResponseContent("http://parafia.biz/start/dashboard");
-            httpClient.SendHttpGetAndReturnResponseContent("http://parafia.biz/battle/players");
-            //HttpWebResponse response = httpClient.HttpPost("http://parafia.biz/battle/players", formData);
-            String content = httpClient.SendHttpPostAndReturnResponseContent("http://parafia.biz/battle/players", formData);
-
-            return "success";
         }
 
         public bool checkDependencies(String content, String[] values)

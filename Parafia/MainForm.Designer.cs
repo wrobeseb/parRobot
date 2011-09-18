@@ -45,9 +45,8 @@
             this.bConfig = new System.Windows.Forms.Button();
             this.tbControl = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.btAttackRemove = new System.Windows.Forms.Button();
-            this.btAttackAdd = new System.Windows.Forms.Button();
-            this.tbAttackName = new System.Windows.Forms.TextBox();
+            this.pbStatDownload = new System.Windows.Forms.ProgressBar();
+            this.btStatDownload = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tbAttackNext = new System.Windows.Forms.TextBox();
             this.tbAttackLast = new System.Windows.Forms.TextBox();
@@ -60,9 +59,10 @@
             this.btAttackOFF = new System.Windows.Forms.Button();
             this.lvAttackList = new System.Windows.Forms.ListView();
             this.chCheck = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chCash = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.chNo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chWinsNo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lvQuests = new System.Windows.Forms.ListView();
             this.chCheckbox = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chQuestName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -103,9 +103,9 @@
             this.lbLog = new System.Windows.Forms.ListBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.ofdAttackFile = new System.Windows.Forms.OpenFileDialog();
-            this.btStatDownload = new System.Windows.Forms.Button();
-            this.chId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.pbStatDownload = new System.Windows.Forms.ProgressBar();
+            this.sfdStatsFile = new System.Windows.Forms.SaveFileDialog();
+            this.chLoseNo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chLastAttackDt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox1.SuspendLayout();
             this.tbControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -120,7 +120,7 @@
             // 
             // btStart
             // 
-            this.btStart.Location = new System.Drawing.Point(605, 473);
+            this.btStart.Location = new System.Drawing.Point(740, 473);
             this.btStart.Name = "btStart";
             this.btStart.Size = new System.Drawing.Size(58, 48);
             this.btStart.TabIndex = 0;
@@ -132,7 +132,7 @@
             // btStop
             // 
             this.btStop.Enabled = false;
-            this.btStop.Location = new System.Drawing.Point(669, 473);
+            this.btStop.Location = new System.Drawing.Point(804, 473);
             this.btStop.Name = "btStop";
             this.btStop.Size = new System.Drawing.Size(58, 48);
             this.btStop.TabIndex = 1;
@@ -268,7 +268,7 @@
             // 
             // bConfig
             // 
-            this.bConfig.Location = new System.Drawing.Point(605, 527);
+            this.bConfig.Location = new System.Drawing.Point(740, 527);
             this.bConfig.Name = "bConfig";
             this.bConfig.Size = new System.Drawing.Size(122, 50);
             this.bConfig.TabIndex = 5;
@@ -285,17 +285,13 @@
             this.tbControl.Location = new System.Drawing.Point(2, 7);
             this.tbControl.Name = "tbControl";
             this.tbControl.SelectedIndex = 0;
-            this.tbControl.Size = new System.Drawing.Size(739, 612);
+            this.tbControl.Size = new System.Drawing.Size(877, 612);
             this.tbControl.TabIndex = 10;
             // 
             // tabPage1
             // 
-
             this.tabPage1.Controls.Add(this.pbStatDownload);
             this.tabPage1.Controls.Add(this.btStatDownload);
-            this.tabPage1.Controls.Add(this.btAttackRemove);
-            this.tabPage1.Controls.Add(this.btAttackAdd);
-            this.tabPage1.Controls.Add(this.tbAttackName);
             this.tabPage1.Controls.Add(this.groupBox2);
             this.tabPage1.Controls.Add(this.btAttackFile);
             this.tabPage1.Controls.Add(this.btAttackON);
@@ -316,43 +312,29 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(731, 583);
+            this.tabPage1.Size = new System.Drawing.Size(869, 583);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Automat";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // btAttackRemove
+            // pbStatDownload
             // 
-            this.btAttackRemove.Font = new System.Drawing.Font("Times New Roman", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.btAttackRemove.Location = new System.Drawing.Point(562, 170);
-            this.btAttackRemove.Margin = new System.Windows.Forms.Padding(0);
-            this.btAttackRemove.Name = "btAttackRemove";
-            this.btAttackRemove.Size = new System.Drawing.Size(35, 20);
-            this.btAttackRemove.TabIndex = 23;
-            this.btAttackRemove.Text = "-";
-            this.btAttackRemove.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btAttackRemove.UseVisualStyleBackColor = true;
-            this.btAttackRemove.Click += new System.EventHandler(this.btAttackRemove_Click);
+            this.pbStatDownload.Location = new System.Drawing.Point(242, 375);
+            this.pbStatDownload.Name = "pbStatDownload";
+            this.pbStatDownload.Size = new System.Drawing.Size(492, 23);
+            this.pbStatDownload.Step = 1;
+            this.pbStatDownload.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+            this.pbStatDownload.TabIndex = 25;
             // 
-            // btAttackAdd
+            // btStatDownload
             // 
-            this.btAttackAdd.Location = new System.Drawing.Point(521, 170);
-            this.btAttackAdd.Name = "btAttackAdd";
-            this.btAttackAdd.Size = new System.Drawing.Size(35, 20);
-            this.btAttackAdd.TabIndex = 22;
-            this.btAttackAdd.Text = "+";
-            this.btAttackAdd.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btAttackAdd.UseVisualStyleBackColor = true;
-            this.btAttackAdd.Click += new System.EventHandler(this.btAttackAdd_Click);
-            // 
-            // tbAttackName
-            // 
-            this.tbAttackName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbAttackName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.tbAttackName.Location = new System.Drawing.Point(242, 170);
-            this.tbAttackName.Name = "tbAttackName";
-            this.tbAttackName.Size = new System.Drawing.Size(273, 20);
-            this.tbAttackName.TabIndex = 21;
+            this.btStatDownload.Location = new System.Drawing.Point(740, 375);
+            this.btStatDownload.Name = "btStatDownload";
+            this.btStatDownload.Size = new System.Drawing.Size(122, 23);
+            this.btStatDownload.TabIndex = 24;
+            this.btStatDownload.Text = "Pobierz Staty";
+            this.btStatDownload.UseVisualStyleBackColor = true;
+            this.btStatDownload.Click += new System.EventHandler(this.button1_Click);
             // 
             // groupBox2
             // 
@@ -362,7 +344,7 @@
             this.groupBox2.Controls.Add(this.label17);
             this.groupBox2.Controls.Add(this.label18);
             this.groupBox2.Controls.Add(this.label16);
-            this.groupBox2.Location = new System.Drawing.Point(605, 6);
+            this.groupBox2.Location = new System.Drawing.Point(740, 6);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(123, 80);
             this.groupBox2.TabIndex = 20;
@@ -433,7 +415,7 @@
             // 
             // btAttackFile
             // 
-            this.btAttackFile.Location = new System.Drawing.Point(605, 135);
+            this.btAttackFile.Location = new System.Drawing.Point(740, 135);
             this.btAttackFile.Name = "btAttackFile";
             this.btAttackFile.Size = new System.Drawing.Size(122, 55);
             this.btAttackFile.TabIndex = 19;
@@ -443,7 +425,7 @@
             // 
             // btAttackON
             // 
-            this.btAttackON.Location = new System.Drawing.Point(605, 92);
+            this.btAttackON.Location = new System.Drawing.Point(740, 92);
             this.btAttackON.Name = "btAttackON";
             this.btAttackON.Size = new System.Drawing.Size(58, 37);
             this.btAttackON.TabIndex = 18;
@@ -454,7 +436,7 @@
             // btAttackOFF
             // 
             this.btAttackOFF.Enabled = false;
-            this.btAttackOFF.Location = new System.Drawing.Point(669, 92);
+            this.btAttackOFF.Location = new System.Drawing.Point(804, 92);
             this.btAttackOFF.Name = "btAttackOFF";
             this.btAttackOFF.Size = new System.Drawing.Size(58, 37);
             this.btAttackOFF.TabIndex = 17;
@@ -471,26 +453,39 @@
             this.chId,
             this.chName,
             this.chCash,
-            this.chNo});
-            this.lvAttackList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.chWinsNo,
+            this.chLoseNo,
+            this.chLastAttackDt});
             this.lvAttackList.Location = new System.Drawing.Point(242, 10);
             this.lvAttackList.Name = "lvAttackList";
-            this.lvAttackList.Size = new System.Drawing.Size(355, 154);
+            this.lvAttackList.Size = new System.Drawing.Size(492, 180);
             this.lvAttackList.TabIndex = 16;
             this.lvAttackList.UseCompatibleStateImageBehavior = false;
             this.lvAttackList.View = System.Windows.Forms.View.Details;
             // 
             // chCheck
             // 
+            this.chCheck.Text = "";
             this.chCheck.Width = 30;
+            // 
+            // chId
+            // 
+            this.chId.Text = "Id";
             // 
             // chName
             // 
-            this.chName.Width = 145;
+            this.chName.Text = "Name";
+            this.chName.Width = 95;
             // 
             // chCash
             // 
-            this.chCash.Width = 120;
+            this.chCash.Text = "Cash";
+            this.chCash.Width = 61;
+            // 
+            // chWinsNo
+            // 
+            this.chWinsNo.Text = "Wins";
+            this.chWinsNo.Width = 41;
             // 
             // lvQuests
             // 
@@ -501,7 +496,7 @@
             this.chQuestName,
             this.chQuestProgress});
             this.lvQuests.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.lvQuests.Location = new System.Drawing.Point(242, 201);
+            this.lvQuests.Location = new System.Drawing.Point(379, 201);
             this.lvQuests.MultiSelect = false;
             this.lvQuests.Name = "lvQuests";
             this.lvQuests.ShowGroups = false;
@@ -532,7 +527,7 @@
             this.pQuestsButtons.Controls.Add(this.bQuestOff);
             this.pQuestsButtons.Controls.Add(this.bQuestOn);
             this.pQuestsButtons.Controls.Add(this.bQuestRefresh);
-            this.pQuestsButtons.Location = new System.Drawing.Point(600, 263);
+            this.pQuestsButtons.Location = new System.Drawing.Point(735, 263);
             this.pQuestsButtons.Name = "pQuestsButtons";
             this.pQuestsButtons.Size = new System.Drawing.Size(135, 101);
             this.pQuestsButtons.TabIndex = 0;
@@ -726,7 +721,7 @@
             this.groupBox7.Controls.Add(this.tbLastQuestDt);
             this.groupBox7.Controls.Add(this.label15);
             this.groupBox7.Controls.Add(this.label14);
-            this.groupBox7.Location = new System.Drawing.Point(606, 196);
+            this.groupBox7.Location = new System.Drawing.Point(741, 196);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Size = new System.Drawing.Size(122, 61);
             this.groupBox7.TabIndex = 14;
@@ -885,7 +880,7 @@
             this.lbLog.Name = "lbLog";
             this.lbLog.ScrollAlwaysVisible = true;
             this.lbLog.SelectionMode = System.Windows.Forms.SelectionMode.None;
-            this.lbLog.Size = new System.Drawing.Size(591, 104);
+            this.lbLog.Size = new System.Drawing.Size(728, 104);
             this.lbLog.TabIndex = 0;
             this.lbLog.TabStop = false;
             // 
@@ -904,34 +899,25 @@
             this.ofdAttackFile.FileName = "lista.txt";
             this.ofdAttackFile.Filter = "Plik text|*.txt|Wszystkie pliki|*.*";
             // 
-            // btStatDownload
+            // sfdStatsFile
             // 
-            this.btStatDownload.Location = new System.Drawing.Point(605, 375);
-            this.btStatDownload.Name = "btStatDownload";
-            this.btStatDownload.Size = new System.Drawing.Size(122, 23);
-            this.btStatDownload.TabIndex = 24;
-            this.btStatDownload.Text = "Pobierz Staty";
-            this.btStatDownload.UseVisualStyleBackColor = true;
-            this.btStatDownload.Click += new System.EventHandler(this.button1_Click);
+            this.sfdStatsFile.FileName = "staty.txt";
+            this.sfdStatsFile.Filter = "Text files|*.txt|All files|*.*";
             // 
-            // chId
+            // chLoseNo
             // 
-            this.chId.Text = "";
+            this.chLoseNo.Text = "Lose";
             // 
-            // pbStatDownload
+            // chLastAttackDt
             // 
-            this.pbStatDownload.Location = new System.Drawing.Point(242, 375);
-            this.pbStatDownload.Name = "pbStatDownload";
-            this.pbStatDownload.Size = new System.Drawing.Size(355, 23);
-            this.pbStatDownload.Step = 1;
-            this.pbStatDownload.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
-            this.pbStatDownload.TabIndex = 25;
+            this.chLastAttackDt.Text = "2011-01-01 11-11-11";
+            this.chLastAttackDt.Width = 113;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(744, 622);
+            this.ClientSize = new System.Drawing.Size(884, 622);
             this.Controls.Add(this.tbControl);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -944,7 +930,6 @@
             this.groupBox1.PerformLayout();
             this.tbControl.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.pQuestsButtons.ResumeLayout(false);
@@ -1023,7 +1008,7 @@
         public System.Windows.Forms.ColumnHeader chCheck;
         public System.Windows.Forms.ColumnHeader chName;
         public System.Windows.Forms.ColumnHeader chCash;
-        public System.Windows.Forms.ColumnHeader chNo;
+        public System.Windows.Forms.ColumnHeader chWinsNo;
         public System.Windows.Forms.Button btAttackFile;
         public System.Windows.Forms.Button btAttackON;
         public System.Windows.Forms.Button btAttackOFF;
@@ -1035,12 +1020,12 @@
         public System.Windows.Forms.Label label17;
         public System.Windows.Forms.Label label18;
         public System.Windows.Forms.Label label16;
-        public System.Windows.Forms.Button btAttackRemove;
-        public System.Windows.Forms.Button btAttackAdd;
-        public System.Windows.Forms.TextBox tbAttackName;
         public System.Windows.Forms.Button btStatDownload;
         public System.Windows.Forms.ColumnHeader chId;
         public System.Windows.Forms.ProgressBar pbStatDownload;
+        private System.Windows.Forms.SaveFileDialog sfdStatsFile;
+        private System.Windows.Forms.ColumnHeader chLoseNo;
+        private System.Windows.Forms.ColumnHeader chLastAttackDt;
     }
 }
 

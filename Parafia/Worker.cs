@@ -272,7 +272,7 @@ namespace Parafia
             }
         }
 
-        public void downloadStats()
+        public void downloadStats(String fileName)
         {
             Parafia parafia = getInstance();
             if (parafia != null)
@@ -287,11 +287,11 @@ namespace Parafia
                         mainForm.pbStatDownload.Maximum = lastpage + 1;
                     }));
 
-                    new StreamWriter("lista.txt").Close();
+                    new StreamWriter(fileName).Close();
                     for (int i = 1; i < lastpage + 1; i++)
                     {
                         List<Account> accountsFromPage = parafia.getAccountsFromStatePage(i);
-                        StreamWriter writer = new StreamWriter("lista.txt", true, Encoding.GetEncoding("ISO-8859-2"));
+                        StreamWriter writer = new StreamWriter(fileName, true, Encoding.GetEncoding("ISO-8859-2"));
                         foreach (Account account in accountsFromPage)
                         {
                             writer.WriteLine(account.ToString());
@@ -340,7 +340,6 @@ namespace Parafia
                                         parafia.login(); printLog("Zalogowany do portalu...");
                                         do
                                         {
-                                            parafia.putIntoSafe(); printLog("Pakuje do sejfu...");
                                             List<Account> accounts = getListOfCheckedAttack();
 
                                             if (accounts != null)
@@ -351,6 +350,8 @@ namespace Parafia
                                                 {
                                                     account.IsChecked = false;
                                                     updateAttackList(account);
+                                                    if (account.Cash != -1)
+                                                        parafia.putIntoSafe(); printLog("Pakuje do sejfu...");
                                                 }
 
                                                 result += account.Cash;

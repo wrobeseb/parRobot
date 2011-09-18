@@ -7,21 +7,7 @@ namespace Parafia.Model.Stat
 {
     public class Account : IComparable
     {
-        private int id;
-        private int lp;
-        private String userName;
-        private String groupName;
-        private int exp;
-        private int battles;
-        private int win;
-        private int relic;
 
-        private bool isChecked = true;
-        private int winHits;
-        private int defeatHits;
-        private int cash;
-
-        private double defense;
 
         public Account() { }
         public Account(String value)
@@ -29,16 +15,21 @@ namespace Parafia.Model.Stat
             String[] values = value.Split(';');
             if (values.Length == 8 || values.Length == 9)
             {
-                Id = int.Parse(values[0]);
-                Lp = int.Parse(values[1]);
-                UserName = values[2].Replace("\"", "");
-                GroupName = values[3].Replace("\"", "");
-                Exp = int.Parse(values[4]);
-                Battles = int.Parse(values[5]);
-                Win = int.Parse(values[6]);
-                Relic = int.Parse(values[7]);
-                if (values.Length == 9) 
-                    Defense = double.Parse(values[8]);
+                IsChecked = true;
+                try
+                {
+                    Id = int.Parse(values[0]);
+                    Lp = int.Parse(values[1]);
+                    UserName = values[2].Replace("\"", "");
+                    GroupName = values[3].Replace("\"", "");
+                    Exp = int.Parse(values[4]);
+                    Battles = int.Parse(values[5]);
+                    Win = int.Parse(values[6]);
+                    Relic = int.Parse(values[7]);
+                    if (values.Length == 9)
+                        Defense = double.Parse(values[8]);
+                }
+                catch { }
             }
         }
 

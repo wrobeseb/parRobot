@@ -198,54 +198,11 @@ namespace Parafia
             }
         }
 
-        private void btAttackAdd_Click(object sender, EventArgs e)
-        {
-            ListView.ListViewItemCollection collection = lvAttackList.Items;
-            Boolean flag = false;
-            foreach (ListViewItem item in collection)
-            {
-                if (item.SubItems[1].Text.Equals(tbAttackName.Text))
-                {
-                    flag = true;
-                    break;
-                }
-            }
-            if (!flag)
-            {
-                ListViewItem item = new ListViewItem();
-                ListViewItem.ListViewSubItem siName = new ListViewItem.ListViewSubItem(item, tbAttackName.Text);
-                ListViewItem.ListViewSubItem siCash = new ListViewItem.ListViewSubItem(item, "0");
-                ListViewItem.ListViewSubItem siNo = new ListViewItem.ListViewSubItem(item, "0");
-
-                item.Checked = true;
-
-                item.SubItems.Add(siName);
-                item.SubItems.Add(siCash);
-                item.SubItems.Add(siNo);
-                lvAttackList.Items.Add(item);
-            }
-            else
-            {
-                MessageBox.Show("Uzytkownik jest juz na liscie...");
-            }
-        }
-
-        private void btAttackRemove_Click(object sender, EventArgs e)
-        {
-            ListView.ListViewItemCollection collection = lvAttackList.Items;
-            foreach (ListViewItem item in collection)
-            {
-                if (item.SubItems[1].Text.Equals(tbAttackName.Text))
-                {
-                    lvAttackList.Items.Remove(item);
-                    break;
-                }
-            }
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
-            worker.downloadStats();
+            sfdStatsFile.ShowDialog();
+            if (!String.IsNullOrEmpty(sfdStatsFile.FileName))
+                worker.downloadStats(sfdStatsFile.FileName);
         }
     }
 }
