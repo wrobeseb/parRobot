@@ -49,12 +49,12 @@ namespace Parafia.Units
 
         public bool hasUnits()
         {
-            if (unit1 > 10) return true;
-            if (unit2 > 10) return true;
-            if (unit3 > 10) return true;
-            if (unit4 > 10) return true;
-            if (unit5 > 10) return true;
-            if (unit6 > 10) return true;
+            if (unit1 > 0) return true;
+            if (unit2 > 0) return true;
+            if (unit3 > 0) return true;
+            if (unit4 > 0) return true;
+            if (unit5 > 0) return true;
+            if (unit6 > 0) return true;
             return false;
         }
     }

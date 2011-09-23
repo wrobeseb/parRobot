@@ -133,7 +133,7 @@ namespace Parafia
                     tbProxyPassword.Text = config.ProxyPassword;
                     tbAccountUser.Text = config.AccountUser;
                     tbAccountUserPasswd.Text = config.AccountPassword;
-                    cbUnitType.SelectedItem = config.ArmyType;
+                    cbUnitType.SelectedItem = config.ArmyType == ArmyType.Attack ? "Atak" : "Obrona";
                     cbSendPilgrimage.Checked = config.SendPilgrimage;
                     
                     cbSentMail.SelectedItem = config.SentMail ? "Tak" : "Nie";

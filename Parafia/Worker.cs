@@ -48,6 +48,7 @@ namespace Parafia
 
         private bool sendMail = false;
         private Enums.ArmyType armyType = Enums.ArmyType.Defense;
+        private bool sendPilgrimage = false;
 
         public Worker(MainForm mainForm)
         {
@@ -338,28 +339,7 @@ namespace Parafia
                                     lock (loggedInlockObject)
                                     {
                                         parafia.login(); printLog("Zalogowany do portalu...");
-                                        do
-                                        {
-                                            List<Account> accounts = getListOfCheckedAttack();
-
-                                            if (accounts != null)
-                                            {
-                                                Account account = accounts[new Random().Next(0, accounts.Count - 1)];
-                                                printLog("Atakowanie w trakcie...");
-                                                if (parafia.attack(ref account))
-                                                {
-                                                    account.IsChecked = false;
-                                                    updateAttackList(account);
-                                                    if (account.Cash != -1)
-                                                        parafia.putIntoSafe(); printLog("Pakuje do sejfu...");
-                                                }
-
-                                                result += account.Cash;
-                                            }
-                                        }
-                                        while (parafia.attributes.Energy.Actual > 10 && parafia.attributes.Health.Actual > 10);
-                                        printLog("Zakończona atakowanie... resultat: " + result);
-                                        parafia.putIntoSafe(); printLog("Pakuje do sejfu...");
+                                        attackJob(parafia, ref result);
                                         parafia.logout(); printLog("Pomyślne wylogowanie z portalu.");
                                     }
                                     
@@ -396,58 +376,46 @@ namespace Parafia
                     if (interval == 0)
                     {
                         Boolean timeoutFlag = false;
+                        int result = 0;
+
+                        lastLoginDt = nextLoginDt;
+                        nextLoginDt = getNextLoginTime();
+                        hitCount++;
+
                         do
                         {
                             timeoutFlag = false;
                             try
                             {
-                                nextLoginDt = getNextLoginTime();
-                                hitCount++;
-
                                 Parafia parafia = getInstance();
                                 if (parafia != null)
                                 {
-                                    int result = 0;
                                     lock (loggedInlockObject)
                                     {
                                         parafia.login(); printLog("Zalogowany do portalu...");
-                                        parafia.putIntoSafe(); printLog("Pakuje do sejfu...");
                                         parafia.buyArmy(armyType); printLog("Wojska zakupione. Typ: " + armyType);
                                         parafia.getUnitsInfo(); printLog("Informacje o jednostkach zostały pobrane.");
-                                        // if (config.SendPilgrimage) { parafia.sendPilgrimage(2); printLog("Pielgrzymka została wysłana."); }
-                                        if (attackSemafor && (hitCount % 4 == 0))
+                                        if (sendPilgrimage) 
                                         {
-                                            List<Account> accounts = getListOfCheckedAttack();
-
-                                            if (accounts != null)
-                                            {
-                                                printLog("Atakowanie w trakcie...");
-                                                foreach (Account account in accounts)
-                                                {
-                                                    int cash = 0;
-                                                    int temp;
-                                                    do
-                                                    {
-                                                        temp = 0;
-                                                        //temp = parafia.attack(account.Id);
-                                                        if (temp >= 0)
-                                                            cash += temp;
-
-                                                        if (temp != -1)
-                                                            updateAttackList(account);
-                                                    }
-                                                    while (temp > 100000);
-                                                    result += cash;
-                                                }
-                                                printLog("Zakończona atakowanie... resultat: " + result);
-                                                parafia.putIntoSafe(); printLog("Pakuje do sejfu...");
-                                            }
+                                            parafia.getFromSafe(100000);
+                                            parafia.sendPilgrimage((nextLoginDt - DateTime.Now).Hours); 
+                                            printLog("Pielgrzymka została wysłana."); 
                                         }
+                                        parafia.putIntoSafe(); printLog("Pakuje do sejfu...");
+                                        if (attackSemafor)
+                                        {
+                                            attackJob(parafia, ref result);
+                                        }
+
                                         parafia.logout(); printLog("Pomyślne wylogowanie z portalu.");
 
 
                                         mainForm.Invoke((Action)(delegate
                                         {
+                                            mainForm.tbAttackCash.Text = new StringBuilder().Append(int.Parse(mainForm.tbAttackCash.Text) + result).ToString();
+                                            mainForm.tbAttackLast.Text = this.lastLoginDt.ToString("HH:mm:ss");
+                                            mainForm.tbAttackNext.Text = this.nextLoginDt.ToString("HH:mm:ss");
+
                                             mainForm.tbHitCount.Text = this.hitCount.ToString();
                                             mainForm.tbNextLogin.Text = this.nextLoginDt.ToString("yyyy-MM-dd HH:mm:ss");
                                             mainForm.tbAttack.Text = parafia.units.attack.ToString();
@@ -463,7 +431,7 @@ namespace Parafia
                                     if (sendMail)
                                     {
                                         StringBuilder builder = new StringBuilder();
-                                        if (attackSemafor && (hitCount % 4 == 0))
+                                        if (attackSemafor)
                                         {
                                             builder.Append("Atak wykonany. Rezultat: ").Append(result).Append("\n");
                                         }
@@ -485,6 +453,72 @@ namespace Parafia
                 }
                 Thread.Sleep(100);
             }
+        }
+
+        private void attackJob(Parafia parafia, ref int result)
+        {
+            do
+            {
+                if (parafia.attributes.Cash.Actual != parafia.attributes.Cash.Max)
+                {
+                    List<Account> accounts = getListOfCheckedAttack();
+
+                    if (accounts != null && accounts.Count != 0)
+                    {
+                        Account account = accounts[new Random().Next(0, accounts.Count - 1)];
+                        printLog(account.UserName + ": Atakowanie w trakcie...");
+                        int value = 0;
+                        if (parafia.attack(ref account))
+                        {
+                            account.IsChecked = false;
+                            if (account.Cash != -1)
+                            {
+                                if (account.Cash != 0)
+                                {
+                                    parafia.putIntoSafe();
+                                    value = account.Cash;
+                                    printLog(account.UserName + ": Wygrałeś... Pakuje do sejfu... " + value);
+                                }
+                                else
+                                {
+                                    account.IsChecked = false;
+                                    printLog(account.UserName + ": Przegrałeś... ");
+                                }
+                            }
+                            else
+                            {
+                                printLog(account.UserName + ": Poza zasięgiem...");
+                                account.IsChecked = false;
+                                account.Cash = 0;
+                            }
+                        }
+                        writeAccountToFile(account);
+                        updateAttackList(account); 
+                        result += value;
+                    }
+                    else
+                    {
+                        printLog("Lista jest pusta!!!");
+                        break;
+                    }
+                }
+                else
+                {
+                    if (sendMail)
+                    {
+                        StringBuilder builder = new StringBuilder();
+                        if (attackSemafor)
+                        {
+                            builder.Append("Kasa przepełniona!!!").Append("\n\n").Append("Kasa: " + parafia.attributes.Cash.Actual).Append("\n").Append("Sejf: " + parafia.attributes.Safe.Actual);
+                        }
+                        MailService.sendMail(builder.ToString());
+                    }
+                    printLog("Kasa przepełniona");
+                    break;
+                }
+            }
+            while (parafia.attributes.Energy.Actual > 10 && parafia.attributes.Health.Actual > 10);
+            printLog("Zakończona atakowanie... resultat: " + result);
         }
 
         private void printLog(String log)
@@ -647,7 +681,11 @@ namespace Parafia
                 foreach (ListViewItem item in collection)
                 {
                     if (item.Checked)
-                        listOfNames.Add((Account)item.Tag);
+                    {
+                        Account account = (Account)item.Tag;
+                        if (DateTime.Equals(account.LastAttack, DateTime.MinValue) || (DateTime.Now - account.LastAttack).Hours > 16)
+                            listOfNames.Add(account);
+                    }
                 }
             }));
 
@@ -663,9 +701,12 @@ namespace Parafia
                 {
                     if (account.Id == ((Account)item.Tag).Id)
                     {
-                        item.SubItems[3].Text = new StringBuilder().Append(account.Cash).ToString();
-                        item.SubItems[4].Text = new StringBuilder().Append(account.DefeatHits).ToString();
+                        item.SubItems[3].Text = new StringBuilder().Append(account.Cash + int.Parse(item.SubItems[3].Text)).ToString();
+                        item.SubItems[4].Text = new StringBuilder().Append(account.WinHits).ToString();
+                        item.SubItems[5].Text = new StringBuilder().Append(account.DefeatHits).ToString();
+                        item.SubItems[6].Text = account.LastAttack.ToString("yyyy-MM-dd HH:mm:ss");
                         item.Checked = account.IsChecked;
+                        account.Cash = 0;
                         item.Tag = account;
                         break;
                     }
@@ -704,6 +745,13 @@ namespace Parafia
             }
         }
 
+        public void writeAccountToFile(Account account)
+        {
+            StreamWriter writer = new StreamWriter("attack_result.txt", true, Encoding.GetEncoding("ISO-8859-2"));
+            writer.WriteLine(DateTime.Now + ";" + account.ToString());
+            writer.Close();
+        }
+
         public Parafia getInstance()
         {
             object obj = Settings.Default["properties"];
@@ -715,6 +763,7 @@ namespace Parafia
                 if (config != null)
                 {
                     sendMail = config.SentMail;
+                    sendPilgrimage = config.SendPilgrimage;
                     armyType = config.ArmyType;
                     Parafia parafia = new Parafia();
                     parafia.initConnection(config);

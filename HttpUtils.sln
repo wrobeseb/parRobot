@@ -22,6 +22,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ForexIoC", "ForexIoC\ForexI
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParafiaPrism", "ParafiaPrism\ParafiaPrism.csproj", "{79633FF9-C869-433D-86A9-9025E52E9C5F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BipAnna", "BipAnna\BipAnna.csproj", "{2A20785A-E341-43A5-8529-826D3AB6271F}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = HttpUtils.vsmdi
@@ -105,6 +107,16 @@ Global
 		{79633FF9-C869-433D-86A9-9025E52E9C5F}.Release|Mixed Platforms.Build.0 = Release|x86
 		{79633FF9-C869-433D-86A9-9025E52E9C5F}.Release|x86.ActiveCfg = Release|x86
 		{79633FF9-C869-433D-86A9-9025E52E9C5F}.Release|x86.Build.0 = Release|x86
+		{2A20785A-E341-43A5-8529-826D3AB6271F}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{2A20785A-E341-43A5-8529-826D3AB6271F}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{2A20785A-E341-43A5-8529-826D3AB6271F}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{2A20785A-E341-43A5-8529-826D3AB6271F}.Debug|x86.ActiveCfg = Debug|x86
+		{2A20785A-E341-43A5-8529-826D3AB6271F}.Debug|x86.Build.0 = Debug|x86
+		{2A20785A-E341-43A5-8529-826D3AB6271F}.Release|Any CPU.ActiveCfg = Release|x86
+		{2A20785A-E341-43A5-8529-826D3AB6271F}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{2A20785A-E341-43A5-8529-826D3AB6271F}.Release|Mixed Platforms.Build.0 = Release|x86
+		{2A20785A-E341-43A5-8529-826D3AB6271F}.Release|x86.ActiveCfg = Release|x86
+		{2A20785A-E341-43A5-8529-826D3AB6271F}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

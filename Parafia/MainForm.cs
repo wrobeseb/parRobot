@@ -183,14 +183,18 @@ namespace Parafia
                     ListViewItem.ListViewSubItem siId = new ListViewItem.ListViewSubItem(item, new StringBuilder().Append(account.Id).ToString());
                     ListViewItem.ListViewSubItem siName = new ListViewItem.ListViewSubItem(item, account.UserName);
                     ListViewItem.ListViewSubItem siCash = new ListViewItem.ListViewSubItem(item, new StringBuilder().Append(account.Cash).ToString());
-                    ListViewItem.ListViewSubItem siNo = new ListViewItem.ListViewSubItem(item, new StringBuilder().Append(account.DefeatHits).ToString());
+                    ListViewItem.ListViewSubItem siWinNo = new ListViewItem.ListViewSubItem(item, new StringBuilder().Append(account.WinHits).ToString());
+                    ListViewItem.ListViewSubItem siDefeatNo = new ListViewItem.ListViewSubItem(item, new StringBuilder().Append(account.DefeatHits).ToString());
+                    ListViewItem.ListViewSubItem siLastAttack = new ListViewItem.ListViewSubItem(item, "brak danych");
 
                     item.Checked = account.IsChecked;
 
                     item.SubItems.Add(siId);
                     item.SubItems.Add(siName);
                     item.SubItems.Add(siCash);
-                    item.SubItems.Add(siNo);
+                    item.SubItems.Add(siWinNo);
+                    item.SubItems.Add(siDefeatNo);
+                    item.SubItems.Add(siLastAttack);
                     lvAttackList.Items.Add(item);
 
                     

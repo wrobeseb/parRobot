@@ -1,0 +1,12 @@
+﻿<Window x:Class="ParafiaPrism.Shell"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:prism="http://www.codeplex.com/prism"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid x:Name="rootLayout">
+        <Border Grid.Column="0" Grid.Row="0" Background="LightGray" Width="100" HorizontalAlignment="Left" MinWidth="100" Margin="5,0,0,5">
+            <ItemsControl x:Name="NavigationItemsControl" prism:RegionManager.RegionName="MainNavigationRegion" Grid.Column="0" Margin="5" Padding="5"/>
+        </Border>
+        <ContentControl prism:RegionManager.RegionName="MainContentRegion" Grid.Column="1" Grid.Row="0" Margin="5,0,5,5" HorizontalAlignment="Right" Width="390" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"/>
+    </Grid>
+</Window>

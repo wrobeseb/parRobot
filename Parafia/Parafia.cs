@@ -98,7 +98,7 @@ namespace Parafia
         public void putIntoSafe()
         {
             int maxValue = attributes.Safe.Max - attributes.Safe.Actual;
-            if (maxValue != 0)
+            if (maxValue != 0 && attributes.Cash.Actual != 0)
             {
                 int value = 0;
                 if (attributes.Cash.Actual > maxValue) value = maxValue;
@@ -188,6 +188,27 @@ namespace Parafia
             return accounts;
         }
 
+        public void buyMinistr()
+        {
+            int maxBelivers = attributes.Beliver.Actual - 10;
+
+            if (maxBelivers >= 10)
+            {
+                int cashNeed = 200;
+                if (attributes.Cash.Actual < cashNeed)
+                {
+                    int value = cashNeed - attributes.Cash.Actual;
+                    if (attributes.Safe.Actual < value)
+                        value = attributes.Safe.Actual;
+
+                    getFromSafe(value);
+                }
+
+                httpClient.SendHttpGetAndReturnResponseContent("http://parafia.biz/units/buy/1/amount/10");
+                getUnitsInfo();
+            }
+        }
+
         public void buyArmy(ArmyType armyType)
         {
             String urlAttack = "http://parafia.biz/units/buy/1/amount/";
@@ -252,50 +273,61 @@ namespace Parafia
             Boolean flag = false;
             if (attributes.Energy.Actual >= 10 && attributes.Health.Actual >= 10)
             {
-                String content = httpClient.SendHttpGetAndReturnResponseContent("http://parafia.biz/battle/attack/" + account.Id);
-                String errorMessage = HtmlUtils.GetStringValueByXPathExpression(content, "//div[@class='flashinfo_message']/text()");
-
-                if (String.IsNullOrEmpty(errorMessage))
+                getUnitsInfo();
+                if (!units.hasUnits())
                 {
+                    buyMinistr();
+                }
+                if (units.hasUnits())
+                {
+                    String content = httpClient.SendHttpGetAndReturnResponseContent("http://parafia.biz/battle/attack/" + account.Id);
+                    String errorMessage = HtmlUtils.GetStringValueByXPathExpression(content, "//div[@class='flashinfo_message']/text()");
+
                     updateAttributes(content);
 
-                    String battleResult = HtmlUtils.GetStringValueByXPathExpression(content, "//div[@class='content']/h2/text()");
-                    if (!String.IsNullOrEmpty(battleResult))
+                    if (String.IsNullOrEmpty(errorMessage))
                     {
-                        if (battleResult.Equals("Wygrałeś"))
+                        String battleResult = HtmlUtils.GetStringValueByXPathExpression(content, "//div[@class='content']/h2/text()");
+                        if (!String.IsNullOrEmpty(battleResult))
                         {
-                            String cashText = HtmlUtils.GetStringValueByXPathExpression(content, "//table[@class='items']/tr[4]/td[2]/ul/li[1]/text()");
-                            cashText = MainUtils.removeAllNotNumberCharacters(cashText).Replace(" ", "");
-                            int cash;
-                            int.TryParse(cashText, out cash);
-                            account.Cash += cash;
-                            account.WinHits++;
-                            flag = true;
-                        }
-                        else
-                            if (battleResult.Equals("Przegrałeś"))
+                            if (battleResult.Equals("Wygrałeś"))
                             {
-                                account.DefeatHits++;
-                                flag = false;
+                                String cashText = HtmlUtils.GetStringValueByXPathExpression(content, "//table[@class='items']/tr[4]/td[2]/ul/li[1]/text()");
+                                cashText = MainUtils.removeAllNotNumberCharacters(cashText).Replace(" ", "");
+                                int cash;
+                                int.TryParse(cashText, out cash);
+                                account.Cash += cash;
+                                account.WinHits++;
+                                flag = true;
                             }
+                            else
+                                if (battleResult.Equals("Przegrałeś"))
+                                {
+                                    account.DefeatHits++;
+                                    //flag = false;
+                                    flag = true;
+                                }
 
-                        HtmlNode defenseNode = HtmlUtils.GetSingleNodeByXPathExpression(content, "//div[@class='content']/div[@class='left ml50 wp-45']/div[2]");
+                            HtmlNode defenseNode = HtmlUtils.GetSingleNodeByXPathExpression(content, "//div[@class='content']/div[@class='left ml50 wp-45']/div[2]");
 
-                        String defenseText = defenseNode.InnerText;
-                        defenseText = MainUtils.removeAllNotNumberCharactersForDouble(defenseText);
+                            String defenseText = defenseNode.InnerText;
+                            defenseText = MainUtils.removeAllNotNumberCharactersForDouble(defenseText);
 
-                        double temp;
+                            double temp;
 
-                        double.TryParse(defenseText, out temp);
+                            double.TryParse(defenseText, out temp);
 
-                        account.Defense = temp;
+                            account.Defense = temp;
+
+                            account.LastAttack = DateTime.Now;
+                        }
                     }
-                }
-                else
-                {
-                    account.Cash = -1;
-                    account.IsChecked = false;
-                    flag = true;
+                    else
+                    {
+                        account.Cash = -1;
+                        account.IsChecked = false;
+                        flag = true;
+                    }
                 }
             }
 

@@ -12,5 +12,10 @@ namespace ParafiaPrism
     /// </summary>
     public partial class App : Application
     {
+        private void Application_Startup(object sender, StartupEventArgs e)
+        {
+            BootStrapper bootStrapper = new BootStrapper();
+            bootStrapper.Run();
+        }
     }
 }

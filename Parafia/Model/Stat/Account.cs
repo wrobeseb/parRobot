@@ -111,6 +111,12 @@ namespace Parafia.Model.Stat
             set;
         }
 
+        public DateTime LastAttack
+        {
+            get;
+            set;
+        }
+
         public override String ToString()
         {
             StringBuilder builder = new StringBuilder();
@@ -121,8 +127,8 @@ namespace Parafia.Model.Stat
             builder.Append(Battles).Append(";");
             builder.Append(Win).Append(";");
             builder.Append(Relic);
-            if (Defense != 0.0)
-                builder.Append(";").Append(Defense);
+            builder.Append(";").Append(Defense);
+            builder.Append(";").Append(Cash);
 
             return builder.ToString();
         }
