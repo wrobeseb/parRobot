@@ -37,22 +37,22 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Practices.Prism">
-      <HintPath>C:\Program Files\Prism4\Bin\Desktop\Microsoft.Practices.Prism.dll</HintPath>
+      <HintPath>..\Library\Microsoft.Practices.Prism.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.Prism.Interactivity">
-      <HintPath>C:\Program Files\Prism4\Bin\Desktop\Microsoft.Practices.Prism.Interactivity.dll</HintPath>
+      <HintPath>..\Library\Microsoft.Practices.Prism.Interactivity.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.Prism.MefExtensions">
-      <HintPath>C:\Program Files\Prism4\Bin\Desktop\Microsoft.Practices.Prism.MefExtensions.dll</HintPath>
+      <HintPath>..\Library\Microsoft.Practices.Prism.MefExtensions.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.Prism.UnityExtensions">
-      <HintPath>C:\Program Files\Prism4\Bin\Desktop\Microsoft.Practices.Prism.UnityExtensions.dll</HintPath>
+      <HintPath>..\Library\Microsoft.Practices.Prism.UnityExtensions.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation">
-      <HintPath>C:\Program Files\Prism4\Bin\Desktop\Microsoft.Practices.ServiceLocation.dll</HintPath>
+      <HintPath>..\Library\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.Unity">
-      <HintPath>C:\Program Files\Prism4\Bin\Desktop\Microsoft.Practices.Unity.dll</HintPath>
+      <HintPath>..\Library\Microsoft.Practices.Unity.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -73,7 +73,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Views\TabModule.cs" />
     <Page Include="Shell.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Shell1.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -85,6 +90,9 @@
     <Compile Include="CallbackLogger.cs" />
     <Compile Include="Shell.xaml.cs">
       <DependentUpon>Shell.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Shell1.xaml.cs">
+      <DependentUpon>Shell1.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -114,6 +122,7 @@
     </None>
     <AppDesigner Include="Properties\" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

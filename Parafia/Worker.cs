@@ -131,11 +131,7 @@ namespace Parafia
                     parafia.logout(); printLog("QUEST-REFRESH: Wylogowany z portalu...");
                 }
             }
-            mainForm.Invoke((Action)(delegate
-            {
-                mainForm.pQuestsButtons.Enabled = true;
-                mainForm.lvQuests.Enabled = true;
-            }));
+
         }
 
         public void buyRelics()
@@ -146,11 +142,6 @@ namespace Parafia
                 {
                     String dtFieldTxt = null;
                     String relicName = null;
-                    mainForm.Invoke((Action)(delegate
-                    {
-                        dtFieldTxt = mainForm.tbHourField.Text;
-                        relicName = mainForm.tbRelicName.Text;
-                    }));
 
                     String[] dtTextValues = null;
                     bool flag = false;
@@ -249,11 +240,6 @@ namespace Parafia
                                     }
                                 }
                                 fillQuestsList();
-                                mainForm.Invoke((Action)(delegate
-                                {
-                                    mainForm.tbLastQuestDt.Text = lastQuestWorkDt.ToString("HH:mm:ss");
-                                    mainForm.tbNextQuestDt.Text = nextQuestWorkDt.ToString("HH:mm:ss");
-                                }));
 
                                 if (sendMail)
                                     MailService.sendMail("Questy wykonane... następne o godzinie: " + this.nextQuestWorkDt.ToString("HH:mm:ss"));
@@ -441,7 +427,7 @@ namespace Parafia
 
                                         builder.Append("Zakupy skończone... następne o godzinie: " + this.nextLoginDt.ToString("yyyy-MM-dd HH:mm:ss"));
                                         //MailService.sendMail(builder.ToString());
-                                        MailService.sendMail(parafia.attributes, parafia.units);
+                                        MailService.sendMail(parafia.attributes, parafia.units, nextLoginDt, result);
                                     }
                                 }
                             }
@@ -474,7 +460,7 @@ namespace Parafia
                         int value = 0;
                         if (parafia.attack(ref account))
                         {
-                            account.IsChecked = false;
+                            //account.IsChecked = false;
                             if (account.Cash != -1)
                             {
                                 if (account.Cash != 0)
@@ -578,20 +564,6 @@ namespace Parafia
             mainSemafor = false;
         }
 
-        public void StartUpQuests()
-        {
-            nextQuestWorkDt = DateTime.Now.AddSeconds(10);
-            mainForm.tbNextQuestDt.Text = nextQuestWorkDt.ToString("HH:mm:ss");
-            doQuests = true;
-        }
-
-        public void StopQuests()
-        {
-            doQuests = false;
-            mainForm.tbNextQuestDt.Text = "brak danych";
-            mainForm.tbLastQuestDt.Text = "brak danych";
-        }
-
         public void StartRelics()
         {
             relicsSemafor = true;
@@ -625,7 +597,7 @@ namespace Parafia
         public void StartUpTime()
         {
             upTimeStart = DateTime.Now;
-            nextLoginDt = DateTime.Now.AddSeconds(10);
+            nextLoginDt = DateTime.Now.AddSeconds(5);
             //mainForm.tbNextLogin.Text = nextLoginDt.ToString("yyyy-MM-dd HH:mm:ss");
             mainWorkSemafor = true;
             upTimeSemafor = true;
@@ -662,15 +634,6 @@ namespace Parafia
         {
             List<String> listOfNames = new List<String>();
 
-            mainForm.Invoke((Action)(delegate
-            {
-                ListView.ListViewItemCollection collection = mainForm.lvQuests.Items;
-                foreach (ListViewItem item in collection) {
-                    if (item.Checked)
-                        listOfNames.Add(item.SubItems[1].Text);
-                }
-            }));
-
             return listOfNames.ToArray<String>();
         }
 
@@ -687,7 +650,7 @@ namespace Parafia
                     if (item.Checked)
                     {
                         Account account = (Account)item.Tag;
-                        if (DateTime.Equals(account.LastAttack, DateTime.MinValue) || (DateTime.Now - account.LastAttack).Hours > 12)
+                        if (DateTime.Equals(account.LastAttack, DateTime.MinValue) || (DateTime.Now - account.LastAttack).Hours > 5)
                             listOfNames.Add(account);
                     }
                 }
@@ -723,10 +686,6 @@ namespace Parafia
             Object obj = Settings.Default["quests"];
             if (obj != null)
             {
-                mainForm.Invoke((Action)(delegate
-                {
-                    mainForm.lvQuests.Items.Clear();
-                }));
 
                 QuestContainer container = (QuestContainer)obj;
                 foreach (Quest quest in container.GetAllQuests)
@@ -740,11 +699,6 @@ namespace Parafia
 
                     item.SubItems.Add(siName);
                     item.SubItems.Add(siProgress);
-
-                    mainForm.Invoke((Action)(delegate
-                    {
-                        mainForm.lvQuests.Items.Add(item);
-                    }));
                 }
             }
         }

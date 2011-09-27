@@ -12,6 +12,8 @@ using Microsoft.Practices.Prism.Logging;
 
 namespace ParafiaPrism
 {
+    using Views;
+
     public class BootStrapper : UnityBootstrapper
     {
         private readonly CallbackLogger callbackLogger = new CallbackLogger();
@@ -43,12 +45,8 @@ namespace ParafiaPrism
 
         protected override IModuleCatalog CreateModuleCatalog()
         {
-            return new AggregateModuleCatalog();
+            var catalog = new ModuleCatalog().AddModule(typeof(TabModule));
+            return catalog;
         }
-
-        protected override void ConfigureModuleCatalog()
-        {
-            ((AggregateModuleCatalog)ModuleCatalog).AddCatalog(new ConfigurationModuleCatalog());
-        }
     }
 }

@@ -47,11 +47,18 @@ namespace Parafia.Service
             return false;
         }
 
-        public static bool sendMail(Attributes.Attributes attribute, Units units)
+        public static bool sendMail(Attributes.Attributes attribute, Units units, DateTime nextLogin, int attackResult)
         {
             StringBuilder builder = new StringBuilder();
 
             builder.Append("<html><head></head><body style=\"font: 12px/1.2 Arial, Helvetica, Tahoma, sans-serif;\"><div style=\"width: 100%; height: 100%; background: #ffffff;\" >");
+            builder.Append("Nastepne logowanie: " + nextLogin.ToString("yyyy-MM-dd HH:mm:ss"));
+            builder.Append("\n");
+            if (attackResult != null)
+            {
+                builder.Append("Rezultat po atakach: " + attackResult);
+                builder.Append("\n");
+            }
             builder.Append(attribute.ToHtml());
             builder.Append("\n");
             builder.Append(units.ToHtml());

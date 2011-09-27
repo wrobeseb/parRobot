@@ -42,7 +42,7 @@ namespace Parafia
             {
                 this.config = config;
                 WebProxy proxy = null;
-                if (!String.IsNullOrEmpty(config.ProxyHost))
+                if (config.UseProxy)
                 {
                     proxy = new WebProxy(config.ProxyHost, config.ProxyPort);
                     proxy.Credentials = new NetworkCredential(config.ProxyUser, config.ProxyPassword, config.ProxyDomain);

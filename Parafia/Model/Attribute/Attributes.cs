@@ -22,6 +22,8 @@ namespace Parafia.Attributes
         private Field vicar;
         private Relics relics;
 
+        private int mail;
+
         public Attributes(String responseContent)
         {
             this.name = HtmlUtils.GetStringValueByXPathExpression(responseContent, "//ul[1]/li[1]/text()");
@@ -63,7 +65,7 @@ namespace Parafia.Attributes
             for (int i = 0; i < charArray.Length; i++)
 			{
 			    char character = charArray[i];
-                if ((charArray.Length == 4 || charArray.Length == 7) && (i == 1 || i == 5))
+                if ((charArray.Length == 4 || charArray.Length == 7) && (i == 1 || i == 4))
                     builder.Append(" ");
                 if (charArray.Length == 5 && i == 2)
                     builder.Append(" ");

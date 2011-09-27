@@ -9,19 +9,23 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace ParafiaPrism
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for Shall.xaml
     /// </summary>
     public partial class Shell : Window
     {
         public Shell()
         {
             InitializeComponent();
+        }
+
+        private void btAddAccount_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

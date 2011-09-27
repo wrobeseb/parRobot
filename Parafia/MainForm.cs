@@ -51,6 +51,8 @@ namespace Parafia
 
             object obj = Settings.Default["properties"];
 
+
+
             if (obj != null)
             {
                 config = (ApplicationConfig)obj;
@@ -66,6 +68,7 @@ namespace Parafia
             config.SmtpEnableSSL = true;
             config.SmtpPort = 587;
             config.SmtpHost = "smtp.poczta.tepenet";
+           
 
             Settings.Default["properties"] = config;
             Settings.Default.Save();
@@ -127,38 +130,21 @@ namespace Parafia
 
         private void bQuestRefresh_Click(object sender, EventArgs e)
         {
-            pQuestsButtons.Enabled = false;
-            lvQuests.Enabled = false;
+
             Thread questsRefreshThread = new Thread(worker.questRefreshWork);
             questsRefreshThread.Name = "QuestsRefreshThread";
             questsRefreshThread.Start();
         }
 
-        private void bQuestOn_Click(object sender, EventArgs e)
-        {
-            bQuestOn.Enabled = false;
-            bQuestOff.Enabled = true;
-            worker.StartUpQuests();
-        }
-
-        private void bQuestOff_Click(object sender, EventArgs e)
-        {
-            bQuestOn.Enabled = true;
-            bQuestOff.Enabled = false;
-            worker.StopQuests();
-        }
-
         private void btRelicsOn_Click(object sender, EventArgs e)
         {
-            btRelicsOff.Enabled = true;
-            btRelicsOn.Enabled = false;
+
             worker.StartRelics();
         }
 
         private void btRelicsOff_Click(object sender, EventArgs e)
         {
-            btRelicsOff.Enabled = false;
-            btRelicsOn.Enabled = true;
+
             worker.StopRelics();
         }
 

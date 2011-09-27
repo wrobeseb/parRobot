@@ -2,11 +2,17 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:prism="http://www.codeplex.com/prism"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid x:Name="rootLayout">
-        <Border Grid.Column="0" Grid.Row="0" Background="LightGray" Width="100" HorizontalAlignment="Left" MinWidth="100" Margin="5,0,0,5">
-            <ItemsControl x:Name="NavigationItemsControl" prism:RegionManager.RegionName="MainNavigationRegion" Grid.Column="0" Margin="5" Padding="5"/>
+        Title="Shell" Height="500" Width="800" Padding="0" ResizeMode="CanMinimize" WindowStyle="SingleBorderWindow">
+    <Grid>
+        <Border Grid.Row="0" Grid.Column="0" Width="780" Height="100" VerticalAlignment="Top" HorizontalAlignment="Left">
+            <Grid HorizontalAlignment="Left">
+                <Button Content="Dodaj" VerticalAlignment="Top" Height="23" Name="btAddAccount" Width="180" Click="btAddAccount_Click" />
+                <Button Content="Dodaj listę" Height="23" Name="btAddAccountsFromList" Width="180" Margin="0,29,0,46" />
+                <!--<ItemsControl prism:RegionManager.RegionName="HeaderRegion" Name="HeaderRegion" />-->
+            </Grid>
         </Border>
-        <ContentControl prism:RegionManager.RegionName="MainContentRegion" Grid.Column="1" Grid.Row="0" Margin="5,0,5,5" HorizontalAlignment="Right" Width="390" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"/>
+        <Border Grid.Row="1" Margin="0" Grid.Column="0" Width="780" Height="360" VerticalAlignment="Bottom" HorizontalAlignment="Left">
+            <TabControl prism:RegionManager.RegionName="TabRegion" Name="TabRegion" TabStripPlacement="Top" Margin="0" />
+        </Border>
     </Grid>
 </Window>
