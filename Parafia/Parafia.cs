@@ -55,7 +55,7 @@ namespace Parafia
 
         public TimeSpan getSerwerTime()
         {
-            String temp = MainUtils.removeAllNotNumberCharacters(HtmlUtils.GetSingleNodeByXPathExpression(httpClient.SendHttpGetAndReturnResponseContent("http://blog.parafia.biz/czas/"), "//body").InnerText).Replace(" ", String.Empty);
+            String temp = MainUtils.removeAllNotNumberCharacters(HtmlUtils.GetSingleNodeByXPathExpression(httpClient.SendHttpGetAndReturnResponseContent("http://blog.parafia.biz/czas/", 5000), "//body").InnerText).Replace(" ", String.Empty);
             String[] tempTable = temp.Split(',');
             return new TimeSpan(0, int.Parse(tempTable[0]), int.Parse(tempTable[1]), int.Parse(tempTable[2]), 0);
         }

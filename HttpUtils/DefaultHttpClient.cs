@@ -72,7 +72,20 @@ namespace HttpUtils
             return (HttpWebResponse)request.GetResponse();
         }
 
+        public HttpWebResponse HttpGet(String url, int timeout)
+        {
+            HttpWebRequest request = HttpRequest.SendGet(url);
+            request.CookieContainer = cookieContainer;
+            request.Timeout = timeout;
+            return (HttpWebResponse)request.GetResponse();
+        }
+
         public String SendHttpGetAndReturnResponseContent(String url)
+        {
+            return HtmlUtils.GetContentForResponse(HttpGet(url));
+        }
+
+        public String SendHttpGetAndReturnResponseContent(String url, int timeout)
         {
             return HtmlUtils.GetContentForResponse(HttpGet(url));
         }

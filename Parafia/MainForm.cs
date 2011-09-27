@@ -44,8 +44,32 @@ namespace Parafia
             worker.StopUpTime();
         }
 
+
         private void MainForm_Load(object sender, EventArgs e)
         {
+            ApplicationConfig config = new ApplicationConfig();
+
+            object obj = Settings.Default["properties"];
+
+            if (obj != null)
+            {
+                config = (ApplicationConfig)obj;
+            }
+
+            config.UseProxy = true;
+            config.ProxyDomain = "TP";
+            config.ProxyHost = "126.179.0.200";
+            config.ProxyPort = 3128;
+            config.SentMail = true;
+            config.SmtpAccount = "TP\\zz_sezam";
+            config.SmtpAccountPasswd = "4esz%RDX";
+            config.SmtpEnableSSL = true;
+            config.SmtpPort = 587;
+            config.SmtpHost = "smtp.poczta.tepenet";
+
+            Settings.Default["properties"] = config;
+            Settings.Default.Save();
+
             worker = new Worker(this);
             worker.setMainWindowTitle();
             worker.fillQuestsList();

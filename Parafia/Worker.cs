@@ -434,10 +434,14 @@ namespace Parafia
                                         if (attackSemafor)
                                         {
                                             builder.Append("Atak wykonany. Rezultat: ").Append(result).Append("\n");
+
+                                            builder.Append("Kasa: ").Append(parafia.attributes.Cash.Actual).Append(" / ").Append(parafia.attributes.Cash.Max).Append("\n");
+                                            builder.Append("Sejf: ").Append(parafia.attributes.Safe.Actual).Append(" / ").Append(parafia.attributes.Safe.Max).Append("\n");
                                         }
 
                                         builder.Append("Zakupy skończone... następne o godzinie: " + this.nextLoginDt.ToString("yyyy-MM-dd HH:mm:ss"));
-                                        MailService.sendMail(builder.ToString());
+                                        //MailService.sendMail(builder.ToString());
+                                        MailService.sendMail(parafia.attributes, parafia.units);
                                     }
                                 }
                             }
@@ -489,7 +493,7 @@ namespace Parafia
                             {
                                 printLog(account.UserName + ": Poza zasięgiem...");
                                 account.IsChecked = false;
-                                account.Cash = 0;
+                                account.Cash = -1;
                             }
                         }
                         writeAccountToFile(account);
@@ -642,10 +646,10 @@ namespace Parafia
         {
             try
             {
-                Parafia parafia = getInstance();
-                if (parafia != null)
-                    serverDt = getInstance().getSerwerTime();
-                else
+               // Parafia parafia = getInstance();
+                //if (parafia != null)
+                //    serverDt = getInstance().getSerwerTime();
+               // else
                     serverDt = new TimeSpan(0, 0, 0, 0, 0);
             }
             catch
@@ -683,7 +687,7 @@ namespace Parafia
                     if (item.Checked)
                     {
                         Account account = (Account)item.Tag;
-                        if (DateTime.Equals(account.LastAttack, DateTime.MinValue) || (DateTime.Now - account.LastAttack).Hours > 16)
+                        if (DateTime.Equals(account.LastAttack, DateTime.MinValue) || (DateTime.Now - account.LastAttack).Hours > 12)
                             listOfNames.Add(account);
                     }
                 }
