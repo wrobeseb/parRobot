@@ -96,21 +96,21 @@ namespace Parafia.Attributes
         {
             StringBuilder builder = new StringBuilder();
 
-            builder.Append("<ul style=\"line-height: 1.2em;list-style: none;\">");
-            builder.Append("	<li><strong>Proboszcz:</strong> ").Append(name).Append("</li>");
-            builder.Append("	<li><strong>Parafia:</strong> ").Append(parafia).Append("</li>");
-            builder.Append("	<li><strong>Odpusty:</strong> ").Append(odpusty).Append("</li>");
-            builder.Append("</ul>");
-            builder.Append("<ul style=\"line-height: 1.2em;list-style: none; margin-top: 10px\">");
-            builder.Append("	<li><strong>Poziom:</strong> Poziom ").Append(Level.LevelNo).Append(" ( ").Append(Level.ExpActual).Append(" / ").Append(Level.ExpNextLevel).Append(" )</li>");
-            builder.Append("	<li><strong>Kasa:</strong> ").Append(formatCash(Cash.Actual)).Append(" C$ / ").Append(formatCash(Cash.Max)).Append(" C$</li>");
-            builder.Append("	<li><strong>Sejf:</strong> ").Append(formatCash(Safe.Actual)).Append(" C$ / ").Append(formatCash(Safe.Max)).Append(" C$</li>");
-            builder.Append("	<li><strong>Zdrowie:</strong> ").Append(Health.Actual).Append(" / ").Append(Health.Max).Append("</li>");
-            builder.Append("	<li><strong>Energia:</strong> ").Append(Energy.Actual).Append(" / ").Append(Energy.Max).Append("</li>");
-            builder.Append("	<li><strong>Wierz&#261;cych:</strong> ").Append(Beliver.Actual).Append(" / ").Append(Beliver.Max).Append("</li>");
-            builder.Append("	<li><strong>Wikarych:</strong> ").Append(Vicar.Actual).Append(" / ").Append(Vicar.Max).Append("</li>");
-            builder.Append("	<li><strong>Relikwie:</strong> ").Append(Relics.Actual).Append(", w sejfie ").Append(Relics.InSafe).Append(" / ").Append(Relics.MaxSafe).Append("</li>");
-            builder.Append("</ul>");
+            builder.Append("<div style=\"line-height: 1.2em;\">");
+            builder.Append("	<div><strong>Proboszcz:</strong> ").Append(name).Append("</div>");
+            builder.Append("	<div><strong>Parafia:</strong> ").Append(parafia).Append("</div>");
+            builder.Append("	<div><strong>Odpusty:</strong> ").Append(odpusty).Append("</div>");
+            builder.Append("</div>");
+            builder.Append("<div style=\"line-height: 1.2em;margin-top: 10px\">");
+            builder.Append("	<div><strong>Poziom:</strong> Poziom ").Append(Level.LevelNo).Append(" ( ").Append(Level.ExpActual).Append(" / ").Append(Level.ExpNextLevel).Append(" )</div>");
+            builder.Append("	<div><strong>Kasa:</strong> ").Append(formatCash(Cash.Actual)).Append(" C$ / ").Append(formatCash(Cash.Max)).Append(" C$</div>");
+            builder.Append("	<div><strong>Sejf:</strong> ").Append(formatCash(Safe.Actual)).Append(" C$ / ").Append(formatCash(Safe.Max)).Append(" C$</div>");
+            builder.Append("	<div><strong>Zdrowie:</strong> ").Append(Health.Actual).Append(" / ").Append(Health.Max).Append("</div>");
+            builder.Append("	<div><strong>Energia:</strong> ").Append(Energy.Actual).Append(" / ").Append(Energy.Max).Append("</div>");
+            builder.Append("	<div><strong>Wierz&#261;cych:</strong> ").Append(Beliver.Actual).Append(" / ").Append(Beliver.Max).Append("</div>");
+            builder.Append("	<div><strong>Wikarych:</strong> ").Append(Vicar.Actual).Append(" / ").Append(Vicar.Max).Append("</div>");
+            builder.Append("	<div><strong>Relikwie:</strong> ").Append(Relics.Actual).Append(", w sejfie ").Append(Relics.InSafe).Append(" / ").Append(Relics.MaxSafe).Append("</div>");
+            builder.Append("</div>");
 
             return builder.ToString();
         }

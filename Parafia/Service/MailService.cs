@@ -59,17 +59,18 @@ namespace Parafia.Service
                 builder.Append("	<li><strong>Przepełnienie!!!!!!!!!:</strong></li>");
                 builder.Append("</ul>");
             }
-            
-            builder.Append("<ul style=\"line-height: 1.2em;list-style: none; margin-bottom: 10px\">");
-            builder.Append("	<li><strong>Nastepne logowanie:</strong> ").Append(nextLogin.ToString("yyyy-MM-dd HH:mm:ss")).Append("</li>");
-            if (attackResult != null)
-            {
-                builder.Append("	<li><strong>Rezultat po atakach:</strong> ").Append(attackResult).Append("</li>");
-            }
-            builder.Append("	<li><strong>Poczta:</strong> ").Append(attribute.Mail).Append("</li>");
-            builder.Append("</ul>");
+
+            builder.Append("<div style=\"padding: 0 0 0 10px; width: 700px;\">");
+            builder.Append("<h2 style=\"color: #4a2c5c;font: normal 20px/1em 'Lucida Sans Unicode', Arial, Helvetica, Tahoma, sans-serif;padding: 0;border-bottom: 1px solid #e7e7e7;\">Staty</h2>");
+            builder.Append("<table><tr><td style=\"vertical-align: top; width: 650px;\">");
             builder.Append(attribute.ToHtml());
-            builder.Append("\n");
+            builder.Append("</td><td style=\"vertical-align: top; width: 350px;\">");
+            builder.Append("<div style=\"line-height: 1.2em; margin-bottom: 10px\">");
+            builder.Append("	<div><strong>Nastepne logowanie:</strong> ").Append(nextLogin.ToString("yyyy-MM-dd HH:mm:ss")).Append("</div>");
+            builder.Append("	<div><strong>Rezultat po atakach:</strong> ").Append(attackResult).Append("</div>");
+            builder.Append("	<div><strong>Poczta:</strong> ").Append(attribute.Mail).Append("</div>");
+            builder.Append("</div>");
+            builder.Append("</td></tr></table></div>");
             builder.Append(units.ToHtml());
             builder.Append("</div></body></html>");
 
