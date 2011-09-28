@@ -43,8 +43,22 @@ namespace Parafia.Attributes
             this.believer = new Field(HtmlUtils.GetSingleNodeByXPathExpression(responseContent, "//ul[2]/li[6]"));
             this.vicar = new Field(HtmlUtils.GetSingleNodeByXPathExpression(responseContent, "//ul[2]/li[7]"));
             this.relics = new Relics(HtmlUtils.GetSingleNodeByXPathExpression(responseContent, "//ul[2]/li[8]"));
+        
+            String mailText = HtmlUtils.GetAttributeValueOfElementByXPathExpression(responseContent, "title", "//a[@class='mailbox']");
+
+            mailText = MainUtils.removeAllNotNumberCharacters(mailText);
+
+            if (String.IsNullOrEmpty(mailText))
+            {
+                this.mail = 0;
+            }
+            else
+            {
+                this.mail = Int32.Parse(mailText);
+            }
         }
 
+        public Int32 Mail { get { return this.mail; } }
         public Level Level { get { return this.level; } }
         public Field Cash { get { return this.cash; } }
         public Field Safe { get { return this.safe; } }

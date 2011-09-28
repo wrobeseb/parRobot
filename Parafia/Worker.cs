@@ -362,10 +362,10 @@ namespace Parafia
                     if (interval == 0)
                     {
                         Boolean timeoutFlag = false;
+                        Boolean overflowFlag = false;
                         int result = 0;
 
                         lastLoginDt = nextLoginDt;
-                        nextLoginDt = getNextLoginTime();
                         hitCount++;
 
                         do
@@ -381,20 +381,46 @@ namespace Parafia
                                         parafia.login(); printLog("Zalogowany do portalu...");
                                         parafia.buyArmy(armyType); printLog("Wojska zakupione. Typ: " + armyType);
                                         parafia.getUnitsInfo(); printLog("Informacje o jednostkach zostały pobrane.");
-                                        if (sendPilgrimage) 
-                                        {
-                                            parafia.getFromSafe(100000);
-                                            parafia.sendPilgrimage((nextLoginDt - DateTime.Now).Hours); 
-                                            printLog("Pielgrzymka została wysłana."); 
-                                        }
+
                                         parafia.putIntoSafe(); printLog("Pakuje do sejfu...");
                                         if (attackSemafor)
                                         {
-                                            attackJob(parafia, ref result);
+                                            do
+                                            {
+                                                timeoutFlag = false;
+                                                try
+                                                {
+                                                    overflowFlag = attackJob(parafia, ref result);
+                                                }
+                                                catch
+                                                {
+                                                    printLog("Wystąpił timeout... ponawiam!");
+                                                    timeouts++;
+                                                    timeoutFlag = true;
+                                                }
+                                            }
+                                            while (timeoutFlag && (timeouts < 5));
                                         }
 
-                                        parafia.logout(); printLog("Pomyślne wylogowanie z portalu.");
+                                        if (sendPilgrimage) 
+                                        {
+                                            int cost = parafia.units.cashForPilgrimage();
+                                            parafia.getFromSafe(cost);
+                                            if (cost <= parafia.attributes.Cash.Actual)
+                                            {
+                                                int hours = (nextLoginDt - DateTime.Now).Hours;
+                                                parafia.sendPilgrimage(hours != 0 ? hours : 1);
+                                                printLog("Pielgrzymka została wysłana.");
+                                            }
+                                            else
+                                            {
+                                                printLog("Pielgrzymka nie została wysłana. Brak kasy!!!");
+                                            }
+                                        }
 
+                                        nextLoginDt = getNextLoginTime();
+
+                                        parafia.logout(); printLog("Pomyślne wylogowanie z portalu.");
 
                                         mainForm.Invoke((Action)(delegate
                                         {
@@ -427,7 +453,7 @@ namespace Parafia
 
                                         builder.Append("Zakupy skończone... następne o godzinie: " + this.nextLoginDt.ToString("yyyy-MM-dd HH:mm:ss"));
                                         //MailService.sendMail(builder.ToString());
-                                        MailService.sendMail(parafia.attributes, parafia.units, nextLoginDt, result);
+                                        MailService.sendMail(parafia.attributes, parafia.units, nextLoginDt, result, overflowFlag);
                                     }
                                 }
                             }
@@ -445,8 +471,10 @@ namespace Parafia
             }
         }
 
-        private void attackJob(Parafia parafia, ref int result)
+        private bool attackJob(Parafia parafia, ref int result)
         {
+            bool flag = false;
+
             do
             {
                 if (parafia.attributes.Cash.Actual != parafia.attributes.Cash.Max)
@@ -494,21 +522,14 @@ namespace Parafia
                 }
                 else
                 {
-                    if (sendMail)
-                    {
-                        StringBuilder builder = new StringBuilder();
-                        if (attackSemafor)
-                        {
-                            builder.Append("Kasa przepełniona!!!").Append("\n\n").Append("Kasa: " + parafia.attributes.Cash.Actual).Append("\n").Append("Sejf: " + parafia.attributes.Safe.Actual);
-                        }
-                        MailService.sendMail(builder.ToString());
-                    }
-                    printLog("Kasa przepełniona");
+                    flag = true;
                     break;
                 }
             }
             while (parafia.attributes.Energy.Actual > 10 && parafia.attributes.Health.Actual > 10);
             printLog("Zakończona atakowanie... resultat: " + result);
+
+            return flag;
         }
 
         private void printLog(String log)
@@ -650,7 +671,7 @@ namespace Parafia
                     if (item.Checked)
                     {
                         Account account = (Account)item.Tag;
-                        if (DateTime.Equals(account.LastAttack, DateTime.MinValue) || (DateTime.Now - account.LastAttack).Hours > 5)
+                        if (DateTime.Equals(account.LastAttack, DateTime.MinValue) || (DateTime.Now - account.LastAttack).Hours >= 5)
                             listOfNames.Add(account);
                     }
                 }

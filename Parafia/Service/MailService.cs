@@ -47,18 +47,27 @@ namespace Parafia.Service
             return false;
         }
 
-        public static bool sendMail(Attributes.Attributes attribute, Units units, DateTime nextLogin, int attackResult)
+        public static bool sendMail(Attributes.Attributes attribute, Units units, DateTime nextLogin, int attackResult, bool overflowFlag)
         {
             StringBuilder builder = new StringBuilder();
 
             builder.Append("<html><head></head><body style=\"font: 12px/1.2 Arial, Helvetica, Tahoma, sans-serif;\"><div style=\"width: 100%; height: 100%; background: #ffffff;\" >");
-            builder.Append("Nastepne logowanie: " + nextLogin.ToString("yyyy-MM-dd HH:mm:ss"));
-            builder.Append("\n");
+
+            if (overflowFlag)
+            {
+                builder.Append("<ul style=\"line-height: 1.2em;list-style: none; margin-bottom: 10px\">");
+                builder.Append("	<li><strong>Przepełnienie!!!!!!!!!:</strong></li>");
+                builder.Append("</ul>");
+            }
+            
+            builder.Append("<ul style=\"line-height: 1.2em;list-style: none; margin-bottom: 10px\">");
+            builder.Append("	<li><strong>Nastepne logowanie:</strong> ").Append(nextLogin.ToString("yyyy-MM-dd HH:mm:ss")).Append("</li>");
             if (attackResult != null)
             {
-                builder.Append("Rezultat po atakach: " + attackResult);
-                builder.Append("\n");
+                builder.Append("	<li><strong>Rezultat po atakach:</strong> ").Append(attackResult).Append("</li>");
             }
+            builder.Append("	<li><strong>Poczta:</strong> ").Append(attribute.Mail).Append("</li>");
+            builder.Append("</ul>");
             builder.Append(attribute.ToHtml());
             builder.Append("\n");
             builder.Append(units.ToHtml());

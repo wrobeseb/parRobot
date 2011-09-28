@@ -431,6 +431,7 @@
             this.chWinsNo,
             this.chLoseNo,
             this.chLastAttackDt});
+            this.lvAttackList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvAttackList.Location = new System.Drawing.Point(242, 10);
             this.lvAttackList.Name = "lvAttackList";
             this.lvAttackList.Size = new System.Drawing.Size(439, 180);
@@ -692,7 +693,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(816, 583);
+            this.tabPage2.Size = new System.Drawing.Size(816, 368);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Obsługa Ręczna";
             this.tabPage2.UseVisualStyleBackColor = true;

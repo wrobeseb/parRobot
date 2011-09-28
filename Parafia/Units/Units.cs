@@ -70,6 +70,25 @@ namespace Parafia.Units
             return false;
         }
 
+        public int cashForPilgrimage()
+        {
+            int cash = 0;
+
+            if (unit1 > 0) cash += doubleToInt(0.02 * unit1 * 20);
+            if (unit2 > 0) cash += doubleToInt(0.02 * unit2 * 150);
+            if (unit3 > 0) cash += doubleToInt(0.02 * unit3 * 1000);
+            if (unit4 > 0) cash += doubleToInt(0.02 * unit4 * 20);
+            if (unit5 > 0) cash += doubleToInt(0.02 * unit5 * 150);
+            if (unit6 > 0) cash += doubleToInt(0.02 * unit6 * 1000);
+
+            return cash;
+        }
+
+        private int doubleToInt(double value)
+        {
+            return Convert.ToInt32(value) + 1;
+        }
+
         public string ToHtml()
         {
             StringBuilder builder = new StringBuilder();
