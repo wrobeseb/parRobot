@@ -24,6 +24,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParafiaPrism", "ParafiaPris
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BipAnna", "BipAnna\BipAnna.csproj", "{2A20785A-E341-43A5-8529-826D3AB6271F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PBizBot", "PBizBot\PBizBot.csproj", "{4C1146A9-801B-4D61-BBE1-D31154E70400}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = HttpUtils.vsmdi
@@ -117,6 +119,16 @@ Global
 		{2A20785A-E341-43A5-8529-826D3AB6271F}.Release|Mixed Platforms.Build.0 = Release|x86
 		{2A20785A-E341-43A5-8529-826D3AB6271F}.Release|x86.ActiveCfg = Release|x86
 		{2A20785A-E341-43A5-8529-826D3AB6271F}.Release|x86.Build.0 = Release|x86
+		{4C1146A9-801B-4D61-BBE1-D31154E70400}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{4C1146A9-801B-4D61-BBE1-D31154E70400}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{4C1146A9-801B-4D61-BBE1-D31154E70400}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{4C1146A9-801B-4D61-BBE1-D31154E70400}.Debug|x86.ActiveCfg = Debug|x86
+		{4C1146A9-801B-4D61-BBE1-D31154E70400}.Debug|x86.Build.0 = Debug|x86
+		{4C1146A9-801B-4D61-BBE1-D31154E70400}.Release|Any CPU.ActiveCfg = Release|x86
+		{4C1146A9-801B-4D61-BBE1-D31154E70400}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{4C1146A9-801B-4D61-BBE1-D31154E70400}.Release|Mixed Platforms.Build.0 = Release|x86
+		{4C1146A9-801B-4D61-BBE1-D31154E70400}.Release|x86.ActiveCfg = Release|x86
+		{4C1146A9-801B-4D61-BBE1-D31154E70400}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
