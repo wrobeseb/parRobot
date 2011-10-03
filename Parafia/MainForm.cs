@@ -99,11 +99,16 @@ namespace Parafia
             onlyAttackThread.Name = "OnlyAttackThread";
             onlyAttackThread.Start();
 
+            Thread safeCashActionThread = new Thread(worker.safeCashAction);
+            safeCashActionThread.Name = "SafeCashActionThread";
+            safeCashActionThread.Start();
+
             threadList.Add(systemTimeThread);
             threadList.Add(mainWorkThread);
             threadList.Add(questWorkThread);
             threadList.Add(relicsWorkThread);
             threadList.Add(onlyAttackThread);
+            threadList.Add(safeCashActionThread);
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)

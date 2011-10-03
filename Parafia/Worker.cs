@@ -15,6 +15,7 @@ namespace Parafia
 {
     using Model.Quest;
     using Model.Stat;
+    using Exceptions;
 
     public class Worker
     {
@@ -35,6 +36,9 @@ namespace Parafia
 
         private DateTime nextQuestWorkDt;
         private DateTime lastQuestWorkDt;
+
+        private volatile bool serverTimeForCashSafeSemafor = false;
+        private TimeSpan serverTimeForCashSafe;
 
         private int upTime = 0;
         private DateTime upTimeStart;
@@ -112,7 +116,10 @@ namespace Parafia
                     }));
                     serverDt = serverDt.Add(new TimeSpan(0, 0, 0, 1, 0));
                 }
-
+                if (serverTimeForCashSafeSemafor)
+                {
+                    serverTimeForCashSafe = serverTimeForCashSafe.Add(new TimeSpan(0, 0, 0, 1, 0));
+                }
                 Thread.Sleep(1000);
             }
         }
@@ -382,7 +389,9 @@ namespace Parafia
                                         parafia.buyArmy(armyType); printLog("Wojska zakupione. Typ: " + armyType);
                                         parafia.getUnitsInfo(); printLog("Informacje o jednostkach zostały pobrane.");
 
+                                        parafia.takeFromProperty(); printLog("Dewocjonalnik...");
                                         parafia.putIntoSafe(); printLog("Pakuje do sejfu...");
+
                                         if (attackSemafor)
                                         {
                                             do
@@ -471,6 +480,95 @@ namespace Parafia
             }
         }
 
+        public void safeCashAction()
+        {
+            Parafia parafia = getInstance();
+
+            parafia.login(); printLog("[SAFE CASH ACTION] Zalogowany.");
+
+            parafia.putIntoSafe(); printLog("[SAFE CASH ACTION] Wstępne pakowanie do sejfu.");
+
+            printLog("[SAFE CASH ACTION] Synchronizacja z czasem serwera.");
+            lock (loggedInlockObject)
+            {
+                while (true)
+                {
+                    try
+                    {
+                        parafia.updateAttributes();
+                        if (parafia.attributes.Cash.Actual > 0)
+                        {
+                            if (parafia.attributes.Safe.Actual < parafia.attributes.Safe.Max)
+                            {
+                                serverTimeForCashSafe = new TimeSpan(0, 0, 0, 0, 0);
+                                serverTimeForCashSafeSemafor = true;
+                                parafia.putIntoSafe(); printLog("[SAFE CASH ACTION] Pakuje do sejfu.");
+                            }
+                            break;
+                        }
+                    }
+                    catch
+                    {
+                        printLog("[SAFE CASH ACTION] Wystąpił timeout... Brak synchronizacji!");
+                        break;
+                    }
+                    Thread.Sleep(1000);
+                }
+            }
+
+            printLog("[SAFE CASH ACTION] Synchronizacja zakończona.");
+            while (mainSemafor)
+            {
+                if (mainWorkSemafor)
+                {
+                    long interval = serverTimeForCashSafe.Ticks / 1000000;
+                    if ((interval % 300) == 0)
+                    {
+                        lock (loggedInlockObject)
+                        {
+                            try
+                            {
+                                parafia.updateAttributes();
+                                if (parafia.attributes.Cash.Actual > 0)
+                                {
+                                    if (parafia.attributes.Safe.Actual < parafia.attributes.Safe.Max)
+                                    {
+                                        parafia.putIntoSafe();
+                                        printLog("[SAFE CASH ACTION] Pakuje do sejfu.");
+                                    }
+                                }
+                            }
+                            catch
+                            {
+                                printLog("[SAFE CASH ACTION] Wystąpił timeout... Kasa nie przelana do sejfu!");
+                            }
+                        }
+                    }
+                }
+                Thread.Sleep(100);
+            }
+
+            parafia.logout(); printLog("[SAFE CASH ACTION] wylogowany.");
+        }
+
+
+        private bool buyRelic(Parafia parafia, int cashValue)
+        {
+            int id = 0;
+            int count = parafia.countGreatChangeInMarket(cashValue, ref id);
+
+            if (count == 1)
+            {
+
+            }
+            else
+            {
+                throw new MoreThenOneGreatChange(count);
+            }
+
+            return false;
+        }
+
         private bool attackJob(Parafia parafia, ref int result)
         {
             bool flag = false;
@@ -506,7 +604,7 @@ namespace Parafia
                             else
                             {
                                 printLog(account.UserName + ": Poza zasięgiem...");
-                                account.IsChecked = false;
+                                //account.IsChecked = false;
                                 account.Cash = -1;
                             }
                         }

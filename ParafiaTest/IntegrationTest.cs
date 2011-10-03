@@ -11,7 +11,7 @@ namespace ParafiaTest
     [TestClass]
     public class IntegrationTest
     {
-        [TestMethod]
+        //[TestMethod]
         public void TestMethod()
         {
             WebProxy proxy = new WebProxy("126.179.0.200", 3128);
@@ -19,8 +19,8 @@ namespace ParafiaTest
 
             Parafia.Parafia parafia = new Parafia.Parafia();
 
-            parafia.initConnection(proxy);
-            parafia.login("sairo", "sairoroan");
+            //parafia.initConnection(proxy);
+           // parafia.login("sairo", "sairoroan");
             parafia.getQuests();
 
             //Parafia.Parafia.buyArmy(Parafia.Enums.ArmyType.Defense);

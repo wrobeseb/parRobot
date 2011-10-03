@@ -62,7 +62,7 @@ namespace Parafia.Service
 
             builder.Append("<div style=\"padding: 0 0 0 10px; width: 700px;\">");
             builder.Append("<h2 style=\"color: #4a2c5c;font: normal 20px/1em 'Lucida Sans Unicode', Arial, Helvetica, Tahoma, sans-serif;padding: 0;border-bottom: 1px solid #e7e7e7;\">Staty</h2>");
-            builder.Append("<table><tr><td style=\"vertical-align: top; width: 650px;\">");
+            builder.Append("<table><tr><td style=\"vertical-align: top; width: 500px;\">");
             builder.Append(attribute.ToHtml());
             builder.Append("</td><td style=\"vertical-align: top; width: 350px;\">");
             builder.Append("<div style=\"line-height: 1.2em; margin-bottom: 10px\">");

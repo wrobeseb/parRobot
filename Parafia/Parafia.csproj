@@ -68,6 +68,7 @@
     <Compile Include="Controls\ListViewEx.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Exceptions\MoreThenOneGreatChange.cs" />
     <Compile Include="Model\Attribute\Attributes.cs" />
     <Compile Include="Model\Attribute\Field.cs" />
     <Compile Include="Model\Attribute\Level.cs" />

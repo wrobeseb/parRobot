@@ -95,6 +95,76 @@ namespace Parafia
             }
         }
 
+        public void updateAttributes()
+        {
+            String content = httpClient.SendHttpGetAndReturnResponseContent("http://parafia.biz/start/dashboard");
+            this.attributes = new Attributes.Attributes(content);
+        }
+
+        public void takeFromProperty() 
+        {
+            FormData formData = new FormData();
+            formData.addValue("formo_property_take", "property_take");
+            formData.addValue("property_take_csrf", csrf);
+            formData.addValue("property_take_submit", "");
+
+            httpClient.SendHttpPostAndReturnResponseContent("http://parafia.biz/property", formData);
+        }
+
+        /*
+         *  Zwraca status operacji
+         *  1 - sukces;
+         *  0 - wystapil blad
+         */
+        public int buyGreatChangeByValue(int value)
+        {
+            FormData formData = new FormData();
+            formData.addValue("formo_market_show", "market_show");
+            formData.addValue("relic_csrf", csrf);
+            formData.addValue("market_id", new StringBuilder().Append(value).ToString());
+            formData.addValue("kup", "");
+
+            String responseContent = httpClient.SendHttpPostAndReturnResponseContent("http://parafia.biz/relics/market_show/70", formData);
+
+            HtmlNode node = HtmlUtils.GetSingleNodeByXPathExpression(responseContent, "//div[@class='flashinfo_message']");
+
+            if (node != null) {
+                String message = node.InnerText;
+                if (!String.IsNullOrEmpty(message) && message.Equals("Relikwia została kupiona"))
+                {
+                    return 1;
+                }
+            }
+
+            return 0;
+        }
+
+        public int countGreatChangeInMarket(int value, ref int id)
+        {
+            String content = getContentOfGreatChange();
+
+            int counter = 0;
+            HtmlNodeCollection optionsNode = HtmlUtils.GetNodesCollectionByXPathExpression(content, "//select[@id='market_id']/option");
+
+            foreach (HtmlNode node in optionsNode)
+            {
+                String txtValueForOption = node.InnerText;
+                if (!String.IsNullOrEmpty(txtValueForOption))
+                {
+                    int valueForOption = int.Parse(MainUtils.removeAllNotNumberCharacters(txtValueForOption));
+                    if (valueForOption == value)
+                    {
+                        String txtValueForIdAttribute = HtmlUtils.GetAttributeValueFromHtmlNode(node, "value");
+                        if (!String.IsNullOrEmpty(txtValueForIdAttribute))
+                            id = int.Parse(txtValueForIdAttribute);
+                        counter++;
+                    }
+                }
+            }
+
+            return counter;
+        }
+
         public void putIntoSafe()
         {
             int maxValue = attributes.Safe.Max - attributes.Safe.Actual;
@@ -318,16 +388,15 @@ namespace Parafia
                             double.TryParse(defenseText, out temp);
 
                             account.Defense = temp;
-
-                            account.LastAttack = DateTime.Now;
                         }
                     }
                     else
                     {
                         account.Cash = -1;
-                        account.IsChecked = false;
+                        //account.IsChecked = false;
                         flag = true;
                     }
+                    account.LastAttack = DateTime.Now;
                 }
             }
 
@@ -524,6 +593,11 @@ namespace Parafia
                 Settings.Default["quests"] = questContainer;
                 Settings.Default.Save();
             }
+        }
+
+        public String getContentOfGreatChange()
+        {
+            return httpClient.SendHttpGetAndReturnResponseContent("http://parafia.biz/relics/market_show/70");
         }
 
         public void goToPapacyParty()
