@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="LevelUtilsTest.cs" />
+    <Compile Include="SqlDataProviderTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PBizBot\PBizBot.csproj">

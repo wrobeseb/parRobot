@@ -9,7 +9,7 @@ namespace PBizBotTest
     [TestClass]
     public class LevelUtilsTest
     {
-        [TestMethod]
+        //[TestMethod]
         public void GetLevelByExpTest()
         {
               Dictionary<int, int> levels = new Dictionary<int, int>()
