@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using HtmlAgilityPack;
 
-namespace PBizBot.Model
+namespace PBizBot.Model.Common
 {
     using Utils;
 
@@ -12,6 +12,8 @@ namespace PBizBot.Model
     {
         private int actual;
         private int max;
+
+        public Field() { }
 
         public Field(HtmlNode node)
         {

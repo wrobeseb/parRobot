@@ -25,5 +25,19 @@ namespace PBizBot.View
                 pAttackItems.Controls.Add(listItem);
 			}
         }
+
+        private void pbList_Click(object sender, EventArgs e)
+        {
+            ofdList.ShowDialog();
+
+            if (!String.IsNullOrEmpty(ofdList.FileName))
+            {
+            }
+        }
+
+        private void pbAdd_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

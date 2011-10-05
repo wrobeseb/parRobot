@@ -26,6 +26,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BipAnna", "BipAnna\BipAnna.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PBizBot", "PBizBot\PBizBot.csproj", "{4C1146A9-801B-4D61-BBE1-D31154E70400}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PBizBotTest", "PBizBotTest\PBizBotTest.csproj", "{1014512F-6A18-4251-9BCC-C41BE305FEAC}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = HttpUtils.vsmdi
@@ -129,6 +131,16 @@ Global
 		{4C1146A9-801B-4D61-BBE1-D31154E70400}.Release|Mixed Platforms.Build.0 = Release|x86
 		{4C1146A9-801B-4D61-BBE1-D31154E70400}.Release|x86.ActiveCfg = Release|x86
 		{4C1146A9-801B-4D61-BBE1-D31154E70400}.Release|x86.Build.0 = Release|x86
+		{1014512F-6A18-4251-9BCC-C41BE305FEAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1014512F-6A18-4251-9BCC-C41BE305FEAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1014512F-6A18-4251-9BCC-C41BE305FEAC}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{1014512F-6A18-4251-9BCC-C41BE305FEAC}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{1014512F-6A18-4251-9BCC-C41BE305FEAC}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{1014512F-6A18-4251-9BCC-C41BE305FEAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1014512F-6A18-4251-9BCC-C41BE305FEAC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1014512F-6A18-4251-9BCC-C41BE305FEAC}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{1014512F-6A18-4251-9BCC-C41BE305FEAC}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{1014512F-6A18-4251-9BCC-C41BE305FEAC}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -6,39 +6,40 @@ using System.Text;
 namespace PBizBot.Model
 {
     using Utils;
+    using Model.Common;
     using HttpUtils;
     using HtmlAgilityPack;
 
-    public class Attributes
+    public partial class Account
     {
-        private String name;
-        private String parafia;
-        private String odpusty;
+        private String m_name;
+        private String m_parafia;
+        private String m_odpusty;
 
-        private Level level;
-        private Field cash;
-        private Field safe;
-        private Field health;
-        private Field energy;
-        private Field believer;
-        private Field vicar;
-        private Relics relics;
+        private Level m_level = new Level();
+        private Field m_cash = new Field();
+        private Field safe = new Field();
+        private Field health = new Field();
+        private Field energy = new Field();
+        private Field believer = new Field();
+        private Field vicar = new Field();
+        private Relics relics = new Relics();
 
         private int mail;
 
-        public Attributes(String responseContent)
+        public void SetAttributes(String responseContent)
         {
-            this.name = HtmlUtils.GetStringValueByXPathExpression(responseContent, "//ul[1]/li[1]/text()");
-            this.name = this.name.Split(' ')[1];
+            this.m_name = HtmlUtils.GetStringValueByXPathExpression(responseContent, "//ul[1]/li[1]/text()");
+            this.m_name = this.m_name.Split(' ')[1];
 
-            this.parafia = HtmlUtils.GetStringValueByXPathExpression(responseContent, "//ul[1]/li[2]/text()");
-            this.parafia = this.parafia.Split(' ')[1];
+            this.m_parafia = HtmlUtils.GetStringValueByXPathExpression(responseContent, "//ul[1]/li[2]/text()");
+            this.m_parafia = this.m_parafia.Split(' ')[1];
 
-            this.odpusty = HtmlUtils.GetStringValueByXPathExpression(responseContent, "//ul[1]/li[3]/text()");
-            this.odpusty = this.odpusty.Split(' ')[1];
+            this.m_odpusty = HtmlUtils.GetStringValueByXPathExpression(responseContent, "//ul[1]/li[3]/text()");
+            this.m_odpusty = this.m_odpusty.Split(' ')[1];
 
-            this.level = new Level(HtmlUtils.GetSingleNodeByXPathExpression(responseContent, "//ul[2]/li[1]"));
-            this.cash = new Field(HtmlUtils.GetSingleNodeByXPathExpression(responseContent, "//ul[2]/li[2]"));
+            this.m_level = new Level(HtmlUtils.GetSingleNodeByXPathExpression(responseContent, "//ul[2]/li[1]"));
+            this.m_cash = new Field(HtmlUtils.GetSingleNodeByXPathExpression(responseContent, "//ul[2]/li[2]"));
             this.safe = new Field(HtmlUtils.GetSingleNodeByXPathExpression(responseContent, "//ul[2]/li[3]"));
             this.health = new Field(HtmlUtils.GetSingleNodeByXPathExpression(responseContent, "//ul[2]/li[4]"));
             this.energy = new Field(HtmlUtils.GetSingleNodeByXPathExpression(responseContent, "//ul[2]/li[5]"));
@@ -60,15 +61,23 @@ namespace PBizBot.Model
             }
         }
 
-        public Int32 Mail { get { return this.mail; } }
-        public Level Level { get { return this.level; } }
-        public Field Cash { get { return this.cash; } }
+        public Int32 NewMailNo { get { return this.mail; } }
+        public Level Level { get { return this.m_level; } }
+        public String LevelAsString { get { return "Poziom " + this.m_level.LevelNo + " ( " + this.m_level.ExpActual + " / " + this.m_level.ExpNextLevel + " )"; } }
+        public Field Cash { get { return this.m_cash; } }
+        public String CashAsString { get { return formatCash(this.m_cash.Actual) + " C$ / " + formatCash(this.m_cash.Max) + " C$"; } }
         public Field Safe { get { return this.safe; } }
+        public String SafeAsString { get { return formatCash(this.safe.Actual) + " C$ / " + formatCash(this.safe.Max) + " C$"; } }
         public Field Health { get { return this.health; } }
+        public String HealthAsString { get { return this.health.Actual + " / " + this.health.Max; } }
         public Field Energy { get { return this.energy; } }
+        public String EnergyAsString { get { return this.energy.Actual + " / " + this.energy.Max; } }
         public Field Beliver { get { return this.believer; } }
+        public String BeliverAsString { get { return this.believer.Actual + " / " + this.believer.Max; } }
         public Field Vicar { get { return this.vicar; } }
+        public String VicarAsString { get { return this.vicar.Actual + " / " + this.vicar.Max; } }
         public Relics Relics { get { return this.relics; } }
+        public String RelicsAsString { get { return this.relics.Actual + ", w sejfie " + this.relics.InSafe + " / " + this.relics.MaxSafe; } }
 
         private String formatCash(int cash)
         {
@@ -99,9 +108,9 @@ namespace PBizBot.Model
             StringBuilder builder = new StringBuilder();
 
             builder.Append("<div style=\"line-height: 1.2em;\">");
-            builder.Append("	<div><strong>Proboszcz:</strong> ").Append(name).Append("</div>");
-            builder.Append("	<div><strong>Parafia:</strong> ").Append(parafia).Append("</div>");
-            builder.Append("	<div><strong>Odpusty:</strong> ").Append(odpusty).Append("</div>");
+            builder.Append("	<div><strong>Proboszcz:</strong> ").Append(m_name).Append("</div>");
+            builder.Append("	<div><strong>Parafia:</strong> ").Append(m_parafia).Append("</div>");
+            builder.Append("	<div><strong>Odpusty:</strong> ").Append(m_odpusty).Append("</div>");
             builder.Append("</div>");
             builder.Append("<div style=\"line-height: 1.2em;margin-top: 10px\">");
             builder.Append("	<div><strong>Poziom:</strong> Poziom ").Append(Level.LevelNo).Append(" ( ").Append(Level.ExpActual).Append(" / ").Append(Level.ExpNextLevel).Append(" )</div>");

@@ -30,7 +30,9 @@
         {
             this.tbBot = new System.Windows.Forms.TabControl();
             this.tpBot = new System.Windows.Forms.TabPage();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.gbAccounts = new System.Windows.Forms.GroupBox();
+            this.pAccounts = new System.Windows.Forms.Panel();
             this.gbBotMainPanel = new System.Windows.Forms.GroupBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btSettings = new System.Windows.Forms.Button();
@@ -43,11 +45,13 @@
             this.tbPassword = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.tpManual = new System.Windows.Forms.TabPage();
-            this.webBrowser = new System.Windows.Forms.WebBrowser();
+            this.ssStatus = new System.Windows.Forms.StatusStrip();
+            this.attackList1 = new PBizBot.View.AttackList();
             this.tbBot.SuspendLayout();
             this.tpBot.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.gbAccounts.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            this.tpManual.SuspendLayout();
             this.SuspendLayout();
             // 
             // tbBot
@@ -55,39 +59,60 @@
             this.tbBot.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
             this.tbBot.Controls.Add(this.tpBot);
             this.tbBot.Controls.Add(this.tpManual);
-            this.tbBot.Location = new System.Drawing.Point(12, 12);
+            this.tbBot.Location = new System.Drawing.Point(2, 12);
             this.tbBot.Name = "tbBot";
             this.tbBot.SelectedIndex = 0;
-            this.tbBot.Size = new System.Drawing.Size(1202, 761);
+            this.tbBot.Size = new System.Drawing.Size(1192, 761);
             this.tbBot.TabIndex = 1;
             this.tbBot.SelectedIndexChanged += new System.EventHandler(this.tbBot_SelectedIndexChanged);
             // 
             // tpBot
             // 
+            this.tpBot.Controls.Add(this.groupBox2);
             this.tpBot.Controls.Add(this.gbAccounts);
             this.tpBot.Controls.Add(this.gbBotMainPanel);
             this.tpBot.Controls.Add(this.groupBox1);
             this.tpBot.Location = new System.Drawing.Point(4, 25);
             this.tpBot.Name = "tpBot";
             this.tpBot.Padding = new System.Windows.Forms.Padding(3);
-            this.tpBot.Size = new System.Drawing.Size(1194, 732);
+            this.tpBot.Size = new System.Drawing.Size(1184, 732);
             this.tpBot.TabIndex = 0;
             this.tpBot.Text = "Automat";
             this.tpBot.UseVisualStyleBackColor = true;
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.attackList1);
+            this.groupBox2.Location = new System.Drawing.Point(552, 193);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(630, 533);
+            this.groupBox2.TabIndex = 10;
+            this.groupBox2.TabStop = false;
+            // 
             // gbAccounts
             // 
-            this.gbAccounts.Location = new System.Drawing.Point(6, 0);
+            this.gbAccounts.Controls.Add(this.pAccounts);
+            this.gbAccounts.Location = new System.Drawing.Point(0, 0);
             this.gbAccounts.Name = "gbAccounts";
-            this.gbAccounts.Size = new System.Drawing.Size(966, 187);
+            this.gbAccounts.Size = new System.Drawing.Size(975, 187);
             this.gbAccounts.TabIndex = 8;
             this.gbAccounts.TabStop = false;
             // 
+            // pAccounts
+            // 
+            this.pAccounts.AutoScroll = true;
+            this.pAccounts.Location = new System.Drawing.Point(2, 8);
+            this.pAccounts.Name = "pAccounts";
+            this.pAccounts.Size = new System.Drawing.Size(968, 177);
+            this.pAccounts.TabIndex = 0;
+            this.pAccounts.ControlAdded += new System.Windows.Forms.ControlEventHandler(this.pAccounts_ControlAdded);
+            this.pAccounts.ControlRemoved += new System.Windows.Forms.ControlEventHandler(this.pAccounts_ControlRemoved);
+            // 
             // gbBotMainPanel
             // 
-            this.gbBotMainPanel.Location = new System.Drawing.Point(6, 193);
+            this.gbBotMainPanel.Location = new System.Drawing.Point(0, 193);
             this.gbBotMainPanel.Name = "gbBotMainPanel";
-            this.gbBotMainPanel.Size = new System.Drawing.Size(1182, 533);
+            this.gbBotMainPanel.Size = new System.Drawing.Size(546, 533);
             this.gbBotMainPanel.TabIndex = 7;
             this.gbBotMainPanel.TabStop = false;
             // 
@@ -102,9 +127,9 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.tbPassword);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(978, 0);
+            this.groupBox1.Location = new System.Drawing.Point(981, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(210, 187);
+            this.groupBox1.Size = new System.Drawing.Size(201, 187);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             // 
@@ -112,17 +137,18 @@
             // 
             this.btSettings.Location = new System.Drawing.Point(9, 137);
             this.btSettings.Name = "btSettings";
-            this.btSettings.Size = new System.Drawing.Size(190, 44);
+            this.btSettings.Size = new System.Drawing.Size(184, 44);
             this.btSettings.TabIndex = 10;
             this.btSettings.Text = "Ustawienia";
             this.btSettings.UseVisualStyleBackColor = true;
+            this.btSettings.Click += new System.EventHandler(this.btSettings_Click);
             // 
             // btOFF
             // 
             this.btOFF.Enabled = false;
-            this.btOFF.Location = new System.Drawing.Point(106, 94);
+            this.btOFF.Location = new System.Drawing.Point(103, 94);
             this.btOFF.Name = "btOFF";
-            this.btOFF.Size = new System.Drawing.Size(93, 37);
+            this.btOFF.Size = new System.Drawing.Size(90, 37);
             this.btOFF.TabIndex = 9;
             this.btOFF.Text = "OFF";
             this.btOFF.UseVisualStyleBackColor = true;
@@ -132,7 +158,7 @@
             // 
             this.btON.Location = new System.Drawing.Point(9, 94);
             this.btON.Name = "btON";
-            this.btON.Size = new System.Drawing.Size(93, 37);
+            this.btON.Size = new System.Drawing.Size(90, 37);
             this.btON.TabIndex = 8;
             this.btON.Text = "ON";
             this.btON.UseVisualStyleBackColor = true;
@@ -140,9 +166,9 @@
             // 
             // btAddUsersList
             // 
-            this.btAddUsersList.Location = new System.Drawing.Point(106, 65);
+            this.btAddUsersList.Location = new System.Drawing.Point(103, 65);
             this.btAddUsersList.Name = "btAddUsersList";
-            this.btAddUsersList.Size = new System.Drawing.Size(93, 23);
+            this.btAddUsersList.Size = new System.Drawing.Size(90, 23);
             this.btAddUsersList.TabIndex = 7;
             this.btAddUsersList.Text = "Lista";
             this.btAddUsersList.UseVisualStyleBackColor = true;
@@ -151,7 +177,7 @@
             // 
             this.btAddUser.Location = new System.Drawing.Point(9, 65);
             this.btAddUser.Name = "btAddUser";
-            this.btAddUser.Size = new System.Drawing.Size(93, 23);
+            this.btAddUser.Size = new System.Drawing.Size(90, 23);
             this.btAddUser.TabIndex = 6;
             this.btAddUser.Text = "Dodaj";
             this.btAddUser.UseVisualStyleBackColor = true;
@@ -162,7 +188,7 @@
             this.tbLogin.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbLogin.Location = new System.Drawing.Point(48, 13);
             this.tbLogin.Name = "tbLogin";
-            this.tbLogin.Size = new System.Drawing.Size(151, 20);
+            this.tbLogin.Size = new System.Drawing.Size(145, 20);
             this.tbLogin.TabIndex = 2;
             // 
             // label2
@@ -179,8 +205,9 @@
             this.tbPassword.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbPassword.Location = new System.Drawing.Point(48, 39);
             this.tbPassword.Name = "tbPassword";
-            this.tbPassword.Size = new System.Drawing.Size(151, 20);
+            this.tbPassword.Size = new System.Drawing.Size(145, 20);
             this.tbPassword.TabIndex = 3;
+            this.tbPassword.UseSystemPasswordChar = true;
             // 
             // label1
             // 
@@ -193,30 +220,35 @@
             // 
             // tpManual
             // 
-            this.tpManual.Controls.Add(this.webBrowser);
             this.tpManual.Location = new System.Drawing.Point(4, 25);
             this.tpManual.Name = "tpManual";
             this.tpManual.Padding = new System.Windows.Forms.Padding(3);
-            this.tpManual.Size = new System.Drawing.Size(1194, 732);
+            this.tpManual.Size = new System.Drawing.Size(1184, 732);
             this.tpManual.TabIndex = 1;
             this.tpManual.Text = "Manual";
             this.tpManual.UseVisualStyleBackColor = true;
             // 
-            // webBrowser
+            // ssStatus
             // 
-            this.webBrowser.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.webBrowser.Location = new System.Drawing.Point(3, 3);
-            this.webBrowser.MinimumSize = new System.Drawing.Size(20, 20);
-            this.webBrowser.Name = "webBrowser";
-            this.webBrowser.Size = new System.Drawing.Size(1188, 726);
-            this.webBrowser.TabIndex = 0;
-            this.webBrowser.Url = new System.Uri("http://parafia.biz", System.UriKind.Absolute);
+            this.ssStatus.Location = new System.Drawing.Point(0, 773);
+            this.ssStatus.Name = "ssStatus";
+            this.ssStatus.Size = new System.Drawing.Size(1195, 22);
+            this.ssStatus.SizingGrip = false;
+            this.ssStatus.TabIndex = 2;
+            // 
+            // attackList1
+            // 
+            this.attackList1.Location = new System.Drawing.Point(6, 19);
+            this.attackList1.Name = "attackList1";
+            this.attackList1.Size = new System.Drawing.Size(622, 504);
+            this.attackList1.TabIndex = 9;
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1226, 785);
+            this.ClientSize = new System.Drawing.Size(1195, 795);
+            this.Controls.Add(this.ssStatus);
             this.Controls.Add(this.tbBot);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
@@ -226,10 +258,13 @@
             this.Load += new System.EventHandler(this.Main_Load);
             this.tbBot.ResumeLayout(false);
             this.tpBot.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.gbAccounts.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.tpManual.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion
@@ -237,7 +272,6 @@
         private System.Windows.Forms.TabControl tbBot;
         private System.Windows.Forms.TabPage tpBot;
         private System.Windows.Forms.TabPage tpManual;
-        private System.Windows.Forms.WebBrowser webBrowser;
         private System.Windows.Forms.TextBox tbLogin;
         private System.Windows.Forms.TextBox tbPassword;
         private System.Windows.Forms.Label label1;
@@ -250,6 +284,11 @@
         private System.Windows.Forms.GroupBox gbAccounts;
         private System.Windows.Forms.GroupBox gbBotMainPanel;
         private System.Windows.Forms.Button btSettings;
+        private System.Windows.Forms.Panel pAccounts;
+        private View.AttackList attackList1;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.StatusStrip ssStatus;
+        //private Skybound.Gecko.GeckoWebBrowser webBrowser;
     }
 }
 
