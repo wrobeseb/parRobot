@@ -10,7 +10,7 @@ namespace PBizBot.Model
     using HttpUtils;
     using HtmlAgilityPack;
 
-    public partial class Account
+    public class AccountAttributes
     {
         private String m_name;
         private String m_parafia;
@@ -27,7 +27,9 @@ namespace PBizBot.Model
 
         private int mail;
 
-        public void SetAttributes(String responseContent)
+        public AccountAttributes() { }
+
+        public AccountAttributes(String responseContent)
         {
             this.m_name = HtmlUtils.GetStringValueByXPathExpression(responseContent, "//ul[1]/li[1]/text()");
             this.m_name = this.m_name.Split(' ')[1];

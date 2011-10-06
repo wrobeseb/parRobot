@@ -5,6 +5,8 @@ using System.Data.OleDb;
 using System.Data.Linq;
 using System.Text;
 
+using System.Windows.Forms;
+
 namespace PBizBot.Providers
 {
     using Model;
@@ -19,7 +21,15 @@ namespace PBizBot.Providers
 
         private SqlDataProvider() 
         {
-            m_dataContext = new PBizBotDataContext(new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0; data source=C:\Users\SAO\Workspace\VS2010\HttpUtils\PBizBot\bin\Debug\Parafia.mdb"));
+            m_dataContext = new PBizBotDataContext(new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0; data source=" + Application.ExecutablePath + "Parafia.mdb"));
+            //m_dataContext = new PBizBotDataContext(new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0; data source=C:\Users\SAO\Workspace\VS2010\HttpUtils\PBizBot\bin\Debug\Parafia.mdb"));
+        }
+
+        public Oponent GetOponentById(int id)
+        {
+            return (Oponent) from oponents in m_dataContext.Oponents
+                             where oponents.Id == id
+                             select oponents;
         }
 
         public void InsertOponent(Oponent oponent)

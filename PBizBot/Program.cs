@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
+using Spring.Context;
+using Spring.Context.Support;
+
 namespace PBizBot
 {
     static class Program
@@ -15,7 +18,12 @@ namespace PBizBot
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Main());
+
+            IApplicationContext ctx = ContextRegistry.GetContext();
+
+            Main mainForm = (Main)ctx.GetObject("mainForm");
+
+            Application.Run(mainForm);
         }
     }
 }

@@ -34,11 +34,23 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Common.Logging">
+      <HintPath>lib\Common.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Logging.Log4Net">
+      <HintPath>lib\Common.Logging.Log4Net.dll</HintPath>
+    </Reference>
     <Reference Include="HtmlAgilityPack">
       <HintPath>..\HttpUtils\bin\Debug\HtmlAgilityPack.dll</HintPath>
     </Reference>
     <Reference Include="HttpUtils">
       <HintPath>..\HttpUtils\bin\Debug\HttpUtils.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>lib\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Core">
+      <HintPath>lib\Spring.Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -66,28 +78,41 @@
     <Compile Include="Main.Designer.cs">
       <DependentUpon>Main.cs</DependentUpon>
     </Compile>
-    <Compile Include="Model\Account.Units.cs" />
-    <Compile Include="Model\Account.Attributes.cs" />
+    <Compile Include="Model\AccountUnits.cs" />
+    <Compile Include="Model\AccountAttributes.cs" />
     <Compile Include="Model\Account.cs" />
-    <Compile Include="Model\Account.Settings.cs" />
+    <Compile Include="Model\AccountSettings.cs" />
     <Compile Include="Model\Common\Field.cs" />
     <Compile Include="Model\Common\History.cs" />
+    <Compile Include="Enum\OponentHistoryType.cs" />
     <Compile Include="Model\Common\Level.cs" />
     <Compile Include="Model\Common\Relics.cs" />
     <Compile Include="Model\Oponent.cs" />
-    <Compile Include="Model\Oponent.History.cs" />
+    <Compile Include="Model\OponentHistory.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="Providers\Database\PBizBotDataContext.cs" />
     <Compile Include="Providers\SqlDataProvider.cs" />
+    <Compile Include="Providers\ViewProvider.cs" />
     <Compile Include="Utils\LevelUtils.cs" />
     <Compile Include="Utils\Utils.cs" />
-    <Compile Include="View\AccountDetailsControl.cs">
+    <Compile Include="View\AccountList.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="View\AccountDetailsControl.Designer.cs">
-      <DependentUpon>AccountDetailsControl.cs</DependentUpon>
+    <Compile Include="View\AccountList.Designer.cs">
+      <DependentUpon>AccountList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\AccountListItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\AccountListItem.Designer.cs">
+      <DependentUpon>AccountListItem.cs</DependentUpon>
     </Compile>
     <Compile Include="View\AttackList.cs">
       <SubType>UserControl</SubType>
@@ -123,8 +148,11 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="View\AccountDetailsControl.resx">
-      <DependentUpon>AccountDetailsControl.cs</DependentUpon>
+    <EmbeddedResource Include="View\AccountList.resx">
+      <DependentUpon>AccountList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\AccountListItem.resx">
+      <DependentUpon>AccountListItem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\AttackList.resx">
       <DependentUpon>AttackList.cs</DependentUpon>
@@ -135,9 +163,13 @@
     <EmbeddedResource Include="View\BotMainPanel.resx">
       <DependentUpon>BotMainPanel.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="app.config" />
+    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
     <None Include="Resources\minus.gif" />
   </ItemGroup>
   <ItemGroup>
@@ -153,7 +185,29 @@
     <None Include="Resources\list.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Enum\" />
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Helper\" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="AxMOZILLACONTROLLib">
+      <Guid>{1339B53E-3453-11D2-93B9-000000000000}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>aximp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+    <COMReference Include="MOZILLACONTROLLib">
+      <Guid>{1339B53E-3453-11D2-93B9-000000000000}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -5,13 +5,16 @@ using System.Text;
 
 namespace PBizBot.Model
 {
-    public partial class Account
+    public class AccountUnits
     {
         private double attack;
         private double defense;
 
-        public void SetUnitsInfo(String responseContent)
+        public AccountUnits() { }
+
+        public AccountUnits(String responseContent)
         {
+
         }
 
         public double Attack { get { return this.attack; } }

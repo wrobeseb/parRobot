@@ -1,6 +1,6 @@
 ﻿namespace PBizBot.View
 {
-    partial class AccountDetailsControl
+    partial class AccountListItem
     {
         /// <summary> 
         /// Required designer variable.

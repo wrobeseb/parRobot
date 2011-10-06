@@ -20,6 +20,13 @@ namespace PBizBot
 
     public partial class Main : Form
     {
+        private AppSettings appSettings;
+
+        public AppSettings AppSettings
+        {
+            set { this.appSettings = value; }
+        }
+
         public Main()
         {
             InitializeComponent();
@@ -39,28 +46,7 @@ namespace PBizBot
 
         private void btAddUser_Click(object sender, EventArgs e)
         {
-            Account account = new Account();
-            account.Login = tbLogin.Text;
-            account.Passwd = tbPassword.Text;
-            AccountDetailsControl accountDetailsControl = new AccountDetailsControl(account);
-            int position = 0;
-            if (pAccounts.Controls.Count != 0)
-            {
-                position += 22 * pAccounts.Controls.Count;
-            }
-            else
-            {
-                account.Selected = true;
-            }
-            accountDetailsControl.Location = new Point(0, position);
-
-            this.Invoke((Action)(delegate
-            {
-                pAccounts.Controls.Add(accountDetailsControl);
-            }));
-
-            tbLogin.Text = String.Empty;
-            tbPassword.Text = String.Empty;
+            
         }
 
         private void tbBot_SelectedIndexChanged(object sender, EventArgs e)
@@ -121,6 +107,9 @@ namespace PBizBot
             botMainPanel.Location = new System.Drawing.Point(2, 8);
             gbBotMainPanel.Controls.Add(botMainPanel);
 
+            AccountList accountList = new AccountList();
+            accountList.Location = new Point(2, 8);
+            gbAccounts.Controls.Add(accountList);
             //AttackList attackList = new AttackList();
             //attackList.Location = new System.Drawing.Point(12, 12);
             //gbBotMainPanel.Controls.Add(attackList);
@@ -128,69 +117,7 @@ namespace PBizBot
 
         private void btSettings_Click(object sender, EventArgs e)
         {
-            AppSettings appSettings = new AppSettings();
             appSettings.ShowDialog();
         }
-
-        private void pAccounts_ControlAdded(object sender, ControlEventArgs e)
-        {
-            System.Windows.Forms.Control.ControlCollection allAccounts = pAccounts.Controls;
-
-            foreach (Control control in allAccounts)
-            {
-                ((AccountDetailsControl)control).cbTransferToAccount.Items.Clear();
-                ((AccountDetailsControl)control).cbTransferToAccount.Items.Add("");
-            }
-
-            foreach (Control control in allAccounts)
-            {
-                AccountDetailsControl accountDetailsControl = (AccountDetailsControl)control;
-                foreach (Control control1 in allAccounts)
-                {
-                    AccountDetailsControl accountDetailsControl1 = (AccountDetailsControl)control1;
-                    if (!accountDetailsControl1.Equals(accountDetailsControl))
-                    {
-                        accountDetailsControl1.Invoke((Action)(delegate
-                        {
-                            accountDetailsControl1.cbTransferToAccount.Items.Add(accountDetailsControl.Account.Login);
-                        }));
-                        accountDetailsControl1.Refresh();
-                    }
-                }
-            }
-        }
-
-        private void pAccounts_ControlRemoved(object sender, ControlEventArgs e)
-        {
-            System.Windows.Forms.Control.ControlCollection allAccounts = pAccounts.Controls;
-
-            foreach (Control control in allAccounts)
-            {
-                ((AccountDetailsControl)control).cbTransferToAccount.Items.Clear();
-                ((AccountDetailsControl)control).cbTransferToAccount.Items.Add("");
-            }
-
-            int position = 0;
-
-            foreach (Control control in allAccounts)
-            {
-                AccountDetailsControl accountDetailsControl = (AccountDetailsControl)control;
-                control.Location = new Point(0, position);
-                foreach (Control control1 in allAccounts)
-                {
-                    AccountDetailsControl accountDetailsControl1 = (AccountDetailsControl)control1;
-                    if (!accountDetailsControl1.Equals(accountDetailsControl))
-                    {
-                        accountDetailsControl1.Invoke((Action)(delegate
-                        {
-                            accountDetailsControl1.cbTransferToAccount.Items.Add(accountDetailsControl.Account.Login);
-                        }));
-                        accountDetailsControl1.Refresh();
-                    }
-                }
-                position += 22;
-            }
-        }
-
     }
 }

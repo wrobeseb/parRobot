@@ -11,7 +11,7 @@ namespace PBizBot.View
 {
     using Model;
 
-    public partial class AccountDetailsControl : UserControl
+    public partial class AccountListItem : UserControl
     {
         private Account m_account;
 
@@ -32,7 +32,7 @@ namespace PBizBot.View
             m_account.Enabled = cbEnabled.Checked;
         }
 
-        public AccountDetailsControl(Account account)
+        public AccountListItem(Account account)
         {
             this.m_account = account;
             InitializeComponent();
@@ -56,7 +56,7 @@ namespace PBizBot.View
 
                 foreach (Control control in allAccounts)
                 {
-                    AccountDetailsControl accountDetailsControl = (AccountDetailsControl)control;
+                    AccountListItem accountDetailsControl = (AccountListItem)control;
                     if (!accountDetailsControl.rbSelectedAccount.Equals(sender))
                     {
                         accountDetailsControl.rbSelectedAccount.Checked = false;
@@ -72,13 +72,13 @@ namespace PBizBot.View
             this.rbSelectedAccount.Checked = m_account.Selected;
             this.tbLogin.Text = m_account.Login;
             this.tbPasswd.Text = m_account.Passwd;
-            this.tbCash.Text = m_account.CashAsString;
-            this.tbSafe.Text = m_account.SafeAsString;
+            this.tbCash.Text = m_account.Attributes.CashAsString;
+            this.tbSafe.Text = m_account.Attributes.SafeAsString;
             this.tbNextLogin.Text = m_account.NextLoginTime.ToString(@"hh\:mm\:ss");
-            this.tbMailMessages.Text = m_account.NewMailNo.ToString();
+            this.tbMailMessages.Text = m_account.Attributes.NewMailNo.ToString();
             this.tbHitCount.Text = m_account.HitCount.ToString();
-            this.tbAttack.Text = m_account.Attack.ToString();
-            this.tbDefense.Text = m_account.Defense.ToString();
+            this.tbAttack.Text = m_account.Units.Attack.ToString();
+            this.tbDefense.Text = m_account.Units.Defense.ToString();
         }
 
         private void cbTransferToAccount_SelectedIndexChanged(object sender, EventArgs e)

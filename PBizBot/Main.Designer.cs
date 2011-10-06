@@ -31,26 +31,18 @@
             this.tbBot = new System.Windows.Forms.TabControl();
             this.tpBot = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.attackList1 = new PBizBot.View.AttackList();
             this.gbAccounts = new System.Windows.Forms.GroupBox();
-            this.pAccounts = new System.Windows.Forms.Panel();
             this.gbBotMainPanel = new System.Windows.Forms.GroupBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btSettings = new System.Windows.Forms.Button();
             this.btOFF = new System.Windows.Forms.Button();
             this.btON = new System.Windows.Forms.Button();
-            this.btAddUsersList = new System.Windows.Forms.Button();
-            this.btAddUser = new System.Windows.Forms.Button();
-            this.tbLogin = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.tbPassword = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.tpManual = new System.Windows.Forms.TabPage();
             this.ssStatus = new System.Windows.Forms.StatusStrip();
-            this.attackList1 = new PBizBot.View.AttackList();
             this.tbBot.SuspendLayout();
             this.tpBot.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            this.gbAccounts.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -89,24 +81,20 @@
             this.groupBox2.TabIndex = 10;
             this.groupBox2.TabStop = false;
             // 
+            // attackList1
+            // 
+            this.attackList1.Location = new System.Drawing.Point(6, 19);
+            this.attackList1.Name = "attackList1";
+            this.attackList1.Size = new System.Drawing.Size(622, 504);
+            this.attackList1.TabIndex = 9;
+            // 
             // gbAccounts
             // 
-            this.gbAccounts.Controls.Add(this.pAccounts);
             this.gbAccounts.Location = new System.Drawing.Point(0, 0);
             this.gbAccounts.Name = "gbAccounts";
             this.gbAccounts.Size = new System.Drawing.Size(975, 187);
             this.gbAccounts.TabIndex = 8;
             this.gbAccounts.TabStop = false;
-            // 
-            // pAccounts
-            // 
-            this.pAccounts.AutoScroll = true;
-            this.pAccounts.Location = new System.Drawing.Point(2, 8);
-            this.pAccounts.Name = "pAccounts";
-            this.pAccounts.Size = new System.Drawing.Size(968, 177);
-            this.pAccounts.TabIndex = 0;
-            this.pAccounts.ControlAdded += new System.Windows.Forms.ControlEventHandler(this.pAccounts_ControlAdded);
-            this.pAccounts.ControlRemoved += new System.Windows.Forms.ControlEventHandler(this.pAccounts_ControlRemoved);
             // 
             // gbBotMainPanel
             // 
@@ -121,12 +109,6 @@
             this.groupBox1.Controls.Add(this.btSettings);
             this.groupBox1.Controls.Add(this.btOFF);
             this.groupBox1.Controls.Add(this.btON);
-            this.groupBox1.Controls.Add(this.btAddUsersList);
-            this.groupBox1.Controls.Add(this.btAddUser);
-            this.groupBox1.Controls.Add(this.tbLogin);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.tbPassword);
-            this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(981, 0);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(201, 187);
@@ -164,60 +146,6 @@
             this.btON.UseVisualStyleBackColor = true;
             this.btON.Click += new System.EventHandler(this.btON_Click);
             // 
-            // btAddUsersList
-            // 
-            this.btAddUsersList.Location = new System.Drawing.Point(103, 65);
-            this.btAddUsersList.Name = "btAddUsersList";
-            this.btAddUsersList.Size = new System.Drawing.Size(90, 23);
-            this.btAddUsersList.TabIndex = 7;
-            this.btAddUsersList.Text = "Lista";
-            this.btAddUsersList.UseVisualStyleBackColor = true;
-            // 
-            // btAddUser
-            // 
-            this.btAddUser.Location = new System.Drawing.Point(9, 65);
-            this.btAddUser.Name = "btAddUser";
-            this.btAddUser.Size = new System.Drawing.Size(90, 23);
-            this.btAddUser.TabIndex = 6;
-            this.btAddUser.Text = "Dodaj";
-            this.btAddUser.UseVisualStyleBackColor = true;
-            this.btAddUser.Click += new System.EventHandler(this.btAddUser_Click);
-            // 
-            // tbLogin
-            // 
-            this.tbLogin.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbLogin.Location = new System.Drawing.Point(48, 13);
-            this.tbLogin.Name = "tbLogin";
-            this.tbLogin.Size = new System.Drawing.Size(145, 20);
-            this.tbLogin.TabIndex = 2;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 39);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(39, 13);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "Hasło:";
-            // 
-            // tbPassword
-            // 
-            this.tbPassword.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbPassword.Location = new System.Drawing.Point(48, 39);
-            this.tbPassword.Name = "tbPassword";
-            this.tbPassword.Size = new System.Drawing.Size(145, 20);
-            this.tbPassword.TabIndex = 3;
-            this.tbPassword.UseSystemPasswordChar = true;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 16);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(36, 13);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Login:";
-            // 
             // tpManual
             // 
             this.tpManual.Location = new System.Drawing.Point(4, 25);
@@ -236,13 +164,6 @@
             this.ssStatus.SizingGrip = false;
             this.ssStatus.TabIndex = 2;
             // 
-            // attackList1
-            // 
-            this.attackList1.Location = new System.Drawing.Point(6, 19);
-            this.attackList1.Name = "attackList1";
-            this.attackList1.Size = new System.Drawing.Size(622, 504);
-            this.attackList1.TabIndex = 9;
-            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -259,9 +180,7 @@
             this.tbBot.ResumeLayout(false);
             this.tpBot.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
-            this.gbAccounts.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -272,19 +191,12 @@
         private System.Windows.Forms.TabControl tbBot;
         private System.Windows.Forms.TabPage tpBot;
         private System.Windows.Forms.TabPage tpManual;
-        private System.Windows.Forms.TextBox tbLogin;
-        private System.Windows.Forms.TextBox tbPassword;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button btAddUser;
         private System.Windows.Forms.Button btOFF;
         private System.Windows.Forms.Button btON;
-        private System.Windows.Forms.Button btAddUsersList;
         private System.Windows.Forms.GroupBox gbAccounts;
         private System.Windows.Forms.GroupBox gbBotMainPanel;
         private System.Windows.Forms.Button btSettings;
-        private System.Windows.Forms.Panel pAccounts;
         private View.AttackList attackList1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.StatusStrip ssStatus;

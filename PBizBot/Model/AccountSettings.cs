@@ -5,8 +5,8 @@ using System.Text;
 
 namespace PBizBot.Model
 {
-    public partial class Account
+    public class AccountSettings
     {
-
+        public AccountSettings() { }
     }
 }

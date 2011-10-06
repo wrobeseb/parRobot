@@ -38,7 +38,6 @@
             this.cbEnabled = new System.Windows.Forms.CheckBox();
             this.ofdList = new System.Windows.Forms.OpenFileDialog();
             this.pbAdd = new System.Windows.Forms.PictureBox();
-            this.pbList = new System.Windows.Forms.PictureBox();
             this.linkLabel5 = new System.Windows.Forms.LinkLabel();
             this.linkLabel4 = new System.Windows.Forms.LinkLabel();
             this.linkLabel3 = new System.Windows.Forms.LinkLabel();
@@ -47,10 +46,7 @@
             this.linkLabel6 = new System.Windows.Forms.LinkLabel();
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.cbAttacker = new System.Windows.Forms.ComboBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbAdd)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbList)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // pAttackItems
@@ -171,17 +167,6 @@
             this.pbAdd.TabStop = false;
             this.pbAdd.Click += new System.EventHandler(this.pbAdd_Click);
             // 
-            // pbList
-            // 
-            this.pbList.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbList.Image = global::PBizBot.Properties.Resources.list;
-            this.pbList.Location = new System.Drawing.Point(287, 482);
-            this.pbList.Name = "pbList";
-            this.pbList.Size = new System.Drawing.Size(16, 16);
-            this.pbList.TabIndex = 16;
-            this.pbList.TabStop = false;
-            this.pbList.Click += new System.EventHandler(this.pbList_Click);
-            // 
             // linkLabel5
             // 
             this.linkLabel5.Image = global::PBizBot.Properties.Resources.updown;
@@ -254,26 +239,14 @@
             this.cbAttacker.Size = new System.Drawing.Size(88, 20);
             this.cbAttacker.TabIndex = 20;
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox1.Image = global::PBizBot.Properties.Resources.minus;
-            this.pictureBox1.Location = new System.Drawing.Point(579, 482);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(16, 16);
-            this.pictureBox1.TabIndex = 21;
-            this.pictureBox1.TabStop = false;
-            // 
             // AttackList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.cbAttacker);
             this.Controls.Add(this.linkLabel6);
             this.Controls.Add(this.textBox6);
             this.Controls.Add(this.pbAdd);
-            this.Controls.Add(this.pbList);
             this.Controls.Add(this.tbName);
             this.Controls.Add(this.cbEnabled);
             this.Controls.Add(this.linkLabel5);
@@ -291,8 +264,6 @@
             this.Size = new System.Drawing.Size(617, 504);
             this.Load += new System.EventHandler(this.AttackList_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbAdd)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbList)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -313,12 +284,10 @@
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.TextBox tbName;
         private System.Windows.Forms.CheckBox cbEnabled;
-        private System.Windows.Forms.PictureBox pbList;
         private System.Windows.Forms.OpenFileDialog ofdList;
         private System.Windows.Forms.PictureBox pbAdd;
         private System.Windows.Forms.LinkLabel linkLabel6;
         private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.ComboBox cbAttacker;
-        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

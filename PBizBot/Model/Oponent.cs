@@ -9,7 +9,7 @@ namespace PBizBot.Model
     using Common;
 
     [Table(Name="oponent")]
-    public partial class Oponent
+    public class Oponent
     {
         private int m_id;
         private int m_lp;
@@ -28,63 +28,57 @@ namespace PBizBot.Model
 
         private double m_defense;
 
-        private int m_cashCaptured;
-
         private DateTime m_lastAttack;
 
-        public Oponent() 
-        { 
-            this.m_expHistory = new List<History>();
-            this.m_loseHistory = new List<History>(); 
-            this.m_lpHistory = new List<History>();
-            this.m_winHistory = new List<History>(); 
-        }
+        private int m_attacker;
+
+        private EntitySet<OponentHistory> m_history;
 
         //IsDbGenerated = true, DbType = "int NOT NULL IDENTITY"
 
-        [Column(Storage="m_id", IsPrimaryKey = true, Name = "id")]
+        [Column(Storage = "m_id", IsPrimaryKey = true, Name = "id", DbType = "int NOT NULL", CanBeNull = false)]
         public int Id 
         { 
             get { return this.m_id; }
             set { this.m_id = value; }
         }
 
-        [Column(Name="lp")]
+        [Column(Name = "lp", Storage = "m_lp", DbType = "int NOT NULL", CanBeNull = false)]
         public int Lp
         {
             get { return this.m_lp; }
             set { this.m_lp = value; }
         }
 
-        [Column(Name="exp")]
+        [Column(Name = "exp", Storage = "m_exp", DbType = "int NOT NULL", CanBeNull = false)]
         public int Exp
         {
             get { return this.m_exp; }
             set { this.m_exp = value; }
         }
 
-        [Column(Name="level")]
+        [Column(Name = "level", Storage = "m_lvl", DbType = "int NOT NULL", CanBeNull = false)]
         public int Level
         {
             get { return this.m_lvl; }
             set { this.m_lvl = value; }
         }
 
-        [Column(Name="name")]
+        [Column(Name = "name", Storage = "m_name", DbType = "NVARCHAR(255) NOT NULL", CanBeNull = false)]
         public String Name 
         { 
             get { return this.m_name; }
             set { this.m_name = value; }
         }
 
-        [Column(Name="group_name")]
+        [Column(Name = "group_name", Storage = "m_groupName", DbType = "NVARCHAR(255) NOT NULL", CanBeNull = false)]
         public String GroupName
         { 
             get { return this.m_groupName; }
             set { this.m_groupName = value; }
         }
 
-        [Column(Name = "battle")]
+        [Column(Name = "battle", Storage = "m_battles", DbType = "int NOT NULL", CanBeNull = false)]
         public int Battles
         {
             get { return this.m_battles; }
@@ -92,54 +86,61 @@ namespace PBizBot.Model
         }
 
 
-        [Column(Name="win")]
+        [Column(Name = "win", Storage = "m_win", DbType = "int NOT NULL", CanBeNull = false)]
         public int Win
         {
             get { return this.m_win; }
             set { this.m_win = value; }
         }
 
-       
-        [Column(Name = "relics")]
+
+        [Column(Name = "relics", Storage = "m_relics", DbType = "int NOT NULL", CanBeNull = false)]
         public int Relics
         {
             get { return this.m_relics; }
             set { this.m_relics = value; }
         }
 
-        [Column(Name = "defeated")]
+        [Column(Name = "defeated", Storage = "m_defeated", DbType = "int NOT NULL", CanBeNull = false)]
         public int Defeated
         {
             get { return this.m_defeated; }
             set { this.m_defeated = value; }
         }
 
-        [Column(Name = "victorious")]
+        [Column(Name = "victorious", Storage = "m_victorius", DbType = "int NOT NULL", CanBeNull = false)]
         public int Victorious
         {
             get { return this.m_victorious; }
             set { this.m_victorious = value; }
         }
 
-        [Column(Name = "defense")]
+        [Column(Name = "defense", Storage = "m_defense", DbType = "float NOT NULL", CanBeNull = false)]
         public double Defense
         {
             get { return this.m_defense; }
             set { this.m_defense = value; }
         }
 
-        [Column(Name = "cash_captured")]
-        public int CashCaptured
-        {
-            get { return this.m_cashCaptured; }
-            set { this.m_cashCaptured = value; }
-        }
-
-        [Column(Name = "last_attack")]
+        [Column(Name = "last_attack", Storage = "m_lastAttack", DbType = "DATE")]
         public DateTime LastAttack
         {
             get { return this.m_lastAttack ; }
             set { this.m_lastAttack = value; }
+        }
+
+        [Column(Name = "attacker", Storage = "m_attacker", DbType = "int")]
+        public int Attacker
+        {
+            get { return this.m_attacker; }
+            set { this.m_attacker = value; }
+        }
+
+        [Association(Storage = "m_history", ThisKey = "id", OtherKey = "oponent_id")]
+        public EntitySet<OponentHistory> History
+        {
+            get { return this.m_history; }
+            set { this.m_history = value; }
         }
     }
 }
