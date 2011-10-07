@@ -20,11 +20,23 @@ namespace PBizBot
 
     public partial class Main : Form
     {
-        private AppSettings appSettings;
+        private AppSettings m_appSettings;
+        private AttackList m_attackList;
+        private AccountList m_accountList;
 
         public AppSettings AppSettings
         {
-            set { this.appSettings = value; }
+            set { this.m_appSettings = value; }
+        }
+
+        public AttackList AttackList
+        {
+            set { this.m_attackList = value; }
+        }
+
+        public AccountList AccountList
+        {
+            set { this.m_accountList = value; }
         }
 
         public Main()
@@ -107,9 +119,9 @@ namespace PBizBot
             botMainPanel.Location = new System.Drawing.Point(2, 8);
             gbBotMainPanel.Controls.Add(botMainPanel);
 
-            AccountList accountList = new AccountList();
-            accountList.Location = new Point(2, 8);
-            gbAccounts.Controls.Add(accountList);
+            
+            gbAccounts.Controls.Add(m_accountList);
+            gbAttackListSection.Controls.Add(m_attackList);
             //AttackList attackList = new AttackList();
             //attackList.Location = new System.Drawing.Point(12, 12);
             //gbBotMainPanel.Controls.Add(attackList);
@@ -117,7 +129,7 @@ namespace PBizBot
 
         private void btSettings_Click(object sender, EventArgs e)
         {
-            appSettings.ShowDialog();
+            m_appSettings.ShowDialog();
         }
     }
 }

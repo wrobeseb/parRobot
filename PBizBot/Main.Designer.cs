@@ -30,8 +30,7 @@
         {
             this.tbBot = new System.Windows.Forms.TabControl();
             this.tpBot = new System.Windows.Forms.TabPage();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.attackList1 = new PBizBot.View.AttackList();
+            this.gbAttackListSection = new System.Windows.Forms.GroupBox();
             this.gbAccounts = new System.Windows.Forms.GroupBox();
             this.gbBotMainPanel = new System.Windows.Forms.GroupBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -42,7 +41,6 @@
             this.ssStatus = new System.Windows.Forms.StatusStrip();
             this.tbBot.SuspendLayout();
             this.tpBot.SuspendLayout();
-            this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -60,7 +58,7 @@
             // 
             // tpBot
             // 
-            this.tpBot.Controls.Add(this.groupBox2);
+            this.tpBot.Controls.Add(this.gbAttackListSection);
             this.tpBot.Controls.Add(this.gbAccounts);
             this.tpBot.Controls.Add(this.gbBotMainPanel);
             this.tpBot.Controls.Add(this.groupBox1);
@@ -72,21 +70,13 @@
             this.tpBot.Text = "Automat";
             this.tpBot.UseVisualStyleBackColor = true;
             // 
-            // groupBox2
+            // gbAttackListSection
             // 
-            this.groupBox2.Controls.Add(this.attackList1);
-            this.groupBox2.Location = new System.Drawing.Point(552, 193);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(630, 533);
-            this.groupBox2.TabIndex = 10;
-            this.groupBox2.TabStop = false;
-            // 
-            // attackList1
-            // 
-            this.attackList1.Location = new System.Drawing.Point(6, 19);
-            this.attackList1.Name = "attackList1";
-            this.attackList1.Size = new System.Drawing.Size(622, 504);
-            this.attackList1.TabIndex = 9;
+            this.gbAttackListSection.Location = new System.Drawing.Point(552, 193);
+            this.gbAttackListSection.Name = "gbAttackListSection";
+            this.gbAttackListSection.Size = new System.Drawing.Size(630, 533);
+            this.gbAttackListSection.TabIndex = 10;
+            this.gbAttackListSection.TabStop = false;
             // 
             // gbAccounts
             // 
@@ -179,7 +169,6 @@
             this.Load += new System.EventHandler(this.Main_Load);
             this.tbBot.ResumeLayout(false);
             this.tpBot.ResumeLayout(false);
-            this.groupBox2.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -197,8 +186,7 @@
         private System.Windows.Forms.GroupBox gbAccounts;
         private System.Windows.Forms.GroupBox gbBotMainPanel;
         private System.Windows.Forms.Button btSettings;
-        private View.AttackList attackList1;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox gbAttackListSection;
         private System.Windows.Forms.StatusStrip ssStatus;
         //private Skybound.Gecko.GeckoWebBrowser webBrowser;
     }
