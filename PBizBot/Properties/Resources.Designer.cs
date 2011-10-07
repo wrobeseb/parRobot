@@ -74,6 +74,13 @@ namespace PBizBot.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap minus_small {
+            get {
+                object obj = ResourceManager.GetObject("minus_small", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap plus {
             get {
                 object obj = ResourceManager.GetObject("plus", resourceCulture);
@@ -91,6 +98,13 @@ namespace PBizBot.Properties {
         internal static System.Drawing.Bitmap updown {
             get {
                 object obj = ResourceManager.GetObject("updown", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap updown_small {
+            get {
+                object obj = ResourceManager.GetObject("updown_small", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -42,16 +42,17 @@
             // cbEnabled
             // 
             this.cbEnabled.AutoSize = true;
-            this.cbEnabled.Location = new System.Drawing.Point(3, 4);
+            this.cbEnabled.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbEnabled.Location = new System.Drawing.Point(3, 1);
             this.cbEnabled.Name = "cbEnabled";
-            this.cbEnabled.Size = new System.Drawing.Size(15, 14);
+            this.cbEnabled.Size = new System.Drawing.Size(12, 11);
             this.cbEnabled.TabIndex = 0;
             this.cbEnabled.UseVisualStyleBackColor = true;
             // 
             // tbName
             // 
             this.tbName.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbName.Location = new System.Drawing.Point(118, 4);
+            this.tbName.Location = new System.Drawing.Point(110, 0);
             this.tbName.Name = "tbName";
             this.tbName.Size = new System.Drawing.Size(141, 13);
             this.tbName.TabIndex = 1;
@@ -59,7 +60,7 @@
             // tbCash
             // 
             this.tbCash.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbCash.Location = new System.Drawing.Point(265, 4);
+            this.tbCash.Location = new System.Drawing.Point(252, 0);
             this.tbCash.Name = "tbCash";
             this.tbCash.Size = new System.Drawing.Size(73, 13);
             this.tbCash.TabIndex = 2;
@@ -68,7 +69,7 @@
             // tbWin
             // 
             this.tbWin.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbWin.Location = new System.Drawing.Point(344, 4);
+            this.tbWin.Location = new System.Drawing.Point(326, 0);
             this.tbWin.Name = "tbWin";
             this.tbWin.Size = new System.Drawing.Size(50, 13);
             this.tbWin.TabIndex = 3;
@@ -77,7 +78,7 @@
             // tbLose
             // 
             this.tbLose.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbLose.Location = new System.Drawing.Point(400, 4);
+            this.tbLose.Location = new System.Drawing.Point(377, 0);
             this.tbLose.Name = "tbLose";
             this.tbLose.Size = new System.Drawing.Size(50, 13);
             this.tbLose.TabIndex = 4;
@@ -86,7 +87,7 @@
             // tbLastAttackDt
             // 
             this.tbLastAttackDt.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbLastAttackDt.Location = new System.Drawing.Point(456, 4);
+            this.tbLastAttackDt.Location = new System.Drawing.Point(428, 0);
             this.tbLastAttackDt.Name = "tbLastAttackDt";
             this.tbLastAttackDt.Size = new System.Drawing.Size(115, 13);
             this.tbLastAttackDt.TabIndex = 5;
@@ -96,7 +97,7 @@
             // 
             this.tbAttacker.BackColor = System.Drawing.Color.White;
             this.tbAttacker.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbAttacker.Location = new System.Drawing.Point(24, 4);
+            this.tbAttacker.Location = new System.Drawing.Point(21, 0);
             this.tbAttacker.Name = "tbAttacker";
             this.tbAttacker.ReadOnly = true;
             this.tbAttacker.Size = new System.Drawing.Size(88, 13);
@@ -105,10 +106,10 @@
             // pbDelete
             // 
             this.pbDelete.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbDelete.Image = global::PBizBot.Properties.Resources.minus;
-            this.pbDelete.Location = new System.Drawing.Point(579, 3);
+            this.pbDelete.Image = global::PBizBot.Properties.Resources.minus_small;
+            this.pbDelete.Location = new System.Drawing.Point(549, 0);
             this.pbDelete.Name = "pbDelete";
-            this.pbDelete.Size = new System.Drawing.Size(16, 16);
+            this.pbDelete.Size = new System.Drawing.Size(13, 13);
             this.pbDelete.TabIndex = 8;
             this.pbDelete.TabStop = false;
             // 
@@ -125,7 +126,7 @@
             this.Controls.Add(this.tbName);
             this.Controls.Add(this.cbEnabled);
             this.Name = "AttackListItem";
-            this.Size = new System.Drawing.Size(600, 22);
+            this.Size = new System.Drawing.Size(600, 13);
             this.Load += new System.EventHandler(this.AttackListItem_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbDelete)).EndInit();
             this.ResumeLayout(false);

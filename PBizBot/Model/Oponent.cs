@@ -36,7 +36,7 @@ namespace PBizBot.Model
 
         //IsDbGenerated = true, DbType = "int NOT NULL IDENTITY"
 
-        [Column(Storage = "m_id", IsPrimaryKey = true, Name = "id", DbType = "int NOT NULL", CanBeNull = false)]
+        [Column(Name = "id", Storage = "m_id", IsPrimaryKey = true, DbType = "int NOT NULL", CanBeNull = false)]
         public int Id 
         { 
             get { return this.m_id; }
@@ -108,7 +108,7 @@ namespace PBizBot.Model
             set { this.m_defeated = value; }
         }
 
-        [Column(Name = "victorious", Storage = "m_victorius", DbType = "int NOT NULL", CanBeNull = false)]
+        [Column(Name = "victorious", Storage = "m_victorious", DbType = "int NOT NULL", CanBeNull = false)]
         public int Victorious
         {
             get { return this.m_victorious; }
@@ -136,7 +136,7 @@ namespace PBizBot.Model
             set { this.m_attacker = value; }
         }
 
-        [Association(Storage = "m_history", ThisKey = "id", OtherKey = "oponent_id")]
+        [Association(Storage = "m_history", ThisKey = "Id", OtherKey = "OponentId")]
         public EntitySet<OponentHistory> History
         {
             get { return this.m_history; }

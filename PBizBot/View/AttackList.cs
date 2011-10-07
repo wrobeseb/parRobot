@@ -9,10 +9,13 @@ using System.Windows.Forms;
 
 namespace PBizBot.View
 {
+    using Providers;
     using Model;
 
     public partial class AttackList : UserControl
     {
+        private SqlDataProvider m_sqlDataProvider;
+
         private List<AttackListItem> m_attackListItems;
 
         private Boolean m_attackerSortAsc = true;
@@ -22,6 +25,11 @@ namespace PBizBot.View
         private Boolean m_loseSortAsc = true;
         private Boolean m_lastAttackSortAsc = true;
 
+        public SqlDataProvider SqlDataProvider
+        {
+            set { m_sqlDataProvider = value; }
+        }
+
         public AttackList()
         {
             m_attackListItems = new List<AttackListItem>();
@@ -30,11 +38,9 @@ namespace PBizBot.View
 
         private void AttackList_Load(object sender, EventArgs e)
         {
-            for (int i = 0; i < 100; i++)
-            {
-                Oponent oponent = new Oponent();
-                oponent.Attacker = i;
-                oponent.Name = (100 - i).ToString();
+            List<Oponent> oponents = m_sqlDataProvider.GetOponents();
+            foreach (Oponent oponent in oponents)
+	        {
                 m_attackListItems.Add(new AttackListItem(oponent));
             }
         }
@@ -69,9 +75,11 @@ namespace PBizBot.View
             }
             else
             {
-                m_attackListItems.Sort(delegate(AttackListItem o1, AttackListItem o2) { return o1.Oponent.Name.CompareTo(o2.Oponent.Name); });
+                m_attackListItems.Sort(delegate(AttackListItem o1, AttackListItem o2) { return o2.Oponent.Name.CompareTo(o1.Oponent.Name); });
                 m_nameSortAsc = true;
             }
+
+            renderItems();
         }
 
         private void pbCashSort_Click(object sender, EventArgs e)
@@ -100,7 +108,7 @@ namespace PBizBot.View
             int index = 0;
             foreach (AttackListItem item in m_attackListItems)
 	        {
-                item.Location = new Point(0, index * 22);
+                item.Location = new Point(0, index * 14);
                 pAttackItems.Controls.Add(item);
                 index++;
 	        }

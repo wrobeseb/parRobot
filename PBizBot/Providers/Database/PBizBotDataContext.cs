@@ -12,8 +12,6 @@ namespace PBizBot.Providers.Database
     {
         public Table<Oponent> Oponents;
 
-        public PBizBotDataContext(string connection) : base(connection) { }
-
         public PBizBotDataContext(OleDbConnection connection) : base(connection) { }
     }
 }
