@@ -24,6 +24,8 @@ namespace PBizBot
             Main mainForm = (Main)ctx.GetObject("mainForm");
 
             Application.Run(mainForm);
+
+            ctx.Dispose();
         }
     }
 }

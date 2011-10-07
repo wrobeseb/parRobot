@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Spring.Scheduling.Quartz;
+
 namespace PBizBot.Core
 {
     public class AccountManager
