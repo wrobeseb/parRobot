@@ -91,6 +91,7 @@
     <Compile Include="ApplicationConfig.cs" />
     <Compile Include="Service\MailService.cs" />
     <Compile Include="Properties\Settings.cs" />
+    <Compile Include="SocketUtils.cs" />
     <Compile Include="Units\Units.cs" />
     <Compile Include="Worker.cs" />
     <Compile Include="MainForm.cs">

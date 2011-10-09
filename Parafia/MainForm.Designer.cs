@@ -88,6 +88,9 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.ofdAttackFile = new System.Windows.Forms.OpenFileDialog();
             this.sfdStatsFile = new System.Windows.Forms.SaveFileDialog();
+            this.cbHoldSession = new System.Windows.Forms.CheckBox();
+            this.cbServer = new System.Windows.Forms.CheckBox();
+            this.cbClient = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.tbControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -99,9 +102,9 @@
             // 
             // btStart
             // 
-            this.btStart.Location = new System.Drawing.Point(687, 232);
+            this.btStart.Location = new System.Drawing.Point(688, 273);
             this.btStart.Name = "btStart";
-            this.btStart.Size = new System.Drawing.Size(58, 48);
+            this.btStart.Size = new System.Drawing.Size(58, 30);
             this.btStart.TabIndex = 0;
             this.btStart.TabStop = false;
             this.btStart.Text = "Start";
@@ -111,9 +114,9 @@
             // btStop
             // 
             this.btStop.Enabled = false;
-            this.btStop.Location = new System.Drawing.Point(751, 232);
+            this.btStop.Location = new System.Drawing.Point(752, 273);
             this.btStop.Name = "btStop";
-            this.btStop.Size = new System.Drawing.Size(58, 48);
+            this.btStop.Size = new System.Drawing.Size(58, 30);
             this.btStop.TabIndex = 1;
             this.btStop.TabStop = false;
             this.btStop.Text = "Stop";
@@ -247,9 +250,9 @@
             // 
             // bConfig
             // 
-            this.bConfig.Location = new System.Drawing.Point(687, 286);
+            this.bConfig.Location = new System.Drawing.Point(687, 309);
             this.bConfig.Name = "bConfig";
-            this.bConfig.Size = new System.Drawing.Size(122, 76);
+            this.bConfig.Size = new System.Drawing.Size(122, 53);
             this.bConfig.TabIndex = 5;
             this.bConfig.TabStop = false;
             this.bConfig.Text = "Ustawienia";
@@ -269,6 +272,9 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.cbClient);
+            this.tabPage1.Controls.Add(this.cbServer);
+            this.tabPage1.Controls.Add(this.cbHoldSession);
             this.tabPage1.Controls.Add(this.pbStatDownload);
             this.tabPage1.Controls.Add(this.btStatDownload);
             this.tabPage1.Controls.Add(this.groupBox2);
@@ -708,6 +714,39 @@
             this.sfdStatsFile.FileName = "staty.txt";
             this.sfdStatsFile.Filter = "Text files|*.txt|All files|*.*";
             // 
+            // cbHoldSession
+            // 
+            this.cbHoldSession.AutoSize = true;
+            this.cbHoldSession.Location = new System.Drawing.Point(688, 232);
+            this.cbHoldSession.Name = "cbHoldSession";
+            this.cbHoldSession.Size = new System.Drawing.Size(93, 17);
+            this.cbHoldSession.TabIndex = 26;
+            this.cbHoldSession.Text = "Utrzymuj sesje";
+            this.cbHoldSession.UseVisualStyleBackColor = true;
+            this.cbHoldSession.CheckedChanged += new System.EventHandler(this.cbHoldSession_CheckedChanged);
+            // 
+            // cbServer
+            // 
+            this.cbServer.AutoSize = true;
+            this.cbServer.Location = new System.Drawing.Point(688, 252);
+            this.cbServer.Name = "cbServer";
+            this.cbServer.Size = new System.Drawing.Size(59, 17);
+            this.cbServer.TabIndex = 27;
+            this.cbServer.Text = "Serwer";
+            this.cbServer.UseVisualStyleBackColor = true;
+            this.cbServer.CheckedChanged += new System.EventHandler(this.cbServer_CheckedChanged);
+            // 
+            // cbClient
+            // 
+            this.cbClient.AutoSize = true;
+            this.cbClient.Location = new System.Drawing.Point(753, 252);
+            this.cbClient.Name = "cbClient";
+            this.cbClient.Size = new System.Drawing.Size(52, 17);
+            this.cbClient.TabIndex = 28;
+            this.cbClient.Text = "Klient";
+            this.cbClient.UseVisualStyleBackColor = true;
+            this.cbClient.CheckedChanged += new System.EventHandler(this.cbClient_CheckedChanged);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -725,6 +764,7 @@
             this.groupBox1.PerformLayout();
             this.tbControl.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox6.ResumeLayout(false);
@@ -798,6 +838,9 @@
         private System.Windows.Forms.SaveFileDialog sfdStatsFile;
         private System.Windows.Forms.ColumnHeader chLoseNo;
         private System.Windows.Forms.ColumnHeader chLastAttackDt;
+        private System.Windows.Forms.CheckBox cbHoldSession;
+        private System.Windows.Forms.CheckBox cbClient;
+        private System.Windows.Forms.CheckBox cbServer;
     }
 }
 

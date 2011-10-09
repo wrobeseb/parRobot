@@ -7,6 +7,8 @@ using HttpUtils;
 
 namespace Parafia.Units
 {
+    using Enums;
+
     public class Units
     {
         public double attack;
@@ -49,22 +51,51 @@ namespace Parafia.Units
             this.unit6Defense = double.Parse(HtmlUtils.GetStringValueByXPathExpression(responseContent, "//table[3]/tbody/tr[3]/td[4]/text()"));
         }
 
-        public void putIntoFormData(FormData formData)
+        public void putIntoFormData(FormData formData, ArmyType armyType)
         {
-            if (this.unit1 != 0) formData.addValue("unit_1", this.unit1.ToString());
-            if (this.unit2 != 0) formData.addValue("unit_2", this.unit2.ToString());
-            if (this.unit3 != 0) formData.addValue("unit_3", this.unit3.ToString());
-            if (this.unit4 != 0) formData.addValue("unit_4", this.unit4.ToString());
-            if (this.unit5 != 0) formData.addValue("unit_5", this.unit5.ToString());
-            if (this.unit6 != 0) formData.addValue("unit_6", this.unit6.ToString());
+            if (armyType.Equals(ArmyType.Attack))
+            {
+                if (this.unit1 != 0) formData.addValue("unit_1", this.unit1.ToString());
+                if (this.unit2 != 0) formData.addValue("unit_2", "0");
+                if (this.unit3 != 0) formData.addValue("unit_3", "0");
+                if (this.unit4 != 0) formData.addValue("unit_4", "0");
+                if (this.unit5 != 0) formData.addValue("unit_5", "0");
+                if (this.unit6 != 0) formData.addValue("unit_6", "0");
+            }
+            else
+            {
+                if (this.unit4 != 0) formData.addValue("unit_4", this.unit4.ToString());
+                if (this.unit1 != 0) formData.addValue("unit_1", "0");
+                if (this.unit2 != 0) formData.addValue("unit_2", "0");
+                if (this.unit3 != 0) formData.addValue("unit_3", "0");
+                if (this.unit5 != 0) formData.addValue("unit_5", "0");
+                if (this.unit6 != 0) formData.addValue("unit_6", "0");
+            }
+        }
+
+        public bool hasUnits(ArmyType armyType)
+        {
+            if (armyType.Equals(ArmyType.Attack))
+            {
+                if (unit1 > 0) return true;
+            }
+            else
+            {
+                if (unit4 > 0) return true;
+            }
+            //if (unit2 > 0) return true;
+            //if (unit3 > 0) return true;
+            //if (unit5 > 0) return true;
+            //if (unit6 > 0) return true;
+            return false;
         }
 
         public bool hasUnits()
         {
             if (unit1 > 0) return true;
+            if (unit4 > 0) return true;
             if (unit2 > 0) return true;
             if (unit3 > 0) return true;
-            if (unit4 > 0) return true;
             if (unit5 > 0) return true;
             if (unit6 > 0) return true;
             return false;

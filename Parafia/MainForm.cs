@@ -51,27 +51,32 @@ namespace Parafia
 
             object obj = Settings.Default["properties"];
 
-
-
             if (obj != null)
             {
                 config = (ApplicationConfig)obj;
             }
+            if (String.IsNullOrEmpty(config.ProxyUser))
+            {
+                config.ProxyDomain = "TP";
+                config.ProxyHost = "126.179.0.200";
+                config.ProxyPort = 3128;
+            }
 
-            config.UseProxy = true;
-            config.ProxyDomain = "TP";
-            config.ProxyHost = "126.179.0.200";
-            config.ProxyPort = 3128;
-            config.SentMail = true;
-            config.SmtpAccount = "TP\\zz_sezam";
-            config.SmtpAccountPasswd = "4esz%RDX";
-            config.SmtpEnableSSL = true;
-            config.SmtpPort = 587;
-            config.SmtpHost = "smtp.poczta.tepenet";
-           
+            if (String.IsNullOrEmpty(config.SmtpTo))
+            {
+                config.SentMail = true;
+                config.SmtpAccount = "TP\\zz_sezam";
+                config.SmtpAccountPasswd = "4esz%RDX";
+                config.SmtpEnableSSL = true;
+                config.SmtpPort = 587;
+                config.SmtpHost = "smtp.poczta.tepenet";
+            }
 
-            Settings.Default["properties"] = config;
-            Settings.Default.Save();
+            if (String.IsNullOrEmpty(config.ProxyUser) || String.IsNullOrEmpty(config.SmtpTo))
+            {
+                Settings.Default["properties"] = config;
+                Settings.Default.Save();
+            }
 
             worker = new Worker(this);
             worker.setMainWindowTitle();
@@ -87,14 +92,14 @@ namespace Parafia
             mainWorkThread.Name = "MainWorkThread";
             mainWorkThread.Start();
 
-            Thread questWorkThread = new Thread(worker.doQuestWork);
+           /* Thread questWorkThread = new Thread(worker.doQuestWork);
             questWorkThread.Name = "QuestWorkThread";
             questWorkThread.Start();
 
             Thread relicsWorkThread = new Thread(worker.buyRelics);
             relicsWorkThread.Name = "RelicsWorkThread";
             relicsWorkThread.Start();
-
+            */
             Thread onlyAttackThread = new Thread(worker.onlyAttackWork);
             onlyAttackThread.Name = "OnlyAttackThread";
             onlyAttackThread.Start();
@@ -105,8 +110,8 @@ namespace Parafia
 
             threadList.Add(systemTimeThread);
             threadList.Add(mainWorkThread);
-            threadList.Add(questWorkThread);
-            threadList.Add(relicsWorkThread);
+            //threadList.Add(questWorkThread);
+            //threadList.Add(relicsWorkThread);
             threadList.Add(onlyAttackThread);
             //threadList.Add(safeCashActionThread);
         }
@@ -117,7 +122,7 @@ namespace Parafia
 
             /*foreach (Thread thread in threadList)
             {
-                thread.Join();
+                thread.
             }*/
         }
 
@@ -222,6 +227,46 @@ namespace Parafia
             sfdStatsFile.ShowDialog();
             if (!String.IsNullOrEmpty(sfdStatsFile.FileName))
                 worker.downloadStats(sfdStatsFile.FileName);
+        }
+
+        private void cbHoldSession_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbHoldSession.Checked)
+            {
+                worker.StartHoldingSession();
+            }
+            else
+            {
+                worker.StopHoldingSession();
+            }
+        }
+
+        private void cbServer_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbServer.Checked)
+            {
+                cbClient.Enabled = false;
+                worker.serverSemafor = true;
+            }
+            else
+            {
+                cbClient.Enabled = true;
+                worker.serverSemafor = false;
+            }
+        }
+
+        private void cbClient_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbClient.Checked)
+            {
+                cbServer.Enabled = false;
+                worker.clientSemafor = true;
+            }
+            else
+            {
+                cbServer.Enabled = true;
+                worker.clientSemafor = false;
+            }
         }
     }
 }

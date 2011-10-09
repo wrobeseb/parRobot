@@ -116,12 +116,12 @@ namespace Parafia
          *  1 - sukces;
          *  0 - wystapil blad
          */
-        public int buyGreatChangeByValue(int value)
+        public int BuyGreatChangeById(int id)
         {
             FormData formData = new FormData();
             formData.addValue("formo_market_show", "market_show");
             formData.addValue("relic_csrf", csrf);
-            formData.addValue("market_id", new StringBuilder().Append(value).ToString());
+            formData.addValue("market_id", new StringBuilder().Append(id).ToString());
             formData.addValue("kup", "");
 
             String responseContent = httpClient.SendHttpPostAndReturnResponseContent("http://parafia.biz/relics/market_show/70", formData);
@@ -139,11 +139,92 @@ namespace Parafia
             return 0;
         }
 
+        public int BuyReturnedGreatChange(string relicCost)
+        {
+            if (!String.IsNullOrEmpty(relicCost))
+            {
+                int cost = int.Parse(relicCost);
+                if (cost != 0)
+                {
+
+                    getFromSafe(cost + 100);
+
+                    int id = 0;
+
+                    if (countGreatChangeInMarket(cost, ref id) == 1)
+                    {
+                        if (BuyGreatChangeById(id) == 1)
+                        {
+                            hideGreatChange();
+                            return 1;
+                        }
+                    }
+                }
+            }
+            return 0;
+        }
+
+        public void hideGreatChange()
+        {
+            httpClient.SendHttpGetAndReturnResponseContent("http://parafia.biz/relics/hide/70");
+        }
+
+        public string ReturnGreatChange()
+        {
+            string idTxt = "0";
+
+            int valueToPut = GetValueToPutOnMarket(11642);
+
+            int vat = Convert.ToInt32(valueToPut * 0.08) + 1;
+
+            if (attributes.Cash.Actual < vat)
+                getFromSafe(vat + 10);
+
+            if (SellGreatChange(valueToPut) == 1)
+            {
+                idTxt = valueToPut.ToString();
+            }
+
+            return idTxt;
+        }
+
+        /*
+         *  Zwraca status operacji
+         *  1 - sukces;
+         *  0 - wystapil blad
+         */
+        public int SellGreatChange(int value)
+        {
+            FormData formData = new FormData();
+            formData.addValue("formo_market_form", "market_form");
+            formData.addValue("market_csrf", csrf);
+            formData.addValue("market_price", new StringBuilder().Append(value).ToString());
+            formData.addValue("market_submit", "");
+
+            String responseContent = httpClient.SendHttpPostAndReturnResponseContent("http://parafia.biz/relics/market_sell/70", formData);
+
+            HtmlNode node = HtmlUtils.GetSingleNodeByXPathExpression(responseContent, "//div[@class='flashinfo_message']");
+
+            if (node != null)
+            {
+                String message = node.InnerText;
+                if (!String.IsNullOrEmpty(message) && message.Equals("Relikwia została wystawiona na sprzedaż"))
+                {
+                    return 1;
+                }
+            }
+
+            return 0;
+        }
+
         public int countGreatChangeInMarket(int value, ref int id)
         {
             String content = getContentOfGreatChange();
 
             int counter = 0;
+
+            HtmlNode.ElementsFlags.Remove("option");
+
             HtmlNodeCollection optionsNode = HtmlUtils.GetNodesCollectionByXPathExpression(content, "//select[@id='market_id']/option");
 
             foreach (HtmlNode node in optionsNode)
@@ -163,6 +244,36 @@ namespace Parafia
             }
 
             return counter;
+        }
+
+        public int GetValueToPutOnMarket(int maxValue)
+        {
+            String content = getContentOfGreatChange();
+
+            int counter = 0;
+            HtmlNodeCollection optionsNode = HtmlUtils.GetNodesCollectionByXPathExpression(content, "//select[@id='market_id']/option");
+
+            Random rand = new Random();
+
+            int value = maxValue;
+            do
+            {
+                foreach (HtmlNode node in optionsNode)
+                {
+                    String txtValueForOption = node.InnerText;
+                    if (!String.IsNullOrEmpty(txtValueForOption))
+                    {
+                        int valueForOption = int.Parse(MainUtils.removeAllNotNumberCharacters(txtValueForOption));
+                        if (valueForOption == value)
+                            counter++;
+                    }
+                }
+                if (counter != 0)
+                    value = rand.Next(maxValue - 100, maxValue);
+            }
+            while (counter != 0);
+
+            return value;
         }
 
         public void putIntoSafe()
@@ -440,14 +551,24 @@ namespace Parafia
 
         public void sendPilgrimage(int hours)
         {
-            if (units.hasUnits())
+            if (units.hasUnits(config.ArmyType))
             {
                 FormData formData = new FormData();
                 formData.addValue("formo_to_holy_land", "to_holy_land");
                 formData.addValue("holy_land", csrf);
                 formData.addValue("time_days", "0");
-                formData.addValue("time_hours", hours.ToString());
-                units.putIntoFormData(formData);
+
+                DateTime now = DateTime.Now;
+                DateTime dateTime = new DateTime(now.Year, now.Month, now.Day, 10, 0, 0);
+                if (now.Hour >= 10 && now.Hour <= 24)
+                {
+                    dateTime = dateTime.AddDays(1);
+                }
+
+                TimeSpan span = dateTime - DateTime.Now;
+
+                formData.addValue("time_hours", span.Hours.ToString());
+                units.putIntoFormData(formData, config.ArmyType);
                 formData.addValue("holy_submit", "");
 
                 String content = httpClient.SendHttpPostAndReturnResponseContent("http://parafia.biz/units/to_holy_land", formData);

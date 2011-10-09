@@ -51,6 +51,10 @@
             this.cbProxyYesOrNo = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.gbMailConfig = new System.Windows.Forms.GroupBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.tbMailSubject = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.tbMailTo = new System.Windows.Forms.TextBox();
             this.tbSmtpAccountPasswd = new System.Windows.Forms.TextBox();
             this.tbSmtpAccount = new System.Windows.Forms.TextBox();
             this.tbSmtpPort = new System.Windows.Forms.TextBox();
@@ -67,19 +71,10 @@
             this.label13 = new System.Windows.Forms.Label();
             this.tbArmyTimeStart = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.tbQuestTimeStop = new System.Windows.Forms.TextBox();
-            this.tbQuestTimeStart = new System.Windows.Forms.TextBox();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.tbMailTo = new System.Windows.Forms.TextBox();
-            this.label17 = new System.Windows.Forms.Label();
-            this.tbMailSubject = new System.Windows.Forms.TextBox();
-            this.label18 = new System.Windows.Forms.Label();
             this.gbProxyConfig.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.gbMailConfig.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // bSave
@@ -324,6 +319,40 @@
             this.gbMailConfig.TabIndex = 6;
             this.gbMailConfig.TabStop = false;
             // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(7, 120);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(35, 13);
+            this.label18.TabIndex = 11;
+            this.label18.Text = "Tytuł:";
+            // 
+            // tbMailSubject
+            // 
+            this.tbMailSubject.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbMailSubject.Location = new System.Drawing.Point(78, 118);
+            this.tbMailSubject.Name = "tbMailSubject";
+            this.tbMailSubject.Size = new System.Drawing.Size(122, 20);
+            this.tbMailSubject.TabIndex = 10;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(7, 94);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(24, 13);
+            this.label17.TabIndex = 9;
+            this.label17.Text = "Do:";
+            // 
+            // tbMailTo
+            // 
+            this.tbMailTo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbMailTo.Location = new System.Drawing.Point(78, 92);
+            this.tbMailTo.Name = "tbMailTo";
+            this.tbMailTo.Size = new System.Drawing.Size(122, 20);
+            this.tbMailTo.TabIndex = 8;
+            // 
             // tbSmtpAccountPasswd
             // 
             this.tbSmtpAccountPasswd.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -467,86 +496,11 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.tbQuestTimeStop);
-            this.groupBox3.Controls.Add(this.tbQuestTimeStart);
-            this.groupBox3.Controls.Add(this.label15);
-            this.groupBox3.Controls.Add(this.label16);
-            this.groupBox3.Location = new System.Drawing.Point(331, 215);
+            this.groupBox3.Location = new System.Drawing.Point(331, 217);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(100, 78);
+            this.groupBox3.Size = new System.Drawing.Size(100, 76);
             this.groupBox3.TabIndex = 9;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Questy";
-            // 
-            // tbQuestTimeStop
-            // 
-            this.tbQuestTimeStop.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbQuestTimeStop.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.tbQuestTimeStop.Location = new System.Drawing.Point(34, 45);
-            this.tbQuestTimeStop.Name = "tbQuestTimeStop";
-            this.tbQuestTimeStop.Size = new System.Drawing.Size(60, 20);
-            this.tbQuestTimeStop.TabIndex = 8;
-            // 
-            // tbQuestTimeStart
-            // 
-            this.tbQuestTimeStart.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbQuestTimeStart.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.tbQuestTimeStart.Location = new System.Drawing.Point(34, 19);
-            this.tbQuestTimeStart.Name = "tbQuestTimeStart";
-            this.tbQuestTimeStart.Size = new System.Drawing.Size(60, 20);
-            this.tbQuestTimeStart.TabIndex = 5;
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(6, 47);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(22, 13);
-            this.label15.TabIndex = 7;
-            this.label15.Text = "do:";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(6, 21);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(22, 13);
-            this.label16.TabIndex = 6;
-            this.label16.Text = "od:";
-            // 
-            // tbMailTo
-            // 
-            this.tbMailTo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbMailTo.Location = new System.Drawing.Point(78, 92);
-            this.tbMailTo.Name = "tbMailTo";
-            this.tbMailTo.Size = new System.Drawing.Size(122, 20);
-            this.tbMailTo.TabIndex = 8;
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(7, 94);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(24, 13);
-            this.label17.TabIndex = 9;
-            this.label17.Text = "Do:";
-            // 
-            // tbMailSubject
-            // 
-            this.tbMailSubject.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbMailSubject.Location = new System.Drawing.Point(78, 118);
-            this.tbMailSubject.Name = "tbMailSubject";
-            this.tbMailSubject.Size = new System.Drawing.Size(122, 20);
-            this.tbMailSubject.TabIndex = 10;
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(7, 120);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(35, 13);
-            this.label18.TabIndex = 11;
-            this.label18.Text = "Tytuł:";
             // 
             // ConfigForm
             // 
@@ -581,8 +535,6 @@
             this.gbMailConfig.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -628,14 +580,10 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox tbArmyTimeStart;
-        private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.TextBox tbQuestTimeStop;
-        private System.Windows.Forms.TextBox tbQuestTimeStart;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.TextBox tbMailSubject;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.TextBox tbMailTo;
+        private System.Windows.Forms.GroupBox groupBox3;
     }
 }

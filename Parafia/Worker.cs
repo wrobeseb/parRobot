@@ -11,6 +11,8 @@ using System.IO;
 
 using System.Windows.Forms;
 
+using System.Net.Sockets;
+
 namespace Parafia
 {
     using Model.Quest;
@@ -27,6 +29,11 @@ namespace Parafia
         private volatile bool serverTimeSemafor = true;
         private volatile bool relicsSemafor = false;
         private volatile bool attackSemafor = false;
+
+        public volatile bool serverSemafor = false;
+        public volatile bool clientSemafor = false;
+
+        private volatile bool holdSessionSemafor = false;
 
         public List<Account> listOfAccountsInView;
 
@@ -358,49 +365,163 @@ namespace Parafia
             }
         }
 
+        public class StateObject
+        {
+            // Client socket.
+            public Socket workSocket = null;
+            // Size of receive buffer.
+            public const int BufferSize = 256;
+            // Receive buffer.
+            public byte[] buffer = new byte[BufferSize];
+            // Received data string.
+            public StringBuilder sb = new StringBuilder();
+        }
+
+        private void ClientIsConnected(IAsyncResult asyn)
+        {
+            TcpListener listener = (TcpListener)asyn.AsyncState;
+            Socket client = listener.EndAcceptSocket(asyn);
+
+            StateObject state = new StateObject();
+            state.workSocket = client;
+
+            client.BeginReceive(state.buffer, 0, StateObject.BufferSize, 0,
+            new AsyncCallback(ReceiveCallback), state);
+
+            listener.BeginAcceptSocket(new AsyncCallback(ClientIsConnected), listener);
+        }
+
+        private void ReceiveCallback(IAsyncResult ar)
+        {
+            try
+            {
+                // Retrieve the state object and the client socket 
+                // from the asynchronous state object.
+                StateObject state = (StateObject)ar.AsyncState;
+                Socket client = state.workSocket;
+                // Read data from the remote device.
+                int bytesRead = client.EndReceive(ar);
+                if (bytesRead > 0)
+                {
+                    // There might be more data, so store the data received so far.
+                    state.sb.Append(Encoding.ASCII.GetString(state.buffer, 0, bytesRead));
+
+                    String idTxt = String.Empty;
+
+                    Parafia parafia = getInstance();
+                    if (parafia != null)
+                    {
+                        if (!String.IsNullOrEmpty(state.sb.ToString()))
+                        {
+                            lock (loggedInlockObject)
+                            {
+                                parafia.login(); printLog("[MONEY TRANSFER REQUEST] Zalogowany do portalu...");
+                                int valueToPut = parafia.GetValueToPutOnMarket(int.Parse(state.sb.ToString())); printLog("[MONEY TRANSFER REQUEST] Relikwia zostanie wystawiona za: " + valueToPut);
+
+                                int vat = Convert.ToInt32(valueToPut * 0.08) + 1;
+
+                                if (parafia.attributes.Cash.Actual < vat)
+                                    parafia.getFromSafe(vat + 1000);
+                                if (parafia.SellGreatChange(valueToPut) == 1)
+                                {
+                                    printLog("[MONEY TRANSFER REQUEST] Relikwia została wystawiona za: " + valueToPut);
+
+                                    idTxt = valueToPut.ToString();
+                                    printLog("[MONEY TRANSFER REQUEST] Wysyłam wartosc relikwi do kupienia przez klienta: " + idTxt);
+                                }
+                                else
+                                {
+                                    printLog("[MONEY TRANSFER REQUEST] Błąd podczas wystawiania relikwi: " + valueToPut);
+                                }
+                            }
+                        }
+                    }
+
+                    ASCIIEncoding asen = new ASCIIEncoding();
+                    byte[] ba = asen.GetBytes(idTxt);
+
+                    client.Send(ba);
+
+                    byte[] rc = new byte[100];
+
+                    int rcLength = client.Receive(rc);
+
+                    String returnedCost = Encoding.ASCII.GetString(rc, 0, rcLength);
+
+                    parafia.BuyReturnedGreatChange(returnedCost);
+
+                    parafia.logout();
+
+                    client.Close();
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+        }
+
+        private bool serwerStartedFlag = false;
+
         public void startMainWork()
         {
             while (mainSemafor) 
             {
                 if (mainWorkSemafor)
                 {
+                    if (serverSemafor && !serwerStartedFlag)
+                    {
+                        IPAddress ipAd = IPAddress.Parse("127.0.0.1");
+
+                        new Thread((ThreadStart)delegate
+                        {
+                            TcpListener listener = new TcpListener(ipAd, 8001);
+                            listener.Start();
+
+                            listener.BeginAcceptSocket(new AsyncCallback(ClientIsConnected), listener);
+                        }).Start();
+
+                        serwerStartedFlag = true;
+                    }
+
                     int timeouts = 0;
                     long interval = (nextLoginDt.Ticks - DateTime.Now.Ticks) / 1000000;
                     if (interval == 0)
                     {
-                        Boolean timeoutFlag = false;
+                      /*  Boolean timeoutFlag = false;*/
                         Boolean overflowFlag = false;
                         int result = 0;
 
-                        lastLoginDt = nextLoginDt;
+                        /*lastLoginDt = nextLoginDt;
                         hitCount++;
 
                         do
                         {
                             timeoutFlag = false;
                             try
-                            {
+                            {*/
                                 Parafia parafia = getInstance();
                                 if (parafia != null)
                                 {
                                     lock (loggedInlockObject)
                                     {
                                         parafia.login(); printLog("Zalogowany do portalu...");
-                                        parafia.buyArmy(armyType); printLog("Wojska zakupione. Typ: " + armyType);
-                                        parafia.getUnitsInfo(); printLog("Informacje o jednostkach zostały pobrane.");
+                                       // parafia.buyArmy(armyType); printLog("Wojska zakupione. Typ: " + armyType);
+                                       // parafia.getUnitsInfo(); printLog("Informacje o jednostkach zostały pobrane.");
 
-                                        parafia.takeFromProperty(); printLog("Dewocjonalnik...");
+                                        //parafia.takeFromProperty(); printLog("Dewocjonalnik...");
                                         parafia.putIntoSafe(); printLog("Pakuje do sejfu...");
 
-                                        if (attackSemafor)
+                                       /* if (attackSemafor)
                                         {
                                             do
                                             {
                                                 timeoutFlag = false;
                                                 try
-                                                {
-                                                    overflowFlag = attackJob(parafia, ref result);
-                                                }
+                                                {*/
+                                                   // overflowFlag =
+                    attackJob(parafia, ref result);
+                                               /* }
                                                 catch
                                                 {
                                                     printLog("Wystąpił timeout... ponawiam!");
@@ -428,9 +549,9 @@ namespace Parafia
                                         }
 
                                         nextLoginDt = getNextLoginTime();
-
+                                        */
                                         parafia.logout(); printLog("Pomyślne wylogowanie z portalu.");
-
+                                        /*
                                         mainForm.Invoke((Action)(delegate
                                         {
                                             mainForm.tbAttackCash.Text = new StringBuilder().Append(int.Parse(mainForm.tbAttackCash.Text) + result).ToString();
@@ -448,8 +569,9 @@ namespace Parafia
                                             mainForm.tbMoher.Text = parafia.units.unit5.ToString();
                                             mainForm.tbGospo.Text = parafia.units.unit6.ToString();
                                         }));
+                                    */
                                     }
-                                    if (sendMail)
+                                   /* if (sendMail)
                                     {
                                         StringBuilder builder = new StringBuilder();
                                         if (attackSemafor)
@@ -463,21 +585,36 @@ namespace Parafia
                                         builder.Append("Zakupy skończone... następne o godzinie: " + this.nextLoginDt.ToString("yyyy-MM-dd HH:mm:ss"));
                                         //MailService.sendMail(builder.ToString());
                                         MailService.sendMail(parafia.attributes, parafia.units, nextLoginDt, result, overflowFlag);
-                                    }
+                                    }*/
                                 }
-                            }
-                            catch
-                            {
-                                printLog("Wystąpił timeout... ponawiam!");
-                                timeouts++;
-                                timeoutFlag = true;
-                            }
-                        }
-                        while (timeoutFlag && (timeouts < 5));
+                        /* }
+                         catch
+                         {
+                             printLog("Wystąpił timeout... ponawiam!");
+                             timeouts++;
+                             timeoutFlag = true;
+                         }
+                     }
+                     while (timeoutFlag && (timeouts < 5));*/
                     }
                 }
                 Thread.Sleep(100);
             }
+        }
+
+        private Thread holdSessionThread;
+
+        public void StartHoldingSession()
+        {
+            holdSessionSemafor = true;
+            holdSessionThread = new Thread(safeCashAction);
+            holdSessionThread.Start();
+        }
+
+        public void StopHoldingSession()
+        {
+            holdSessionSemafor = false;
+            //holdSessionThread.Join();
         }
 
         public void safeCashAction()
@@ -517,11 +654,11 @@ namespace Parafia
             }
 
             printLog("[SAFE CASH ACTION] Synchronizacja zakończona.");
-            while (mainSemafor)
+            while (holdSessionSemafor)
             {
                 if (mainWorkSemafor)
                 {
-                    long interval = serverTimeForCashSafe.Ticks / 1000000;
+                    long interval = serverTimeForCashSafe.Ticks / 10000000;
                     if ((interval % 300) == 0)
                     {
                         lock (loggedInlockObject)
@@ -573,7 +710,7 @@ namespace Parafia
         {
             bool flag = false;
 
-            do
+            /*do
             {
                 if (parafia.attributes.Cash.Actual != parafia.attributes.Cash.Max)
                 {
@@ -622,10 +759,70 @@ namespace Parafia
                 {
                     flag = true;
                     break;
+                }*/
+
+                if (clientSemafor)
+                {
+                    String relicCost = String.Empty;
+                    if (true)
+                    //if (parafia.attributes.Safe.Actual == parafia.attributes.Safe.Max)
+                    {
+                        int value = parafia.attributes.Safe.Actual;
+
+                        if (parafia.attributes.Safe.Actual > parafia.attributes.Cash.Max)
+                        {
+                            value = parafia.attributes.Cash.Max;
+                        }
+
+                        value -= 1000;
+
+                        TcpClient client = SocketUtils.ConnectToSrv();
+
+                        relicCost = SocketUtils.RequestRelicID(value, client);
+
+                        if (!String.IsNullOrEmpty(relicCost))
+                        {
+                            int cost = int.Parse(relicCost);
+                            if (cost != 0) {
+
+                                parafia.getFromSafe(value);
+
+                                int id = 0;
+
+                                if (parafia.countGreatChangeInMarket(cost, ref id) == 1)
+                                {
+                                    if (parafia.BuyGreatChangeById(id) == 1)
+                                    {
+                                        printLog("[MONEY TRANSFER REQUEST] Transfer wykonany!");
+                                        parafia.hideGreatChange();
+
+                                        string returnedRelicCost = parafia.ReturnGreatChange();
+
+                                        SocketUtils.SendGreatChangeReturningCost(returnedRelicCost, client);
+                                    }
+                                    else
+                                    {
+                                        parafia.putIntoSafe();
+                                        printLog("[MONEY TRANSFER REQUEST] Błąd podczas transferu! Nie wykonany!!!");
+                                    }
+                                }
+                                else
+                                {
+                                    parafia.putIntoSafe();
+                                    printLog("[MONEY TRANSFER REQUEST] Znaleziono więcej niż jedno relikwie/bądź wcale na rynku!!!");
+                                }
+                            }
+                        }
+
+                        parafia.logout();
+
+                        SocketUtils.CloseConnectToSrv(client);
+                    }
                 }
-            }
+
+            /*}
             while (parafia.attributes.Energy.Actual > 10 && parafia.attributes.Health.Actual > 10);
-            printLog("Zakończona atakowanie... resultat: " + result);
+            printLog("Zakończona atakowanie... resultat: " + result);*/
 
             return flag;
         }
