@@ -36,6 +36,13 @@ namespace Parafia
 
         public bool papacyParty;
 
+        private Worker worker;
+
+        public Parafia(Worker worker)
+        {
+            this.worker = worker;
+        }
+
         public void initConnection(ApplicationConfig config)
         {
             if (config != null)
@@ -74,31 +81,64 @@ namespace Parafia
                 formData.addValue("user_pass", config.AccountPassword);
                 formData.addValue("login_submit", "");
 
-                responseContent = httpClient.SendHttpPostAndReturnResponseContent("http://parafia.biz/", formData);
-
-                String errorMessage = HtmlUtils.GetStringValueByXPathExpression(responseContent, "//div[@class='form-error']/text()");
-
-                if (!String.IsNullOrEmpty(errorMessage))
+                int timeout = 0;
+                do
                 {
-                    throw new LoginException(errorMessage);
+                    try
+                    {
+                        responseContent = httpClient.SendHttpPostAndReturnResponseContent("http://parafia.biz/", formData);
+                        timeout = 0;
+                    }
+                    catch (WebException we)
+                    {
+                        worker.printLog("[ERROR] Wystąpił błąd. login!!!");
+                        worker.printLog("[ERROR] Treść błędu: " + we.Message);
+                        worker.printLog("[ERROR] Ponawiam proces.");
+                        timeout++;
+                    }
                 }
-                else
+                while ((timeout != 0) && timeout < 5);
+
+                if (timeout == 0)
                 {
-                    attributes = new Attributes.Attributes(responseContent);
-                    papacyParty = !checkPapacParty(responseContent);
+                    String errorMessage = HtmlUtils.GetStringValueByXPathExpression(responseContent, "//div[@class='form-error']/text()");
+
+                    if (!String.IsNullOrEmpty(errorMessage))
+                    {
+                        throw new LoginException(errorMessage);
+                    }
+                    else
+                    {
+                        attributes = new Attributes.Attributes(responseContent);
+                        papacyParty = !checkPapacParty(responseContent);
+                    }
+                    return true;
                 }
-                return true;
             }
-            else
-            {
-                return false;
-            }
+            return false;
         }
 
         public void updateAttributes()
         {
-            String content = httpClient.SendHttpGetAndReturnResponseContent("http://parafia.biz/start/dashboard");
-            this.attributes = new Attributes.Attributes(content);
+            int timeout = 0;
+            do
+            {
+                try
+                {
+                    String content = httpClient.SendHttpGetAndReturnResponseContent("http://parafia.biz/start/dashboard");
+                    this.attributes = new Attributes.Attributes(content);
+                    timeout = 0;
+                }
+                catch (WebException we)
+                {
+                    worker.printLog("[ERROR] Wystąpił błąd. takeFromProperty!!!");
+                    worker.printLog("[ERROR] Treść błędu: " + we.Message);
+                    worker.printLog("[ERROR] Ponawiam proces.");
+                    timeout++;
+                }
+            }
+            while ((timeout != 0) && timeout < 5);
+            
         }
 
         public void takeFromProperty() 
@@ -108,7 +148,24 @@ namespace Parafia
             formData.addValue("property_take_csrf", csrf);
             formData.addValue("property_take_submit", "");
 
-            httpClient.SendHttpPostAndReturnResponseContent("http://parafia.biz/property", formData);
+            int timeout = 0;
+            String responseContent = String.Empty;
+            do
+            {
+                try
+                {
+                    httpClient.SendHttpPostAndReturnResponseContent("http://parafia.biz/property", formData);
+                    timeout = 0;
+                }
+                catch (WebException we)
+                {
+                    worker.printLog("[ERROR] Wystąpił błąd. takeFromProperty!!!");
+                    worker.printLog("[ERROR] Treść błędu: " + we.Message);
+                    worker.printLog("[ERROR] Ponawiam proces.");
+                    timeout++;
+                }
+            }
+            while ((timeout != 0) && timeout < 5);
         }
 
         /*
@@ -124,18 +181,38 @@ namespace Parafia
             formData.addValue("market_id", new StringBuilder().Append(id).ToString());
             formData.addValue("kup", "");
 
-            String responseContent = httpClient.SendHttpPostAndReturnResponseContent("http://parafia.biz/relics/market_show/70", formData);
-
-            HtmlNode node = HtmlUtils.GetSingleNodeByXPathExpression(responseContent, "//div[@class='flashinfo_message']");
-
-            if (node != null) {
-                String message = node.InnerText;
-                if (!String.IsNullOrEmpty(message) && message.Equals("Relikwia została kupiona"))
+            int timeout = 0;
+            String responseContent = String.Empty;
+            do
+            {
+                try
                 {
-                    return 1;
+                    responseContent = httpClient.SendHttpPostAndReturnResponseContent("http://parafia.biz/relics/market_show/70", formData);
+                    timeout = 0;
+                }
+                catch (WebException we)
+                {
+                    worker.printLog("[ERROR] Wystąpił błąd. BuyGreatChangeById!!!");
+                    worker.printLog("[ERROR] Treść błędu: " + we.Message);
+                    worker.printLog("[ERROR] Ponawiam proces.");
+                    timeout++;
                 }
             }
+            while ((timeout != 0) && timeout < 5);
 
+            if (timeout == 0)
+            {
+                HtmlNode node = HtmlUtils.GetSingleNodeByXPathExpression(responseContent, "//div[@class='flashinfo_message']");
+
+                if (node != null)
+                {
+                    String message = node.InnerText;
+                    if (!String.IsNullOrEmpty(message) && message.Equals("Relikwia została kupiona"))
+                    {
+                        return 1;
+                    }
+                }
+            }
             return 0;
         }
 
@@ -166,7 +243,23 @@ namespace Parafia
 
         public void hideGreatChange()
         {
-            httpClient.SendHttpGetAndReturnResponseContent("http://parafia.biz/relics/hide/70");
+            int timeout = 0;
+            do
+            {
+                try
+                {
+                    httpClient.SendHttpGetAndReturnResponseContent("http://parafia.biz/relics/hide/70");
+                    timeout = 0;
+                }
+                catch (WebException we)
+                {
+                    worker.printLog("[ERROR] Wystąpił błąd. hideGreatChange!!!");
+                    worker.printLog("[ERROR] Treść błędu: " + we.Message);
+                    worker.printLog("[ERROR] Ponawiam proces.");
+                    timeout++;
+                }
+            }
+            while ((timeout != 0) && timeout < 5);
         }
 
         public string ReturnGreatChange()
@@ -201,16 +294,38 @@ namespace Parafia
             formData.addValue("market_price", new StringBuilder().Append(value).ToString());
             formData.addValue("market_submit", "");
 
-            String responseContent = httpClient.SendHttpPostAndReturnResponseContent("http://parafia.biz/relics/market_sell/70", formData);
+            int timeout = 0;
 
-            HtmlNode node = HtmlUtils.GetSingleNodeByXPathExpression(responseContent, "//div[@class='flashinfo_message']");
+            String responseContent = String.Empty;
 
-            if (node != null)
+            do
             {
-                String message = node.InnerText;
-                if (!String.IsNullOrEmpty(message) && message.Equals("Relikwia została wystawiona na sprzedaż"))
+                try
                 {
-                    return 1;
+                    responseContent = httpClient.SendHttpPostAndReturnResponseContent("http://parafia.biz/relics/market_sell/70", formData);
+                    timeout = 0;
+                }
+                catch (WebException we)
+                {
+                    worker.printLog("[ERROR] Wystąpił błąd. SellGreatChange!!!");
+                    worker.printLog("[ERROR] Treść błędu: " + we.Message);
+                    worker.printLog("[ERROR] Ponawiam proces.");
+                    timeout++;
+                }
+            }
+            while ((timeout != 0) && timeout < 5);
+
+            if (timeout == 0)
+            {
+                HtmlNode node = HtmlUtils.GetSingleNodeByXPathExpression(responseContent, "//div[@class='flashinfo_message']");
+
+                if (node != null)
+                {
+                    String message = node.InnerText;
+                    if (!String.IsNullOrEmpty(message) && message.Equals("Relikwia została wystawiona na sprzedaż"))
+                    {
+                        return 1;
+                    }
                 }
             }
 
@@ -219,26 +334,48 @@ namespace Parafia
 
         public int countGreatChangeInMarket(int value, ref int id)
         {
-            String content = getContentOfGreatChange();
+            int timeout = 0;
+
+            String content = String.Empty;
+
+            do
+            {
+                try
+                {
+                    content = getContentOfGreatChange();
+                    timeout = 0;
+                }
+                catch (WebException we)
+                {
+                    worker.printLog("[ERROR] Wystąpił błąd. countGreatChangeInMarket!!!");
+                    worker.printLog("[ERROR] Treść błędu: " + we.Message);
+                    worker.printLog("[ERROR] Ponawiam proces.");
+                    timeout++;
+                }
+            }
+            while ((timeout != 0) && timeout < 5);
 
             int counter = 0;
 
-            HtmlNode.ElementsFlags.Remove("option");
-
-            HtmlNodeCollection optionsNode = HtmlUtils.GetNodesCollectionByXPathExpression(content, "//select[@id='market_id']/option");
-
-            foreach (HtmlNode node in optionsNode)
+            if (timeout == 0)
             {
-                String txtValueForOption = node.InnerText;
-                if (!String.IsNullOrEmpty(txtValueForOption))
+                HtmlNode.ElementsFlags.Remove("option");
+
+                HtmlNodeCollection optionsNode = HtmlUtils.GetNodesCollectionByXPathExpression(content, "//select[@id='market_id']/option");
+
+                foreach (HtmlNode node in optionsNode)
                 {
-                    int valueForOption = int.Parse(MainUtils.removeAllNotNumberCharacters(txtValueForOption));
-                    if (valueForOption == value)
+                    String txtValueForOption = node.InnerText;
+                    if (!String.IsNullOrEmpty(txtValueForOption))
                     {
-                        String txtValueForIdAttribute = HtmlUtils.GetAttributeValueFromHtmlNode(node, "value");
-                        if (!String.IsNullOrEmpty(txtValueForIdAttribute))
-                            id = int.Parse(txtValueForIdAttribute);
-                        counter++;
+                        int valueForOption = int.Parse(MainUtils.removeAllNotNumberCharacters(txtValueForOption));
+                        if (valueForOption == value)
+                        {
+                            String txtValueForIdAttribute = HtmlUtils.GetAttributeValueFromHtmlNode(node, "value");
+                            if (!String.IsNullOrEmpty(txtValueForIdAttribute))
+                                id = int.Parse(txtValueForIdAttribute);
+                            counter++;
+                        }
                     }
                 }
             }
@@ -248,32 +385,51 @@ namespace Parafia
 
         public int GetValueToPutOnMarket(int maxValue)
         {
-            String content = getContentOfGreatChange();
+            int timeout = 0;
 
-            int counter = 0;
-            HtmlNodeCollection optionsNode = HtmlUtils.GetNodesCollectionByXPathExpression(content, "//select[@id='market_id']/option");
+            String content = String.Empty;
 
-            Random rand = new Random();
-
-            int value = maxValue;
             do
             {
-                foreach (HtmlNode node in optionsNode)
+                try { content = getContentOfGreatChange(); timeout = 0; }
+                catch (WebException we)
                 {
-                    String txtValueForOption = node.InnerText;
-                    if (!String.IsNullOrEmpty(txtValueForOption))
-                    {
-                        int valueForOption = int.Parse(MainUtils.removeAllNotNumberCharacters(txtValueForOption));
-                        if (valueForOption == value)
-                            counter++;
-                    }
+                    worker.printLog("[ERROR] Wystąpił błąd. GetValueToPutOnMarket!!!");
+                    worker.printLog("[ERROR] Treść błędu: " + we.Message);
+                    worker.printLog("[ERROR] Ponawiam proces.");
+                    timeout++;
                 }
-                if (counter != 0)
-                    value = rand.Next(maxValue - 100, maxValue);
             }
-            while (counter != 0);
+            while ((timeout != 0) && timeout < 5);
 
-            return value;
+            if (timeout == 0)
+            {
+                int counter = 0;
+                HtmlNodeCollection optionsNode = HtmlUtils.GetNodesCollectionByXPathExpression(content, "//select[@id='market_id']/option");
+
+                Random rand = new Random();
+
+                int value = maxValue;
+                do
+                {
+                    foreach (HtmlNode node in optionsNode)
+                    {
+                        String txtValueForOption = node.InnerText;
+                        if (!String.IsNullOrEmpty(txtValueForOption))
+                        {
+                            int valueForOption = int.Parse(MainUtils.removeAllNotNumberCharacters(txtValueForOption));
+                            if (valueForOption == value)
+                                counter++;
+                        }
+                    }
+                    if (counter != 0)
+                        value = rand.Next(maxValue - 100, maxValue);
+                }
+                while (counter != 0);
+
+                return value;
+            }
+            return 0;
         }
 
         public void putIntoSafe()
@@ -291,8 +447,25 @@ namespace Parafia
                 formData.addValue("deposit_value", new StringBuilder().Append(value).ToString());
                 formData.addValue("safe_deposit_submit", "");
 
-                String responseContent = httpClient.SendHttpPostAndReturnResponseContent("http://parafia.biz/buildings/safe", formData);
-                attributes = new Attributes.Attributes(responseContent);
+                int timeout = 0;
+
+                do
+                {
+                    try
+                    {
+                        String responseContent = httpClient.SendHttpPostAndReturnResponseContent("http://parafia.biz/buildings/safe", formData);
+                        attributes = new Attributes.Attributes(responseContent);
+                        timeout = 0;
+                    }
+                    catch (WebException we)
+                    {
+                        worker.printLog("[ERROR] Wystąpił błąd. putIntoSafe!!!");
+                        worker.printLog("[ERROR] Treść błędu: " + we.Message);
+                        worker.printLog("[ERROR] Ponawiam proces.");
+                        timeout++;
+                    }
+                }
+                while ((timeout != 0) && timeout < 5);
             }
         }
 
@@ -306,8 +479,25 @@ namespace Parafia
                 formData.addValue("take_value", new StringBuilder().Append(value).ToString());
                 formData.addValue("safe_take_submit", "");
 
-                String responseContent = httpClient.SendHttpPostAndReturnResponseContent("http://parafia.biz/buildings/safe", formData);
-                attributes = new Attributes.Attributes(responseContent);
+                int timeout = 0;
+
+                do
+                {
+                    try
+                    {
+                        String responseContent = httpClient.SendHttpPostAndReturnResponseContent("http://parafia.biz/buildings/safe", formData);
+                        attributes = new Attributes.Attributes(responseContent);
+                        timeout = 0;
+                    }
+                    catch (WebException we)
+                    {
+                        worker.printLog("[ERROR] Wystąpił błąd. getFromSafe!!!");
+                        worker.printLog("[ERROR] Treść błędu: " + we.Message);
+                        worker.printLog("[ERROR] Ponawiam proces.");
+                        timeout++;
+                    }
+                }
+                while ((timeout != 0) && timeout < 5);
             }
         }
 
@@ -385,8 +575,29 @@ namespace Parafia
                     getFromSafe(value);
                 }
 
-                httpClient.SendHttpGetAndReturnResponseContent("http://parafia.biz/units/buy/1/amount/10");
-                getUnitsInfo();
+                int timeout = 0;
+                String content = String.Empty;
+                do
+                {
+                    try
+                    {
+                        httpClient.SendHttpGetAndReturnResponseContent("http://parafia.biz/units/buy/1/amount/10");
+                        timeout = 0;
+                    }
+                    catch (WebException we)
+                    {
+                        worker.printLog("[ERROR] Wystąpił błąd. buyMinistr!!!");
+                        worker.printLog("[ERROR] Treść błędu: " + we.Message);
+                        worker.printLog("[ERROR] Ponawiam proces.");
+                        timeout++;
+                    }
+                }
+                while ((timeout != 0) && timeout < 5);
+
+                if (timeout == 0)
+                {
+                    getUnitsInfo();
+                }
             }
         }
 
@@ -412,15 +623,32 @@ namespace Parafia
                 if (cashNeed > attributes.Cash.Actual)
                     maxBelivers = attributes.Cash.Actual / 20;
 
-                switch (armyType)
+                int timeout = 0;
+                String content = String.Empty;
+                do
                 {
-                    case ArmyType.Attack:
-                        httpClient.SendHttpGetAndReturnResponseContent(urlAttack + maxBelivers);
-                        break;
-                    case ArmyType.Defense:
-                        httpClient.SendHttpGetAndReturnResponseContent(urlDefense + maxBelivers);
-                        break;
+                    try
+                    {
+                        switch (armyType)
+                        {
+                            case ArmyType.Attack:
+                                httpClient.SendHttpGetAndReturnResponseContent(urlAttack + maxBelivers);
+                                break;
+                            case ArmyType.Defense:
+                                httpClient.SendHttpGetAndReturnResponseContent(urlDefense + maxBelivers);
+                                break;
+                        }
+                        timeout = 0;
+                    }
+                    catch (WebException we)
+                    {
+                        worker.printLog("[ERROR] Wystąpił błąd. buyArmy!!!");
+                        worker.printLog("[ERROR] Treść błędu: " + we.Message);
+                        worker.printLog("[ERROR] Ponawiam proces.");
+                        timeout++;
+                    }
                 }
+                while ((timeout != 0) && timeout < 5);
             }
         }
 
@@ -461,53 +689,74 @@ namespace Parafia
                 }
                 if (units.hasUnits())
                 {
-                    String content = httpClient.SendHttpGetAndReturnResponseContent("http://parafia.biz/battle/attack/" + account.Id);
-                    String errorMessage = HtmlUtils.GetStringValueByXPathExpression(content, "//div[@class='flashinfo_message']/text()");
-
-                    updateAttributes(content);
-
-                    if (String.IsNullOrEmpty(errorMessage))
+                    int timeout = 0;
+                    String content = String.Empty;
+                    do
                     {
-                        String battleResult = HtmlUtils.GetStringValueByXPathExpression(content, "//div[@class='content']/h2/text()");
-                        if (!String.IsNullOrEmpty(battleResult))
+                        try
                         {
-                            if (battleResult.Equals("Wygrałeś"))
-                            {
-                                String cashText = HtmlUtils.GetStringValueByXPathExpression(content, "//table[@class='items']/tr[4]/td[2]/ul/li[1]/text()");
-                                cashText = MainUtils.removeAllNotNumberCharacters(cashText).Replace(" ", "");
-                                int cash;
-                                int.TryParse(cashText, out cash);
-                                account.Cash += cash;
-                                account.WinHits++;
-                                flag = true;
-                            }
-                            else
-                                if (battleResult.Equals("Przegrałeś"))
-                                {
-                                    account.DefeatHits++;
-                                    //flag = false;
-                                    flag = true;
-                                }
-
-                            HtmlNode defenseNode = HtmlUtils.GetSingleNodeByXPathExpression(content, "//div[@class='content']/div[@class='left ml50 wp-45']/div[2]");
-
-                            String defenseText = defenseNode.InnerText;
-                            defenseText = MainUtils.removeAllNotNumberCharactersForDouble(defenseText);
-
-                            double temp;
-
-                            double.TryParse(defenseText, out temp);
-
-                            account.Defense = temp;
+                            content = httpClient.SendHttpGetAndReturnResponseContent("http://parafia.biz/battle/attack/" + account.Id);
+                            timeout = 0;
+                        }
+                        catch (WebException we)
+                        {
+                            worker.printLog("[ERROR] Wystąpił błąd. attack!!!");
+                            worker.printLog("[ERROR] Treść błędu: " + we.Message);
+                            worker.printLog("[ERROR] Ponawiam proces.");
+                            timeout++;
                         }
                     }
-                    else
+                    while ((timeout != 0) && timeout < 5);
+
+                    if (timeout == 0)
                     {
-                        account.Cash = -1;
-                        //account.IsChecked = false;
-                        flag = true;
+                        String errorMessage = HtmlUtils.GetStringValueByXPathExpression(content, "//div[@class='flashinfo_message']/text()");
+
+                        updateAttributes(content);
+
+                        if (String.IsNullOrEmpty(errorMessage))
+                        {
+                            String battleResult = HtmlUtils.GetStringValueByXPathExpression(content, "//div[@class='content']/h2/text()");
+                            if (!String.IsNullOrEmpty(battleResult))
+                            {
+                                if (battleResult.Equals("Wygrałeś"))
+                                {
+                                    String cashText = HtmlUtils.GetStringValueByXPathExpression(content, "//table[@class='items']/tr[4]/td[2]/ul/li[1]/text()");
+                                    cashText = MainUtils.removeAllNotNumberCharacters(cashText).Replace(" ", "");
+                                    int cash;
+                                    int.TryParse(cashText, out cash);
+                                    account.Cash += cash;
+                                    account.WinHits++;
+                                    flag = true;
+                                }
+                                else
+                                    if (battleResult.Equals("Przegrałeś"))
+                                    {
+                                        account.DefeatHits++;
+                                        //flag = false;
+                                        flag = true;
+                                    }
+
+                                HtmlNode defenseNode = HtmlUtils.GetSingleNodeByXPathExpression(content, "//div[@class='content']/div[@class='left ml50 wp-45']/div[2]");
+
+                                String defenseText = defenseNode.InnerText;
+                                defenseText = MainUtils.removeAllNotNumberCharactersForDouble(defenseText);
+
+                                double temp;
+
+                                double.TryParse(defenseText, out temp);
+
+                                account.Defense = temp;
+                            }
+                        }
+                        else
+                        {
+                            account.Cash = -1;
+                            //account.IsChecked = false;
+                            flag = true;
+                        }
+                        account.LastAttack = DateTime.Now;
                     }
-                    account.LastAttack = DateTime.Now;
                 }
             }
 
@@ -520,23 +769,43 @@ namespace Parafia
             {
                 if (!String.IsNullOrEmpty(url))
                 {
-                    String content = httpClient.SendHttpGetAndReturnResponseContent(url);
-
-                    updateAttributes(content);
-                    String battleResult = HtmlUtils.GetStringValueByXPathExpression(content, "//div[@class='content']/h2/text()");
-                    if (!String.IsNullOrEmpty(battleResult) && battleResult.Equals("Wygrałeś"))
+                    int timeout = 0;
+                    String content = String.Empty;
+                    do
                     {
-                        String cashText = HtmlUtils.GetStringValueByXPathExpression(content, "//table[@class='items']/tr[4]/td[2]/ul/li[1]/text()");
-                        cashText = MainUtils.removeAllNotNumberCharacters(cashText).Replace(" ", "");
-                        int cash;
-                        if (int.TryParse(cashText, out cash))
-                            return cash;
-                        else
-                            return -1;
+                        try
+                        {
+                            content = httpClient.SendHttpGetAndReturnResponseContent(url);
+                            timeout = 0;
+                        }
+                        catch (WebException we)
+                        {
+                            worker.printLog("[ERROR] Wystąpił błąd. attack!!!");
+                            worker.printLog("[ERROR] Treść błędu: " + we.Message);
+                            worker.printLog("[ERROR] Ponawiam proces.");
+                            timeout++;
+                        }
                     }
-                    else
+                    while ((timeout != 0) && timeout < 5);
+
+                    if (timeout == 0)
                     {
-                        return -2;
+                        updateAttributes(content);
+                        String battleResult = HtmlUtils.GetStringValueByXPathExpression(content, "//div[@class='content']/h2/text()");
+                        if (!String.IsNullOrEmpty(battleResult) && battleResult.Equals("Wygrałeś"))
+                        {
+                            String cashText = HtmlUtils.GetStringValueByXPathExpression(content, "//table[@class='items']/tr[4]/td[2]/ul/li[1]/text()");
+                            cashText = MainUtils.removeAllNotNumberCharacters(cashText).Replace(" ", "");
+                            int cash;
+                            if (int.TryParse(cashText, out cash))
+                                return cash;
+                            else
+                                return -1;
+                        }
+                        else
+                        {
+                            return -2;
+                        }
                     }
                 }
             }
@@ -546,7 +815,25 @@ namespace Parafia
 
         public void getUnitsInfo()
         {
-            units = new Units.Units(httpClient.SendHttpGetAndReturnResponseContent("http://parafia.biz/units"));
+            int timeout = 0;
+
+            do
+            {
+                try
+                {
+                    units = new Units.Units(httpClient.SendHttpGetAndReturnResponseContent("http://parafia.biz/units"));
+                    timeout = 0;
+                }
+                catch (WebException we)
+                {
+                    worker.printLog("[ERROR] Wystąpił błąd. getUnitsInfo!!!");
+                    worker.printLog("[ERROR] Treść błędu: " + we.Message);
+                    worker.printLog("[ERROR] Ponawiam proces.");
+                    timeout++;
+                }
+            }
+            while ((timeout != 0) && timeout < 5);
+            
         }
 
         public void sendPilgrimage(int hours)
@@ -571,7 +858,24 @@ namespace Parafia
                 units.putIntoFormData(formData, config.ArmyType);
                 formData.addValue("holy_submit", "");
 
-                String content = httpClient.SendHttpPostAndReturnResponseContent("http://parafia.biz/units/to_holy_land", formData);
+                int timeout = 0;
+
+                do
+                {
+                    try
+                    {
+                        httpClient.SendHttpPostAndReturnResponseContent("http://parafia.biz/units/to_holy_land", formData);
+                        timeout = 0;
+                    }
+                    catch (WebException we)
+                    {
+                        worker.printLog("[ERROR] Wystąpił błąd. sendPilgrimage!!!");
+                        worker.printLog("[ERROR] Treść błędu: " + we.Message);
+                        worker.printLog("[ERROR] Ponawiam proces.");
+                        timeout++;
+                    }
+                }
+                while ((timeout != 0) && timeout < 5);
             }
         }
 

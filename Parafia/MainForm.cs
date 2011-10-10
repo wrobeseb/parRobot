@@ -11,7 +11,6 @@ using System.IO;
 
 using Parafia.Properties;
 using Parafia.Model.Quest;
-using System.IO;
 
 namespace Parafia
 {
@@ -64,7 +63,6 @@ namespace Parafia
 
             if (String.IsNullOrEmpty(config.SmtpTo))
             {
-                config.SentMail = true;
                 config.SmtpAccount = "TP\\zz_sezam";
                 config.SmtpAccountPasswd = "4esz%RDX";
                 config.SmtpEnableSSL = true;
@@ -266,6 +264,20 @@ namespace Parafia
             {
                 cbServer.Enabled = true;
                 worker.clientSemafor = false;
+            }
+        }
+
+        private void niMain_DoubleClick(object sender, EventArgs e)
+        {
+            this.Show();
+            this.WindowState = FormWindowState.Normal;
+        }
+
+        private void MainForm_Resize(object sender, EventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Minimized)
+            {
+                this.Hide();
             }
         }
     }

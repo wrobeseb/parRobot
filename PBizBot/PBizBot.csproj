@@ -62,11 +62,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\Common.Logging.Log4Net.dll</HintPath>
     </Reference>
-    <Reference Include="HtmlAgilityPack">
+    <Reference Include="HtmlAgilityPack, Version=1.4.0.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\HttpUtils\bin\Debug\HtmlAgilityPack.dll</HintPath>
-    </Reference>
-    <Reference Include="HttpUtils">
-      <HintPath>..\HttpUtils\bin\Debug\HttpUtils.dll</HintPath>
     </Reference>
     <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -195,7 +193,9 @@
     <EmbeddedResource Include="View\BotMainPanel.resx">
       <DependentUpon>BotMainPanel.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\Settings.settings">
@@ -249,6 +249,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\updown_small.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HttpUtils\HttpUtils.csproj">
+      <Project>{64161EC6-E310-4916-919D-4E5F417C488F}</Project>
+      <Name>HttpUtils</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

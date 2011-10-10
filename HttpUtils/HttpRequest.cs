@@ -37,6 +37,16 @@ namespace HttpUtils
         {
             HttpWebRequest request = DefaultPostHttpRequest(url);
             request.CookieContainer = cookieContainer;
+            request.Timeout = 20000;
+            WriteFormData(request, formData);
+            return request;
+        }
+
+        public static HttpWebRequest SendPost(String url, CookieContainer cookieContainer, FormData formData, int timeout)
+        {
+            HttpWebRequest request = DefaultPostHttpRequest(url);
+            request.CookieContainer = cookieContainer;
+            request.Timeout = timeout;
             WriteFormData(request, formData);
             return request;
         }

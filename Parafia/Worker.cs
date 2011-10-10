@@ -18,6 +18,7 @@ namespace Parafia
     using Model.Quest;
     using Model.Stat;
     using Exceptions;
+    using Enums;
 
     public class Worker
     {
@@ -61,6 +62,11 @@ namespace Parafia
         private Enums.ArmyType armyType = Enums.ArmyType.Defense;
         private bool sendPilgrimage = false;
 
+        private String username = String.Empty;
+
+        private int transferResult = 0;
+        private int transferNo = 0;
+
         public Worker(MainForm mainForm)
         {
             this.mainForm = mainForm;
@@ -80,7 +86,9 @@ namespace Parafia
                     {
                         mainForm.Invoke((Action)(delegate
                         {
-                            mainForm.Text = mainForm.Text.Replace("brak danych", config.AccountUser); ;
+                            mainForm.Text = mainForm.Text.Replace("brak danych", config.AccountUser);
+                            mainForm.niMain.Text = mainForm.niMain.Text.Replace("brak danych", config.AccountUser);
+                            username = config.AccountUser;
                         }));
                     }
                 }
@@ -367,13 +375,9 @@ namespace Parafia
 
         public class StateObject
         {
-            // Client socket.
             public Socket workSocket = null;
-            // Size of receive buffer.
             public const int BufferSize = 256;
-            // Receive buffer.
             public byte[] buffer = new byte[BufferSize];
-            // Received data string.
             public StringBuilder sb = new StringBuilder();
         }
 
@@ -395,62 +399,70 @@ namespace Parafia
         {
             try
             {
-                // Retrieve the state object and the client socket 
-                // from the asynchronous state object.
+                printLog("[TRANSFER] Otrzymałem komunikat. Proces wystawiania paczki rozpoczęty.");
                 StateObject state = (StateObject)ar.AsyncState;
                 Socket client = state.workSocket;
-                // Read data from the remote device.
                 int bytesRead = client.EndReceive(ar);
                 if (bytesRead > 0)
                 {
-                    // There might be more data, so store the data received so far.
                     state.sb.Append(Encoding.ASCII.GetString(state.buffer, 0, bytesRead));
 
                     String idTxt = String.Empty;
 
                     Parafia parafia = getInstance();
-                    if (parafia != null)
+
+                    lock (loggedInlockObject)
                     {
-                        if (!String.IsNullOrEmpty(state.sb.ToString()))
+                        if (parafia != null)
                         {
-                            lock (loggedInlockObject)
+                            if (!String.IsNullOrEmpty(state.sb.ToString()))
                             {
-                                parafia.login(); printLog("[MONEY TRANSFER REQUEST] Zalogowany do portalu...");
-                                int valueToPut = parafia.GetValueToPutOnMarket(int.Parse(state.sb.ToString())); printLog("[MONEY TRANSFER REQUEST] Relikwia zostanie wystawiona za: " + valueToPut);
+                                printLog("[TRANSFER] Treść komunikatu: " + state.sb.ToString());
+                                parafia.login(); printLog("[TRANSFER] Zalogowany do portalu...");
+                                int valueToPut = parafia.GetValueToPutOnMarket(int.Parse(state.sb.ToString())); printLog("[TRANSFER] Paczka zostanie wystawiona za: " + valueToPut);
 
                                 int vat = Convert.ToInt32(valueToPut * 0.08) + 1;
 
                                 if (parafia.attributes.Cash.Actual < vat)
+                                {
+                                    printLog("[TRANSFER] Pobieram kase z sejfu na podatek: " + vat);
                                     parafia.getFromSafe(vat + 1000);
+                                    printLog("[TRANSFER] Kasa pobrana.");
+                                }
+                                printLog("[TRANSFER] Wystawiam paczke.");
                                 if (parafia.SellGreatChange(valueToPut) == 1)
                                 {
-                                    printLog("[MONEY TRANSFER REQUEST] Relikwia została wystawiona za: " + valueToPut);
-
+                                    printLog("[TRANSFER] Paczka została wystawiona za: " + valueToPut);
                                     idTxt = valueToPut.ToString();
-                                    printLog("[MONEY TRANSFER REQUEST] Wysyłam wartosc relikwi do kupienia przez klienta: " + idTxt);
+                                    transferResult += valueToPut;
+                                    transferNo++;
+                                    showBalloonTip("Paczka wystawiona za: " + valueToPut + " C$\n" +
+                                                   "W sumie wystawiono za: " + transferResult + " C$\n" +
+                                                   "Ilość transferów: " + transferNo, "TRANSFER", ToolTipIcon.Info);
+                                    printLog("[TRANSFER] Wysyłam wartosc paczki do kupienia przez klienta: " + idTxt);
                                 }
                                 else
                                 {
-                                    printLog("[MONEY TRANSFER REQUEST] Błąd podczas wystawiania relikwi: " + valueToPut);
+                                    printLog("[TRANSFER] Błąd podczas wystawiania paczki: " + valueToPut);
                                 }
                             }
                         }
+
+                        ASCIIEncoding asen = new ASCIIEncoding();
+                        byte[] ba = asen.GetBytes(idTxt);
+                                
+                        client.Send(ba);
+                        printLog("[TRANSFER] Wartość paczki wysłana.");
+                        byte[] rc = new byte[100];
+                        printLog("[TRANSFER] Oczekuje na komunikat z ceną zwracanej paczki.");
+                        int rcLength = client.Receive(rc);
+                        printLog("[TRANSFER] Wartość paczki otrzymana.");
+                        String returnedCost = Encoding.ASCII.GetString(rc, 0, rcLength);
+                        printLog("[TRANSFER] Kupuje zwróconą paczkę: " + returnedCost);
+                        parafia.BuyReturnedGreatChange(returnedCost);
+                        printLog("[TRANSFER] Paczka zakupiona: " + returnedCost);
+                        parafia.logout(); printLog("[TRANSFER] Wylogowany z portalu...");
                     }
-
-                    ASCIIEncoding asen = new ASCIIEncoding();
-                    byte[] ba = asen.GetBytes(idTxt);
-
-                    client.Send(ba);
-
-                    byte[] rc = new byte[100];
-
-                    int rcLength = client.Receive(rc);
-
-                    String returnedCost = Encoding.ASCII.GetString(rc, 0, rcLength);
-
-                    parafia.BuyReturnedGreatChange(returnedCost);
-
-                    parafia.logout();
 
                     client.Close();
                 }
@@ -488,40 +500,43 @@ namespace Parafia
                     long interval = (nextLoginDt.Ticks - DateTime.Now.Ticks) / 1000000;
                     if (interval == 0)
                     {
-                      /*  Boolean timeoutFlag = false;*/
+                        Boolean timeoutFlag = false;
                         Boolean overflowFlag = false;
                         int result = 0;
 
-                        /*lastLoginDt = nextLoginDt;
+                        lastLoginDt = nextLoginDt;
                         hitCount++;
 
                         do
                         {
                             timeoutFlag = false;
                             try
-                            {*/
+                            {
                                 Parafia parafia = getInstance();
                                 if (parafia != null)
                                 {
                                     lock (loggedInlockObject)
                                     {
                                         parafia.login(); printLog("Zalogowany do portalu...");
-                                       // parafia.buyArmy(armyType); printLog("Wojska zakupione. Typ: " + armyType);
-                                       // parafia.getUnitsInfo(); printLog("Informacje o jednostkach zostały pobrane.");
+                                        parafia.buyArmy(armyType); printLog("Wojska zakupione. Typ: " + armyType);
+                                        parafia.getUnitsInfo(); printLog("Informacje o jednostkach zostały pobrane.");
 
-                                        //parafia.takeFromProperty(); printLog("Dewocjonalnik...");
+                                        if (!clientSemafor)
+                                        {
+                                            parafia.takeFromProperty(); printLog("Dewocjonalnik...");
+                                        }
+
                                         parafia.putIntoSafe(); printLog("Pakuje do sejfu...");
 
-                                       /* if (attackSemafor)
+                                        if (attackSemafor)
                                         {
                                             do
                                             {
                                                 timeoutFlag = false;
                                                 try
-                                                {*/
-                                                   // overflowFlag =
-                    attackJob(parafia, ref result);
-                                               /* }
+                                                {
+                                                    overflowFlag = attackJob(parafia, ref result);
+                                                }
                                                 catch
                                                 {
                                                     printLog("Wystąpił timeout... ponawiam!");
@@ -549,9 +564,9 @@ namespace Parafia
                                         }
 
                                         nextLoginDt = getNextLoginTime();
-                                        */
+                                        
                                         parafia.logout(); printLog("Pomyślne wylogowanie z portalu.");
-                                        /*
+                                        
                                         mainForm.Invoke((Action)(delegate
                                         {
                                             mainForm.tbAttackCash.Text = new StringBuilder().Append(int.Parse(mainForm.tbAttackCash.Text) + result).ToString();
@@ -569,9 +584,9 @@ namespace Parafia
                                             mainForm.tbMoher.Text = parafia.units.unit5.ToString();
                                             mainForm.tbGospo.Text = parafia.units.unit6.ToString();
                                         }));
-                                    */
+                                   
                                     }
-                                   /* if (sendMail)
+                                    if (sendMail)
                                     {
                                         StringBuilder builder = new StringBuilder();
                                         if (attackSemafor)
@@ -585,9 +600,9 @@ namespace Parafia
                                         builder.Append("Zakupy skończone... następne o godzinie: " + this.nextLoginDt.ToString("yyyy-MM-dd HH:mm:ss"));
                                         //MailService.sendMail(builder.ToString());
                                         MailService.sendMail(parafia.attributes, parafia.units, nextLoginDt, result, overflowFlag);
-                                    }*/
+                                    }
                                 }
-                        /* }
+                         }
                          catch
                          {
                              printLog("Wystąpił timeout... ponawiam!");
@@ -595,7 +610,7 @@ namespace Parafia
                              timeoutFlag = true;
                          }
                      }
-                     while (timeoutFlag && (timeouts < 5));*/
+                     while (timeoutFlag && (timeouts < 5));
                     }
                 }
                 Thread.Sleep(100);
@@ -710,7 +725,7 @@ namespace Parafia
         {
             bool flag = false;
 
-            /*do
+            do
             {
                 if (parafia.attributes.Cash.Actual != parafia.attributes.Cash.Max)
                 {
@@ -759,13 +774,12 @@ namespace Parafia
                 {
                     flag = true;
                     break;
-                }*/
+                }
 
                 if (clientSemafor)
                 {
                     String relicCost = String.Empty;
-                    if (true)
-                    //if (parafia.attributes.Safe.Actual == parafia.attributes.Safe.Max)
+                    if (parafia.attributes.Safe.Actual == parafia.attributes.Safe.Max)
                     {
                         int value = parafia.attributes.Safe.Actual;
 
@@ -778,56 +792,58 @@ namespace Parafia
 
                         TcpClient client = SocketUtils.ConnectToSrv();
 
+                        printLog("[TRANSFER] Wysyłanie wiadomości do serwera o wartaści paczki.");
                         relicCost = SocketUtils.RequestRelicID(value, client);
-
+                        printLog("[TRANSFER] Wiadomość przyjęta, paczka została wystawiona przez serwer i jest gotowa do zakupienia.");
                         if (!String.IsNullOrEmpty(relicCost))
                         {
                             int cost = int.Parse(relicCost);
                             if (cost != 0) {
-
-                                parafia.getFromSafe(value);
+                                parafia.getFromSafe(value); printLog("[TRANSFER] Kasa na pake pobrana z sejfu: " + value);
 
                                 int id = 0;
 
                                 if (parafia.countGreatChangeInMarket(cost, ref id) == 1)
                                 {
+                                    printLog("[TRANSFER] Warunki konieczne do zakupu paczki spełnione. Przechodze do procesu zakupu.");
                                     if (parafia.BuyGreatChangeById(id) == 1)
                                     {
-                                        printLog("[MONEY TRANSFER REQUEST] Transfer wykonany!");
+                                        printLog("[TRANSFER] Transfer wykonany!");
                                         parafia.hideGreatChange();
-
+                                        printLog("[TRANSFER] Relikwia schowana do sejfu.");
+                                        printLog("[TRANSFER] Rozpoczynam proces zwrotu paczki do serwera.");
                                         string returnedRelicCost = parafia.ReturnGreatChange();
-
+                                        printLog("[TRANSFER] Wysyłam koszt paczki do serwera: " + returnedRelicCost);
                                         SocketUtils.SendGreatChangeReturningCost(returnedRelicCost, client);
+                                        printLog("[TRANSFER] Komunikat został wysłany.");
+                                        parafia.putIntoSafe();
                                     }
                                     else
                                     {
                                         parafia.putIntoSafe();
-                                        printLog("[MONEY TRANSFER REQUEST] Błąd podczas transferu! Nie wykonany!!!");
+                                        printLog("[TRANSFER] Błąd podczas transferu! Nie wykonany!!!");
                                     }
                                 }
                                 else
                                 {
                                     parafia.putIntoSafe();
-                                    printLog("[MONEY TRANSFER REQUEST] Znaleziono więcej niż jedno relikwie/bądź wcale na rynku!!!");
+                                    printLog("[TRANSFER] Znaleziono więcej niż jedno relikwie/bądź wcale na rynku!!!");
                                 }
                             }
                         }
-
-                        parafia.logout();
 
                         SocketUtils.CloseConnectToSrv(client);
                     }
                 }
 
-            /*}
+            }
             while (parafia.attributes.Energy.Actual > 10 && parafia.attributes.Health.Actual > 10);
-            printLog("Zakończona atakowanie... resultat: " + result);*/
+            printLog("Zakończona atakowanie... resultat: " + result);
 
             return flag;
         }
 
-        private void printLog(String log)
+        public void printLog(String log)
         {
             mainForm.Invoke((Action)(delegate 
             {
@@ -838,6 +854,13 @@ namespace Parafia
             }));
         }
 
+        public void showBalloonTip(String body, String title, ToolTipIcon toolTipIcon)
+        {
+            mainForm.Invoke((Action)(delegate
+            {
+                mainForm.niMain.ShowBalloonTip(0, "User: " + username + ", Proces: [" + title + "]", "Data: " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "\n" + body, toolTipIcon);
+            }));
+        }
 
         private DateTime getNextLoginTime()
         {
@@ -1039,7 +1062,7 @@ namespace Parafia
                     sendMail = config.SentMail;
                     sendPilgrimage = config.SendPilgrimage;
                     armyType = config.ArmyType;
-                    Parafia parafia = new Parafia();
+                    Parafia parafia = new Parafia(this);
                     parafia.initConnection(config);
                     if (obj1 != null)
                     {

@@ -39,13 +39,19 @@ namespace HttpUtils
         public HttpWebResponse HttpPost(String url, FormData formData, NameValueCollection headers)
         {
             HttpWebRequest request = HttpRequest.SendPost(url, cookieContainer, formData, headers);
-            request.CookieContainer = cookieContainer;
+            //request.CookieContainer = cookieContainer;
             return (HttpWebResponse)request.GetResponse();
         }
 
         public HttpWebResponse HttpPost(String url, FormData formData)
         {
             HttpWebRequest request = HttpRequest.SendPost(url, cookieContainer, formData);
+            return (HttpWebResponse)request.GetResponse();
+        }
+
+        public HttpWebResponse HttpPost(String url, FormData formData, int timeout)
+        {
+            HttpWebRequest request = HttpRequest.SendPost(url, cookieContainer, formData, timeout);
             return (HttpWebResponse)request.GetResponse();
         }
 
@@ -60,6 +66,11 @@ namespace HttpUtils
             return HtmlUtils.GetContentForResponse(HttpPost(url, formData));
         }
 
+        public String SendHttpPostAndReturnResponseContent(String url, FormData formData, int timeout)
+        {
+            return HtmlUtils.GetContentForResponse(HttpPost(url, formData, timeout));
+        }
+
         public String SendHttpPostAndReturnResponseContent(String url, FormData formData, NameValueCollection headers)
         {
             return HtmlUtils.GetContentForResponse(HttpPost(url, formData, headers));
@@ -69,6 +80,7 @@ namespace HttpUtils
         {
             HttpWebRequest request = HttpRequest.SendGet(url);
             request.CookieContainer = cookieContainer;
+            request.Timeout = 20000;
             return (HttpWebResponse)request.GetResponse();
         }
 
@@ -87,7 +99,7 @@ namespace HttpUtils
 
         public String SendHttpGetAndReturnResponseContent(String url, int timeout)
         {
-            return HtmlUtils.GetContentForResponse(HttpGet(url));
+            return HtmlUtils.GetContentForResponse(HttpGet(url, timeout));
         }
 
         

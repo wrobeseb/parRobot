@@ -123,7 +123,32 @@
   <metadata name="sfdStatsFile.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>140, 17</value>
   </metadata>
+  <metadata name="niMain.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>248, 17</value>
+  </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="niMain.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        AAABAAIAEBAQAAAABAAoAQAAJgAAACAgEAAAAAQA6AIAAE4BAAAoAAAAEAAAACAAAAABAAQAAAAAAIAA
+        AAAAAAAAAAAAABAAAAAQAAAAAAAAAAAAgAAAgAAAAICAAIAAAACAAIAAgIAAAICAgADAwMAAAAD/AAD/
+        AAAA//8A/wAAAP8A/wD//wAA////AER0RERER0REVXRERERHRERFdERHdFdERFSEREj/hEREdHhEf/90
+        RERFR4eP+ERHd0RUR//3RHd3VEVH//+Hd3d0R0j///93d4RHX/9X/4d3h0d/+Ff/h3dIh4//iP93d0X4
+        j///+Hd3eI+IiIh3d3eP//+Ih3d3d/////+Hd3d3AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACgAAAAgAAAAQAAAAAEABAAAAAAAAAIAAAAA
+        AAAAAAAAEAAAABAAAAAAAAAAAACAAACAAAAAgIAAgAAAAIAAgACAgAAAgICAAMDAwAAAAP8AAP8AAAD/
+        /wD/AAAA/wD/AP//AAD///8ARER3RERERERERER3REREREREd0REREREREREd0RERERVVXdERERERERE
+        RHdEREREVVV3RERERERERER3RERERERVd0RERER3d0RVd0REREREVXdEREREd3dEVXdEREREVUSIRERE
+        RIj//4hERERERFVEiERERESI//+IRERERER3RHeIRER3////d0REREREd0R3iEREd////3dERERERERV
+        RHeId4j//4hERER3d3dEVUR3iHeI//+IREREd3d3RERVRER3////d0REd3d3d0REVUREd////3dERHd3
+        d3dVRERVRHf/////iHd3d3d3VUREVUR3/////4h3d3d3d3dERHdEiP///////3d3d3d3RER3RIj/////
+        //93d3d3iEREd1X///9Vd///iHd3d4hERHdV////VXf//4h3d3eId0R3d///iFV3//+Id3d3iHdEd3f/
+        /4hVd///iHd3d0SIiHeI////iIj//3d3d3dEiIh3iP///4iI//93d3d3RFX/iIj///////+Id3d3d0RV
+        /4iI////////iHd3d3d3iIj/iIiIiIiId3d3d3d3d4iI/4iIiIiIiHd3d3d3d4j//////4iIiHd3d3d3
+        d3eI//////+IiIh3d3d3d3d3//////////+Id3d3d3d3d///////////iHd3d3d3d3cAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==
+</value>
+  </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAIAEBAQAAAABAAoAQAAJgAAACAgEAAAAAQA6AIAAE4BAAAoAAAAEAAAACAAAAABAAQAAAAAAIAA

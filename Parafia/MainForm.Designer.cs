@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.btStart = new System.Windows.Forms.Button();
             this.btStop = new System.Windows.Forms.Button();
@@ -45,6 +46,9 @@
             this.bConfig = new System.Windows.Forms.Button();
             this.tbControl = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.cbClient = new System.Windows.Forms.CheckBox();
+            this.cbServer = new System.Windows.Forms.CheckBox();
+            this.cbHoldSession = new System.Windows.Forms.CheckBox();
             this.pbStatDownload = new System.Windows.Forms.ProgressBar();
             this.btStatDownload = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -88,9 +92,7 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.ofdAttackFile = new System.Windows.Forms.OpenFileDialog();
             this.sfdStatsFile = new System.Windows.Forms.SaveFileDialog();
-            this.cbHoldSession = new System.Windows.Forms.CheckBox();
-            this.cbServer = new System.Windows.Forms.CheckBox();
-            this.cbClient = new System.Windows.Forms.CheckBox();
+            this.niMain = new System.Windows.Forms.NotifyIcon(this.components);
             this.groupBox1.SuspendLayout();
             this.tbControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -297,6 +299,39 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Automat";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // cbClient
+            // 
+            this.cbClient.AutoSize = true;
+            this.cbClient.Location = new System.Drawing.Point(753, 252);
+            this.cbClient.Name = "cbClient";
+            this.cbClient.Size = new System.Drawing.Size(52, 17);
+            this.cbClient.TabIndex = 28;
+            this.cbClient.Text = "Klient";
+            this.cbClient.UseVisualStyleBackColor = true;
+            this.cbClient.CheckedChanged += new System.EventHandler(this.cbClient_CheckedChanged);
+            // 
+            // cbServer
+            // 
+            this.cbServer.AutoSize = true;
+            this.cbServer.Location = new System.Drawing.Point(688, 252);
+            this.cbServer.Name = "cbServer";
+            this.cbServer.Size = new System.Drawing.Size(59, 17);
+            this.cbServer.TabIndex = 27;
+            this.cbServer.Text = "Serwer";
+            this.cbServer.UseVisualStyleBackColor = true;
+            this.cbServer.CheckedChanged += new System.EventHandler(this.cbServer_CheckedChanged);
+            // 
+            // cbHoldSession
+            // 
+            this.cbHoldSession.AutoSize = true;
+            this.cbHoldSession.Location = new System.Drawing.Point(688, 232);
+            this.cbHoldSession.Name = "cbHoldSession";
+            this.cbHoldSession.Size = new System.Drawing.Size(93, 17);
+            this.cbHoldSession.TabIndex = 26;
+            this.cbHoldSession.Text = "Utrzymuj sesje";
+            this.cbHoldSession.UseVisualStyleBackColor = true;
+            this.cbHoldSession.CheckedChanged += new System.EventHandler(this.cbHoldSession_CheckedChanged);
             // 
             // pbStatDownload
             // 
@@ -714,38 +749,12 @@
             this.sfdStatsFile.FileName = "staty.txt";
             this.sfdStatsFile.Filter = "Text files|*.txt|All files|*.*";
             // 
-            // cbHoldSession
+            // niMain
             // 
-            this.cbHoldSession.AutoSize = true;
-            this.cbHoldSession.Location = new System.Drawing.Point(688, 232);
-            this.cbHoldSession.Name = "cbHoldSession";
-            this.cbHoldSession.Size = new System.Drawing.Size(93, 17);
-            this.cbHoldSession.TabIndex = 26;
-            this.cbHoldSession.Text = "Utrzymuj sesje";
-            this.cbHoldSession.UseVisualStyleBackColor = true;
-            this.cbHoldSession.CheckedChanged += new System.EventHandler(this.cbHoldSession_CheckedChanged);
-            // 
-            // cbServer
-            // 
-            this.cbServer.AutoSize = true;
-            this.cbServer.Location = new System.Drawing.Point(688, 252);
-            this.cbServer.Name = "cbServer";
-            this.cbServer.Size = new System.Drawing.Size(59, 17);
-            this.cbServer.TabIndex = 27;
-            this.cbServer.Text = "Serwer";
-            this.cbServer.UseVisualStyleBackColor = true;
-            this.cbServer.CheckedChanged += new System.EventHandler(this.cbServer_CheckedChanged);
-            // 
-            // cbClient
-            // 
-            this.cbClient.AutoSize = true;
-            this.cbClient.Location = new System.Drawing.Point(753, 252);
-            this.cbClient.Name = "cbClient";
-            this.cbClient.Size = new System.Drawing.Size(52, 17);
-            this.cbClient.TabIndex = 28;
-            this.cbClient.Text = "Klient";
-            this.cbClient.UseVisualStyleBackColor = true;
-            this.cbClient.CheckedChanged += new System.EventHandler(this.cbClient_CheckedChanged);
+            this.niMain.Icon = ((System.Drawing.Icon)(resources.GetObject("niMain.Icon")));
+            this.niMain.Text = "Parafia (brak danych)";
+            this.niMain.Visible = true;
+            this.niMain.DoubleClick += new System.EventHandler(this.niMain_DoubleClick);
             // 
             // MainForm
             // 
@@ -757,9 +766,11 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "MainForm";
+            this.ShowInTaskbar = false;
             this.Text = "Parafia (brak danych)";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
+            this.Resize += new System.EventHandler(this.MainForm_Resize);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.tbControl.ResumeLayout(false);
@@ -841,6 +852,7 @@
         private System.Windows.Forms.CheckBox cbHoldSession;
         private System.Windows.Forms.CheckBox cbClient;
         private System.Windows.Forms.CheckBox cbServer;
+        public System.Windows.Forms.NotifyIcon niMain;
     }
 }
 
