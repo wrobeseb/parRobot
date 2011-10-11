@@ -30,6 +30,8 @@ namespace Parafia
         public Units.Units units;
         public String csrf;
 
+        public int riseSafeCost;
+
         public  QuestContainer questContainer;
 
         private List<Quest> newQuests;
@@ -236,6 +238,10 @@ namespace Parafia
                             return 1;
                         }
                     }
+                    else
+                    {
+                        worker.printLog("[ERROR] Znaleziono więcej niż jedną lub wcale cudownych zamian na rynku!!!");
+                    }
                 }
             }
             return 0;
@@ -432,6 +438,17 @@ namespace Parafia
             return 0;
         }
 
+        public void updateRiseSafeCost(String content)
+        {
+            String contentPart = HtmlUtils.GetStringValueByXPathExpression(content, "//p[@class='mt10']/span[1]/span/text()");
+
+            if (!String.IsNullOrEmpty(contentPart))
+            {
+                String costTxt = MainUtils.removeAllNotNumberCharacters(contentPart);
+                int.TryParse(costTxt, out riseSafeCost);
+            }
+        }
+
         public void putIntoSafe()
         {
             int maxValue = attributes.Safe.Max - attributes.Safe.Actual;
@@ -454,6 +471,9 @@ namespace Parafia
                     try
                     {
                         String responseContent = httpClient.SendHttpPostAndReturnResponseContent("http://parafia.biz/buildings/safe", formData);
+
+                        updateRiseSafeCost(responseContent);
+
                         attributes = new Attributes.Attributes(responseContent);
                         timeout = 0;
                     }
@@ -529,30 +549,51 @@ namespace Parafia
 
             if (page != 0)
             {
-                String content = httpClient.SendHttpGetAndReturnResponseContent("http://parafia.biz/stats/battle/all/page/" + page);
-                HtmlNodeCollection collection = HtmlUtils.GetNodesCollectionByXPathExpression(content, "//table[@class='items']/tbody/tr");
-
-                foreach (HtmlNode node in collection)
+                int timeout = 0;
+                String content = String.Empty;
+                do
                 {
-                    Account account = new Account();
-
-                    String idText = node.GetAttributeValue("id", null);
-                    if (!String.IsNullOrEmpty(idText))
+                    try
                     {
-                        account.Id = int.Parse(MainUtils.removeAllNotNumberCharacters(idText));
+                        content = httpClient.SendHttpGetAndReturnResponseContent("http://parafia.biz/stats/battle/all/page/" + page);
+                        timeout = 0;
                     }
+                    catch (WebException we)
+                    {
+                        worker.printLog("[ERROR] Wystąpił błąd. getFromSafe!!!");
+                        worker.printLog("[ERROR] Treść błędu: " + we.Message);
+                        worker.printLog("[ERROR] Ponawiam proces.");
+                        timeout++;
+                    }
+                }
+                while ((timeout != 0) && timeout < 5);
 
-                    String html = node.InnerHtml;
+                if (timeout == 0)
+                {
+                    HtmlNodeCollection collection = HtmlUtils.GetNodesCollectionByXPathExpression(content, "//table[@class='items']/tbody/tr");
 
-                    account.Lp = HtmlUtils.GetIntValueByXPathExpression(html, "//td[1]/text()");
-                    account.UserName = HtmlUtils.GetStringValueByXPathExpression(html, "//td[2]/div[2]/strong/text()");
-                    account.GroupName = HtmlUtils.GetSingleNodeByXPathExpression(html, "//td[2]/div[2]").InnerHtml.Split('\n')[3].Trim();
-                    account.Exp = HtmlUtils.GetIntValueByXPathExpression(html, "//td[3]/text()");
-                    account.Battles = HtmlUtils.GetIntValueByXPathExpression(html, "//td[4]/text()");
-                    account.Win = HtmlUtils.GetIntValueByXPathExpression(html, "//td[5]/text()");
-                    account.Relic = HtmlUtils.GetIntValueByXPathExpression(html, "//td[6]/text()");
+                    foreach (HtmlNode node in collection)
+                    {
+                        Account account = new Account();
 
-                    accounts.Add(account);
+                        String idText = node.GetAttributeValue("id", null);
+                        if (!String.IsNullOrEmpty(idText))
+                        {
+                            account.Id = int.Parse(MainUtils.removeAllNotNumberCharacters(idText));
+                        }
+
+                        String html = node.InnerHtml;
+
+                        account.Lp = HtmlUtils.GetIntValueByXPathExpression(html, "//td[1]/text()");
+                        account.UserName = HtmlUtils.GetStringValueByXPathExpression(html, "//td[2]/div[2]/strong/text()");
+                        account.GroupName = HtmlUtils.GetSingleNodeByXPathExpression(html, "//td[2]/div[2]").InnerHtml.Split('\n')[3].Trim();
+                        account.Exp = HtmlUtils.GetIntValueByXPathExpression(html, "//td[3]/text()");
+                        account.Battles = HtmlUtils.GetIntValueByXPathExpression(html, "//td[4]/text()");
+                        account.Win = HtmlUtils.GetIntValueByXPathExpression(html, "//td[5]/text()");
+                        account.Relic = HtmlUtils.GetIntValueByXPathExpression(html, "//td[6]/text()");
+
+                        accounts.Add(account);
+                    }
                 }
             }
 
@@ -599,6 +640,20 @@ namespace Parafia
                     getUnitsInfo();
                 }
             }
+        }
+
+        public void getFromBank(int minValue)
+        {
+            String content = httpClient.SendHttpGetAndReturnResponseContent("http://parafia.biz/bank");
+
+            
+        }
+
+        public void riseSafe()
+        {
+            String content = httpClient.SendHttpGetAndReturnResponseContent("http://parafia.biz/buildings/raise_safe");
+
+
         }
 
         public void buyArmy(ArmyType armyType)

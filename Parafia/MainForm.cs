@@ -271,6 +271,7 @@ namespace Parafia
         {
             this.Show();
             this.WindowState = FormWindowState.Normal;
+            this.BringToFront();
         }
 
         private void MainForm_Resize(object sender, EventArgs e)
@@ -279,6 +280,16 @@ namespace Parafia
             {
                 this.Hide();
             }
+        }
+
+        private void tssSafe_Click(object sender, EventArgs e)
+        {
+            tssSafe.ForeColor = Color.Black;
+        }
+
+        private void tssCash_Click(object sender, EventArgs e)
+        {
+            tssCash.ForeColor = Color.Black;
         }
     }
 }

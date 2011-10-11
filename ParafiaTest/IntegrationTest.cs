@@ -8,20 +8,20 @@ using Parafia;
 
 namespace ParafiaTest
 {
-    [TestClass]
+    //[TestClass]
     public class IntegrationTest
     {
         //[TestMethod]
         public void TestMethod()
         {
-            WebProxy proxy = new WebProxy("126.179.0.200", 3128);
-            proxy.Credentials = new NetworkCredential("wrobese2", "#Sierpien2011#", "TP");
+            //WebProxy proxy = new WebProxy("126.179.0.200", 3128);
+            //proxy.Credentials = new NetworkCredential("wrobese2", "#Sierpien2011#", "TP");
 
-            Parafia.Parafia parafia = new Parafia.Parafia();
+            //Parafia.Parafia parafia = new Parafia.Parafia();
 
             //parafia.initConnection(proxy);
            // parafia.login("sairo", "sairoroan");
-            parafia.getQuests();
+            //parafia.getQuests();
 
             //Parafia.Parafia.buyArmy(Parafia.Enums.ArmyType.Defense);
             //Parafia.Parafia.getUnitsInfo();

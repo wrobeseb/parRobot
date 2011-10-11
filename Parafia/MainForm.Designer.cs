@@ -69,20 +69,6 @@
             this.chWinsNo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chLoseNo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chLastAttackDt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.tbGospo = new System.Windows.Forms.TextBox();
-            this.tbMoher = new System.Windows.Forms.TextBox();
-            this.tbDewot = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.tbOrgan = new System.Windows.Forms.TextBox();
-            this.tbLektor = new System.Windows.Forms.TextBox();
-            this.tbMinistr = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label5 = new System.Windows.Forms.Label();
             this.tbDefense = new System.Windows.Forms.TextBox();
@@ -93,13 +79,21 @@
             this.ofdAttackFile = new System.Windows.Forms.OpenFileDialog();
             this.sfdStatsFile = new System.Windows.Forms.SaveFileDialog();
             this.niMain = new System.Windows.Forms.NotifyIcon(this.components);
+            this.ssMain = new System.Windows.Forms.StatusStrip();
+            this.tssTransferedCash = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tssTransferNo = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tssCash = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tssSafe = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tssTransferedCashValue = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tssTransferNoValue = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tssCashValue = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tssSafeValue = new System.Windows.Forms.ToolStripStatusLabel();
             this.groupBox1.SuspendLayout();
             this.tbControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            this.groupBox6.SuspendLayout();
-            this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.ssMain.SuspendLayout();
             this.SuspendLayout();
             // 
             // btStart
@@ -284,8 +278,6 @@
             this.tabPage1.Controls.Add(this.btAttackON);
             this.tabPage1.Controls.Add(this.btAttackOFF);
             this.tabPage1.Controls.Add(this.lvAttackList);
-            this.tabPage1.Controls.Add(this.groupBox6);
-            this.tabPage1.Controls.Add(this.groupBox4);
             this.tabPage1.Controls.Add(this.groupBox3);
             this.tabPage1.Controls.Add(this.btStop);
             this.tabPage1.Controls.Add(this.lbLog);
@@ -335,9 +327,9 @@
             // 
             // pbStatDownload
             // 
-            this.pbStatDownload.Location = new System.Drawing.Point(242, 202);
+            this.pbStatDownload.Location = new System.Drawing.Point(6, 202);
             this.pbStatDownload.Name = "pbStatDownload";
-            this.pbStatDownload.Size = new System.Drawing.Size(439, 23);
+            this.pbStatDownload.Size = new System.Drawing.Size(675, 23);
             this.pbStatDownload.Step = 1;
             this.pbStatDownload.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.pbStatDownload.TabIndex = 25;
@@ -515,154 +507,6 @@
             this.chLastAttackDt.Text = "2011-01-01 11-11-11";
             this.chLastAttackDt.Width = 113;
             // 
-            // groupBox6
-            // 
-            this.groupBox6.Controls.Add(this.tbGospo);
-            this.groupBox6.Controls.Add(this.tbMoher);
-            this.groupBox6.Controls.Add(this.tbDewot);
-            this.groupBox6.Controls.Add(this.label12);
-            this.groupBox6.Controls.Add(this.label11);
-            this.groupBox6.Controls.Add(this.label10);
-            this.groupBox6.Location = new System.Drawing.Point(6, 283);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(230, 81);
-            this.groupBox6.TabIndex = 10;
-            this.groupBox6.TabStop = false;
-            // 
-            // tbGospo
-            // 
-            this.tbGospo.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbGospo.Location = new System.Drawing.Point(124, 56);
-            this.tbGospo.Name = "tbGospo";
-            this.tbGospo.ReadOnly = true;
-            this.tbGospo.Size = new System.Drawing.Size(100, 13);
-            this.tbGospo.TabIndex = 10;
-            this.tbGospo.TabStop = false;
-            this.tbGospo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // tbMoher
-            // 
-            this.tbMoher.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbMoher.Location = new System.Drawing.Point(124, 36);
-            this.tbMoher.Name = "tbMoher";
-            this.tbMoher.ReadOnly = true;
-            this.tbMoher.Size = new System.Drawing.Size(100, 13);
-            this.tbMoher.TabIndex = 9;
-            this.tbMoher.TabStop = false;
-            this.tbMoher.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // tbDewot
-            // 
-            this.tbDewot.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbDewot.Location = new System.Drawing.Point(124, 16);
-            this.tbDewot.Name = "tbDewot";
-            this.tbDewot.ReadOnly = true;
-            this.tbDewot.Size = new System.Drawing.Size(100, 13);
-            this.tbDewot.TabIndex = 8;
-            this.tbDewot.TabStop = false;
-            this.tbDewot.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(6, 56);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(102, 13);
-            this.label12.TabIndex = 2;
-            this.label12.Text = "Gospo. Proboszcza:";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(6, 36);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(96, 13);
-            this.label11.TabIndex = 1;
-            this.label11.Text = "Babcie Moherowe:";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(6, 16);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(77, 13);
-            this.label10.TabIndex = 0;
-            this.label10.Text = "Małe Dewotki:";
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.tbOrgan);
-            this.groupBox4.Controls.Add(this.tbLektor);
-            this.groupBox4.Controls.Add(this.tbMinistr);
-            this.groupBox4.Controls.Add(this.label9);
-            this.groupBox4.Controls.Add(this.label8);
-            this.groupBox4.Controls.Add(this.label7);
-            this.groupBox4.Location = new System.Drawing.Point(6, 196);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(230, 81);
-            this.groupBox4.TabIndex = 9;
-            this.groupBox4.TabStop = false;
-            // 
-            // tbOrgan
-            // 
-            this.tbOrgan.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbOrgan.Location = new System.Drawing.Point(124, 56);
-            this.tbOrgan.Name = "tbOrgan";
-            this.tbOrgan.ReadOnly = true;
-            this.tbOrgan.Size = new System.Drawing.Size(100, 13);
-            this.tbOrgan.TabIndex = 7;
-            this.tbOrgan.TabStop = false;
-            this.tbOrgan.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // tbLektor
-            // 
-            this.tbLektor.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbLektor.Location = new System.Drawing.Point(124, 36);
-            this.tbLektor.Name = "tbLektor";
-            this.tbLektor.ReadOnly = true;
-            this.tbLektor.Size = new System.Drawing.Size(100, 13);
-            this.tbLektor.TabIndex = 6;
-            this.tbLektor.TabStop = false;
-            this.tbLektor.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // tbMinistr
-            // 
-            this.tbMinistr.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbMinistr.Location = new System.Drawing.Point(124, 16);
-            this.tbMinistr.Name = "tbMinistr";
-            this.tbMinistr.ReadOnly = true;
-            this.tbMinistr.Size = new System.Drawing.Size(100, 13);
-            this.tbMinistr.TabIndex = 5;
-            this.tbMinistr.TabStop = false;
-            this.tbMinistr.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(6, 56);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(54, 13);
-            this.label9.TabIndex = 4;
-            this.label9.Text = "Organiści:";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(6, 36);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(50, 13);
-            this.label8.TabIndex = 3;
-            this.label8.Text = "Lektorzy:";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(6, 16);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(60, 13);
-            this.label7.TabIndex = 2;
-            this.label7.Text = "Ministranci:";
-            // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.label5);
@@ -721,11 +565,11 @@
             this.lbLog.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.lbLog.Cursor = System.Windows.Forms.Cursors.Default;
             this.lbLog.FormattingEnabled = true;
-            this.lbLog.Location = new System.Drawing.Point(242, 232);
+            this.lbLog.Location = new System.Drawing.Point(6, 232);
             this.lbLog.Name = "lbLog";
             this.lbLog.ScrollAlwaysVisible = true;
             this.lbLog.SelectionMode = System.Windows.Forms.SelectionMode.None;
-            this.lbLog.Size = new System.Drawing.Size(439, 130);
+            this.lbLog.Size = new System.Drawing.Size(675, 130);
             this.lbLog.TabIndex = 0;
             this.lbLog.TabStop = false;
             // 
@@ -756,11 +600,95 @@
             this.niMain.Visible = true;
             this.niMain.DoubleClick += new System.EventHandler(this.niMain_DoubleClick);
             // 
+            // ssMain
+            // 
+            this.ssMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tssTransferedCash,
+            this.tssTransferedCashValue,
+            this.tssTransferNo,
+            this.tssTransferNoValue,
+            this.tssCash,
+            this.tssCashValue,
+            this.tssSafe,
+            this.tssSafeValue});
+            this.ssMain.Location = new System.Drawing.Point(0, 404);
+            this.ssMain.Name = "ssMain";
+            this.ssMain.Size = new System.Drawing.Size(828, 22);
+            this.ssMain.SizingGrip = false;
+            this.ssMain.TabIndex = 11;
+            // 
+            // tssTransferedCash
+            // 
+            this.tssTransferedCash.Name = "tssTransferedCash";
+            this.tssTransferedCash.Size = new System.Drawing.Size(101, 17);
+            this.tssTransferedCash.Text = "Kasa z transferów: ";
+            this.tssTransferedCash.Visible = false;
+            // 
+            // tssTransferNo
+            // 
+            this.tssTransferNo.Name = "tssTransferNo";
+            this.tssTransferNo.Size = new System.Drawing.Size(92, 17);
+            this.tssTransferNo.Text = "Ilość transferów: ";
+            this.tssTransferNo.Visible = false;
+            // 
+            // tssCash
+            // 
+            this.tssCash.Name = "tssCash";
+            this.tssCash.Size = new System.Drawing.Size(37, 17);
+            this.tssCash.Text = "Kasa: ";
+            this.tssCash.Visible = false;
+            this.tssCash.Click += new System.EventHandler(this.tssCash_Click);
+            // 
+            // tssSafe
+            // 
+            this.tssSafe.Name = "tssSafe";
+            this.tssSafe.Size = new System.Drawing.Size(33, 17);
+            this.tssSafe.Text = "Sejf: ";
+            this.tssSafe.Visible = false;
+            this.tssSafe.Click += new System.EventHandler(this.tssSafe_Click);
+            // 
+            // tssTransferedCashValue
+            // 
+            this.tssTransferedCashValue.AutoSize = false;
+            this.tssTransferedCashValue.Margin = new System.Windows.Forms.Padding(0, 3, 5, 2);
+            this.tssTransferedCashValue.Name = "tssTransferedCashValue";
+            this.tssTransferedCashValue.Size = new System.Drawing.Size(80, 17);
+            this.tssTransferedCashValue.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.tssTransferedCashValue.Visible = false;
+            // 
+            // tssTransferNoValue
+            // 
+            this.tssTransferNoValue.AutoSize = false;
+            this.tssTransferNoValue.Margin = new System.Windows.Forms.Padding(0, 3, 5, 2);
+            this.tssTransferNoValue.Name = "tssTransferNoValue";
+            this.tssTransferNoValue.Size = new System.Drawing.Size(30, 17);
+            this.tssTransferNoValue.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.tssTransferNoValue.Visible = false;
+            // 
+            // tssCashValue
+            // 
+            this.tssCashValue.AutoSize = false;
+            this.tssCashValue.Margin = new System.Windows.Forms.Padding(0, 3, 5, 2);
+            this.tssCashValue.Name = "tssCashValue";
+            this.tssCashValue.Size = new System.Drawing.Size(120, 17);
+            this.tssCashValue.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.tssCashValue.Visible = false;
+            // 
+            // tssSafeValue
+            // 
+            this.tssSafeValue.AutoSize = false;
+            this.tssSafeValue.Margin = new System.Windows.Forms.Padding(0, 3, 5, 2);
+            this.tssSafeValue.Name = "tssSafeValue";
+            this.tssSafeValue.Size = new System.Drawing.Size(120, 17);
+            this.tssSafeValue.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.tssSafeValue.Visible = false;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(828, 403);
+            this.ClientSize = new System.Drawing.Size(828, 426);
+            this.Controls.Add(this.ssMain);
             this.Controls.Add(this.tbControl);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -778,13 +706,12 @@
             this.tabPage1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            this.groupBox6.ResumeLayout(false);
-            this.groupBox6.PerformLayout();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.ssMain.ResumeLayout(false);
+            this.ssMain.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -807,26 +734,12 @@
         public System.Windows.Forms.TabPage tabPage2;
         public System.Windows.Forms.ListBox lbLog;
         public System.Windows.Forms.GroupBox groupBox3;
-        public System.Windows.Forms.GroupBox groupBox6;
-        public System.Windows.Forms.Label label12;
-        public System.Windows.Forms.Label label11;
-        public System.Windows.Forms.Label label10;
-        public System.Windows.Forms.GroupBox groupBox4;
-        public System.Windows.Forms.Label label9;
-        public System.Windows.Forms.Label label8;
-        public System.Windows.Forms.Label label7;
         public System.Windows.Forms.Label label6;
         public System.Windows.Forms.Label label5;
         public System.Windows.Forms.TextBox tbServerTime;
         public System.Windows.Forms.Label label13;
         public System.Windows.Forms.TextBox tbAttack;
         public System.Windows.Forms.TextBox tbDefense;
-        public System.Windows.Forms.TextBox tbGospo;
-        public System.Windows.Forms.TextBox tbMoher;
-        public System.Windows.Forms.TextBox tbDewot;
-        public System.Windows.Forms.TextBox tbOrgan;
-        public System.Windows.Forms.TextBox tbLektor;
-        public System.Windows.Forms.TextBox tbMinistr;
         public System.Windows.Forms.ListView lvAttackList;
         public System.Windows.Forms.ColumnHeader chCheck;
         public System.Windows.Forms.ColumnHeader chName;
@@ -853,6 +766,15 @@
         private System.Windows.Forms.CheckBox cbClient;
         private System.Windows.Forms.CheckBox cbServer;
         public System.Windows.Forms.NotifyIcon niMain;
+        private System.Windows.Forms.StatusStrip ssMain;
+        public System.Windows.Forms.ToolStripStatusLabel tssTransferedCash;
+        public System.Windows.Forms.ToolStripStatusLabel tssTransferNo;
+        public System.Windows.Forms.ToolStripStatusLabel tssCash;
+        public System.Windows.Forms.ToolStripStatusLabel tssSafe;
+        public System.Windows.Forms.ToolStripStatusLabel tssTransferedCashValue;
+        public System.Windows.Forms.ToolStripStatusLabel tssTransferNoValue;
+        public System.Windows.Forms.ToolStripStatusLabel tssCashValue;
+        public System.Windows.Forms.ToolStripStatusLabel tssSafeValue;
     }
 }
 

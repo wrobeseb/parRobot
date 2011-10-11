@@ -23,6 +23,31 @@ namespace ParafiaTest.ParafiaTest
         { }
 
         [TestMethod]
+        public void bankTest()
+        {
+            Mockery mocks = new Mockery();
+            IDefaultHttpClient dhcMock = mocks.NewMock<IDefaultHttpClient>();
+
+            Expect.Once.On(dhcMock).Method("SendHttpGetAndReturnResponseContent").With("http://parafia.biz/buildings/safe").Will(Return.Value(TestData.ParafiaBizRiseSafeDisabledContent));
+
+            String responseContent = dhcMock.SendHttpGetAndReturnResponseContent("http://parafia.biz/buildings/safe");
+
+            String contentPart = HtmlUtils.GetStringValueByXPathExpression(responseContent, "//p[@class='mt10']/span[1]/span/text()");
+
+            Assert.AreEqual(contentPart, "Rozbuduj za 455000 C$");
+
+            String costTxt = Parafia.MainUtils.removeAllNotNumberCharacters(contentPart);
+
+            Assert.AreEqual(costTxt, "455000");
+
+            int cost = int.Parse(costTxt);
+
+            Assert.AreEqual(cost, 455000);
+
+            mocks.VerifyAllExpectationsHaveBeenMet();
+        }
+
+        //[TestMethod]
         public void loginTest()
         {
             Mockery mocks = new Mockery();
@@ -47,21 +72,6 @@ namespace ParafiaTest.ParafiaTest
                 Assert.AreEqual(webException.Status, WebExceptionStatus.Timeout);
             }
 
-        }
-
-        private bool checkDependencies(String content, String[] values)
-        {
-            foreach (String value in values)
-            {
-                HtmlNode node = HtmlUtils.GetSingleNodeByXPathExpression(content, "//*[@id='" + value + "']");
-                if (node == null)
-                {
-                    node = HtmlUtils.GetSingleNodeByXPathExpression(content, "//*[@name='" + value + "']");
-                    if (node == null)
-                        return false;
-                }
-            }
-            return true;
         }
     }
 }

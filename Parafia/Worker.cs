@@ -409,13 +409,12 @@ namespace Parafia
 
                     String idTxt = String.Empty;
 
-                    Parafia parafia = getInstance();
-
                     lock (loggedInlockObject)
                     {
-                        if (parafia != null)
+                        if (!String.IsNullOrEmpty(state.sb.ToString()))
                         {
-                            if (!String.IsNullOrEmpty(state.sb.ToString()))
+                            Parafia parafia = getInstance();
+                            if (parafia != null)
                             {
                                 printLog("[TRANSFER] Treść komunikatu: " + state.sb.ToString());
                                 parafia.login(); printLog("[TRANSFER] Zalogowany do portalu...");
@@ -436,32 +435,36 @@ namespace Parafia
                                     idTxt = valueToPut.ToString();
                                     transferResult += valueToPut;
                                     transferNo++;
+                                    
                                     showBalloonTip("Paczka wystawiona za: " + valueToPut + " C$\n" +
                                                    "W sumie wystawiono za: " + transferResult + " C$\n" +
                                                    "Ilość transferów: " + transferNo, "TRANSFER", ToolTipIcon.Info);
+
                                     printLog("[TRANSFER] Wysyłam wartosc paczki do kupienia przez klienta: " + idTxt);
                                 }
                                 else
                                 {
                                     printLog("[TRANSFER] Błąd podczas wystawiania paczki: " + valueToPut);
+                                    idTxt = "0";
+                                    printLog("[TRANSFER] Zwracam klientowi informację o błędzie!");
                                 }
                             }
-                        }
+                            client.Send((new ASCIIEncoding()).GetBytes(idTxt));
+                            printLog("[TRANSFER] Informacja wysłana.");
 
-                        ASCIIEncoding asen = new ASCIIEncoding();
-                        byte[] ba = asen.GetBytes(idTxt);
-                                
-                        client.Send(ba);
-                        printLog("[TRANSFER] Wartość paczki wysłana.");
-                        byte[] rc = new byte[100];
-                        printLog("[TRANSFER] Oczekuje na komunikat z ceną zwracanej paczki.");
-                        int rcLength = client.Receive(rc);
-                        printLog("[TRANSFER] Wartość paczki otrzymana.");
-                        String returnedCost = Encoding.ASCII.GetString(rc, 0, rcLength);
-                        printLog("[TRANSFER] Kupuje zwróconą paczkę: " + returnedCost);
-                        parafia.BuyReturnedGreatChange(returnedCost);
-                        printLog("[TRANSFER] Paczka zakupiona: " + returnedCost);
-                        parafia.logout(); printLog("[TRANSFER] Wylogowany z portalu...");
+                            if (!idTxt.Equals("0"))
+                            {
+                                byte[] rc = new byte[100];
+                                printLog("[TRANSFER] Oczekuje na komunikat z ceną zwracanej paczki.");
+                                int rcLength = client.Receive(rc);
+                                printLog("[TRANSFER] Wartość paczki otrzymana.");
+                                String returnedCost = Encoding.ASCII.GetString(rc, 0, rcLength);
+                                printLog("[TRANSFER] Kupuje zwróconą paczkę: " + returnedCost);
+                                parafia.BuyReturnedGreatChange(returnedCost);
+                                printLog("[TRANSFER] Paczka zakupiona: " + returnedCost);
+                            }
+                            parafia.logout(); printLog("[TRANSFER] Wylogowany z portalu...");
+                        }
                     }
 
                     client.Close();
@@ -577,12 +580,36 @@ namespace Parafia
                                             mainForm.tbNextLogin.Text = this.nextLoginDt.ToString("yyyy-MM-dd HH:mm:ss");
                                             mainForm.tbAttack.Text = parafia.units.attack.ToString();
                                             mainForm.tbDefense.Text = parafia.units.defense.ToString();
-                                            mainForm.tbMinistr.Text = parafia.units.unit1.ToString();
+
+                                            if (clientSemafor || serverSemafor)
+                                            {
+                                                mainForm.tssTransferedCashValue.Text = transferResult.ToString();
+                                                mainForm.tssTransferedCashValue.Visible = true;
+                                                mainForm.tssTransferedCash.Visible = true;
+
+                                                mainForm.tssTransferNoValue.Text = transferNo.ToString();
+                                                mainForm.tssTransferNoValue.Visible = true;
+                                                mainForm.tssTransferNo.Visible = true;
+                                            }
+
+                                            mainForm.tssCashValue.Text = parafia.attributes.Cash.Actual + " C$ / " + parafia.attributes.Cash.Max + " C$";
+                                            mainForm.tssSafeValue.Text = parafia.attributes.Safe.Actual + " C$ / " + parafia.attributes.Safe.Max + " C$";
+                                            mainForm.tssCashValue.Visible = true;
+                                            mainForm.tssSafeValue.Visible = true;
+                                            mainForm.tssCash.Visible = true;
+                                            mainForm.tssSafe.Visible = true;
+
+                                            if (parafia.attributes.Safe.Actual < 100000)
+                                            {
+                                                mainForm.tssSafe.ForeColor = System.Drawing.Color.Red;
+                                            }
+
+                                           /* mainForm.tbMinistr.Text = parafia.units.unit1.ToString();
                                             mainForm.tbLektor.Text = parafia.units.unit2.ToString();
                                             mainForm.tbOrgan.Text = parafia.units.unit3.ToString();
                                             mainForm.tbDewot.Text = parafia.units.unit4.ToString();
                                             mainForm.tbMoher.Text = parafia.units.unit5.ToString();
-                                            mainForm.tbGospo.Text = parafia.units.unit6.ToString();
+                                            mainForm.tbGospo.Text = parafia.units.unit6.ToString();*/
                                         }));
                                    
                                     }
@@ -779,60 +806,76 @@ namespace Parafia
                 if (clientSemafor)
                 {
                     String relicCost = String.Empty;
-                    if (parafia.attributes.Safe.Actual == parafia.attributes.Safe.Max)
+                    if (parafia.riseSafeCost != 0 && (parafia.riseSafeCost <= parafia.attributes.Cash.Max) && (parafia.attributes.Safe.Max < parafia.attributes.Cash.Max))
                     {
-                        int value = parafia.attributes.Safe.Actual;
-
-                        if (parafia.attributes.Safe.Actual > parafia.attributes.Cash.Max)
+                        if (parafia.riseSafeCost <= (parafia.attributes.Cash.Actual + parafia.attributes.Safe.Actual))
                         {
-                            value = parafia.attributes.Cash.Max;
+                            parafia.riseSafe();
                         }
-
-                        value -= 1000;
-
-                        TcpClient client = SocketUtils.ConnectToSrv();
-
-                        printLog("[TRANSFER] Wysyłanie wiadomości do serwera o wartaści paczki.");
-                        relicCost = SocketUtils.RequestRelicID(value, client);
-                        printLog("[TRANSFER] Wiadomość przyjęta, paczka została wystawiona przez serwer i jest gotowa do zakupienia.");
-                        if (!String.IsNullOrEmpty(relicCost))
+                    }
+                    else
+                    {
+                        if (parafia.attributes.Safe.Actual == parafia.attributes.Safe.Max)
                         {
-                            int cost = int.Parse(relicCost);
-                            if (cost != 0) {
-                                parafia.getFromSafe(value); printLog("[TRANSFER] Kasa na pake pobrana z sejfu: " + value);
+                            int value = parafia.attributes.Safe.Actual;
 
-                                int id = 0;
+                            if (parafia.attributes.Safe.Actual > parafia.attributes.Cash.Max)
+                            {
+                                value = parafia.attributes.Cash.Max;
+                            }
 
-                                if (parafia.countGreatChangeInMarket(cost, ref id) == 1)
+                            value -= 1000;
+
+                            TcpClient client = SocketUtils.ConnectToSrv();
+
+                            printLog("[TRANSFER] Wysyłanie wiadomości do serwera o wartaści paczki.");
+                            relicCost = SocketUtils.RequestRelicID(value, client);
+                            printLog("[TRANSFER] Wiadomość przyjęta, paczka została wystawiona przez serwer i jest gotowa do zakupienia.");
+                            if (!String.IsNullOrEmpty(relicCost))
+                            {
+                                int cost = int.Parse(relicCost);
+                                if (cost != 0)
                                 {
-                                    printLog("[TRANSFER] Warunki konieczne do zakupu paczki spełnione. Przechodze do procesu zakupu.");
-                                    if (parafia.BuyGreatChangeById(id) == 1)
+                                    parafia.getFromSafe(value); printLog("[TRANSFER] Kasa na pake pobrana z sejfu: " + value);
+
+                                    int id = 0;
+
+                                    if (parafia.countGreatChangeInMarket(cost, ref id) == 1)
                                     {
-                                        printLog("[TRANSFER] Transfer wykonany!");
-                                        parafia.hideGreatChange();
-                                        printLog("[TRANSFER] Relikwia schowana do sejfu.");
-                                        printLog("[TRANSFER] Rozpoczynam proces zwrotu paczki do serwera.");
-                                        string returnedRelicCost = parafia.ReturnGreatChange();
-                                        printLog("[TRANSFER] Wysyłam koszt paczki do serwera: " + returnedRelicCost);
-                                        SocketUtils.SendGreatChangeReturningCost(returnedRelicCost, client);
-                                        printLog("[TRANSFER] Komunikat został wysłany.");
-                                        parafia.putIntoSafe();
+                                        printLog("[TRANSFER] Warunki konieczne do zakupu paczki spełnione. Przechodze do procesu zakupu.");
+                                        if (parafia.BuyGreatChangeById(id) == 1)
+                                        {
+                                            transferResult += cost;
+                                            transferNo++;
+                                            printLog("[TRANSFER] Transfer wykonany!");
+                                            parafia.hideGreatChange();
+                                            printLog("[TRANSFER] Relikwia schowana do sejfu.");
+                                            printLog("[TRANSFER] Rozpoczynam proces zwrotu paczki do serwera.");
+                                            string returnedRelicCost = parafia.ReturnGreatChange();
+                                            printLog("[TRANSFER] Wysyłam koszt paczki do serwera: " + returnedRelicCost);
+                                            SocketUtils.SendGreatChangeReturningCost(returnedRelicCost, client);
+                                            printLog("[TRANSFER] Komunikat został wysłany.");
+                                            parafia.putIntoSafe();
+                                        }
+                                        else
+                                        {
+                                            parafia.putIntoSafe();
+                                            printLog("[TRANSFER] Błąd podczas transferu! Nie wykonany!!!");
+                                        }
                                     }
                                     else
                                     {
                                         parafia.putIntoSafe();
-                                        printLog("[TRANSFER] Błąd podczas transferu! Nie wykonany!!!");
+                                        printLog("[TRANSFER] Znaleziono więcej niż jedno relikwie/bądź wcale na rynku!!!");
                                     }
                                 }
                                 else
                                 {
-                                    parafia.putIntoSafe();
-                                    printLog("[TRANSFER] Znaleziono więcej niż jedno relikwie/bądź wcale na rynku!!!");
+                                    printLog("[TRANSFER] Wystąpił błąd po stronie serwera!!!");
                                 }
                             }
+                            SocketUtils.CloseConnectToSrv(client);
                         }
-
-                        SocketUtils.CloseConnectToSrv(client);
                     }
                 }
 
