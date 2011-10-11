@@ -58,9 +58,9 @@
             // 
             this.pAttackItems.AutoScroll = true;
             this.pAttackItems.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pAttackItems.Location = new System.Drawing.Point(0, 23);
+            this.pAttackItems.Location = new System.Drawing.Point(0, 14);
             this.pAttackItems.Name = "pAttackItems";
-            this.pAttackItems.Size = new System.Drawing.Size(617, 455);
+            this.pAttackItems.Size = new System.Drawing.Size(584, 464);
             this.pAttackItems.TabIndex = 10;
             // 
             // textBox1
@@ -98,7 +98,7 @@
             this.textBox3.BackColor = System.Drawing.Color.White;
             this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox3.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.textBox3.Location = new System.Drawing.Point(344, 0);
+            this.textBox3.Location = new System.Drawing.Point(326, 0);
             this.textBox3.Name = "textBox3";
             this.textBox3.ReadOnly = true;
             this.textBox3.Size = new System.Drawing.Size(50, 13);
@@ -109,13 +109,13 @@
             // 
             // textBox4
             // 
-            this.textBox4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBox4.BackColor = System.Drawing.Color.White;
+            this.textBox4.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox4.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.textBox4.Location = new System.Drawing.Point(400, 0);
-            this.textBox4.Multiline = true;
+            this.textBox4.Location = new System.Drawing.Point(377, 0);
             this.textBox4.Name = "textBox4";
             this.textBox4.ReadOnly = true;
-            this.textBox4.Size = new System.Drawing.Size(50, 17);
+            this.textBox4.Size = new System.Drawing.Size(50, 13);
             this.textBox4.TabIndex = 12;
             this.textBox4.TabStop = false;
             this.textBox4.Text = " Lose";
@@ -123,15 +123,15 @@
             // 
             // textBox5
             // 
-            this.textBox5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBox5.BackColor = System.Drawing.Color.White;
+            this.textBox5.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox5.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.textBox5.HideSelection = false;
             this.textBox5.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.textBox5.Location = new System.Drawing.Point(456, 0);
-            this.textBox5.Multiline = true;
+            this.textBox5.Location = new System.Drawing.Point(428, 0);
             this.textBox5.Name = "textBox5";
             this.textBox5.ReadOnly = true;
-            this.textBox5.Size = new System.Drawing.Size(115, 17);
+            this.textBox5.Size = new System.Drawing.Size(115, 13);
             this.textBox5.TabIndex = 12;
             this.textBox5.TabStop = false;
             this.textBox5.Text = "Ostatni Atak";
@@ -141,7 +141,7 @@
             // tbName
             // 
             this.tbName.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbName.Location = new System.Drawing.Point(118, 484);
+            this.tbName.Location = new System.Drawing.Point(110, 484);
             this.tbName.Name = "tbName";
             this.tbName.Size = new System.Drawing.Size(141, 13);
             this.tbName.TabIndex = 14;
@@ -149,11 +149,13 @@
             // cbEnabled
             // 
             this.cbEnabled.AutoSize = true;
+            this.cbEnabled.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.cbEnabled.Checked = true;
             this.cbEnabled.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbEnabled.Location = new System.Drawing.Point(3, 484);
+            this.cbEnabled.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbEnabled.Location = new System.Drawing.Point(3, 485);
             this.cbEnabled.Name = "cbEnabled";
-            this.cbEnabled.Size = new System.Drawing.Size(15, 14);
+            this.cbEnabled.Size = new System.Drawing.Size(12, 11);
             this.cbEnabled.TabIndex = 13;
             this.cbEnabled.UseVisualStyleBackColor = true;
             // 
@@ -176,7 +178,7 @@
             // 
             this.cbAttacker.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.cbAttacker.FormattingEnabled = true;
-            this.cbAttacker.Location = new System.Drawing.Point(24, 481);
+            this.cbAttacker.Location = new System.Drawing.Point(21, 481);
             this.cbAttacker.Name = "cbAttacker";
             this.cbAttacker.Size = new System.Drawing.Size(88, 20);
             this.cbAttacker.TabIndex = 20;
@@ -184,10 +186,10 @@
             // pbLastAttackSort
             // 
             this.pbLastAttackSort.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbLastAttackSort.Image = global::PBizBot.Properties.Resources.updown;
-            this.pbLastAttackSort.Location = new System.Drawing.Point(555, 1);
+            this.pbLastAttackSort.Image = global::PBizBot.Properties.Resources.updown_small;
+            this.pbLastAttackSort.Location = new System.Drawing.Point(530, 0);
             this.pbLastAttackSort.Name = "pbLastAttackSort";
-            this.pbLastAttackSort.Size = new System.Drawing.Size(15, 15);
+            this.pbLastAttackSort.Size = new System.Drawing.Size(13, 13);
             this.pbLastAttackSort.TabIndex = 26;
             this.pbLastAttackSort.TabStop = false;
             this.pbLastAttackSort.Click += new System.EventHandler(this.pbLastAttackSort_Click);
@@ -195,10 +197,10 @@
             // pbLoseSort
             // 
             this.pbLoseSort.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbLoseSort.Image = global::PBizBot.Properties.Resources.updown;
-            this.pbLoseSort.Location = new System.Drawing.Point(434, 1);
+            this.pbLoseSort.Image = global::PBizBot.Properties.Resources.updown_small;
+            this.pbLoseSort.Location = new System.Drawing.Point(414, 0);
             this.pbLoseSort.Name = "pbLoseSort";
-            this.pbLoseSort.Size = new System.Drawing.Size(15, 15);
+            this.pbLoseSort.Size = new System.Drawing.Size(13, 13);
             this.pbLoseSort.TabIndex = 25;
             this.pbLoseSort.TabStop = false;
             this.pbLoseSort.Click += new System.EventHandler(this.pbLoseSort_Click);
@@ -206,10 +208,10 @@
             // pbWinSort
             // 
             this.pbWinSort.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbWinSort.Image = global::PBizBot.Properties.Resources.updown;
-            this.pbWinSort.Location = new System.Drawing.Point(378, 1);
+            this.pbWinSort.Image = global::PBizBot.Properties.Resources.updown_small;
+            this.pbWinSort.Location = new System.Drawing.Point(363, 0);
             this.pbWinSort.Name = "pbWinSort";
-            this.pbWinSort.Size = new System.Drawing.Size(15, 15);
+            this.pbWinSort.Size = new System.Drawing.Size(13, 13);
             this.pbWinSort.TabIndex = 24;
             this.pbWinSort.TabStop = false;
             this.pbWinSort.Click += new System.EventHandler(this.pbWinSort_Click);
@@ -251,7 +253,7 @@
             // 
             this.pbAdd.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pbAdd.Image = global::PBizBot.Properties.Resources.plus;
-            this.pbAdd.Location = new System.Drawing.Point(265, 482);
+            this.pbAdd.Location = new System.Drawing.Point(257, 483);
             this.pbAdd.Name = "pbAdd";
             this.pbAdd.Size = new System.Drawing.Size(16, 16);
             this.pbAdd.TabIndex = 17;
@@ -280,7 +282,7 @@
             this.Controls.Add(this.pAttackItems);
             this.Controls.Add(this.textBox1);
             this.Name = "AttackList";
-            this.Size = new System.Drawing.Size(617, 504);
+            this.Size = new System.Drawing.Size(584, 504);
             this.Load += new System.EventHandler(this.AttackList_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbLastAttackSort)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbLoseSort)).EndInit();

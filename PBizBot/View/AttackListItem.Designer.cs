@@ -126,7 +126,7 @@
             this.Controls.Add(this.tbName);
             this.Controls.Add(this.cbEnabled);
             this.Name = "AttackListItem";
-            this.Size = new System.Drawing.Size(600, 13);
+            this.Size = new System.Drawing.Size(565, 13);
             this.Load += new System.EventHandler(this.AttackListItem_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbDelete)).EndInit();
             this.ResumeLayout(false);
