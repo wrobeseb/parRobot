@@ -31,6 +31,12 @@ namespace Parafia
         {
             btStart.Enabled = false;
             btStop.Enabled = true;
+
+            if (cbClient.Checked)
+            {
+                btAttackON_Click(sender, e);
+            }
+
             //notifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIconEnabled")));
             worker.StartUpTime();
         }
@@ -39,6 +45,12 @@ namespace Parafia
         {
             btStart.Enabled = true;
             btStop.Enabled = false;
+
+            if (cbClient.Checked)
+            {
+                btAttackOFF_Click(sender, e);
+            }
+
             //notifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIconDisabled")));
             worker.StopUpTime();
         }
@@ -245,11 +257,13 @@ namespace Parafia
             {
                 cbClient.Enabled = false;
                 worker.serverSemafor = true;
+                niMain.Visible = true;
             }
             else
             {
                 cbClient.Enabled = true;
                 worker.serverSemafor = false;
+                niMain.Visible = false;
             }
         }
 
@@ -272,14 +286,6 @@ namespace Parafia
             this.Show();
             this.WindowState = FormWindowState.Normal;
             this.BringToFront();
-        }
-
-        private void MainForm_Resize(object sender, EventArgs e)
-        {
-            if (this.WindowState == FormWindowState.Minimized)
-            {
-                this.Hide();
-            }
         }
 
         private void tssSafe_Click(object sender, EventArgs e)

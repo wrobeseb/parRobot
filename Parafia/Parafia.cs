@@ -31,6 +31,7 @@ namespace Parafia
         public String csrf;
 
         public int riseSafeCost;
+        public bool riseSafeButtonActive;
 
         public  QuestContainer questContainer;
 
@@ -133,7 +134,7 @@ namespace Parafia
                 }
                 catch (WebException we)
                 {
-                    worker.printLog("[ERROR] Wystąpił błąd. takeFromProperty!!!");
+                    worker.printLog("[ERROR] Wystąpił błąd. updateAttributes!!!");
                     worker.printLog("[ERROR] Treść błędu: " + we.Message);
                     worker.printLog("[ERROR] Ponawiam proces.");
                     timeout++;
@@ -274,14 +275,17 @@ namespace Parafia
 
             int valueToPut = GetValueToPutOnMarket(11642);
 
-            int vat = Convert.ToInt32(valueToPut * 0.08) + 1;
-
-            if (attributes.Cash.Actual < vat)
-                getFromSafe(vat + 10);
-
-            if (SellGreatChange(valueToPut) == 1)
+            if (valueToPut != 0)
             {
-                idTxt = valueToPut.ToString();
+                int vat = Convert.ToInt32(valueToPut * 0.08) + 1;
+
+                if (attributes.Cash.Actual < vat)
+                    getFromSafe(vat + 10);
+
+                if (SellGreatChange(valueToPut) == 1)
+                {
+                    idTxt = valueToPut.ToString();
+                }
             }
 
             return idTxt;
@@ -410,14 +414,17 @@ namespace Parafia
 
             if (timeout == 0)
             {
-                int counter = 0;
+                HtmlNode.ElementsFlags.Remove("option");
                 HtmlNodeCollection optionsNode = HtmlUtils.GetNodesCollectionByXPathExpression(content, "//select[@id='market_id']/option");
 
                 Random rand = new Random();
 
                 int value = maxValue;
+                int counter = 0;
+                int attemtpsNo = 0;
                 do
                 {
+                    counter = 0;
                     foreach (HtmlNode node in optionsNode)
                     {
                         String txtValueForOption = node.InnerText;
@@ -430,10 +437,14 @@ namespace Parafia
                     }
                     if (counter != 0)
                         value = rand.Next(maxValue - 100, maxValue);
+                    attemtpsNo++;
                 }
-                while (counter != 0);
+                while (counter != 0 && attemtpsNo < 100);
 
-                return value;
+                if (attemtpsNo < 100)
+                    return value;
+                else
+                    return 0;
             }
             return 0;
         }
@@ -442,10 +453,20 @@ namespace Parafia
         {
             String contentPart = HtmlUtils.GetStringValueByXPathExpression(content, "//p[@class='mt10']/span[1]/span/text()");
 
-            if (!String.IsNullOrEmpty(contentPart))
+            if (!String.IsNullOrEmpty(contentPart) && !contentPart.Contains("odpustów"))
             {
                 String costTxt = MainUtils.removeAllNotNumberCharacters(contentPart);
                 int.TryParse(costTxt, out riseSafeCost);
+            }
+
+            contentPart = HtmlUtils.GetStringValueByXPathExpression(content, "//p[@class='mt10']/a/span/text()");
+            if (!String.IsNullOrEmpty(contentPart))
+            {
+                riseSafeButtonActive = true;
+            }
+            else
+            {
+                riseSafeButtonActive = false;
             }
         }
 
@@ -506,6 +527,9 @@ namespace Parafia
                     try
                     {
                         String responseContent = httpClient.SendHttpPostAndReturnResponseContent("http://parafia.biz/buildings/safe", formData);
+
+                        updateRiseSafeCost(responseContent);
+
                         attributes = new Attributes.Attributes(responseContent);
                         timeout = 0;
                     }
@@ -649,11 +673,47 @@ namespace Parafia
             
         }
 
-        public void riseSafe()
+        public bool riseSafe()
         {
-            String content = httpClient.SendHttpGetAndReturnResponseContent("http://parafia.biz/buildings/raise_safe");
+            if (riseSafeCost != 0) {
+                int value = 0;
+                if (attributes.Cash.Actual < riseSafeCost)
+                {
+                    value = riseSafeCost - attributes.Cash.Actual;
+                }
 
+                if (value != 0)
+                {
+                    getFromSafe(value);
+                }
+                if (riseSafeButtonActive)
+                {
+                    int timeout = 0;
+                    do
+                    {
+                        try
+                        {
+                            httpClient.SendHttpGetAndReturnResponseContent("http://parafia.biz/buildings/raise_safe");
+                            timeout = 0;
+                        }
+                        catch (WebException we)
+                        {
+                            worker.printLog("[ERROR] Wystąpił błąd. riseSafe!!!");
+                            worker.printLog("[ERROR] Treść błędu: " + we.Message);
+                            worker.printLog("[ERROR] Ponawiam proces.");
+                            timeout++;
+                        }
+                    }
+                    while ((timeout != 0) && timeout < 5);
 
+                    if (timeout == 0)
+                    {
+                        worker.printLog("[SAFE] Sejf podniesiony...");
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
 
         public void buyArmy(ArmyType armyType)

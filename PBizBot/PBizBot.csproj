@@ -102,6 +102,7 @@
       <DependentUpon>AppSettings.cs</DependentUpon>
     </Compile>
     <Compile Include="Core\AccountManager.cs" />
+    <Compile Include="Core\Job.cs" />
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
     </Compile>

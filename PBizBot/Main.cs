@@ -14,15 +14,22 @@ using HtmlAgilityPack;
 
 namespace PBizBot
 {
+    using Core;
     using View;
     using Model;
     using PbizBot.Properties;
 
     public partial class Main : Form
     {
+        private AccountManager m_accountManager;
         private AppSettings m_appSettings;
         private AttackList m_attackList;
         private AccountList m_accountList;
+
+        public AccountManager AccountManager
+        {
+            set { this.m_accountManager = value; }
+        }
 
         public AppSettings AppSettings
         {
@@ -46,6 +53,8 @@ namespace PBizBot
 
         private void btON_Click(object sender, EventArgs e)
         {
+            m_accountManager.test(this);
+
             btOFF.Enabled = true;
             btON.Enabled = false;
         }

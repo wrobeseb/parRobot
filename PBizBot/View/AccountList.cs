@@ -10,9 +10,19 @@ using System.Windows.Forms;
 namespace PBizBot.View
 {
     using Model;
+    using Providers;
+    using Spring.Scheduling.Quartz;
+    using Quartz;
 
     public partial class AccountList : UserControl
     {
+        private SqlDataProvider m_sqlDataProvider;
+
+        public SqlDataProvider SqlDataProvider
+        {
+            set { this.m_sqlDataProvider = value; }
+        }
+
         public AccountList()
         {
             InitializeComponent();
@@ -42,6 +52,31 @@ namespace PBizBot.View
 
             tbLogin.Text = String.Empty;
             tbPasswd.Text = String.Empty;
+
+            SimpleTriggerObject triggerObject = new SimpleTriggerObject();
+
+            triggerObject.Name = "testTrigger";
+            triggerObject.JobName = "testJop";
+
+            MethodInvokingJobDetailFactoryObject job = new MethodInvokingJobDetailFactoryObject();
+            //job.TargetObject = new Job();
+            job.Name = "testJob";
+            job.TargetMethod = "runProcess";
+            job.Concurrent = false;
+
+            job.AfterPropertiesSet();
+
+            JobDetail jobDetail = (JobDetail)job.GetObject();
+
+            //m_schedulerFactory.AddJob(jobDetail, true);
+
+            triggerObject.JobDetail = jobDetail;
+
+            triggerObject.StartDelay = new TimeSpan(0, 0, 5);
+
+            triggerObject.RepeatInterval = new TimeSpan(1, 0, 0);
+
+            triggerObject.AfterPropertiesSet();
         }
 
         private void pAccounts_ControlAdded(object sender, ControlEventArgs e)

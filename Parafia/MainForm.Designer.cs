@@ -81,12 +81,12 @@
             this.niMain = new System.Windows.Forms.NotifyIcon(this.components);
             this.ssMain = new System.Windows.Forms.StatusStrip();
             this.tssTransferedCash = new System.Windows.Forms.ToolStripStatusLabel();
-            this.tssTransferNo = new System.Windows.Forms.ToolStripStatusLabel();
-            this.tssCash = new System.Windows.Forms.ToolStripStatusLabel();
-            this.tssSafe = new System.Windows.Forms.ToolStripStatusLabel();
             this.tssTransferedCashValue = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tssTransferNo = new System.Windows.Forms.ToolStripStatusLabel();
             this.tssTransferNoValue = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tssCash = new System.Windows.Forms.ToolStripStatusLabel();
             this.tssCashValue = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tssSafe = new System.Windows.Forms.ToolStripStatusLabel();
             this.tssSafeValue = new System.Windows.Forms.ToolStripStatusLabel();
             this.groupBox1.SuspendLayout();
             this.tbControl.SuspendLayout();
@@ -597,7 +597,6 @@
             // 
             this.niMain.Icon = ((System.Drawing.Icon)(resources.GetObject("niMain.Icon")));
             this.niMain.Text = "Parafia (brak danych)";
-            this.niMain.Visible = true;
             this.niMain.DoubleClick += new System.EventHandler(this.niMain_DoubleClick);
             // 
             // ssMain
@@ -624,29 +623,6 @@
             this.tssTransferedCash.Text = "Kasa z transferów: ";
             this.tssTransferedCash.Visible = false;
             // 
-            // tssTransferNo
-            // 
-            this.tssTransferNo.Name = "tssTransferNo";
-            this.tssTransferNo.Size = new System.Drawing.Size(92, 17);
-            this.tssTransferNo.Text = "Ilość transferów: ";
-            this.tssTransferNo.Visible = false;
-            // 
-            // tssCash
-            // 
-            this.tssCash.Name = "tssCash";
-            this.tssCash.Size = new System.Drawing.Size(37, 17);
-            this.tssCash.Text = "Kasa: ";
-            this.tssCash.Visible = false;
-            this.tssCash.Click += new System.EventHandler(this.tssCash_Click);
-            // 
-            // tssSafe
-            // 
-            this.tssSafe.Name = "tssSafe";
-            this.tssSafe.Size = new System.Drawing.Size(33, 17);
-            this.tssSafe.Text = "Sejf: ";
-            this.tssSafe.Visible = false;
-            this.tssSafe.Click += new System.EventHandler(this.tssSafe_Click);
-            // 
             // tssTransferedCashValue
             // 
             this.tssTransferedCashValue.AutoSize = false;
@@ -655,6 +631,13 @@
             this.tssTransferedCashValue.Size = new System.Drawing.Size(80, 17);
             this.tssTransferedCashValue.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.tssTransferedCashValue.Visible = false;
+            // 
+            // tssTransferNo
+            // 
+            this.tssTransferNo.Name = "tssTransferNo";
+            this.tssTransferNo.Size = new System.Drawing.Size(92, 17);
+            this.tssTransferNo.Text = "Ilość transferów: ";
+            this.tssTransferNo.Visible = false;
             // 
             // tssTransferNoValue
             // 
@@ -665,21 +648,37 @@
             this.tssTransferNoValue.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.tssTransferNoValue.Visible = false;
             // 
+            // tssCash
+            // 
+            this.tssCash.Name = "tssCash";
+            this.tssCash.Size = new System.Drawing.Size(37, 17);
+            this.tssCash.Text = "Kasa: ";
+            this.tssCash.Visible = false;
+            this.tssCash.Click += new System.EventHandler(this.tssCash_Click);
+            // 
             // tssCashValue
             // 
             this.tssCashValue.AutoSize = false;
             this.tssCashValue.Margin = new System.Windows.Forms.Padding(0, 3, 5, 2);
             this.tssCashValue.Name = "tssCashValue";
-            this.tssCashValue.Size = new System.Drawing.Size(120, 17);
+            this.tssCashValue.Size = new System.Drawing.Size(160, 17);
             this.tssCashValue.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.tssCashValue.Visible = false;
+            // 
+            // tssSafe
+            // 
+            this.tssSafe.Name = "tssSafe";
+            this.tssSafe.Size = new System.Drawing.Size(33, 17);
+            this.tssSafe.Text = "Sejf: ";
+            this.tssSafe.Visible = false;
+            this.tssSafe.Click += new System.EventHandler(this.tssSafe_Click);
             // 
             // tssSafeValue
             // 
             this.tssSafeValue.AutoSize = false;
             this.tssSafeValue.Margin = new System.Windows.Forms.Padding(0, 3, 5, 2);
             this.tssSafeValue.Name = "tssSafeValue";
-            this.tssSafeValue.Size = new System.Drawing.Size(120, 17);
+            this.tssSafeValue.Size = new System.Drawing.Size(160, 17);
             this.tssSafeValue.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.tssSafeValue.Visible = false;
             // 
@@ -694,11 +693,9 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "MainForm";
-            this.ShowInTaskbar = false;
             this.Text = "Parafia (brak danych)";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
-            this.Resize += new System.EventHandler(this.MainForm_Resize);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.tbControl.ResumeLayout(false);

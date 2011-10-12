@@ -23,6 +23,42 @@ namespace ParafiaTest.ParafiaTest
         { }
 
         [TestMethod]
+        public void greatChangePriceChooserTest()
+        {
+            Mockery mocks = new Mockery();
+            IDefaultHttpClient dhcMock = mocks.NewMock<IDefaultHttpClient>();
+
+            Expect.Once.On(dhcMock).Method("SendHttpGetAndReturnResponseContent").With("http://parafia.biz/relics/market_show/70").Will(Return.Value(TestData.ParafiaBizMarketGreatChangeContent));
+
+            String responseContent = dhcMock.SendHttpGetAndReturnResponseContent("http://parafia.biz/relics/market_show/70");
+
+            
+            HtmlNode.ElementsFlags.Remove("option");
+            HtmlNodeCollection optionsNode = HtmlUtils.GetNodesCollectionByXPathExpression(responseContent, "//select[@id='market_id']/option");
+
+            Random rand = new Random();
+            int value = 10000;
+            int counter;
+            do
+            {
+                counter = 0;
+                foreach (HtmlNode node in optionsNode)
+                {
+                    String txtValueForOption = node.InnerText;
+                    if (!String.IsNullOrEmpty(txtValueForOption))
+                    {
+                        int valueForOption = int.Parse(Parafia.MainUtils.removeAllNotNumberCharacters(txtValueForOption));
+                        if (valueForOption == value)
+                            counter++;
+                    }
+                }
+                if (counter != 0)
+                    value = rand.Next(11642 - 100, 11642);
+            }
+            while (counter != 0);
+        }
+
+        //[TestMethod]
         public void bankTest()
         {
             Mockery mocks = new Mockery();

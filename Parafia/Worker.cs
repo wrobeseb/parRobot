@@ -459,9 +459,16 @@ namespace Parafia
                                 int rcLength = client.Receive(rc);
                                 printLog("[TRANSFER] Wartość paczki otrzymana.");
                                 String returnedCost = Encoding.ASCII.GetString(rc, 0, rcLength);
-                                printLog("[TRANSFER] Kupuje zwróconą paczkę: " + returnedCost);
-                                parafia.BuyReturnedGreatChange(returnedCost);
-                                printLog("[TRANSFER] Paczka zakupiona: " + returnedCost);
+                                if (!returnedCost.Equals("0"))
+                                {
+                                    printLog("[TRANSFER] Kupuje zwróconą paczkę: " + returnedCost);
+                                    parafia.BuyReturnedGreatChange(returnedCost);
+                                    printLog("[TRANSFER] Paczka zakupiona: " + returnedCost);
+                                }
+                                else
+                                {
+                                    printLog("[TRANSFER] Błąd po stronie klienta, podczas zwrotu paczki.");
+                                }
                             }
                             parafia.logout(); printLog("[TRANSFER] Wylogowany z portalu...");
                         }
@@ -492,7 +499,6 @@ namespace Parafia
                         {
                             TcpListener listener = new TcpListener(ipAd, 8001);
                             listener.Start();
-
                             listener.BeginAcceptSocket(new AsyncCallback(ClientIsConnected), listener);
                         }).Start();
 
@@ -567,7 +573,9 @@ namespace Parafia
                                         }
 
                                         nextLoginDt = getNextLoginTime();
-                                        
+
+                                        parafia.updateAttributes();
+
                                         parafia.logout(); printLog("Pomyślne wylogowanie z portalu.");
                                         
                                         mainForm.Invoke((Action)(delegate
@@ -805,15 +813,18 @@ namespace Parafia
 
                 if (clientSemafor)
                 {
+                    bool riseSafeFlag = false;
+
                     String relicCost = String.Empty;
                     if (parafia.riseSafeCost != 0 && (parafia.riseSafeCost <= parafia.attributes.Cash.Max) && (parafia.attributes.Safe.Max < parafia.attributes.Cash.Max))
                     {
                         if (parafia.riseSafeCost <= (parafia.attributes.Cash.Actual + parafia.attributes.Safe.Actual))
                         {
-                            parafia.riseSafe();
+                            riseSafeFlag = parafia.riseSafe();
                         }
                     }
-                    else
+
+                    if (!riseSafeFlag) 
                     {
                         if (parafia.attributes.Safe.Actual == parafia.attributes.Safe.Max)
                         {
@@ -1032,8 +1043,21 @@ namespace Parafia
                     if (item.Checked)
                     {
                         Account account = (Account)item.Tag;
-                        if (DateTime.Equals(account.LastAttack, DateTime.MinValue) || (DateTime.Now - account.LastAttack).Hours >= 5)
+                        if (DateTime.Equals(account.LastAttack, DateTime.MinValue))
                             listOfNames.Add(account);
+                    }
+                }
+
+                if (listOfNames.Count == 0)
+                {
+                    foreach (ListViewItem item in collection)
+                    {
+                        if (item.Checked)
+                        {
+                            Account account = (Account)item.Tag;
+                            if ((DateTime.Now - account.LastAttack).Hours >= 5)
+                                listOfNames.Add(account);
+                        }
                     }
                 }
             }));

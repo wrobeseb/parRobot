@@ -9,28 +9,46 @@ using Spring.Scheduling.Quartz;
 
 namespace PBizBot.Core
 {
+    using Scheduler;
+
     public class AccountManager
     {
-        private SchedulerFactoryObject m_schedulerFactory;
+        private IScheduler m_schedulerFactory;
 
-        public SchedulerFactoryObject SchedulerFactory
+        public IScheduler SchedulerFactory
         {
             set { this.m_schedulerFactory = value; }
         }
 
-        public void test()
+        public void test(Main main)
         {
             SimpleTriggerObject triggerObject = new SimpleTriggerObject();
 
+            triggerObject.Name = "testTrigger";
+            triggerObject.JobName = "testJop";
 
             MethodInvokingJobDetailFactoryObject job = new MethodInvokingJobDetailFactoryObject();
             job.TargetObject = new Job();
+            job.Name = "testJob";
             job.TargetMethod = "runProcess";
             job.Concurrent = false;
 
-            triggerObject.JobDetail = (JobDetail)job.GetObject();
+            job.AfterPropertiesSet();
+
+            JobDetail jobDetail = (JobDetail)job.GetObject();
+
+            triggerObject.JobDetail = jobDetail;
 
             triggerObject.StartDelay = new TimeSpan(0, 0, 5);
+
+            triggerObject.RepeatInterval = new TimeSpan(1, 0, 0);
+
+            triggerObject.AfterPropertiesSet();
+
+            m_schedulerFactory.AddJob(jobDetail, true);
+            m_schedulerFactory.ScheduleJob(triggerObject);
+
+           // m_schedulerFactory.lis
 
            // m_schedulerFactory.Triggers
             

@@ -4,6 +4,9 @@ using System.Data.Linq.Mapping;
 using System.Text;
 using System.Windows.Forms;
 
+using Quartz;
+using Spring.Scheduling.Quartz;
+
 namespace PBizBot.Model
 {
     [Table(Name="account")]
@@ -25,6 +28,10 @@ namespace PBizBot.Model
         private AccountSettings m_settings;
         private AccountUnits m_units;
 
+        private JobDetail m_jobDetail;
+
+        private Trigger m_trigger;
+
         private int m_hitCount;
 
         public Account()
@@ -35,6 +42,18 @@ namespace PBizBot.Model
 
             m_sentEmailCheckBox = false;
             m_enabled = true;
+        }
+
+        public JobDetail SchedulerJobDetail
+        {
+            get { return this.m_jobDetail; }
+            set { this.m_jobDetail = value; }
+        }
+
+        public Trigger SchedulerTrigger
+        {
+            get { return this.m_trigger; }
+            set { this.m_trigger = value; }
         }
 
         [Column(Name="id", Storage="m_id", IsPrimaryKey=true, IsDbGenerated=true, DbType="int NOT NULL IDENTITY", CanBeNull=false)]
