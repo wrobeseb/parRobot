@@ -32,13 +32,14 @@ namespace PBizBot.Core.Scheduler
 
         public void TriggerComplete(Trigger trigger, JobExecutionContext context, SchedulerInstruction triggerInstructionCode)
         {
-            SimpleTriggerObject oldTrigger = (SimpleTriggerObject)trigger;
+            //SimpleTriggerObject oldTrigger = (SimpleTriggerObject)trigger;
 
-            oldTrigger.SetNextFireTime(DateTime.UtcNow.AddSeconds(10));
+            //oldTrigger.RepeatInterval = new TimeSpan(0, 0, 10);
 
-            m_schedulerFactory.UnscheduleJob(oldTrigger.Name, oldTrigger.Group);
+            //oldTrigger.AfterPropertiesSet();
 
-            m_schedulerFactory.ScheduleJob(oldTrigger);
+           // m_schedulerFactory.RescheduleJob(oldTrigger.Name, oldTrigger.Group, oldTrigger);
+
         }
 
         public void TriggerFired(Trigger trigger, JobExecutionContext context)

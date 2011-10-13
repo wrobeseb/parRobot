@@ -17,7 +17,6 @@ namespace PBizBot
     using Core;
     using View;
     using Model;
-    using PbizBot.Properties;
 
     public partial class Main : Form
     {

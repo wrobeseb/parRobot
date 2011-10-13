@@ -7,10 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
+
 namespace PBizBot
 {
-    using PBizBot;
-    using PbizBot.Properties;
+    using PBizBot.Settings;
+
 
     public partial class AppSettings : Form
     {
@@ -21,7 +22,7 @@ namespace PBizBot
 
         private void bSave_Click(object sender, EventArgs e)
         {
-            ApplicationSettings config = new ApplicationSettings();
+            Settings.Settings config = new Settings.Settings();
 
             config.UseProxy = cbProxyYesOrNo.SelectedItem.Equals("Tak") ? true : false;
             config.ProxyHost = tbProxyHost.Text;
@@ -40,9 +41,6 @@ namespace PBizBot
             config.SmtpTo = tbMailTo.Text;
             config.SmtpSubject = tbMailSubject.Text;
             config.SmtpEnableSSL = cbEnableSSL.Checked;
-
-            Settings.Default["AppSettings"] = config;
-            Settings.Default.Save();
 
             this.Close();
         }
@@ -97,10 +95,10 @@ namespace PBizBot
 
         private void AppSettings_Load(object sender, EventArgs e)
         {
-            Object obj = Settings.Default["AppSettings"];
+           /* Object obj = Settings.Default["AppSettings"];
             if (obj != null)
             {
-                ApplicationSettings config = (ApplicationSettings)obj;
+                Settings config = (Settings)obj;
 
                 if (config != null)
                 {
@@ -122,7 +120,7 @@ namespace PBizBot
                     tbMailSubject.Text = config.SmtpSubject;
                     cbEnableSSL.Checked = config.SmtpEnableSSL;
                 }
-            }
+            }*/
         }
     }
 }

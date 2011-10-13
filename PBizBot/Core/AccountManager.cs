@@ -28,14 +28,14 @@ namespace PBizBot.Core
 
         public void test(Main main)
         {
-            SimpleTriggerObject triggerObject = new SimpleTriggerObject();
+            //SimpleTriggerObject triggerObject = new SimpleTriggerObject();
 
-            triggerObject.Name = "testTrigger";
-            triggerObject.Group = "account";
-            //triggerObject.JobName = "testJop";
+           
+
+            
 
             MethodInvokingJobDetailFactoryObject job = new MethodInvokingJobDetailFactoryObject();
-            job.TargetObject = new Job();
+            //job.TargetObject = new AccountJob();
             job.Name = "testJob";
             job.TargetMethod = "runProcess";
             job.Concurrent = false;
@@ -44,23 +44,25 @@ namespace PBizBot.Core
 
             JobDetail jobDetail = (JobDetail)job.GetObject();
 
-            triggerObject.JobDetail = jobDetail;
+           // triggerObject.JobDetail = jobDetail;
 
-            triggerObject.StartDelay = new TimeSpan(0, 0, 5);
+            DateTime test = DateTime.UtcNow.AddSeconds(10);
 
-            triggerObject.RepeatInterval = new TimeSpan(1, 0, 0);
+            SimpleTrigger triggerObject = new SimpleTrigger("testTrigger", "account", test, null, 0, TimeSpan.Zero);
 
-            triggerObject.AfterPropertiesSet();
+            //triggerObject.Name = "testTrigger";
+           // triggerObject.Group = "account";
+            triggerObject.JobName = "testJob";
+
+           // triggerObject.StartDelay = new TimeSpan(0, 0, 5);
+
+         //   triggerObject.RepeatInterval = new TimeSpan(365, 0, 0, 0);
+
+         //   triggerObject.AfterPropertiesSet();
 
             m_schedulerFactory.AddGlobalTriggerListener(m_accountTriggerListener);
             m_schedulerFactory.AddJob(jobDetail, true);
             m_schedulerFactory.ScheduleJob(triggerObject);
-
-           // m_schedulerFactory.lis
-
-           // m_schedulerFactory.Triggers
-            
-
         }
     }
 }

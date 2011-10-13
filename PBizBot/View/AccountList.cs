@@ -11,16 +11,31 @@ namespace PBizBot.View
 {
     using Model;
     using Providers;
+    using Core;
+    using Core.Context;
+    using Core.Scheduler;
     using Spring.Scheduling.Quartz;
     using Quartz;
 
     public partial class AccountList : UserControl
     {
         private SqlDataProvider m_sqlDataProvider;
+        private AccountManager m_accountManager;
+        private ApplicationContext m_applicationContext;
 
         public SqlDataProvider SqlDataProvider
         {
             set { this.m_sqlDataProvider = value; }
+        }
+
+        public AccountManager AccountManager
+        {
+            set { this.m_accountManager = value; }
+        }
+
+        public ApplicationContext ApplicationContext
+        {
+            set { this.m_applicationContext = value; }
         }
 
         public AccountList()
@@ -68,8 +83,6 @@ namespace PBizBot.View
 
             JobDetail jobDetail = (JobDetail)job.GetObject();
 
-            //m_schedulerFactory.AddJob(jobDetail, true);
-
             triggerObject.JobDetail = jobDetail;
 
             triggerObject.StartDelay = new TimeSpan(0, 0, 5);
@@ -77,6 +90,23 @@ namespace PBizBot.View
             triggerObject.RepeatInterval = new TimeSpan(1, 0, 0);
 
             triggerObject.AfterPropertiesSet();
+        }
+
+        private void PrepareSchedulerObjects(ref Account account)
+        {
+            MethodInvokingJobDetailFactoryObject job = new MethodInvokingJobDetailFactoryObject();
+            job.TargetObject = m_applicationContext.GetComponentFromContext<AccountJob>("accountJob");
+            job.Name = account.Login + "Job"; 
+            job.TargetMethod = "runProcess";
+            job.Concurrent = false;
+
+            job.AfterPropertiesSet();
+
+            JobDetail jobDetail = (JobDetail)job.GetObject();
+
+            SimpleTrigger triggerObject = new SimpleTrigger("testTrigger", "account", DateTime.UtcNow.AddSeconds(5), null, 0, TimeSpan.Zero);
+
+            triggerObject.JobName = "testJob";
         }
 
         private void pAccounts_ControlAdded(object sender, ControlEventArgs e)
