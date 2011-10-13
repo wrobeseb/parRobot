@@ -784,8 +784,15 @@ namespace Parafia
                                 }
                                 else
                                 {
-                                    account.IsChecked = false;
-                                    printLog(account.UserName + ": Przegrałeś... ");
+                                    if (account.Cash != -2)
+                                    {
+                                        account.IsChecked = false;
+                                        printLog(account.UserName + ": Przegrałeś... ");
+                                    }
+                                    else
+                                    {
+                                        printLog(account.UserName + ": Przeciwnik wyczerpany... ");
+                                    }
                                 }
                             }
                             else
@@ -1050,17 +1057,56 @@ namespace Parafia
 
                 if (listOfNames.Count == 0)
                 {
-                    foreach (ListViewItem item in collection)
+                    listOfNames = getAccountsByOldestAttackDate(20);
+                }
+            }));
+
+            return listOfNames;
+        }
+
+        private List<Account> getAccountsByOldestAttackDate(int max)
+        {
+            ListView.ListViewItemCollection collection = mainForm.lvAttackList.Items;
+
+            List<Account> listOfNames = new List<Account>();
+
+            Account oldest;
+
+            do
+            {
+                oldest = null;
+                foreach (ListViewItem item in collection)
+                {
+                    if (item.Checked)
                     {
-                        if (item.Checked)
+                        Account account = (Account)item.Tag;
+                        if (oldest != null)
                         {
-                            Account account = (Account)item.Tag;
+                            if (oldest.LastAttack.CompareTo(account.LastAttack) == 1)
+                            {
+                                if (!listOfNames.Contains(account))
+                                {
+                                    if ((DateTime.Now - account.LastAttack).Hours >= 5)
+                                    {
+                                        oldest = account;
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
                             if ((DateTime.Now - account.LastAttack).Hours >= 5)
-                                listOfNames.Add(account);
+                            {
+                                if (!listOfNames.Contains(account))
+                                    oldest = account;
+                            }
                         }
                     }
                 }
-            }));
+                if (oldest != null)
+                    listOfNames.Add(oldest);
+            }
+            while (listOfNames.Count < max && oldest != null);
 
             return listOfNames;
         }

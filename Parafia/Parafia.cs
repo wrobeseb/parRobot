@@ -866,8 +866,12 @@ namespace Parafia
                         }
                         else
                         {
-                            account.Cash = -1;
-                            //account.IsChecked = false;
+                            if (errorMessage.Contains("Poziom przeciwnika"))
+                            {
+                                account.Cash = -1;
+                                account.IsChecked = false;
+                            }
+                            account.Cash = -2;
                             flag = true;
                         }
                         account.LastAttack = DateTime.Now;

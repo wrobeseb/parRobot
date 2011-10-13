@@ -3,13 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Quartz;
+
 using System.Windows.Forms;
+using Spring.Scheduling.Quartz;
 
 namespace PBizBot.Core.Scheduler
 {
     using Providers;
+    
 
-    public class Job
+    public class Job : QuartzJobObject
     {
         private ViewProvider m_viewProvider;
 
@@ -24,6 +28,11 @@ namespace PBizBot.Core.Scheduler
 
         public void runProcess()
         {
+        }
+
+        protected override void ExecuteInternal(JobExecutionContext context)
+        {
+            
         }
     }
 }

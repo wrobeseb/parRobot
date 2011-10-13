@@ -14,6 +14,12 @@ namespace PBizBot.Core
     public class AccountManager
     {
         private IScheduler m_schedulerFactory;
+        private AccountTriggerListener m_accountTriggerListener;
+
+        public AccountTriggerListener AccountTriggerListener
+        {
+            set { this.m_accountTriggerListener = value; }
+        }
 
         public IScheduler SchedulerFactory
         {
@@ -25,7 +31,8 @@ namespace PBizBot.Core
             SimpleTriggerObject triggerObject = new SimpleTriggerObject();
 
             triggerObject.Name = "testTrigger";
-            triggerObject.JobName = "testJop";
+            triggerObject.Group = "account";
+            //triggerObject.JobName = "testJop";
 
             MethodInvokingJobDetailFactoryObject job = new MethodInvokingJobDetailFactoryObject();
             job.TargetObject = new Job();
@@ -45,6 +52,7 @@ namespace PBizBot.Core
 
             triggerObject.AfterPropertiesSet();
 
+            m_schedulerFactory.AddGlobalTriggerListener(m_accountTriggerListener);
             m_schedulerFactory.AddJob(jobDetail, true);
             m_schedulerFactory.ScheduleJob(triggerObject);
 

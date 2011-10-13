@@ -12,6 +12,7 @@ using NMock2;
 
 namespace ParafiaTest.ParafiaTest
 {
+    using Parafia.Model.Stat;
     using Mock;
     using TestData;
 
@@ -22,7 +23,62 @@ namespace ParafiaTest.ParafiaTest
         public void init()
         { }
 
+
         [TestMethod]
+        public void oldestAttackTest()
+        {
+            List<Account> listOfNames = new List<Account>();
+
+            
+
+            List<Account> collection = new List<Account>();
+            for (int i = 1; i < 30; i++)
+            {
+                Account account = new Account();
+                account.LastAttack = DateTime.Now.AddHours((-1)*i);
+                collection.Add(account);
+            }
+
+            int max = 30;
+            Account oldest;
+            do
+            {
+                oldest = null;
+                foreach (Account item in collection)
+                {
+                    // if (item.Checked)
+                    //  {
+                    Account account = item;
+                    if (oldest != null)
+                    {
+                        if (oldest.LastAttack.CompareTo(account.LastAttack) == 1)
+                        {
+                            if (!listOfNames.Contains(account))
+                            {
+                                if ((DateTime.Now - account.LastAttack).Hours >= 5)
+                                {
+                                    oldest = account;
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if ((DateTime.Now - account.LastAttack).Hours >= 5)
+                        {
+                            if (!listOfNames.Contains(account))
+                                oldest = account;
+                        }
+                    }
+                    // }
+                }
+                if (oldest != null)
+                    listOfNames.Add(oldest);
+            }
+            while (listOfNames.Count < max && oldest != null);
+        }
+
+        //[TestMethod]
         public void greatChangePriceChooserTest()
         {
             Mockery mocks = new Mockery();

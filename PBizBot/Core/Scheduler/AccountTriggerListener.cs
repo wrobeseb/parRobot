@@ -4,17 +4,25 @@ using System.Linq;
 using System.Text;
 using Quartz;
 
+
 namespace PBizBot.Core.Scheduler
 {
     using Providers;
+    using Spring.Scheduling.Quartz;
 
     public class AccountTriggerListener : ITriggerListener
     {
         private SqlDataProvider m_sqlDataProvider;
+        private IScheduler m_schedulerFactory;
 
         public SqlDataProvider SqlDataProvider
         {
             set { this.m_sqlDataProvider = value; }
+        }
+
+        public IScheduler SchedulerFactory
+        {
+            set { this.m_schedulerFactory = value; }
         }
 
         public string Name
@@ -24,12 +32,18 @@ namespace PBizBot.Core.Scheduler
 
         public void TriggerComplete(Trigger trigger, JobExecutionContext context, SchedulerInstruction triggerInstructionCode)
         {
-            
+            SimpleTriggerObject oldTrigger = (SimpleTriggerObject)trigger;
+
+            oldTrigger.SetNextFireTime(DateTime.UtcNow.AddSeconds(10));
+
+            m_schedulerFactory.UnscheduleJob(oldTrigger.Name, oldTrigger.Group);
+
+            m_schedulerFactory.ScheduleJob(oldTrigger);
         }
 
         public void TriggerFired(Trigger trigger, JobExecutionContext context)
         {
-            
+
         }
 
         public void TriggerMisfired(Trigger trigger)
@@ -39,7 +53,7 @@ namespace PBizBot.Core.Scheduler
 
         public bool VetoJobExecution(Trigger trigger, JobExecutionContext context)
         {
-            return true;
+            return false;
         }
     }
 }
