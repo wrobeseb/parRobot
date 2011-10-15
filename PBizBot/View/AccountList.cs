@@ -16,11 +16,13 @@ namespace PBizBot.View
     using Core.Scheduler;
     using Spring.Scheduling.Quartz;
     using Quartz;
+    using Settings;
 
     public partial class AccountList : UserControl
     {
         private SqlDataProvider m_sqlDataProvider;
         private AccountManager m_accountManager;
+        private SettingsFactory m_settingsFactory;
         private ApplicationContext m_applicationContext;
 
         public SqlDataProvider SqlDataProvider
@@ -38,6 +40,11 @@ namespace PBizBot.View
             set { this.m_applicationContext = value; }
         }
 
+        public SettingsFactory SettingsFactory
+        {
+            set { this.m_settingsFactory = value; }
+        }
+
         public AccountList()
         {
             InitializeComponent();
@@ -48,6 +55,9 @@ namespace PBizBot.View
             Account account = new Account();
             account.Login = tbLogin.Text;
             account.Passwd = tbPasswd.Text;
+
+            PrepareSchedulerObjects(ref account);
+
             AccountListItem accountDetailsControl = new AccountListItem(account);
             int position = 0;
             if (pAccounts.Controls.Count != 0)
@@ -67,29 +77,6 @@ namespace PBizBot.View
 
             tbLogin.Text = String.Empty;
             tbPasswd.Text = String.Empty;
-
-            SimpleTriggerObject triggerObject = new SimpleTriggerObject();
-
-            triggerObject.Name = "testTrigger";
-            triggerObject.JobName = "testJop";
-
-            MethodInvokingJobDetailFactoryObject job = new MethodInvokingJobDetailFactoryObject();
-            //job.TargetObject = new Job();
-            job.Name = "testJob";
-            job.TargetMethod = "runProcess";
-            job.Concurrent = false;
-
-            job.AfterPropertiesSet();
-
-            JobDetail jobDetail = (JobDetail)job.GetObject();
-
-            triggerObject.JobDetail = jobDetail;
-
-            triggerObject.StartDelay = new TimeSpan(0, 0, 5);
-
-            triggerObject.RepeatInterval = new TimeSpan(1, 0, 0);
-
-            triggerObject.AfterPropertiesSet();
         }
 
         private void PrepareSchedulerObjects(ref Account account)
@@ -102,11 +89,15 @@ namespace PBizBot.View
 
             job.AfterPropertiesSet();
 
-            JobDetail jobDetail = (JobDetail)job.GetObject();
+            account.SchedulerJobDetail = (JobDetail)job.GetObject();
 
-            SimpleTrigger triggerObject = new SimpleTrigger("testTrigger", "account", DateTime.UtcNow.AddSeconds(5), null, 0, TimeSpan.Zero);
+            SimpleTrigger triggerObject = new SimpleTrigger(account.Login + "Trigger", "account", DateTime.UtcNow.AddSeconds(m_settingsFactory.Default.AccountFirstFireTime), null, 0, TimeSpan.Zero);
 
-            triggerObject.JobName = "testJob";
+            triggerObject.JobName = account.Login + "Job";
+
+            triggerObject.JobDataMap.Add("account", account);
+
+            account.SchedulerTrigger = triggerObject;
         }
 
         private void pAccounts_ControlAdded(object sender, ControlEventArgs e)

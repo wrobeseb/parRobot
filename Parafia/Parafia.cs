@@ -871,7 +871,10 @@ namespace Parafia
                                 account.Cash = -1;
                                 account.IsChecked = false;
                             }
-                            account.Cash = -2;
+                            else
+                            {
+                                account.Cash = -2;
+                            }
                             flag = true;
                         }
                         account.LastAttack = DateTime.Now;

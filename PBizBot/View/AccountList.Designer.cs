@@ -140,14 +140,14 @@
 
         #endregion
 
-        private System.Windows.Forms.Panel pAccounts;
+        public System.Windows.Forms.Panel pAccounts;
         public System.Windows.Forms.TextBox tbLogin;
         public System.Windows.Forms.CheckBox cbEnabled;
         public System.Windows.Forms.TextBox tbPasswd;
         public System.Windows.Forms.CheckBox cbSentEmail;
         public System.Windows.Forms.ComboBox cbTransferToAccount;
-        private System.Windows.Forms.PictureBox pbSettings;
-        private System.Windows.Forms.PictureBox pbAdd;
+        public System.Windows.Forms.PictureBox pbSettings;
+        public System.Windows.Forms.PictureBox pbAdd;
 
     }
 }

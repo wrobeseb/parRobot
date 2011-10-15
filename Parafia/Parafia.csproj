@@ -154,11 +154,20 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <!--<PostBuildEvent>xcopy $(TargetPath) E:\DANE\wrobese2\Parafia\</PostBuildEvent>-->
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
+       Other similar extension points exist, see Microsoft.Common.targets.-->
   <Target Name="BeforeBuild">
   </Target>
   <Target Name="AfterBuild">
+	<copy SourceFiles="$(TargetPath)" DestinationFiles="E:\DANE\wrobese2\Parafia\Elena\Parafia-elena.exe"/>
+	<copy SourceFiles="$(TargetPath)" DestinationFiles="E:\DANE\wrobese2\Parafia\Jankos\1.6.0\Parafia-jankos.exe"/>
+	<copy SourceFiles="$(TargetPath)" DestinationFiles="E:\DANE\wrobese2\Parafia\Mortar\1.6.0\Parafia-mortar.exe"/>
+	<copy SourceFiles="$(TargetPath)" DestinationFiles="E:\DANE\wrobese2\Parafia\My\1.6.0\Parafia-sairo.exe"/>
+	<copy SourceFiles="$(TargetPath)" DestinationFiles="E:\DANE\wrobese2\Parafia\sparrow3\Parafia-sparrow3.exe"/>
+	<copy SourceFiles="$(TargetPath)" DestinationFiles="E:\DANE\wrobese2\Parafia\Sylas\1.6.0\Parafia-sylas3.exe"/>
   </Target>
-  -->
+  
 </Project>

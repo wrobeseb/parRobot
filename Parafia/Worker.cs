@@ -778,21 +778,22 @@ namespace Parafia
                             {
                                 if (account.Cash != 0)
                                 {
-                                    parafia.putIntoSafe();
-                                    value = account.Cash;
-                                    printLog(account.UserName + ": Wygrałeś... Pakuje do sejfu... " + value);
-                                }
-                                else
-                                {
                                     if (account.Cash != -2)
                                     {
-                                        account.IsChecked = false;
-                                        printLog(account.UserName + ": Przegrałeś... ");
+                                        parafia.putIntoSafe();
+                                        value = account.Cash;
+                                        printLog(account.UserName + ": Wygrałeś... Pakuje do sejfu... " + value);
                                     }
                                     else
                                     {
                                         printLog(account.UserName + ": Przeciwnik wyczerpany... ");
+                                        account.Cash = 0;
                                     }
+                                }
+                                else
+                                {
+                                    account.IsChecked = false;
+                                    printLog(account.UserName + ": Przegrałeś... ");
                                 }
                             }
                             else

@@ -17,9 +17,12 @@ namespace PBizBot
     using Core;
     using View;
     using Model;
+    using log4net;
 
     public partial class Main : Form
     {
+        private static readonly ILog LOG = LogManager.GetLogger(typeof(Main));
+
         private AccountManager m_accountManager;
         private AppSettings m_appSettings;
         private AttackList m_attackList;
@@ -47,12 +50,13 @@ namespace PBizBot
 
         public Main()
         {
+            LOG.Info("Start aplikacji.");
             InitializeComponent();
         }
 
         private void btON_Click(object sender, EventArgs e)
         {
-            m_accountManager.test(this);
+            m_accountManager.ScheduleAccount(((AccountListItem)m_accountList.pAccounts.Controls[0]).Account);
 
             btOFF.Enabled = true;
             btON.Enabled = false;

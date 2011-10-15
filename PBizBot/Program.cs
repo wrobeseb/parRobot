@@ -5,6 +5,7 @@ using System.Windows.Forms;
 
 using Spring.Context;
 using Spring.Context.Support;
+using log4net.Config;
 
 namespace PBizBot
 {
@@ -18,6 +19,8 @@ namespace PBizBot
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
+            XmlConfigurator.Configure();
 
             IApplicationContext ctx = ContextRegistry.GetContext();
 
