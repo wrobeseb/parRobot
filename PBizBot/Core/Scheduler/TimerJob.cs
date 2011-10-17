@@ -3,22 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using Quartz;
-
-using Spring.Scheduling.Quartz;
-
 namespace PBizBot.Core.Scheduler
 {
+    using Providers;
+
     public class TimerJob
     {
-        private IScheduler m_schedulerFactory;
-        
+        private ViewProvider m_viewProvider;
 
-        public IScheduler SchedulerFactory
+        public TimerJob(ViewProvider viewProvider)
         {
-            set { this.m_schedulerFactory = value; }
+            this.m_viewProvider = viewProvider;
         }
 
-        //public 
+        public void RunProcess()
+        {
+            if (m_viewProvider.IsON)
+            {
+                m_viewProvider.SetTime();
+            }
+        }
     }
 }

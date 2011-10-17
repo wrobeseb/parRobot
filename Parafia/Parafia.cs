@@ -70,6 +70,30 @@ namespace Parafia
             return new TimeSpan(0, int.Parse(tempTable[0]), int.Parse(tempTable[1]), int.Parse(tempTable[2]), 0);
         }
 
+        public List<String> hideRelicsToSafe()
+        {
+            String responseContent = httpClient.SendHttpGetAndReturnResponseContent("http://parafia.biz/relics/my");
+          
+            HtmlNodeCollection relicsNodes = HtmlUtils.GetNodesCollectionByXPathExpression(responseContent, "//ul[@class='relics-small']/li");
+
+            List<String> relics = new List<string>();
+
+            foreach (HtmlNode relicNode in relicsNodes)
+            {
+                String relicNo = HtmlUtils.GetStringValueByXPathExpression(relicNode.InnerHtml, "//div[@class='right']/span[@class='num_relics']");
+                String inSafe = HtmlUtils.GetStringValueByXPathExpression(relicNode.InnerHtml, "//div[@class='right']/span[@class='num_safe']");
+                if (String.IsNullOrEmpty(inSafe) || (!relicNo.Equals(inSafe)))
+                {
+                    String relicId = HtmlUtils.GetAttributeValueFromHtmlNode(relicNode, "rel");
+                    String relicName = HtmlUtils.GetAttributeValueFromHtmlNode(relicNode, "title");
+                    relics.Add(relicId + ";" + relicName);
+                    hideRelic(int.Parse(relicId));
+                }
+            }
+
+            return relics;
+        }
+
         public bool login()
         {
             String responseContent = httpClient.SendHttpGetAndReturnResponseContent("http://parafia.biz/");
@@ -261,6 +285,27 @@ namespace Parafia
                 catch (WebException we)
                 {
                     worker.printLog("[ERROR] Wystąpił błąd. hideGreatChange!!!");
+                    worker.printLog("[ERROR] Treść błędu: " + we.Message);
+                    worker.printLog("[ERROR] Ponawiam proces.");
+                    timeout++;
+                }
+            }
+            while ((timeout != 0) && timeout < 5);
+        }
+
+        public void hideRelic(int id)
+        {
+            int timeout = 0;
+            do
+            {
+                try
+                {
+                    httpClient.SendHttpGetAndReturnResponseContent("http://parafia.biz/relics/hide/" + id);
+                    timeout = 0;
+                }
+                catch (WebException we)
+                {
+                    worker.printLog("[ERROR] Wystąpił błąd. hideRelic!!!");
                     worker.printLog("[ERROR] Treść błędu: " + we.Message);
                     worker.printLog("[ERROR] Ponawiam proces.");
                     timeout++;

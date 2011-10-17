@@ -21,8 +21,9 @@ namespace PBizBot.Core.Scheduler
             this.m_viewProvider = viewProvider;
         }
 
-        public void runProcess()
+        public void RunProcess()
         {
+
         }
 
         protected override void ExecuteInternal(JobExecutionContext context)

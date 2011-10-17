@@ -7,6 +7,18 @@ namespace Parafia
 {
     public class MainUtils
     {
+        public static String listToString(List<String> list)
+        {
+            StringBuilder builder = new StringBuilder();
+
+            foreach (String item in list)
+            {
+                builder.Append(item).Append("\n");
+            }
+
+            return builder.ToString();
+        }
+
         public static String removeAllNotNumberCharacters(String content)
         {
             content = content.Replace(" ", "");

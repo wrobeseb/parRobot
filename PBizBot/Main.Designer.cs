@@ -177,17 +177,17 @@
 
         #endregion
 
-        private System.Windows.Forms.TabControl tbBot;
-        private System.Windows.Forms.TabPage tpBot;
-        private System.Windows.Forms.TabPage tpManual;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button btOFF;
-        private System.Windows.Forms.Button btON;
-        private System.Windows.Forms.GroupBox gbAccounts;
-        private System.Windows.Forms.GroupBox gbBotMainPanel;
-        private System.Windows.Forms.Button btSettings;
-        private System.Windows.Forms.GroupBox gbAttackListSection;
-        private System.Windows.Forms.StatusStrip ssStatus;
+        public System.Windows.Forms.TabControl tbBot;
+        public System.Windows.Forms.TabPage tpBot;
+        public System.Windows.Forms.TabPage tpManual;
+        public System.Windows.Forms.GroupBox groupBox1;
+        public System.Windows.Forms.Button btOFF;
+        public System.Windows.Forms.Button btON;
+        public System.Windows.Forms.GroupBox gbAccounts;
+        public System.Windows.Forms.GroupBox gbBotMainPanel;
+        public System.Windows.Forms.Button btSettings;
+        public System.Windows.Forms.GroupBox gbAttackListSection;
+        public System.Windows.Forms.StatusStrip ssStatus;
         //private Skybound.Gecko.GeckoWebBrowser webBrowser;
     }
 }

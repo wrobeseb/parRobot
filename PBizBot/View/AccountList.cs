@@ -20,13 +20,7 @@ namespace PBizBot.View
 
     public partial class AccountList : UserControl
     {
-        private SqlDataProvider m_sqlDataProvider;
         private ApplicationContext m_applicationContext;
-
-        public SqlDataProvider SqlDataProvider
-        {
-            set { this.m_sqlDataProvider = value; }
-        }
 
         public ApplicationContext ApplicationContext
         {
@@ -71,8 +65,8 @@ namespace PBizBot.View
         {
             MethodInvokingJobDetailFactoryObject job = new MethodInvokingJobDetailFactoryObject();
             job.TargetObject = m_applicationContext.GetComponentFromContext<AccountJob>("accountJob");
-            job.Name = account.Login + "Job"; 
-            job.TargetMethod = "runProcess";
+            job.Name = account.Login + "Job";
+            job.TargetMethod = "RunProcess";
             job.Concurrent = false;
 
             job.AfterPropertiesSet();

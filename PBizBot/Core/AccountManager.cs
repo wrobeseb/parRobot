@@ -14,17 +14,24 @@ namespace PBizBot.Core
     using View;
     using Settings;
     using Scheduler;
+    using Providers;
 
     public class AccountManager : IInitializingObject
     {
-        private AccountList m_accountList; 
+        private SqlDataProvider m_sqlDataProvider;
+        private ViewProvider m_viewProvider;
         private IScheduler m_schedulerFactory;
         private SettingsFactory m_settingsFactory;
         private AccountTriggerListener m_accountTriggerListener;
 
-        public AccountList AccountList
+        public SqlDataProvider SqlDataProvider
         {
-            set { this.m_accountList = value; }
+            set { this.m_sqlDataProvider = value; }
+        }
+
+        public ViewProvider ViewProvider
+        {
+            set { this.m_viewProvider = value; }
         }
 
         public SettingsFactory SettingsFactory
@@ -44,9 +51,8 @@ namespace PBizBot.Core
 
         public void StartAccounts()
         {
-            foreach (AccountListItem accountListItem in m_accountList.pAccounts.Controls)
+            foreach (Account account in m_viewProvider.GetAccounts())
             {
-                Account account = (Account)accountListItem.Account;
                 account.SchedulerTrigger.StartTimeUtc = DateTime.UtcNow.AddSeconds(m_settingsFactory.Default.AccountFirstFireTime);
                 ScheduleAccount(account);
             }
@@ -58,12 +64,12 @@ namespace PBizBot.Core
             ScheduleAccount(account);
         }
 
-        public void ScheduleAccount(Account account)
+        private void ScheduleAccount(Account account)
         {
             Schedule(account);
         }
 
-        public void ScheduleAccounts(List<Account> accounts)
+        private void ScheduleAccounts(List<Account> accounts)
         {
             foreach (Account account in accounts)
             {
@@ -71,7 +77,7 @@ namespace PBizBot.Core
             }
         }
 
-        public void UnScheduleAccounts(List<Account> accounts)
+        private void UnScheduleAccounts(List<Account> accounts)
         {
             foreach (Account account in accounts)
             {
@@ -79,7 +85,7 @@ namespace PBizBot.Core
             }
         }
 
-        public void UnScheduleAccount(Account account)
+        private void UnScheduleAccount(Account account)
         {
             UnSchedule(account);
         }

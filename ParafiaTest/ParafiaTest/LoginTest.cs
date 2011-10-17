@@ -23,8 +23,33 @@ namespace ParafiaTest.ParafiaTest
         public void init()
         { }
 
-
         [TestMethod]
+        public void relicsInHouseTest()
+        {
+            Mockery mocks = new Mockery();
+            IDefaultHttpClient dhcMock = mocks.NewMock<IDefaultHttpClient>();
+
+            Expect.Once.On(dhcMock).Method("SendHttpGetAndReturnResponseContent").With("http://parafia.biz/relics/my").Will(Return.Value(TestData.ParafiaBizRelicsInHouseContent));
+
+            String responseContent = dhcMock.SendHttpGetAndReturnResponseContent("http://parafia.biz/relics/my");
+
+            //HtmlNode.ElementsFlags.Remove("option");
+            HtmlNodeCollection relicsNodes = HtmlUtils.GetNodesCollectionByXPathExpression(responseContent, "//ul[@class='relics-small']/li");
+
+            List<String> relics = new List<string>();
+
+            foreach (HtmlNode relicNode in relicsNodes)
+            {
+                String relicNo = HtmlUtils.GetStringValueByXPathExpression(relicNode.InnerHtml, "//div[@class='right']/span[@class='num_relics']");
+                String inSafe = HtmlUtils.GetStringValueByXPathExpression(relicNode.InnerHtml, "//div[@class='right']/span[@class='num_safe']");
+                if (String.IsNullOrEmpty(inSafe) || (!relicNo.Equals(inSafe)))
+                {
+                    relics.Add(HtmlUtils.GetAttributeValueFromHtmlNode(relicNode, "rel") + ";" + HtmlUtils.GetAttributeValueFromHtmlNode(relicNode, "title"));
+                }
+            }
+        }
+
+        //[TestMethod]
         public void oldestAttackTest()
         {
             List<Account> listOfNames = new List<Account>();
