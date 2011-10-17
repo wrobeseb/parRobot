@@ -13,16 +13,10 @@ namespace PBizBot.Core.Scheduler
     public class AccountTriggerListener : ITriggerListener
     {
         private SqlDataProvider m_sqlDataProvider;
-        private IScheduler m_schedulerFactory;
 
         public SqlDataProvider SqlDataProvider
         {
             set { this.m_sqlDataProvider = value; }
-        }
-
-        public IScheduler SchedulerFactory
-        {
-            set { this.m_schedulerFactory = value; }
         }
 
         public string Name
@@ -32,13 +26,6 @@ namespace PBizBot.Core.Scheduler
 
         public void TriggerComplete(Trigger trigger, JobExecutionContext context, SchedulerInstruction triggerInstructionCode)
         {
-            //SimpleTriggerObject oldTrigger = (SimpleTriggerObject)trigger;
-
-            //oldTrigger.RepeatInterval = new TimeSpan(0, 0, 10);
-
-            //oldTrigger.AfterPropertiesSet();
-
-           // m_schedulerFactory.RescheduleJob(oldTrigger.Name, oldTrigger.Group, oldTrigger);
 
         }
 

@@ -21,8 +21,6 @@ namespace PBizBot.View
     public partial class AccountList : UserControl
     {
         private SqlDataProvider m_sqlDataProvider;
-        private AccountManager m_accountManager;
-        private SettingsFactory m_settingsFactory;
         private ApplicationContext m_applicationContext;
 
         public SqlDataProvider SqlDataProvider
@@ -30,19 +28,9 @@ namespace PBizBot.View
             set { this.m_sqlDataProvider = value; }
         }
 
-        public AccountManager AccountManager
-        {
-            set { this.m_accountManager = value; }
-        }
-
         public ApplicationContext ApplicationContext
         {
             set { this.m_applicationContext = value; }
-        }
-
-        public SettingsFactory SettingsFactory
-        {
-            set { this.m_settingsFactory = value; }
         }
 
         public AccountList()
@@ -91,7 +79,7 @@ namespace PBizBot.View
 
             account.SchedulerJobDetail = (JobDetail)job.GetObject();
 
-            SimpleTrigger triggerObject = new SimpleTrigger(account.Login + "Trigger", "account", DateTime.UtcNow.AddSeconds(m_settingsFactory.Default.AccountFirstFireTime), null, 0, TimeSpan.Zero);
+            SimpleTrigger triggerObject = new SimpleTrigger(account.Login + "Trigger", "account", DateTime.MinValue, null, 0, TimeSpan.Zero);
 
             triggerObject.JobName = account.Login + "Job";
 

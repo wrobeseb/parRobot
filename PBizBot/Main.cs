@@ -56,7 +56,7 @@ namespace PBizBot
 
         private void btON_Click(object sender, EventArgs e)
         {
-            m_accountManager.ScheduleAccount(((AccountListItem)m_accountList.pAccounts.Controls[0]).Account);
+            m_accountManager.StartAccounts();
 
             btOFF.Enabled = true;
             btON.Enabled = false;

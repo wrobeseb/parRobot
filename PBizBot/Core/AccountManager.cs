@@ -11,12 +11,26 @@ using Spring.Scheduling.Quartz;
 namespace PBizBot.Core
 {
     using Model;
+    using View;
+    using Settings;
     using Scheduler;
 
     public class AccountManager : IInitializingObject
     {
+        private AccountList m_accountList; 
         private IScheduler m_schedulerFactory;
+        private SettingsFactory m_settingsFactory;
         private AccountTriggerListener m_accountTriggerListener;
+
+        public AccountList AccountList
+        {
+            set { this.m_accountList = value; }
+        }
+
+        public SettingsFactory SettingsFactory
+        {
+            set { this.m_settingsFactory = value; }
+        }
 
         public IScheduler SchedulerFactory
         {
@@ -26,6 +40,22 @@ namespace PBizBot.Core
         public AccountTriggerListener AccountTriggerLister
         {
             set { this.m_accountTriggerListener = value; }
+        }
+
+        public void StartAccounts()
+        {
+            foreach (AccountListItem accountListItem in m_accountList.pAccounts.Controls)
+            {
+                Account account = (Account)accountListItem.Account;
+                account.SchedulerTrigger.StartTimeUtc = DateTime.UtcNow.AddSeconds(m_settingsFactory.Default.AccountFirstFireTime);
+                ScheduleAccount(account);
+            }
+        }
+
+        public void StartAccount(Account account)
+        {
+            account.SchedulerTrigger.StartTimeUtc = DateTime.UtcNow.AddSeconds(m_settingsFactory.Default.AccountFirstFireTime);
+            ScheduleAccount(account);
         }
 
         public void ScheduleAccount(Account account)
@@ -68,7 +98,7 @@ namespace PBizBot.Core
 
         public void AfterPropertiesSet()
         {
-           // m_schedulerFactory.AddGlobalTriggerListener(this.m_accountTriggerListener);
+            m_schedulerFactory.AddGlobalTriggerListener(this.m_accountTriggerListener);
         }
     }
 }
