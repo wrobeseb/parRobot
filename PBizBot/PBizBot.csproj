@@ -70,6 +70,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="PBizBotLoggerAppender">
+      <HintPath>..\PBizBotLoggerAppender\bin\Debug\PBizBotLoggerAppender.dll</HintPath>
+    </Reference>
     <Reference Include="Quartz">
       <HintPath>lib\Quartz.dll</HintPath>
     </Reference>
@@ -95,7 +98,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\BattleManager.cs" />
-    <Compile Include="Core\Logging\MainAppender.cs" />
+    <Compile Include="Core\Logger\Logger.cs" />
     <Compile Include="Core\Scheduler\TimerJob.cs" />
     <Compile Include="Core\TimerManager.cs" />
     <Compile Include="Settings\Settings.cs" />

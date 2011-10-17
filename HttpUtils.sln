@@ -28,6 +28,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PBizBot", "PBizBot\PBizBot.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PBizBotTest", "PBizBotTest\PBizBotTest.csproj", "{1014512F-6A18-4251-9BCC-C41BE305FEAC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PBizBotLoggerAppender", "PBizBotLoggerAppender\PBizBotLoggerAppender.csproj", "{3BB6A8E3-1347-4324-BA0D-FAC180AACA74}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = HttpUtils.vsmdi
@@ -141,6 +143,16 @@ Global
 		{1014512F-6A18-4251-9BCC-C41BE305FEAC}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{1014512F-6A18-4251-9BCC-C41BE305FEAC}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{1014512F-6A18-4251-9BCC-C41BE305FEAC}.Release|x86.ActiveCfg = Release|Any CPU
+		{3BB6A8E3-1347-4324-BA0D-FAC180AACA74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3BB6A8E3-1347-4324-BA0D-FAC180AACA74}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3BB6A8E3-1347-4324-BA0D-FAC180AACA74}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{3BB6A8E3-1347-4324-BA0D-FAC180AACA74}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{3BB6A8E3-1347-4324-BA0D-FAC180AACA74}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{3BB6A8E3-1347-4324-BA0D-FAC180AACA74}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3BB6A8E3-1347-4324-BA0D-FAC180AACA74}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3BB6A8E3-1347-4324-BA0D-FAC180AACA74}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{3BB6A8E3-1347-4324-BA0D-FAC180AACA74}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{3BB6A8E3-1347-4324-BA0D-FAC180AACA74}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

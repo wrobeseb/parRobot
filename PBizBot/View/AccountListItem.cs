@@ -22,6 +22,11 @@ namespace PBizBot.View
                 bindForm();
                 return this.m_account; 
             }
+            set
+            {
+                this.m_account = value;
+                setForm();
+            }
         }
 
         private void bindForm()
@@ -30,6 +35,14 @@ namespace PBizBot.View
             m_account.SentMail = cbSentEmail.Checked;
             m_account.Selected = rbSelectedAccount.Checked;
             m_account.Enabled = cbEnabled.Checked;
+        }
+
+        private void setForm()
+        {
+           tbPasswd.Text = m_account.Passwd;
+           cbSentEmail.Checked = m_account.SentMail;
+           rbSelectedAccount.Checked = m_account.Selected;
+           cbEnabled.Checked = m_account.Enabled;
         }
 
         public AccountListItem(Account account)

@@ -38,10 +38,13 @@
             this.btOFF = new System.Windows.Forms.Button();
             this.btON = new System.Windows.Forms.Button();
             this.tpManual = new System.Windows.Forms.TabPage();
+            this.tpLog = new System.Windows.Forms.TabPage();
+            this.rtbMainLog = new System.Windows.Forms.RichTextBox();
             this.ssStatus = new System.Windows.Forms.StatusStrip();
             this.tbBot.SuspendLayout();
             this.tpBot.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.tpLog.SuspendLayout();
             this.SuspendLayout();
             // 
             // tbBot
@@ -49,6 +52,7 @@
             this.tbBot.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
             this.tbBot.Controls.Add(this.tpBot);
             this.tbBot.Controls.Add(this.tpManual);
+            this.tbBot.Controls.Add(this.tpLog);
             this.tbBot.Location = new System.Drawing.Point(2, 12);
             this.tbBot.Name = "tbBot";
             this.tbBot.SelectedIndex = 0;
@@ -146,6 +150,25 @@
             this.tpManual.Text = "Manual";
             this.tpManual.UseVisualStyleBackColor = true;
             // 
+            // tpLog
+            // 
+            this.tpLog.Controls.Add(this.rtbMainLog);
+            this.tpLog.Location = new System.Drawing.Point(4, 25);
+            this.tpLog.Name = "tpLog";
+            this.tpLog.Size = new System.Drawing.Size(1184, 732);
+            this.tpLog.TabIndex = 2;
+            this.tpLog.Text = "Log";
+            this.tpLog.UseVisualStyleBackColor = true;
+            // 
+            // rtbMainLog
+            // 
+            this.rtbMainLog.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.rtbMainLog.Location = new System.Drawing.Point(3, 3);
+            this.rtbMainLog.Name = "rtbMainLog";
+            this.rtbMainLog.Size = new System.Drawing.Size(1178, 726);
+            this.rtbMainLog.TabIndex = 0;
+            this.rtbMainLog.Text = "";
+            // 
             // ssStatus
             // 
             this.ssStatus.Location = new System.Drawing.Point(0, 773);
@@ -170,6 +193,7 @@
             this.tbBot.ResumeLayout(false);
             this.tpBot.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
+            this.tpLog.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -188,6 +212,8 @@
         public System.Windows.Forms.Button btSettings;
         public System.Windows.Forms.GroupBox gbAttackListSection;
         public System.Windows.Forms.StatusStrip ssStatus;
+        private System.Windows.Forms.TabPage tpLog;
+        public System.Windows.Forms.RichTextBox rtbMainLog;
         //private Skybound.Gecko.GeckoWebBrowser webBrowser;
     }
 }

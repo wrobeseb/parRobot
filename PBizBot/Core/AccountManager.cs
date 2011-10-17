@@ -64,6 +64,12 @@ namespace PBizBot.Core
             ScheduleAccount(account);
         }
 
+        public void SetNextLoginTimeForAccount(Account account)
+        {
+            m_viewProvider.UpdateAccountInformation(account);
+            ReScheduleAccount(account);
+        }
+
         private void ScheduleAccount(Account account)
         {
             Schedule(account);
@@ -88,6 +94,18 @@ namespace PBizBot.Core
         private void UnScheduleAccount(Account account)
         {
             UnSchedule(account);
+        }
+
+        private void ReScheduleAccount(Account account)
+        {
+            //ReSchedule(account);
+            m_schedulerFactory.ResumeTrigger(account.SchedulerTrigger.Name, account.SchedulerTrigger.Group);
+        }
+
+        private void ReSchedule(Account account)
+        {
+            //UnSchedule(account);
+            Schedule(account);
         }
 
         private void Schedule(Account account)

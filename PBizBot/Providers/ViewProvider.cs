@@ -52,6 +52,18 @@ namespace PBizBot.Providers
             return accounts;
         }
 
+        public void UpdateAccountInformation(Account account)
+        {
+            foreach (AccountListItem item in m_accountList.pAccounts.Controls)
+            {
+                if (item.Account.Login.Equals(account.Login))
+                {
+                    item.Account = account;
+                    return;
+                }
+            }
+        }
+
         public void SetTime()
         {
             foreach (AccountListItem item in m_accountList.pAccounts.Controls)
@@ -64,6 +76,18 @@ namespace PBizBot.Providers
                     item.tbNextLogin.Text = interval.ToString(@"hh\:mm\:ss");
                 }));
             }
+        }
+
+        public void PrintLog(String message)
+        {
+            try
+            {
+                m_mainForm.Invoke((Action)(delegate
+                {
+                    m_mainForm.rtbMainLog.AppendText(message);
+                }));
+            }
+            catch { }
         }
     }
 }
