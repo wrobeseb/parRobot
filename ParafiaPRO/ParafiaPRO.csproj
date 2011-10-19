@@ -11,7 +11,8 @@
     <RootNamespace>ParafiaPRO</RootNamespace>
     <AssemblyName>ParafiaPRO</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
@@ -72,10 +73,19 @@
     <Compile Include="Controller\IMainController.cs" />
     <Compile Include="Controller\Impl\AbstractController.cs" />
     <Compile Include="Controller\Impl\AccountControllerImpl.cs" />
+    <Compile Include="Model\Account.cs" />
+    <Compile Include="Scheduler\Job\AccountJob.cs" />
+    <Compile Include="Shell.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Shell.Designer.cs">
+      <DependentUpon>Shell.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\IAccountService.cs" />
     <Compile Include="Service\IBattleService.cs" />
+    <Compile Include="View\IView.cs" />
     <Compile Include="View\IAccountListItemView.cs" />
     <Compile Include="View\IAccountListView.cs" />
     <Compile Include="View\Impl\AbstractView.cs">
@@ -93,6 +103,9 @@
     <Compile Include="View\Impl\AccountListItemView.Designer.cs">
       <DependentUpon>AccountListItemView.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Shell.resx">
+      <DependentUpon>Shell.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -128,7 +141,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Dao\" />
-    <Folder Include="Scheduler\" />
     <Folder Include="Service\Impl\" />
   </ItemGroup>
   <ItemGroup>

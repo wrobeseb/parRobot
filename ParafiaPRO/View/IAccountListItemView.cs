@@ -5,7 +5,12 @@ using System.Text;
 
 namespace ParafiaPRO.View
 {
-    public interface IAccountListItemView
+    using Model;
+
+    public interface IAccountListItemView : IView
     {
+        event EventHandler RemoveAccountEvent;
+
+        Account Account { set; get; }
     }
 }

@@ -21,6 +21,6 @@ namespace ParafiaPRO.Controller.Impl
             del.BeginInvoke(EndInvoke, del);
         }
 
-        protected virtual void OnException(Exception ex);
+        protected virtual void OnException(Exception ex) { }
     }
 }

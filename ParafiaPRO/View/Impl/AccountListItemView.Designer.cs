@@ -229,7 +229,6 @@
             this.Controls.Add(this.tbPasswd);
             this.Name = "AccountListItem";
             this.Size = new System.Drawing.Size(950, 22);
-            this.Load += new System.EventHandler(this.AccountDetailsControl_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbMinus)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbSettings)).EndInit();
             this.ResumeLayout(false);

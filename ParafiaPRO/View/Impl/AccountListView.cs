@@ -10,6 +10,7 @@ using System.Windows.Forms;
 namespace ParafiaPRO.View.Impl
 {
     using Controller;
+    using Model;
     using View;
 
     public partial class AccountListView : AbstractView, IAccountListView
@@ -20,36 +21,36 @@ namespace ParafiaPRO.View.Impl
 
         #region Getters/Setters
 
+        public UserControl Control
+        {
+            get { return this; }
+        }
+
         public IAccountController AccountController
         {
             set
             {
                 this.m_accountController = value;
+                this.m_accountController.AccountListView = this;
             }
         }
 
-        public string login
+        public string Login
         {
             get 
             {
                 String value = String.Empty;
-                Action(delegate
-                {
-                    value = tbLogin.Text; 
-                });
+                Action(delegate { value = tbLogin.Text; });
                 return value;
             }
         }
 
-        public string passwd
+        public string Passwd
         {
             get 
             {
                 String value = String.Empty;
-                Action(delegate
-                {
-                    value = tbPasswd.Text;
-                });
+                Action(delegate { value = tbPasswd.Text; });
                 return value;
             }
         }
@@ -61,22 +62,40 @@ namespace ParafiaPRO.View.Impl
             InitializeComponent();
         }
 
+        public void AddAccountListItemView(IAccountListItemView accountListItemView)
+        {
+            UserControl item = accountListItemView.Control;
+            item.Location = new Point(0, 22 * this.pAccounts.Controls.Count);
+            Action(delegate 
+            { 
+                this.pAccounts.Controls.Add(item);
+                this.tbLogin.Text = String.Empty;
+                this.tbPasswd.Text = String.Empty;
+            });
+        }
+
+        public void RemoveAccountListItemView(IAccountListItemView accountListItemView)
+        {
+            
+            if (this.pAccounts.Controls.Contains(accountListItemView.Control))
+            {
+                Action(delegate { this.pAccounts.Controls.Remove(accountListItemView.Control); });
+
+                int position = 0;
+                foreach (UserControl item in this.pAccounts.Controls)
+                {
+                    Action(delegate { item.Location = new Point(0, position); });
+                    position += 22;
+                }
+            }
+        }
+
         #region Events Handlers
 
         private void pbAdd_Click(object sender, EventArgs e)
         {
             if (AddAccountEvent != null)
                 AddAccountEvent(this, EventArgs.Empty);
-        }
-
-        private void pAccounts_ControlAdded(object sender, ControlEventArgs e)
-        {
-            
-        }
-
-        private void pAccounts_ControlRemoved(object sender, ControlEventArgs e)
-        {
-
         }
 
         #endregion

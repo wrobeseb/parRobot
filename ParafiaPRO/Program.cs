@@ -20,9 +20,11 @@ namespace ParafiaPRO
             Application.SetCompatibleTextRenderingDefault(false);
 
             IApplicationContext ctx = ContextRegistry.GetContext();
-            Form mainForm = ctx.GetObject("MainForm") as Form;
+            Form shell = ctx.GetObject("Shell") as Form;
 
-            Application.Run(mainForm);
+            log4net.Config.XmlConfigurator.Configure();
+
+            Application.Run(shell);
         }
     }
 }

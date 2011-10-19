@@ -5,12 +5,16 @@ using System.Text;
 
 namespace ParafiaPRO.View
 {
-    public interface IAccountListView
+    using View;
+
+    public interface IAccountListView : IView
     {
         event EventHandler AddAccountEvent;
 
-        string login { get; }
-        string passwd { get; }
+        string Login { get; }
+        string Passwd { get; }
 
+        void AddAccountListItemView(IAccountListItemView accountListItemView);
+        void RemoveAccountListItemView(IAccountListItemView accountListItemView);
     }
 }

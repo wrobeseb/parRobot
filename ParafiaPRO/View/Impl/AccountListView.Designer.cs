@@ -47,8 +47,6 @@
             this.pAccounts.Name = "pAccounts";
             this.pAccounts.Size = new System.Drawing.Size(968, 155);
             this.pAccounts.TabIndex = 1;
-            this.pAccounts.ControlAdded += new System.Windows.Forms.ControlEventHandler(this.pAccounts_ControlAdded);
-            this.pAccounts.ControlRemoved += new System.Windows.Forms.ControlEventHandler(this.pAccounts_ControlRemoved);
             // 
             // tbLogin
             // 
