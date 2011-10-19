@@ -1,6 +1,6 @@
-﻿namespace PBizBot.View
+﻿namespace ParafiaPRO.View.Impl
 {
-    partial class AccountListItem
+    partial class AccountListItemView
     {
         /// <summary> 
         /// Required designer variable.
@@ -33,7 +33,6 @@
             this.tbNextLogin = new System.Windows.Forms.TextBox();
             this.cbEnabled = new System.Windows.Forms.CheckBox();
             this.tbMailMessages = new System.Windows.Forms.TextBox();
-            this.lbSettings = new System.Windows.Forms.LinkLabel();
             this.tbAttack = new System.Windows.Forms.TextBox();
             this.tbDefense = new System.Windows.Forms.TextBox();
             this.tbHitCount = new System.Windows.Forms.TextBox();
@@ -43,7 +42,9 @@
             this.tbLogin = new System.Windows.Forms.TextBox();
             this.tbPasswd = new System.Windows.Forms.TextBox();
             this.pbMinus = new System.Windows.Forms.PictureBox();
+            this.pbSettings = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbMinus)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbSettings)).BeginInit();
             this.SuspendLayout();
             // 
             // tbCash
@@ -99,16 +100,6 @@
             this.tbMailMessages.TabIndex = 10;
             this.tbMailMessages.Text = "00";
             this.tbMailMessages.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // lbSettings
-            // 
-            this.lbSettings.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lbSettings.Image = global::PBizBot.Properties.Resources.settings;
-            this.lbSettings.Location = new System.Drawing.Point(906, 3);
-            this.lbSettings.Name = "lbSettings";
-            this.lbSettings.Size = new System.Drawing.Size(16, 16);
-            this.lbSettings.TabIndex = 11;
-            this.lbSettings.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lbSettings_LinkClicked);
             // 
             // tbAttack
             // 
@@ -199,7 +190,7 @@
             // pbMinus
             // 
             this.pbMinus.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbMinus.Image = global::PBizBot.Properties.Resources.minus;
+            this.pbMinus.Image = global::ParafiaPRO.Properties.Resources.minus;
             this.pbMinus.Location = new System.Drawing.Point(928, 3);
             this.pbMinus.Name = "pbMinus";
             this.pbMinus.Size = new System.Drawing.Size(16, 16);
@@ -207,10 +198,21 @@
             this.pbMinus.TabStop = false;
             this.pbMinus.Click += new System.EventHandler(this.pbMinus_Click);
             // 
+            // pbSettings
+            // 
+            this.pbSettings.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbSettings.Image = global::ParafiaPRO.Properties.Resources.settings;
+            this.pbSettings.Location = new System.Drawing.Point(905, 3);
+            this.pbSettings.Name = "pbSettings";
+            this.pbSettings.Size = new System.Drawing.Size(16, 16);
+            this.pbSettings.TabIndex = 21;
+            this.pbSettings.TabStop = false;
+            // 
             // AccountListItem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.pbSettings);
             this.Controls.Add(this.pbMinus);
             this.Controls.Add(this.cbTransferToAccount);
             this.Controls.Add(this.rbSelectedAccount);
@@ -218,7 +220,6 @@
             this.Controls.Add(this.tbHitCount);
             this.Controls.Add(this.tbDefense);
             this.Controls.Add(this.tbAttack);
-            this.Controls.Add(this.lbSettings);
             this.Controls.Add(this.tbMailMessages);
             this.Controls.Add(this.cbEnabled);
             this.Controls.Add(this.tbNextLogin);
@@ -230,6 +231,7 @@
             this.Size = new System.Drawing.Size(950, 22);
             this.Load += new System.EventHandler(this.AccountDetailsControl_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbMinus)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbSettings)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -244,7 +246,6 @@
         public System.Windows.Forms.TextBox tbNextLogin;
         public System.Windows.Forms.CheckBox cbEnabled;
         public System.Windows.Forms.TextBox tbMailMessages;
-        public System.Windows.Forms.LinkLabel lbSettings;
         public System.Windows.Forms.TextBox tbAttack;
         public System.Windows.Forms.TextBox tbDefense;
         public System.Windows.Forms.TextBox tbHitCount;
@@ -252,5 +253,6 @@
         public System.Windows.Forms.RadioButton rbSelectedAccount;
         public System.Windows.Forms.ComboBox cbTransferToAccount;
         private System.Windows.Forms.PictureBox pbMinus;
+        private System.Windows.Forms.PictureBox pbSettings;
     }
 }

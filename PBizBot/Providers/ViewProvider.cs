@@ -69,12 +69,23 @@ namespace PBizBot.Providers
             foreach (AccountListItem item in m_accountList.pAccounts.Controls)
             {
                 Account account = item.Account;
-                TimeSpan interval = account.SchedulerTrigger.StartTimeUtc - DateTime.UtcNow;
-                item.Account.NextLoginTime = interval;
-                m_accountList.pAccounts.Invoke((Action)(delegate
+                if (account.Enabled)
                 {
-                    item.tbNextLogin.Text = interval.ToString(@"hh\:mm\:ss");
-                }));
+                    TimeSpan interval = account.SchedulerTrigger.StartTimeUtc - DateTime.UtcNow;
+                    item.Account.NextLoginTime = interval;
+
+                    m_accountList.pAccounts.Invoke((Action)(delegate
+                    {
+                        item.tbNextLogin.Text = interval.ToString(@"hh\:mm\:ss");
+                    }));
+                }
+                else
+                {
+                    m_accountList.pAccounts.Invoke((Action)(delegate
+                    {
+                        item.tbNextLogin.Text = "Nie wystartowany!";
+                    }));
+                }
             }
         }
 

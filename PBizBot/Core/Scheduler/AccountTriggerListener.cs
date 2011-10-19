@@ -38,10 +38,11 @@ namespace PBizBot.Core.Scheduler
                 Account account = (Account)trigger.JobDataMap.Get("account");
                 if (account != null)
                 {
-                    trigger.StartTimeUtc = DateTime.UtcNow.AddSeconds(new Random().Next(account.Settings.NextTimeLoginMin, account.Settings.NextTimeLoginMax));
-                    
-                    account.SchedulerTrigger = trigger;
-
+                    SimpleTrigger triggerObject = new SimpleTrigger(account.Login + "Trigger", "account", DateTime.MinValue, null, 0, TimeSpan.Zero);
+                    triggerObject.JobName = account.Login + "Job";
+                    triggerObject.StartTimeUtc = DateTime.UtcNow.AddSeconds(new Random().Next(account.Settings.NextTimeLoginMin, account.Settings.NextTimeLoginMax));
+                    account.SchedulerTrigger = triggerObject;
+                    triggerObject.JobDataMap.Add("account", account);
                     m_accountManager.SetNextLoginTimeForAccount(account);
                 }
             }

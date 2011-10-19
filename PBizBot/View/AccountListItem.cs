@@ -113,5 +113,37 @@ namespace PBizBot.View
                 this.Dispose();
             }
         }
+
+        private void cbEnabled_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbEnabled.Checked)
+            {
+                this.cbSentEmail.Enabled = true;
+                this.rbSelectedAccount.Enabled = true;
+                this.tbLogin.Enabled = true;
+                this.tbPasswd.Enabled = true;
+                this.tbCash.Enabled = true;
+                this.tbSafe.Enabled = true;
+                this.tbNextLogin.Enabled = true;
+                this.tbMailMessages.Enabled = true;
+                this.tbHitCount.Enabled = true;
+                this.tbAttack.Enabled = true;
+                this.tbDefense.Enabled = true;
+            }
+            else
+            {
+                this.cbSentEmail.Enabled = false;
+                this.rbSelectedAccount.Enabled = false;
+                this.tbLogin.Enabled = false;
+                this.tbPasswd.Enabled = false;
+                this.tbCash.Enabled = false;
+                this.tbSafe.Enabled = false;
+                this.tbNextLogin.Enabled = false;
+                this.tbMailMessages.Enabled = false;
+                this.tbHitCount.Enabled = false;
+                this.tbAttack.Enabled = false;
+                this.tbDefense.Enabled = false;
+            }
+        }
     }
 }

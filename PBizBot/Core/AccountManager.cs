@@ -53,8 +53,11 @@ namespace PBizBot.Core
         {
             foreach (Account account in m_viewProvider.GetAccounts())
             {
-                account.SchedulerTrigger.StartTimeUtc = DateTime.UtcNow.AddSeconds(m_settingsFactory.Default.AccountFirstFireTime);
-                ScheduleAccount(account);
+                if (account.Enabled)
+                {
+                    account.SchedulerTrigger.StartTimeUtc = DateTime.UtcNow.AddSeconds(m_settingsFactory.Default.AccountFirstFireTime);
+                    ScheduleAccount(account);
+                }
             }
         }
 
@@ -98,13 +101,13 @@ namespace PBizBot.Core
 
         private void ReScheduleAccount(Account account)
         {
-            //ReSchedule(account);
-            m_schedulerFactory.ResumeTrigger(account.SchedulerTrigger.Name, account.SchedulerTrigger.Group);
+            UnSchedule(account);
+            ReSchedule(account);
         }
 
         private void ReSchedule(Account account)
         {
-            //UnSchedule(account);
+            UnSchedule(account);
             Schedule(account);
         }
 
