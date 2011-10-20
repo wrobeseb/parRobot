@@ -10,6 +10,7 @@ namespace ParafiaPRO.View
     public interface IAccountListItemView : IView
     {
         event EventHandler RemoveAccountEvent;
+        event EventHandler EnabledCheckedChangedEvent;
 
         Account Account { set; get; }
     }

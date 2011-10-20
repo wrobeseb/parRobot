@@ -13,10 +13,14 @@ namespace ParafiaPRO.View.Impl
     {
         protected void Action(MethodInvoker actionDelegate)
         {
-            if (InvokeRequired)
-                this.Invoke(actionDelegate);
-            else
-                actionDelegate();
+            try
+            {
+                if (InvokeRequired)
+                    this.Invoke(actionDelegate);
+                else
+                    actionDelegate();
+            }
+            catch { }
         }
     }
 }

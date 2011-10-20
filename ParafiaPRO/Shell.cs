@@ -9,15 +9,21 @@ using System.Windows.Forms;
 
 namespace ParafiaPRO
 {
-    using View.Impl;
+    using View;
 
     public partial class Shell : Form
     {
-        private AccountListView m_accountListView;
+        private IAccountListView m_AccountListView;
+        private IControlPanelView m_ControlPanelView;
 
-        public AccountListView AccountListView
+        public IAccountListView AccountListView
         {
-            set { this.m_accountListView = value; }
+            set { this.m_AccountListView = value; }
+        }
+
+        public IControlPanelView ControlPanelView
+        {
+            set { this.m_ControlPanelView = value; }
         }
 
         public Shell()
@@ -27,7 +33,8 @@ namespace ParafiaPRO
 
         private void Shell_Load(object sender, EventArgs e)
         {
-            this.Controls.Add(m_accountListView);
+            this.AccountRegion.Controls.Add(m_AccountListView.Control);
+            this.ControlPanelRegion.Controls.Add(m_ControlPanelView.Control);
         }
     }
 }

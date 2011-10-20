@@ -6,6 +6,7 @@ using System.Text;
 namespace ParafiaPRO.View
 {
     using View;
+    using Model;
 
     public interface IAccountListView : IView
     {
@@ -13,6 +14,11 @@ namespace ParafiaPRO.View
 
         string Login { get; }
         string Passwd { get; }
+
+        List<Account> Accounts { get; }
+
+        void UpdateStartTimeForAccounts();
+        void SetStartTimeForAccountToZero();
 
         void AddAccountListItemView(IAccountListItemView accountListItemView);
         void RemoveAccountListItemView(IAccountListItemView accountListItemView);

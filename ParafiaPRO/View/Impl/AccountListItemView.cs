@@ -14,6 +14,7 @@ namespace ParafiaPRO.View.Impl
     public partial class AccountListItemView : AbstractView, IAccountListItemView
     {
         public event EventHandler RemoveAccountEvent;
+        public event EventHandler EnabledCheckedChangedEvent;
 
         private Account m_account;
 
@@ -91,7 +92,8 @@ namespace ParafiaPRO.View.Impl
 
         private void cbEnabled_CheckedChanged(object sender, EventArgs e)
         {
-           
+            if (EnabledCheckedChangedEvent != null)
+                EnabledCheckedChangedEvent(this, EventArgs.Empty);
         }
     }
 }

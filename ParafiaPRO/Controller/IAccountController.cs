@@ -10,5 +10,7 @@ namespace ParafiaPRO.Controller
     public interface IAccountController
     {
         IAccountListView AccountListView { get; set; }
+        void UpdateStartTimeForAccounts();
+        void SetStartTimeForAccountToZero();
     }
 }

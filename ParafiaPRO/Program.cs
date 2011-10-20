@@ -5,6 +5,8 @@ using System.Windows.Forms;
 
 using Spring.Context;
 using Spring.Context.Support;
+using Quartz;
+using Spring.Scheduling.Quartz;
 
 namespace ParafiaPRO
 {
@@ -25,6 +27,9 @@ namespace ParafiaPRO
             log4net.Config.XmlConfigurator.Configure();
 
             Application.Run(shell);
+
+            IScheduler schedulerFactory = (IScheduler)ctx.GetObject("SchedulerFactory");
+            schedulerFactory.Shutdown(true);
         }
     }
 }

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ParafiaPRO.Controller.Impl
 {
-    public class AbstractController
+    public abstract class AbstractController
     {
         public delegate void AsyncDelegate();
 
