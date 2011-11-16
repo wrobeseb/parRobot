@@ -414,31 +414,49 @@ namespace Parafia
                         if (!String.IsNullOrEmpty(state.sb.ToString()))
                         {
                             Parafia parafia = getInstance();
+                            bool flag = true;
                             if (parafia != null)
                             {
                                 printLog("[TRANSFER] Treść komunikatu: " + state.sb.ToString());
                                 parafia.login(); printLog("[TRANSFER] Zalogowany do portalu...");
+                                parafia.updateBank(); printLog("[TRANSFER] Pobrałem zawartość banku...");
                                 int valueToPut = parafia.GetValueToPutOnMarket(int.Parse(state.sb.ToString())); printLog("[TRANSFER] Paczka zostanie wystawiona za: " + valueToPut);
 
                                 int vat = Convert.ToInt32(valueToPut * 0.08) + 1;
 
                                 if (parafia.attributes.Cash.Actual < vat)
                                 {
-                                    printLog("[TRANSFER] Pobieram kase z sejfu na podatek: " + vat);
-                                    parafia.getFromSafe(vat + 1000);
-                                    printLog("[TRANSFER] Kasa pobrana.");
+                                    if (vat + 1000 < parafia.attributes.Safe.Actual)
+                                    {
+                                        printLog("[TRANSFER] Pobieram kase z sejfu na podatek: " + vat);
+                                        parafia.getFromSafe(vat + 1000);
+                                        printLog("[TRANSFER] Kasa pobrana.");
+                                    }
+                                    else
+                                    {
+                                        printLog("[TRANSFER][BANK] Pobieram kase z banku na podatek: " + vat);
+                                        if (parafia.getFromBank(vat + 1000))
+                                        {
+                                            printLog("[TRANSFER][BANK] Kasa pobrana.");
+                                        }
+                                        else
+                                        {
+                                            printLog("[TRANSFER][BANK][WARN] Pobranie kasy z banku nie powiodło się! Proces transferu został przerwany.");
+                                            flag = false;
+                                        }
+                                    }
                                 }
                                 printLog("[TRANSFER] Wystawiam paczke.");
-                                if (parafia.SellGreatChange(valueToPut) == 1)
+                                if (parafia.SellGreatChange(valueToPut) == 1 && flag)
                                 {
                                     printLog("[TRANSFER] Paczka została wystawiona za: " + valueToPut);
                                     idTxt = valueToPut.ToString();
                                     transferResult += valueToPut;
                                     transferNo++;
-                                    
+
                                     showBalloonTip("Paczka wystawiona za: " + valueToPut + " C$\n" +
-                                                   "W sumie wystawiono za: " + transferResult + " C$\n" +
-                                                   "Ilość transferów: " + transferNo, "TRANSFER", ToolTipIcon.Info);
+                                                    "W sumie wystawiono za: " + transferResult + " C$\n" +
+                                                    "Ilość transferów: " + transferNo, "TRANSFER", ToolTipIcon.Info);
 
                                     printLog("[TRANSFER] Wysyłam wartosc paczki do kupienia przez klienta: " + idTxt);
                                 }
@@ -470,6 +488,8 @@ namespace Parafia
                                     printLog("[TRANSFER] Błąd po stronie klienta, podczas zwrotu paczki.");
                                 }
                             }
+
+                            parafia.putIntoSafe(); printLog("[TRANSFER] Pakuje do sejfu...");
                             parafia.logout(); printLog("[TRANSFER] Wylogowany z portalu...");
                         }
                     }
@@ -843,7 +863,7 @@ namespace Parafia
                                 value = parafia.attributes.Cash.Max;
                             }
 
-                            value -= 1000;
+                            value -= 5000;
 
                             TcpClient client = SocketUtils.ConnectToSrv();
 

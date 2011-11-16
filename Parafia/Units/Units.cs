@@ -11,6 +11,20 @@ namespace Parafia.Units
 
     public class Units
     {
+        public String unit1Id = "_21_";
+        public String unit2Id = "_651_";
+        public String unit3Id = "_588_";
+        public String unit4Id = "_22_";
+        public String unit5Id = "_24_";
+        public String unit6Id = "_23_";
+
+        public double unit1SingleAttack, unit1SingleDefense;
+        public double unit2SingleAttack, unit2SingleDefense;
+        public double unit3SingleAttack, unit3SingleDefense;
+        public double unit4SingleAttack, unit4SingleDefense;
+        public double unit5SingleAttack, unit5SingleDefense;
+        public double unit6SingleAttack, unit6SingleDefense;
+
         public double attack;
         public double defense;
 
@@ -20,6 +34,10 @@ namespace Parafia.Units
         public int unit4; public double unit4Attack, unit4Defense;
         public int unit5; public double unit5Attack, unit5Defense;
         public int unit6; public double unit6Attack, unit6Defense;
+
+        public Units()
+        {
+        }
 
         public Units(String responseContent)
         {
@@ -49,6 +67,160 @@ namespace Parafia.Units
             this.unit6 = HtmlUtils.GetIntValueByXPathExpression(responseContent, "//table[3]/tbody/tr[3]/td[2]/text()");
             this.unit6Attack = double.Parse(HtmlUtils.GetStringValueByXPathExpression(responseContent, "//table[3]/tbody/tr[3]/td[3]/text()"));
             this.unit6Defense = double.Parse(HtmlUtils.GetStringValueByXPathExpression(responseContent, "//table[3]/tbody/tr[3]/td[4]/text()"));
+        }
+
+        public Units Clone()
+        {
+            Units units = new Units();
+
+            units.unit1 = this.unit1;
+            units.unit2 = this.unit2;
+            units.unit3 = this.unit3;
+            units.unit4 = this.unit4;
+            units.unit5 = this.unit5;
+            units.unit6 = this.unit6;
+
+            return units;
+        }
+
+        public Units(String responseContent, Boolean pilgrimage)
+        {
+            if (pilgrimage)
+            {
+                HtmlNodeCollection expeditionNodes = HtmlUtils.GetNodesCollectionByXPathExpression(responseContent, "//table[@class='expeditions']/tr[@class='expedition']");
+
+                foreach (HtmlNode expeditionNode in expeditionNodes)
+                {
+                    HtmlNodeCollection unitsNodes = HtmlUtils.GetNodesCollectionByXPathExpression(expeditionNode.InnerHtml, "//div[@class='unit']");
+                    foreach (HtmlNode unitNode in unitsNodes)
+                    {
+                        setUnitAmount(unitNode);
+                    }
+                }
+            }
+        }
+
+        public void setSingleAttackAndDefenseForUnits(String content)
+        {
+            HtmlNodeCollection unitsNodes = HtmlUtils.GetNodesCollectionByXPathExpression(content, "//ul[@class='units-buy']/li");
+
+            for (int i = 0; i < unitsNodes.Count; i++)
+            {
+                HtmlNode unitNode = unitsNodes[i];
+                if (i == 0)
+                {
+                    unit1SingleAttack = getUnitSingleAttack(unitNode);
+                    unit1SingleDefense = getUnitSingleDefense(unitNode);
+                }
+
+                if (i == 1)
+                {
+                    unit2SingleAttack = getUnitSingleAttack(unitNode);
+                    unit2SingleDefense = getUnitSingleDefense(unitNode);
+                }
+
+                if (i == 2)
+                {
+                    unit3SingleAttack = getUnitSingleAttack(unitNode);
+                    unit3SingleDefense = getUnitSingleDefense(unitNode);
+                }
+
+                if (i == 3)
+                {
+                    unit4SingleAttack = getUnitSingleAttack(unitNode);
+                    unit4SingleDefense = getUnitSingleDefense(unitNode);
+                }
+
+                if (i == 4)
+                {
+                    unit5SingleAttack = getUnitSingleAttack(unitNode);
+                    unit5SingleDefense = getUnitSingleDefense(unitNode);
+                }
+
+                if (i == 5)
+                {
+                    unit6SingleAttack = getUnitSingleAttack(unitNode);
+                    unit6SingleDefense = getUnitSingleDefense(unitNode);
+                }
+            }
+        }
+
+        public void calculateStrength()
+        {
+            unit1Attack = unit1 * unit1SingleAttack;
+            unit1Defense = unit1 * unit1SingleDefense;
+            unit2Attack = unit2 * unit2SingleAttack;
+            unit2Defense = unit2 * unit2SingleDefense; 
+            unit3Attack = unit3 * unit3SingleAttack;
+            unit3Defense = unit3 * unit3SingleDefense;
+            unit4Attack = unit4 * unit4SingleAttack;
+            unit4Defense = unit4 * unit4SingleDefense;
+            unit5Attack = unit5 * unit5SingleAttack;
+            unit5Defense = unit5 * unit5SingleDefense;
+            unit6Attack = unit6 * unit6SingleAttack;
+            unit6Defense = unit6 * unit6SingleDefense;
+
+            attack = unit1Attack + unit2Attack + unit3Attack + unit4Attack + unit5Attack + unit6Attack;
+            defense = unit1Defense + unit2Defense + unit3Defense + unit4Defense + unit5Defense + unit6Defense;
+        }
+
+        private double getUnitSingleAttack(HtmlNode node)
+        {
+            HtmlNode pNode = HtmlUtils.GetSingleNodeByXPathExpression(node.InnerHtml, "//div[@class='left']/p[2]");
+
+            String textValue = MainUtils.removeAllNotNumberCharactersForDouble(pNode.InnerHtml.Split('<')[0].Split('(')[1]);
+
+            double value = 0;
+
+            Double.TryParse(textValue, out value);
+
+            return value;
+        }
+
+        private double getUnitSingleDefense(HtmlNode node)
+        {
+            HtmlNode pNode = HtmlUtils.GetSingleNodeByXPathExpression(node.InnerHtml, "//div[@class='left']/p[2]");
+            String textValue = MainUtils.removeAllNotNumberCharactersForDouble(pNode.InnerHtml.Split('>')[1].Split('(')[1]);
+
+            double value = 0;
+
+            Double.TryParse(textValue, out value);
+
+            return value;
+        }
+
+        public Units mergeWithExpeditions(Units unitsOnExpeditions)
+        {
+            Units units = Clone();
+
+            units.attack += unitsOnExpeditions.attack;
+            units.defense += unitsOnExpeditions.defense;
+            units.unit1 += unitsOnExpeditions.unit1;
+            units.unit2 += unitsOnExpeditions.unit2;
+            units.unit3 += unitsOnExpeditions.unit3;
+            units.unit4 += unitsOnExpeditions.unit4;
+            units.unit5 += unitsOnExpeditions.unit5;
+            units.unit6 += unitsOnExpeditions.unit6;
+
+            return units;
+        }
+
+        private void setUnitAmount(HtmlNode unitNode)
+        {
+            String srcValue = HtmlUtils.GetAttributeValueOfElementByXPathExpression(unitNode.InnerHtml, "src", "//img");
+            int amount = HtmlUtils.GetIntValueByXPathExpression(unitNode.InnerHtml, "//div[@class='unit_amount']/text()");
+            if (srcValue.Contains(unit1Id))
+                unit1 += amount;
+            if (srcValue.Contains(unit2Id))
+                unit2 += amount;
+            if (srcValue.Contains(unit3Id))
+                unit3 += amount;
+            if (srcValue.Contains(unit4Id))
+                unit4 += amount;
+            if (srcValue.Contains(unit5Id))
+                unit5 += amount;
+            if (srcValue.Contains(unit6Id))
+                unit6 += amount;
         }
 
         public void putIntoFormData(FormData formData, ArmyType armyType)

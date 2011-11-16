@@ -21,6 +21,7 @@ using System.Xml.Serialization;
 namespace Parafia
 {
     using Model.Stat;
+    using Model.Bank;
 
     public class Parafia
     {
@@ -28,6 +29,9 @@ namespace Parafia
         public DefaultHttpClient httpClient;
         public Attributes.Attributes attributes;
         public Units.Units units;
+
+        public Units.Units unitsOnExpeditions;
+
         public String csrf;
 
         public int riseSafeCost;
@@ -40,6 +44,8 @@ namespace Parafia
         public bool papacyParty;
 
         private Worker worker;
+
+        public Transfers bank;
 
         public Parafia(Worker worker)
         {
@@ -279,7 +285,8 @@ namespace Parafia
             {
                 try
                 {
-                    httpClient.SendHttpGetAndReturnResponseContent("http://parafia.biz/relics/hide/70");
+                    String content = httpClient.SendHttpGetAndReturnResponseContent("http://parafia.biz/relics/hide/70");
+                    attributes = new Attributes.Attributes(content);
                     timeout = 0;
                 }
                 catch (WebException we)
@@ -318,7 +325,7 @@ namespace Parafia
         {
             string idTxt = "0";
 
-            int valueToPut = GetValueToPutOnMarket(11642);
+            int valueToPut = GetValueToPutOnMarket(55432);
 
             if (valueToPut != 0)
             {
@@ -360,7 +367,7 @@ namespace Parafia
                     responseContent = httpClient.SendHttpPostAndReturnResponseContent("http://parafia.biz/relics/market_sell/70", formData);
                     timeout = 0;
                 }
-                catch (WebException we)
+                catch (Exception we)
                 {
                     worker.printLog("[ERROR] Wystąpił błąd. SellGreatChange!!!");
                     worker.printLog("[ERROR] Treść błędu: " + we.Message);
@@ -381,6 +388,16 @@ namespace Parafia
                     {
                         return 1;
                     }
+                    else
+                    {
+                        worker.printLog("[ERROR] Wystąpił błąd. SellGreatChange!!!");
+                        worker.printLog("[ERROR] Treść błędu: " + message);
+                    }
+                }
+                else
+                {
+                    worker.printLog("[ERROR] Wystąpił błąd. SellGreatChange!!!");
+                    worker.printLog("[ERROR] Brak okna potwierdzenia sprzedaży...");
                 }
             }
 
@@ -447,7 +464,7 @@ namespace Parafia
             do
             {
                 try { content = getContentOfGreatChange(); timeout = 0; }
-                catch (WebException we)
+                catch (Exception we)
                 {
                     worker.printLog("[ERROR] Wystąpił błąd. GetValueToPutOnMarket!!!");
                     worker.printLog("[ERROR] Treść błędu: " + we.Message);
@@ -477,11 +494,19 @@ namespace Parafia
                         {
                             int valueForOption = int.Parse(MainUtils.removeAllNotNumberCharacters(txtValueForOption));
                             if (valueForOption == value)
+                            {
+                                worker.printLog("[TRANSFER][WARN] Uwaga do. GetValueToPutOnMarket!!!");
+                                worker.printLog("[TRANSFER][WARN] Paczka o wartości: " + value + " jest już wystawiona na rynku.");
                                 counter++;
+                                break;
+                            }
                         }
                     }
                     if (counter != 0)
+                    {
                         value = rand.Next(maxValue - 100, maxValue);
+                        worker.printLog("[TRANSFER][WARN] Wylosowano nową wartość paczki: " + value);
+                    }
                     attemtpsNo++;
                 }
                 while (counter != 0 && attemtpsNo < 100);
@@ -489,8 +514,14 @@ namespace Parafia
                 if (attemtpsNo < 100)
                     return value;
                 else
+                {
+                    worker.printLog("[WARN] Uwaga do. GetValueToPutOnMarket!!!");
+                    worker.printLog("[WARN] Zwracam 0, Przyczyna: attemtps > 100 ");
                     return 0;
+                }
             }
+            worker.printLog("[WARN] Uwaga do. GetValueToPutOnMarket!!!");
+            worker.printLog("[WARN] Zwracam 0, Przyczyna: attemtps > 100 ");
             return 0;
         }
 
@@ -513,6 +544,60 @@ namespace Parafia
             {
                 riseSafeButtonActive = false;
             }
+        }
+
+        public Boolean getFromBank(int value)
+        {
+            Transfer trans = bank.GetGt(value);
+            int timeout = 0;
+
+            if (trans != null && !String.IsNullOrEmpty(trans.Url))
+            {
+                do
+                {
+                    try
+                    {
+                        httpClient.SendHttpGetAndReturnResponseContent(trans.Url);
+                        timeout = 0;
+                        return true;
+                    }
+                    catch (WebException we)
+                    {
+                        worker.printLog("[ERROR] Wystąpił błąd. getFromBank!!!");
+                        worker.printLog("[ERROR] Treść błędu: " + we.Message);
+                        worker.printLog("[ERROR] Ponawiam proces.");
+                        timeout++;
+                    }
+                }
+                while ((timeout != 0) && timeout < 5);
+            }
+            else
+            {
+                worker.printLog("[WARN] Pieniądze nie zostały wypłacone!!!");
+            }
+            return false;
+        }
+
+        public void updateBank()
+        {
+             int timeout = 0;
+
+                do
+                {
+                    try
+                    {
+                        this.bank = new Transfers(httpClient.SendHttpGetAndReturnResponseContent("http://parafia.biz/bank"));
+                        timeout = 0;
+                    }
+                    catch (WebException we)
+                    {
+                        worker.printLog("[ERROR] Wystąpił błąd. updateBank!!!");
+                        worker.printLog("[ERROR] Treść błędu: " + we.Message);
+                        worker.printLog("[ERROR] Ponawiam proces.");
+                        timeout++;
+                    }
+                }
+                while ((timeout != 0) && timeout < 5);
         }
 
         public void putIntoSafe()
@@ -709,13 +794,6 @@ namespace Parafia
                     getUnitsInfo();
                 }
             }
-        }
-
-        public void getFromBank(int minValue)
-        {
-            String content = httpClient.SendHttpGetAndReturnResponseContent("http://parafia.biz/bank");
-
-            
         }
 
         public bool riseSafe()
@@ -1001,6 +1079,19 @@ namespace Parafia
             }
             while ((timeout != 0) && timeout < 5);
             
+        }
+
+        public void getUnitsOnExpeditionsInfo()
+        {
+            String unitsPage = httpClient.SendHttpGetAndReturnResponseContent("http://parafia.biz/units");
+            String expeditionsPage = httpClient.SendHttpGetAndReturnResponseContent("http://parafia.biz/units/expeditions");
+
+            unitsOnExpeditions = new Units.Units(expeditionsPage, true);
+            unitsOnExpeditions.setSingleAttackAndDefenseForUnits(unitsPage);
+
+            unitsOnExpeditions.calculateStrength();
+
+            Units.Units allUnits = units.mergeWithExpeditions(unitsOnExpeditions);
         }
 
         public void sendPilgrimage(int hours)

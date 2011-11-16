@@ -15,15 +15,152 @@ namespace ParafiaTest.ParafiaTest
     using Parafia.Model.Stat;
     using Mock;
     using TestData;
+    using Parafia.Units;
+    using Properties;
+    using Parafia.Model.Bank;
 
     [TestClass]
     public class LoginTest
     {
+        struct transfer
+        {
+            int value;
+            String url;
+        }
+
         //[TestInitialize]
         public void init()
         { }
 
+        private IDefaultHttpClient getDhcHttpGetMock(String url, String returnValue)
+        {
+            Mockery mocks = new Mockery();
+            IDefaultHttpClient dhcMock = mocks.NewMock<IDefaultHttpClient>();
+            Expect.Once.On(dhcMock).Method("SendHttpGetAndReturnResponseContent").With(url).Will(Return.Value(returnValue));
+            return dhcMock;
+        }
+
+
         [TestMethod]
+        public void gettingTranfersFormBankTest()
+        {
+            String url = "http://parafia.biz/bank";
+
+            IDefaultHttpClient dhcMock = getDhcHttpGetMock(url, Resource.ParafiaBizBankEmptyContent);
+            String responseContent = dhcMock.SendHttpGetAndReturnResponseContent(url);
+
+            HtmlNodeCollection transfersNodes = HtmlUtils.GetNodesCollectionByXPathExpression(responseContent, "//ul[@class='banks']/li");
+
+            List<Transfer> transfers = new List<Transfer>();
+
+            if (transfersNodes != null)
+            {
+                foreach (HtmlNode node in transfersNodes)
+                {
+                    String valueTxt = HtmlUtils.GetStringValueByXPathExpression(node.InnerHtml, "//div[@class='bank_money']/text()");
+                    valueTxt = Parafia.MainUtils.removeAllNotNumberCharacters(valueTxt);
+                    int value = 0;
+                    int.TryParse(valueTxt, out value);
+                    String aUrl = HtmlUtils.GetAttributeValueOfElementByXPathExpression(node.InnerHtml, "href", "//a[@class='button']");
+
+                    transfers.Add(new Transfer(value, aUrl));
+                }
+            }
+        }
+
+        //[TestMethod]
+        public void gettingSingleUnitValuesTest()
+        {
+            Mockery mocks = new Mockery();
+            IDefaultHttpClient dhcMock = mocks.NewMock<IDefaultHttpClient>();
+            Expect.Once.On(dhcMock).Method("SendHttpGetAndReturnResponseContent").With("http://parafia.biz/units").Will(Return.Value(Resource.ParafiaBizUnitsContent));
+
+            String responseContent = dhcMock.SendHttpGetAndReturnResponseContent("http://parafia.biz/units");
+
+            HtmlNodeCollection unitsNodes = HtmlUtils.GetNodesCollectionByXPathExpression(responseContent, "//ul[@class='units-buy']/li");
+
+            for (int i = 0; i < unitsNodes.Count; i++)
+            {
+                HtmlNode unitNode = unitsNodes[i];
+                if (i == 0)
+                {
+                    getUnitSingleAttack(unitNode);
+                    getUnitSingleDefense(unitNode);
+                }
+            }
+        }
+
+        private double getUnitSingleAttack(HtmlNode node)
+        {
+            HtmlNode pNode = HtmlUtils.GetSingleNodeByXPathExpression(node.InnerHtml, "//div[@class='left']/p[2]");
+
+            String textValue = Parafia.MainUtils.removeAllNotNumberCharactersForDouble(pNode.InnerHtml.Split('<')[0].Split('(')[1]);
+
+            double value = 0;
+
+            Double.TryParse(textValue, out value);
+
+            return value;
+        }
+        private double getUnitSingleDefense(HtmlNode node)
+        {
+            HtmlNode pNode = HtmlUtils.GetSingleNodeByXPathExpression(node.InnerHtml, "//div[@class='left']/p[2]");
+            String textValue = Parafia.MainUtils.removeAllNotNumberCharactersForDouble(pNode.InnerHtml.Split('>')[1].Split('(')[1]);
+
+            double value = 0;
+
+            Double.TryParse(textValue, out value);
+
+            return value;
+        }
+
+        //[TestMethod]
+        public void calculateExpeditionsTest()
+        {
+            Mockery mocks = new Mockery();
+            IDefaultHttpClient dhcMock = mocks.NewMock<IDefaultHttpClient>();
+            Expect.Once.On(dhcMock).Method("SendHttpGetAndReturnResponseContent").With("http://parafia.biz/units/expeditions").Will(Return.Value(Resource.ParafiaBizExpeditionsContent));
+
+            String responseContent = dhcMock.SendHttpGetAndReturnResponseContent("http://parafia.biz/units/expeditions");
+
+            HtmlNodeCollection expeditionNodes = HtmlUtils.GetNodesCollectionByXPathExpression(responseContent, "//table[@class='expeditions']/tr[@class='expedition']");
+
+            foreach (HtmlNode expeditionNode in expeditionNodes)
+            {
+                HtmlNodeCollection unitsNodes = HtmlUtils.GetNodesCollectionByXPathExpression(expeditionNode.InnerHtml, "//div[@class='unit']");
+                foreach (HtmlNode unitNode in unitsNodes)
+                {
+                    setUnitAmount(unitNode);
+                }
+            }
+        }
+
+        private void setUnitAmount(HtmlNode unitNode)
+        {
+            String unit1Id = "_21_";
+            String unit2Id = "_651_";
+            String unit3Id = "_588_";
+            String unit4Id = "_22_";
+            String unit5Id = "_24_";
+            String unit6Id = "_23_";
+
+            String srcValue = HtmlUtils.GetAttributeValueOfElementByXPathExpression(unitNode.InnerHtml, "src", "//img");
+            int amount = HtmlUtils.GetIntValueByXPathExpression(unitNode.InnerHtml, "//div[@class='unit_amount']/text()");
+            if (srcValue.Contains(unit1Id))
+                Assert.AreEqual(amount, 10);
+            if (srcValue.Contains(unit2Id))
+                Assert.AreEqual(amount, 10);
+            if (srcValue.Contains(unit3Id))
+                Assert.AreNotEqual(amount, 0);
+            if (srcValue.Contains(unit4Id))
+                Assert.AreEqual(amount, 10);
+            if (srcValue.Contains(unit5Id))
+                Assert.AreEqual(amount, 1);
+            if (srcValue.Contains(unit6Id))
+                Assert.AreEqual(amount, 0);
+        }
+
+        //[TestMethod]
         public void relicsInHouseTest()
         {
             Mockery mocks = new Mockery();
