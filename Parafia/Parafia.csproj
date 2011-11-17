@@ -59,16 +59,17 @@
     <ManifestKeyFile>Parafia_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <GenerateManifests>true</GenerateManifests>
+    <GenerateManifests>false</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
     <TargetZone>LocalIntranet</TargetZone>
   </PropertyGroup>
+  <PropertyGroup />
   <PropertyGroup>
-    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="HtmlAgilityPack">
@@ -205,7 +206,7 @@
   <Target Name="BeforeBuild">
   </Target>
   <Target Name="AfterBuild">
-    <copy SourceFiles="$(TargetPath)" DestinationFiles="E:\DANE\wrobese2\Parafia\Parafia.exe" />
+   <!--<copy SourceFiles="$(TargetPath)" DestinationFiles="E:\DANE\wrobese2\Parafia\Parafia.exe" />
     <copy SourceFiles="$(TargetPath)" DestinationFiles="E:\DANE\wrobese2\Parafia\Elena\Parafia-elena.exe" />
     <copy SourceFiles="$(TargetPath)" DestinationFiles="E:\DANE\wrobese2\Parafia\Jankos\1.6.0\Parafia-jankos.exe" />
     <copy SourceFiles="$(TargetPath)" DestinationFiles="E:\DANE\wrobese2\Parafia\Mortar\1.6.0\Parafia-mortar.exe" />
@@ -214,6 +215,6 @@
     <copy SourceFiles="$(TargetPath)" DestinationFiles="E:\DANE\wrobese2\Parafia\Sylas\1.6.0\Parafia-sylas3.exe" />
     <copy SourceFiles="$(TargetPath)" DestinationFiles="E:\DANE\wrobese2\Parafia\chang\Parafia-chang.exe" />
     <copy SourceFiles="$(TargetPath)" DestinationFiles="E:\DANE\wrobese2\Parafia\solar_fields\Parafia-solar.exe" />
-    <copy SourceFiles="$(TargetPath)" DestinationFiles="E:\DANE\wrobese2\Parafia\gobenitosa\Parafia-gobeni.exe" />
+    <copy SourceFiles="$(TargetPath)" DestinationFiles="E:\DANE\wrobese2\Parafia\gobenitosa\Parafia-gobeni.exe" />-->
   </Target>
 </Project>

@@ -595,8 +595,7 @@ namespace Parafia
                                             parafia.getFromSafe(cost);
                                             if (cost <= parafia.attributes.Cash.Actual)
                                             {
-                                                int hours = (nextLoginDt - DateTime.Now).Hours;
-                                                parafia.sendPilgrimage(hours != 0 ? hours : 1);
+                                                parafia.sendPilgrimage();
                                                 printLog("Pielgrzymka została wysłana.");
                                             }
                                             else

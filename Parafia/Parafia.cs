@@ -1165,25 +1165,31 @@ namespace Parafia
             Units.Units allUnits = units.mergeWithExpeditions(unitsOnExpeditions);
         }
 
-        public void sendPilgrimage(int hours)
+        public void sendPilgrimage()
         {
             if (units.hasUnits(config.ArmyType))
             {
                 FormData formData = new FormData();
                 formData.addValue("formo_to_holy_land", "to_holy_land");
                 formData.addValue("holy_land", csrf);
-                formData.addValue("time_days", "0");
 
-                DateTime now = DateTime.Now;
+                int days = 0;
+                int hours = 0;
+
+               /* DateTime now = DateTime.Now;
                 DateTime dateTime = new DateTime(now.Year, now.Month, now.Day, 10, 0, 0);
                 if (now.Hour >= 10 && now.Hour <= 24)
                 {
                     dateTime = dateTime.AddDays(1);
                 }
 
-                TimeSpan span = dateTime - DateTime.Now;
+                TimeSpan span = dateTime - DateTime.Now;*/
 
-                formData.addValue("time_hours", span.Hours.ToString());
+                estimateDaysAndHours(ref days, ref hours);
+
+                formData.addValue("time_days", days.ToString());
+                formData.addValue("time_hours", hours.ToString());
+
                 units.putIntoFormData(formData, config.ArmyType);
                 formData.addValue("holy_submit", "");
 
@@ -1399,6 +1405,37 @@ namespace Parafia
         private bool checkPapacParty(String responseContent)
         {
             return MainUtils.hasNumbers(HtmlUtils.GetStringValueByXPathExpression(responseContent, "//div[@class='mt20']/text()"));
+        }
+
+        private void estimateDaysAndHours(ref int days, ref int hoursToAdd)
+        {
+            DateTime actualDateTime = DateTime.Now;
+
+            int actualDayOfWeekNo = (int)actualDateTime.DayOfWeek;
+            int hours = actualDateTime.Hour;
+
+            days = 0;
+
+            if (actualDayOfWeekNo > 1)
+                days = ((int)DayOfWeek.Saturday - actualDayOfWeekNo) + 2;
+
+            if (actualDayOfWeekNo == 1 && hours >= 10)
+                days = 7;
+
+            if (actualDayOfWeekNo == 0)
+                days = 1;
+
+            hoursToAdd = 0;
+
+            if (hours >= 10 && hours <= 24)
+            {
+                days--;
+                hoursToAdd = (24 - hours) + 10;
+            }
+            else
+            {
+                hoursToAdd = 10 - hours;
+            }
         }
     }
 }
