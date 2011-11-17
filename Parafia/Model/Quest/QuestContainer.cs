@@ -66,6 +66,23 @@ namespace Parafia.Model.Quest
             }
         }
 
+        public Queue<Quest> GetSelectedQuests()
+        {
+            List<Quest> selectedQuests = new List<Quest>();
+            foreach (Quest quest in listOfQuests)
+                if (quest.IsChecked)
+                    selectedQuests.Add(quest);
+
+            selectedQuests.Sort();
+
+            Queue<Quest> questsQueue = new Queue<Quest>();
+
+            foreach (Quest quest in selectedQuests)
+                questsQueue.Enqueue(quest);
+
+            return questsQueue;
+        }
+
         public List<Quest> GetAllQuests
         {
             get { return this.listOfQuests; }
@@ -154,6 +171,42 @@ namespace Parafia.Model.Quest
             }
 
             return matchedQuests;
+        }
+
+        public void updatePriority(int priority, String name)
+        {
+            foreach (Quest quest in listOfQuests)
+            {
+                if (quest.Name.Contains(name))
+                {
+                    quest.Priority = priority;
+                    break;
+                }
+            }
+        }
+
+        public void select(String name)
+        {
+            foreach (Quest quest in listOfQuests)
+            {
+                if (quest.Name.Contains(name))
+                {
+                    quest.IsChecked = true;
+                    break;
+                }
+            }
+        }
+
+        public void unSelect(String name)
+        {
+            foreach (Quest quest in listOfQuests)
+            {
+                if (quest.Name.Contains(name))
+                {
+                    quest.IsChecked = false;
+                    break;
+                }
+            }
         }
 
         public List<Quest> compare(QuestContainer questContainer)

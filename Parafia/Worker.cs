@@ -30,6 +30,7 @@ namespace Parafia
         private volatile bool serverTimeSemafor = true;
         private volatile bool relicsSemafor = false;
         private volatile bool attackSemafor = false;
+        public volatile bool questSemafor = false;
 
         public volatile bool serverSemafor = false;
         public volatile bool clientSemafor = false;
@@ -97,46 +98,50 @@ namespace Parafia
 
         public void renderSystemTime()
         {
-            while (mainSemafor)
+            try
             {
-                if (systemTimeSemafor)
+                while (mainSemafor)
                 {
-                    mainForm.Invoke((Action)(delegate
+                    if (systemTimeSemafor)
                     {
-                        mainForm.tbSystemTime.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-                        if (mainWorkSemafor)
+                        mainForm.Invoke((Action)(delegate
                         {
-                            TimeSpan nextLoginInterval = new TimeSpan(nextLoginDt.Ticks - DateTime.Now.Ticks);
-                            mainForm.tbNextLogin.Text = nextLoginInterval.ToString(@"hh\:mm\:ss");
-                        }
-                        if (DateTime.Now.Minute % 15 == 0)
+                            mainForm.tbSystemTime.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                            if (mainWorkSemafor)
+                            {
+                                TimeSpan nextLoginInterval = new TimeSpan(nextLoginDt.Ticks - DateTime.Now.Ticks);
+                                mainForm.tbNextLogin.Text = nextLoginInterval.ToString(@"hh\:mm\:ss");
+                            }
+                            if (DateTime.Now.Minute % 15 == 0)
+                            {
+                                GetServerTime();
+                            }
+                        }));
+                    }
+                    if (upTimeSemafor)
+                    {
+                        mainForm.Invoke((Action)(delegate
                         {
-                            GetServerTime();
-                        }
-                    }));
-                }
-                if (upTimeSemafor)
-                {
-                    mainForm.Invoke((Action)(delegate 
+                            mainForm.tbUpTime.Text = DateTime.Now.Subtract(upTimeStart).ToString(@"dd' 'hh\:mm\:ss");
+                        }));
+                        upTime++;
+                    }
+                    if (serverTimeSemafor)
                     {
-                        mainForm.tbUpTime.Text = DateTime.Now.Subtract(upTimeStart).ToString(@"dd' 'hh\:mm\:ss");
-                    }));
-                    upTime++;
-                }
-                if (serverTimeSemafor)
-                {
-                    mainForm.Invoke((Action)(delegate
+                        mainForm.Invoke((Action)(delegate
+                        {
+                            mainForm.tbServerTime.Text = serverDt.ToString(@"hh\:mm\:ss");
+                        }));
+                        serverDt = serverDt.Add(new TimeSpan(0, 0, 0, 1, 0));
+                    }
+                    if (serverTimeForCashSafeSemafor)
                     {
-                        mainForm.tbServerTime.Text = serverDt.ToString(@"hh\:mm\:ss");
-                    }));
-                    serverDt = serverDt.Add(new TimeSpan(0, 0, 0, 1, 0));
+                        serverTimeForCashSafe = serverTimeForCashSafe.Add(new TimeSpan(0, 0, 0, 1, 0));
+                    }
+                    Thread.Sleep(1000);
                 }
-                if (serverTimeForCashSafeSemafor)
-                {
-                    serverTimeForCashSafe = serverTimeForCashSafe.Add(new TimeSpan(0, 0, 0, 1, 0));
-                }
-                Thread.Sleep(1000);
             }
+            catch { }
         }
 
         public void questRefreshWork()
@@ -257,7 +262,7 @@ namespace Parafia
                                     {
                                         parafia.login(); printLog("QUEST: Zalogowany do portalu...");
                                         parafia.putIntoSafe(); printLog("QUEST: Pakuje kase do sejfu...");
-                                        parafia.doQuestTasks(getListOfCheckedQuests()); printLog("QUEST: Robie questy...");
+                                        //parafia.doQuestTasks(getListOfCheckedQuests()); printLog("QUEST: Robie questy...");
                                         parafia.logout(); printLog("QUEST: Wylogowany z portalu...");
                                     }
                                 }
@@ -547,12 +552,20 @@ namespace Parafia
                                     lock (loggedInlockObject)
                                     {
                                         parafia.login(); printLog("Zalogowany do portalu...");
+                                        parafia.updateBank(); printLog("Pobrałem zawartość banku...");
                                         parafia.buyArmy(armyType); printLog("Wojska zakupione. Typ: " + armyType);
                                         parafia.getUnitsInfo(); printLog("Informacje o jednostkach zostały pobrane.");
 
                                         if (!clientSemafor)
                                         {
-                                            parafia.takeFromProperty(); printLog("Dewocjonalnik...");
+                                            if (!questSemafor) {
+                                                parafia.takeFromProperty(); printLog("Dewocjonalnik...");
+                                            }
+                                            else
+                                                if (hitCount != 0 && hitCount%4 == 0)
+                                                {
+                                                    parafia.takeFromProperty(); printLog("Dewocjonalnik...");
+                                                }
                                         }
 
                                         parafia.putIntoSafe(); printLog("Pakuje do sejfu...");
@@ -595,6 +608,16 @@ namespace Parafia
                                         nextLoginDt = getNextLoginTime();
 
                                         parafia.updateAttributes();
+
+                                        if (questSemafor)
+                                        {
+                                            printLog("Questy aktywowane. Rozpoczynam wykonanie.");
+                                            parafia.questContainer = mainForm.questContainer;
+                                            parafia.doQuestTasks();
+                                            printLog("Proces zakończony.");
+                                            parafia.putIntoSafe();
+                                            printLog("Pakuje do sejfu.");
+                                        }
 
                                         parafia.logout(); printLog("Pomyślne wylogowanie z portalu.");
                                         
@@ -923,6 +946,91 @@ namespace Parafia
             printLog("Zakończona atakowanie... resultat: " + result);
 
             return flag;
+        }
+
+        public void transferMoney()
+        {
+            decimal transferVolume = 0;
+            decimal transferNo = 0;
+
+            mainForm.Invoke((Action)(delegate
+            {
+                transferVolume = mainForm.nudTransferVolume.Value;
+                transferNo = mainForm.nudTranfersNo.Value;
+            }));
+
+            int vat = Convert.ToInt32(Decimal.ToDouble(transferVolume)*0.08);
+
+            Parafia actualAccount = getInstance();
+
+            if (actualAccount.login()) {
+                actualAccount.updateMyRelics();
+                if (actualAccount.attributes.Cash.Actual + actualAccount.attributes.Safe.Actual >= vat)
+                {
+                    if (actualAccount.relics.ContainsRelic(70))
+                    {
+                        Parafia rootAccount = getInstance();
+
+                        if (rootAccount.loginRoot())
+                        {
+                            for (int i = 0; i < transferNo; i++)
+                            {
+                                int cost = actualAccount.GetValueToPutOnMarket(Decimal.ToInt32(transferVolume));
+
+
+
+                                int id = 0;
+                                if (rootAccount.countGreatChangeInMarket(cost, ref id) == 1)
+                                {
+                                    bool flag = true;
+                                    if (rootAccount.attributes.Cash.Actual < cost)
+                                    {
+                                        if (cost + 1000 < rootAccount.attributes.Safe.Actual)
+                                        {
+                                            printLog("[MANUAL] Pobieram kase z sejfu na paczke: " + cost);
+                                            rootAccount.getFromSafe(cost + 1000);
+                                            printLog("[MANUAL] Kasa pobrana.");
+                                        }
+                                        else
+                                        {
+                                            printLog("[MANUAL][BANK] Pobieram kase z banku na paczke: " + cost);
+                                            if (rootAccount.getFromBank(cost + 1000))
+                                            {
+                                                printLog("[MANUAL][BANK] Kasa pobrana.");
+                                            }
+                                            else
+                                            {
+                                                printLog("[MANUAL][BANK][WARN] Pobranie kasy z banku nie powiodło się! Proces transferu został przerwany.");
+                                                flag = false;
+                                            }
+                                        }
+                                    }
+                                    if (flag)
+                                    {
+                                        printLog("[MANUAL] Warunki konieczne do zakupu paczki spełnione. Przechodze do procesu zakupu.");
+                                        if (rootAccount.BuyGreatChangeById(id) == 1)
+                                        {
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        printLog("[MANUAL][WARN] Nie masz cudownej zamiany... konto dziecko.");
+                    }
+                }
+                else
+                {
+                    printLog("[MANUAL][WARN] Nie masz kasy potrzebnej do wystawienia paczki... konto dziecko.");
+                }
+            }
+
+            mainForm.Invoke((Action)(delegate
+            {
+                mainForm.btTransferRun.Enabled = true;
+            }));
         }
 
         public void printLog(String log)

@@ -40,8 +40,65 @@ namespace ParafiaTest.ParafiaTest
             return dhcMock;
         }
 
-
         [TestMethod]
+        public void timeTest()
+        {
+            DateTime matcher = new DateTime(2011,11,21,10,0,0);
+            DateTime matcher1 = new DateTime(2011, 11, 14, 10, 0, 0);
+
+            for (int dayOfWeek = 6; dayOfWeek < 10; dayOfWeek++)
+            {
+                for (int hour = 0; hour < 24; hour++)
+                {
+                    DateTime actualDateTime = new DateTime(2011, 11, 13 + dayOfWeek, hour, 0, 0);
+
+                    int actualDayOfWeekNo = (int)actualDateTime.DayOfWeek;//(int)DateTime.Now.DayOfWeek;
+                    int hours = actualDateTime.Hour;//DateTime.Now.Hour;
+
+                    int daysToMonday = 0;
+
+                    if (actualDayOfWeekNo > 1)
+                        daysToMonday = ((int)DayOfWeek.Saturday - actualDayOfWeekNo) + 2;
+
+                    if (actualDayOfWeekNo == 1 && hours >= 10)
+                        daysToMonday = 7;
+
+                    if (actualDayOfWeekNo == 0)
+                        daysToMonday = 1;
+
+                    int hoursToAdd = 0;
+
+                    if (hours >= 10 && hours <= 24)
+                    {
+                        daysToMonday--;
+                        hoursToAdd = (24 - hours) + 10;
+                    }
+                    else
+                    {
+                        hoursToAdd = 10 - hours;
+                    }
+
+                    DateTime datetime = actualDateTime.AddDays(daysToMonday);
+                    if (hoursToAdd != 24)
+                        datetime = datetime.AddHours(hoursToAdd);
+                    else
+                        datetime = datetime.AddDays(1);
+                }
+            }
+
+            
+
+           /* DateTime dateTime = new DateTime(now.Year, now.Month, now.Day, 10, 0, 0);
+            if (now.Hour >= 10 && now.Hour <= 24)
+            {
+                dateTime = dateTime.AddDays(1);
+            }
+
+            TimeSpan span = dateTime - DateTime.Now;*/
+        }
+
+
+        //[TestMethod]
         public void gettingTranfersFormBankTest()
         {
             String url = "http://parafia.biz/bank";

@@ -105,10 +105,11 @@
     <Compile Include="MainUtils.cs" />
     <Compile Include="Model\Bank\Transfer.cs" />
     <Compile Include="Model\Bank\Transfers.cs" />
-    <Compile Include="Model\Common\Relic.cs" />
+    <Compile Include="Model\Relics\Relic.cs" />
     <Compile Include="Model\Quest\Quest.cs" />
     <Compile Include="Model\Quest\QuestContainer.cs" />
     <Compile Include="Model\Quest\Task.cs" />
+    <Compile Include="Model\Relics\Relics.cs" />
     <Compile Include="Model\Stat\Account.cs" />
     <Compile Include="Parafia.cs" />
     <Compile Include="ApplicationConfig.cs" />
@@ -168,7 +169,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Parafia_TemporaryKey.pfx" />
     <None Include="Properties\app.manifest" />
     <None Include="Resources\Parafia.ico" />
   </ItemGroup>
@@ -177,6 +177,24 @@
       <Project>{64161EC6-E310-4916-919D-4E5F417C488F}</Project>
       <Name>HttpUtils</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow_right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow_left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\refresh_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow_down.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow_up.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Delete.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

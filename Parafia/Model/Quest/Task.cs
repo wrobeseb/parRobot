@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Parafia.Model.Common;
 using HtmlAgilityPack;
 using HttpUtils;
+using Parafia.Model.Relics;
 
 namespace Parafia.Model.Quest
 {
@@ -90,7 +90,7 @@ namespace Parafia.Model.Quest
             {
                 foreach (HtmlNode needNode in needsCollection)
                 {
-                    needs.relic = new Relic(HtmlUtils.GetAttributeValueFromHtmlNode(needNode, "title"));
+                    needs.relic = new Relic(0,HtmlUtils.GetAttributeValueFromHtmlNode(needNode, "title"));
                 }
             }
 

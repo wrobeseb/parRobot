@@ -21,6 +21,7 @@ namespace Parafia
     {
         private Worker worker;
         private List<Thread> threadList;
+        public QuestContainer questContainer;
 
         public MainForm()
         {
@@ -90,7 +91,13 @@ namespace Parafia
 
             worker = new Worker(this);
             worker.setMainWindowTitle();
-            worker.fillQuestsList();
+            Object questsObj = Settings.Default["quests"];
+            if (questsObj != null)
+            {
+                questContainer = (QuestContainer)questsObj;
+                fillQuestList(questContainer);
+            }
+            //worker.fillQuestsList();
             worker.GetServerTime();
             threadList = new List<Thread>();
 
@@ -296,6 +303,175 @@ namespace Parafia
         private void tssCash_Click(object sender, EventArgs e)
         {
             tssCash.ForeColor = Color.Black;
+        }
+
+        private void btTransferRun_Click(object sender, EventArgs e)
+        {
+            btTransferRun.Enabled = false;
+            Thread transferMoneyThread = new Thread(worker.transferMoney);
+            transferMoneyThread.Name = "TransferMoneyThread";
+            transferMoneyThread.Start();
+        }
+
+
+        private void fillQuestList(QuestContainer questContainer)
+        {
+            List<Quest> listOfSelectedQuest = new List<Quest>();
+            foreach (Quest quest in questContainer.GetAllQuests)
+            {
+                bool flag = false;
+                foreach (ListViewItem item in lvSelectedQuests.Items)
+                {
+                    if (item.Text.Equals(quest.Name))
+                    {
+                        flag = true;
+                        break;
+                    }
+                }
+                foreach (ListViewItem item in lvQuests.Items)
+                {
+                    if (item.Text.Equals(quest.Name))
+                    {
+                        flag = true;
+                        break;
+                    }
+                }
+                if (!flag)
+                {
+                    ListViewItem item = new ListViewItem();
+                    item.Text = quest.Name;
+                    if (!quest.IsChecked)
+                        lvQuests.Items.Add(item);
+                    else
+                    {
+                        listOfSelectedQuest.Add(quest);
+                    }
+                }
+            }
+            listOfSelectedQuest.Sort();
+            foreach (Quest quest in listOfSelectedQuest)
+                lvSelectedQuests.Items.Insert(quest.Priority - 1, new ListViewItem(quest.Name));
+        }
+
+        private void pbRefresh_Click(object sender, EventArgs e)
+        {
+            pbRefresh.Enabled = false;
+            new Thread(new ThreadStart(delegate
+            {
+                Parafia parafia = worker.getInstance();
+
+                worker.printLog("[QUESTS] Rozpoczynam proces pobierania questów.");
+                if (parafia.login())
+                {
+                    worker.printLog("[QUESTS] Zalogowany do portalu.");
+                    parafia.getQuests();
+                    questContainer = parafia.questContainer;
+                    worker.printLog("[QUESTS] Lista pobrana...");
+                    parafia.logout();
+                    worker.printLog("[QUESTS] Wylogowany z portalu.");
+                }
+
+                this.Invoke((Action)(delegate
+                {
+                    fillQuestList(parafia.questContainer);
+                    pbRefresh.Enabled = true;
+                }));
+            })).Start();
+        }
+
+        private void pbArrowLeft_Click(object sender, EventArgs e)
+        {
+            foreach (ListViewItem selectedItem in lvSelectedQuests.SelectedItems)
+            {
+                lvSelectedQuests.Items.Remove(selectedItem);
+                lvQuests.Items.Add(selectedItem);
+                questContainer.unSelect(selectedItem.Text);
+            }
+
+            foreach (ListViewItem item1 in lvSelectedQuests.Items)
+            {
+                questContainer.updatePriority(item1.Index + 1, item1.Text);
+            }
+        }
+
+        private void pbArrowRight_Click(object sender, EventArgs e)
+        {
+            foreach (ListViewItem selectedItem in lvQuests.SelectedItems)
+            {
+                lvQuests.Items.Remove(selectedItem);
+                lvSelectedQuests.Items.Add(selectedItem);
+                questContainer.select(selectedItem.Text);
+            }
+
+            foreach (ListViewItem item1 in lvSelectedQuests.Items)
+            {
+                questContainer.updatePriority(item1.Index + 1, item1.Text);
+            }
+        }
+
+        private void pbArrowUp_Click(object sender, EventArgs e)
+        {
+            if (lvSelectedQuests.SelectedItems.Count == 1)
+            {
+                ListViewItem item = lvSelectedQuests.SelectedItems[0];
+                int index = item.Index;
+                if (index != 0)
+                {
+                    lvSelectedQuests.Items.Remove(item);
+                    lvSelectedQuests.Items.Insert(index - 1, item);
+                }
+
+                foreach (ListViewItem item1 in lvSelectedQuests.Items)
+                {
+                    questContainer.updatePriority(item1.Index + 1, item1.Text);
+                }
+            }
+        }
+
+        private void pbArrowDown_Click(object sender, EventArgs e)
+        {
+            if (lvSelectedQuests.SelectedItems.Count == 1)
+            {
+                ListViewItem item = lvSelectedQuests.SelectedItems[0];
+                int index = item.Index;
+                if (index != lvSelectedQuests.Items.Count - 1)
+                {
+                    lvSelectedQuests.Items.Remove(item);
+                    lvSelectedQuests.Items.Insert(index + 1, item);
+                }
+
+                foreach (ListViewItem item1 in lvSelectedQuests.Items)
+                {
+                    questContainer.updatePriority(item1.Index + 1, item1.Text);
+                }
+            }
+        }
+
+        private void btQStart_Click(object sender, EventArgs e)
+        {
+            btQStop.Enabled = true;
+            btQStart.Enabled = false;
+            worker.questSemafor = true;
+        }
+
+        private void btQStop_Click(object sender, EventArgs e)
+        {
+            btQStop.Enabled = false;
+            btQStart.Enabled = true;
+            worker.questSemafor = false;
+        }
+
+        private void btQSave_Click(object sender, EventArgs e)
+        {
+            Settings.Default["quests"] = questContainer;
+            Settings.Default.Save();
+            worker.printLog("[QUESTS] Zapisane.");
+        }
+
+        private void pbClear_Click(object sender, EventArgs e)
+        {
+            lvQuests.Items.Clear();
+            lvSelectedQuests.Items.Clear();
         }
     }
 }

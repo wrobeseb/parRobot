@@ -22,6 +22,7 @@ namespace Parafia
 {
     using Model.Stat;
     using Model.Bank;
+    using Model.Relics;
 
     public class Parafia
     {
@@ -40,6 +41,8 @@ namespace Parafia
         public  QuestContainer questContainer;
 
         private List<Quest> newQuests;
+
+        public Relics relics;
 
         public bool papacyParty;
 
@@ -74,6 +77,11 @@ namespace Parafia
             String temp = MainUtils.removeAllNotNumberCharacters(HtmlUtils.GetSingleNodeByXPathExpression(httpClient.SendHttpGetAndReturnResponseContent("http://blog.parafia.biz/czas/", 5000), "//body").InnerText).Replace(" ", String.Empty);
             String[] tempTable = temp.Split(',');
             return new TimeSpan(0, int.Parse(tempTable[0]), int.Parse(tempTable[1]), int.Parse(tempTable[2]), 0);
+        }
+
+        public void updateMyRelics()
+        {
+            relics = new Relics(httpClient.SendHttpGetAndReturnResponseContent("http://parafia.biz/relics/my"));
         }
 
         public List<String> hideRelicsToSafe()
@@ -125,6 +133,57 @@ namespace Parafia
                     catch (WebException we)
                     {
                         worker.printLog("[ERROR] Wystąpił błąd. login!!!");
+                        worker.printLog("[ERROR] Treść błędu: " + we.Message);
+                        worker.printLog("[ERROR] Ponawiam proces.");
+                        timeout++;
+                    }
+                }
+                while ((timeout != 0) && timeout < 5);
+
+                if (timeout == 0)
+                {
+                    String errorMessage = HtmlUtils.GetStringValueByXPathExpression(responseContent, "//div[@class='form-error']/text()");
+
+                    if (!String.IsNullOrEmpty(errorMessage))
+                    {
+                        throw new LoginException(errorMessage);
+                    }
+                    else
+                    {
+                        attributes = new Attributes.Attributes(responseContent);
+                        papacyParty = !checkPapacParty(responseContent);
+                    }
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public bool loginRoot()
+        {
+            String responseContent = httpClient.SendHttpGetAndReturnResponseContent("http://parafia.biz/");
+            csrf = HtmlUtils.GetStringValueByXPathExpression(responseContent, "//input[@name='login_csrf']");
+
+            if (checkDependencies(responseContent, new String[] { "formo_login_form", "login_csrf", "user_name", "user_pass", "login_submit" }))
+            {
+                FormData formData = new FormData();
+                formData.addValue("formo_login_form", "login_form");
+                formData.addValue("login_csrf", csrf);
+                formData.addValue("user_name", config.MasterLogin);
+                formData.addValue("user_pass", config.MasterPassword);
+                formData.addValue("login_submit", "");
+
+                int timeout = 0;
+                do
+                {
+                    try
+                    {
+                        responseContent = httpClient.SendHttpPostAndReturnResponseContent("http://parafia.biz/", formData);
+                        timeout = 0;
+                    }
+                    catch (WebException we)
+                    {
+                        worker.printLog("[ERROR] Wystąpił błąd. loginRoot!!!");
                         worker.printLog("[ERROR] Treść błędu: " + we.Message);
                         worker.printLog("[ERROR] Ponawiam proces.");
                         timeout++;
@@ -853,7 +912,19 @@ namespace Parafia
                 {
                     int value = cashNeed - attributes.Cash.Actual;
                     if (attributes.Safe.Actual < value)
-                        value = attributes.Safe.Actual;
+                    {
+                        worker.printLog("Wyplacam z banku na jednostki...");
+                        if (getFromBank(value))
+                        {
+                            worker.printLog("Wyplacone");
+                            putIntoSafe();
+                        }
+                        else
+                        {
+                            worker.printLog("[ERROR] Brak kasy na jednostki w banku...");
+                        }
+                        //value = attributes.Safe.Actual;
+                    }
 
                     getFromSafe(value);
                 }
@@ -1201,13 +1272,13 @@ namespace Parafia
             return relicsNo;
         }
 
-        public void doQuestTasks(String[] selectedNames)
+        public void doQuestTasks()
         {
-            ArrayList quests = questContainer.GetQuestsByNameList(selectedNames);
+            Queue<Quest> quests = questContainer.GetSelectedQuests();
 
             foreach (Quest quest in quests)
             {
-                questContainer.checkQuest(quest);
+                //questContainer.checkQuest(quest);
                 if (quest.GetProgress() < 99)
                 {
                     foreach (Task task in quest.ListOfTasks)
@@ -1222,14 +1293,46 @@ namespace Parafia
                                 {
                                     if (task.Cost.health <= attributes.Health.Actual)
                                     {
-                                        if (task.Cost.cash <= attributes.Cash.Actual)
+                                        bool cashFlag = true;
+
+                                        if (task.Cost.cash > attributes.Cash.Actual)
+                                        {
+                                            worker.printLog("[QUESTS] Brak kasy...");
+                                            if (attributes.Safe.Actual > task.Cost.cash)
+                                            {
+                                                worker.printLog("[QUESTS] Pobieram z sejfu...");
+                                                getFromSafe(task.Cost.cash + 100);
+                                            }
+                                            else 
+                                            {
+                                                worker.printLog("[QUESTS] Brak kasy w sejfie... Pobieram z banku.");
+                                                if (!getFromBank(task.Cost.cash))
+                                                {
+                                                    worker.printLog("[QUESTS][WARN] Brak kasy w banku... Przerywam proces.");
+                                                    cashFlag = false;
+                                                }
+                                            }
+                                        }
+
+                                        if (cashFlag)
                                         {
                                             String questResult = httpClient.SendHttpGetAndReturnResponseContent(task.Link);
                                             String content = httpClient.SendHttpGetAndReturnResponseContent(quest.Link);
                                             updateQuestInfo(content, task);
-                                            
-                                            if (HtmlUtils.GetSingleNodeByXPathExpression(questResult, "//div[@class='flashinfo error']") != null)
+
+                                            HtmlNode errorNode = HtmlUtils.GetSingleNodeByXPathExpression(questResult, "//div[@class='flashinfo error']");
+
+                                            if (errorNode != null)
+                                            {
+                                                String errorMsg = HtmlUtils.GetStringValueByXPathExpression(questResult, "//div[@class='flashinfo_message']/text()");
+                                                worker.printLog("[QUESTS][ERROR] Wystąpił błąd.");
+                                                worker.printLog("[QUESTS][ERROR] Tresc. " + errorMsg);
                                                 break;
+                                            }
+                                            else 
+                                            {
+                                                 worker.printLog("[QUESTS] Zadanie \"" + task.Name + "\" w quescie \"" + quest.Name + "\" na etapie " + task.Progress + " %");
+                                            }
 
                                             updateAttributes(content);
                                             flag = true;
