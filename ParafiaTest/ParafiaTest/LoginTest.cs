@@ -15,15 +15,209 @@ namespace ParafiaTest.ParafiaTest
     using Parafia.Model.Stat;
     using Mock;
     using TestData;
+    using Parafia.Units;
+    using Properties;
+    using Parafia.Model.Bank;
 
     [TestClass]
     public class LoginTest
     {
+        struct transfer
+        {
+            int value;
+            String url;
+        }
+
         //[TestInitialize]
         public void init()
         { }
 
+        private IDefaultHttpClient getDhcHttpGetMock(String url, String returnValue)
+        {
+            Mockery mocks = new Mockery();
+            IDefaultHttpClient dhcMock = mocks.NewMock<IDefaultHttpClient>();
+            Expect.Once.On(dhcMock).Method("SendHttpGetAndReturnResponseContent").With(url).Will(Return.Value(returnValue));
+            return dhcMock;
+        }
+
         [TestMethod]
+        public void timeTest()
+        {
+            DateTime matcher = new DateTime(2011,11,21,10,0,0);
+            DateTime matcher1 = new DateTime(2011, 11, 14, 10, 0, 0);
+
+            for (int dayOfWeek = 6; dayOfWeek < 10; dayOfWeek++)
+            {
+                for (int hour = 0; hour < 24; hour++)
+                {
+                    DateTime actualDateTime = new DateTime(2011, 11, 13 + dayOfWeek, hour, 0, 0);
+
+                    int actualDayOfWeekNo = (int)actualDateTime.DayOfWeek;//(int)DateTime.Now.DayOfWeek;
+                    int hours = actualDateTime.Hour;//DateTime.Now.Hour;
+
+                    int daysToMonday = 0;
+
+                    if (actualDayOfWeekNo > 1)
+                        daysToMonday = ((int)DayOfWeek.Saturday - actualDayOfWeekNo) + 2;
+
+                    if (actualDayOfWeekNo == 1 && hours >= 10)
+                        daysToMonday = 7;
+
+                    if (actualDayOfWeekNo == 0)
+                        daysToMonday = 1;
+
+                    int hoursToAdd = 0;
+
+                    if (hours >= 10 && hours <= 24)
+                    {
+                        daysToMonday--;
+                        hoursToAdd = (24 - hours) + 10;
+                    }
+                    else
+                    {
+                        hoursToAdd = 10 - hours;
+                    }
+
+                    DateTime datetime = actualDateTime.AddDays(daysToMonday);
+                    if (hoursToAdd != 24)
+                        datetime = datetime.AddHours(hoursToAdd);
+                    else
+                        datetime = datetime.AddDays(1);
+                }
+            }
+
+            
+
+           /* DateTime dateTime = new DateTime(now.Year, now.Month, now.Day, 10, 0, 0);
+            if (now.Hour >= 10 && now.Hour <= 24)
+            {
+                dateTime = dateTime.AddDays(1);
+            }
+
+            TimeSpan span = dateTime - DateTime.Now;*/
+        }
+
+
+        //[TestMethod]
+        public void gettingTranfersFormBankTest()
+        {
+            String url = "http://parafia.biz/bank";
+
+            IDefaultHttpClient dhcMock = getDhcHttpGetMock(url, Resource.ParafiaBizBankEmptyContent);
+            String responseContent = dhcMock.SendHttpGetAndReturnResponseContent(url);
+
+            HtmlNodeCollection transfersNodes = HtmlUtils.GetNodesCollectionByXPathExpression(responseContent, "//ul[@class='banks']/li");
+
+            List<Transfer> transfers = new List<Transfer>();
+
+            if (transfersNodes != null)
+            {
+                foreach (HtmlNode node in transfersNodes)
+                {
+                    String valueTxt = HtmlUtils.GetStringValueByXPathExpression(node.InnerHtml, "//div[@class='bank_money']/text()");
+                    valueTxt = Parafia.MainUtils.removeAllNotNumberCharacters(valueTxt);
+                    int value = 0;
+                    int.TryParse(valueTxt, out value);
+                    String aUrl = HtmlUtils.GetAttributeValueOfElementByXPathExpression(node.InnerHtml, "href", "//a[@class='button']");
+
+                    transfers.Add(new Transfer(value, aUrl));
+                }
+            }
+        }
+
+        //[TestMethod]
+        public void gettingSingleUnitValuesTest()
+        {
+            Mockery mocks = new Mockery();
+            IDefaultHttpClient dhcMock = mocks.NewMock<IDefaultHttpClient>();
+            Expect.Once.On(dhcMock).Method("SendHttpGetAndReturnResponseContent").With("http://parafia.biz/units").Will(Return.Value(Resource.ParafiaBizUnitsContent));
+
+            String responseContent = dhcMock.SendHttpGetAndReturnResponseContent("http://parafia.biz/units");
+
+            HtmlNodeCollection unitsNodes = HtmlUtils.GetNodesCollectionByXPathExpression(responseContent, "//ul[@class='units-buy']/li");
+
+            for (int i = 0; i < unitsNodes.Count; i++)
+            {
+                HtmlNode unitNode = unitsNodes[i];
+                if (i == 0)
+                {
+                    getUnitSingleAttack(unitNode);
+                    getUnitSingleDefense(unitNode);
+                }
+            }
+        }
+
+        private double getUnitSingleAttack(HtmlNode node)
+        {
+            HtmlNode pNode = HtmlUtils.GetSingleNodeByXPathExpression(node.InnerHtml, "//div[@class='left']/p[2]");
+
+            String textValue = Parafia.MainUtils.removeAllNotNumberCharactersForDouble(pNode.InnerHtml.Split('<')[0].Split('(')[1]);
+
+            double value = 0;
+
+            Double.TryParse(textValue, out value);
+
+            return value;
+        }
+        private double getUnitSingleDefense(HtmlNode node)
+        {
+            HtmlNode pNode = HtmlUtils.GetSingleNodeByXPathExpression(node.InnerHtml, "//div[@class='left']/p[2]");
+            String textValue = Parafia.MainUtils.removeAllNotNumberCharactersForDouble(pNode.InnerHtml.Split('>')[1].Split('(')[1]);
+
+            double value = 0;
+
+            Double.TryParse(textValue, out value);
+
+            return value;
+        }
+
+        //[TestMethod]
+        public void calculateExpeditionsTest()
+        {
+            Mockery mocks = new Mockery();
+            IDefaultHttpClient dhcMock = mocks.NewMock<IDefaultHttpClient>();
+            Expect.Once.On(dhcMock).Method("SendHttpGetAndReturnResponseContent").With("http://parafia.biz/units/expeditions").Will(Return.Value(Resource.ParafiaBizExpeditionsContent));
+
+            String responseContent = dhcMock.SendHttpGetAndReturnResponseContent("http://parafia.biz/units/expeditions");
+
+            HtmlNodeCollection expeditionNodes = HtmlUtils.GetNodesCollectionByXPathExpression(responseContent, "//table[@class='expeditions']/tr[@class='expedition']");
+
+            foreach (HtmlNode expeditionNode in expeditionNodes)
+            {
+                HtmlNodeCollection unitsNodes = HtmlUtils.GetNodesCollectionByXPathExpression(expeditionNode.InnerHtml, "//div[@class='unit']");
+                foreach (HtmlNode unitNode in unitsNodes)
+                {
+                    setUnitAmount(unitNode);
+                }
+            }
+        }
+
+        private void setUnitAmount(HtmlNode unitNode)
+        {
+            String unit1Id = "_21_";
+            String unit2Id = "_651_";
+            String unit3Id = "_588_";
+            String unit4Id = "_22_";
+            String unit5Id = "_24_";
+            String unit6Id = "_23_";
+
+            String srcValue = HtmlUtils.GetAttributeValueOfElementByXPathExpression(unitNode.InnerHtml, "src", "//img");
+            int amount = HtmlUtils.GetIntValueByXPathExpression(unitNode.InnerHtml, "//div[@class='unit_amount']/text()");
+            if (srcValue.Contains(unit1Id))
+                Assert.AreEqual(amount, 10);
+            if (srcValue.Contains(unit2Id))
+                Assert.AreEqual(amount, 10);
+            if (srcValue.Contains(unit3Id))
+                Assert.AreNotEqual(amount, 0);
+            if (srcValue.Contains(unit4Id))
+                Assert.AreEqual(amount, 10);
+            if (srcValue.Contains(unit5Id))
+                Assert.AreEqual(amount, 1);
+            if (srcValue.Contains(unit6Id))
+                Assert.AreEqual(amount, 0);
+        }
+
+        //[TestMethod]
         public void relicsInHouseTest()
         {
             Mockery mocks = new Mockery();

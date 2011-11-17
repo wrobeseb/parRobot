@@ -15,7 +15,7 @@
     </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>publish\</PublishUrl>
+    <PublishUrl>E:\DANE\wrobese2\Parafia\_release\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -24,11 +24,14 @@
     <UpdateIntervalUnits>Days</UpdateIntervalUnits>
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
-    <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <MapFileExtensions>false</MapFileExtensions>
+    <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
+    <ApplicationRevision>3</ApplicationRevision>
+    <ApplicationVersion>1.6.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
-    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>false</BootstrapperEnabled>
+    <BootstrapperComponentsLocation>Relative</BootstrapperComponentsLocation>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -48,6 +51,24 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>871337BEB9D6E08E481DDD47F3999ACC0AA0F0B2</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>Parafia_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="HtmlAgilityPack">
@@ -82,10 +103,13 @@
     <Compile Include="Enums\ArmyTypeEnum.cs" />
     <Compile Include="Exceptions\LoginException.cs" />
     <Compile Include="MainUtils.cs" />
-    <Compile Include="Model\Common\Relic.cs" />
+    <Compile Include="Model\Bank\Transfer.cs" />
+    <Compile Include="Model\Bank\Transfers.cs" />
+    <Compile Include="Model\Relics\Relic.cs" />
     <Compile Include="Model\Quest\Quest.cs" />
     <Compile Include="Model\Quest\QuestContainer.cs" />
     <Compile Include="Model\Quest\Task.cs" />
+    <Compile Include="Model\Relics\Relics.cs" />
     <Compile Include="Model\Stat\Account.cs" />
     <Compile Include="Parafia.cs" />
     <Compile Include="ApplicationConfig.cs" />
@@ -123,9 +147,9 @@
     <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
-    <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0">
       <Visible>False</Visible>
-      <ProductName>Microsoft .NET Framework 4 Client Profile %28x86 and x64%29</ProductName>
+      <ProductName>Microsoft .NET Framework 4 %28x86 and x64%29</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -145,6 +169,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Properties\app.manifest" />
     <None Include="Resources\Parafia.ico" />
   </ItemGroup>
   <ItemGroup>
@@ -152,6 +177,24 @@
       <Project>{64161EC6-E310-4916-919D-4E5F417C488F}</Project>
       <Name>HttpUtils</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow_right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow_left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\refresh_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow_down.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow_up.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Delete.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
@@ -162,12 +205,15 @@
   <Target Name="BeforeBuild">
   </Target>
   <Target Name="AfterBuild">
-	<copy SourceFiles="$(TargetPath)" DestinationFiles="E:\DANE\wrobese2\Parafia\Elena\Parafia-elena.exe"/>
-	<copy SourceFiles="$(TargetPath)" DestinationFiles="E:\DANE\wrobese2\Parafia\Jankos\1.6.0\Parafia-jankos.exe"/>
-	<copy SourceFiles="$(TargetPath)" DestinationFiles="E:\DANE\wrobese2\Parafia\Mortar\1.6.0\Parafia-mortar.exe"/>
-	<copy SourceFiles="$(TargetPath)" DestinationFiles="E:\DANE\wrobese2\Parafia\My\1.6.0\Parafia-sairo.exe"/>
-	<copy SourceFiles="$(TargetPath)" DestinationFiles="E:\DANE\wrobese2\Parafia\sparrow3\Parafia-sparrow3.exe"/>
-	<copy SourceFiles="$(TargetPath)" DestinationFiles="E:\DANE\wrobese2\Parafia\Sylas\1.6.0\Parafia-sylas3.exe"/>
+    <copy SourceFiles="$(TargetPath)" DestinationFiles="E:\DANE\wrobese2\Parafia\Parafia.exe" />
+    <copy SourceFiles="$(TargetPath)" DestinationFiles="E:\DANE\wrobese2\Parafia\Elena\Parafia-elena.exe" />
+    <copy SourceFiles="$(TargetPath)" DestinationFiles="E:\DANE\wrobese2\Parafia\Jankos\1.6.0\Parafia-jankos.exe" />
+    <copy SourceFiles="$(TargetPath)" DestinationFiles="E:\DANE\wrobese2\Parafia\Mortar\1.6.0\Parafia-mortar.exe" />
+    <copy SourceFiles="$(TargetPath)" DestinationFiles="E:\DANE\wrobese2\Parafia\My\1.6.0\Parafia-sairo.exe" />
+    <copy SourceFiles="$(TargetPath)" DestinationFiles="E:\DANE\wrobese2\Parafia\sparrow3\Parafia-sparrow3.exe" />
+    <copy SourceFiles="$(TargetPath)" DestinationFiles="E:\DANE\wrobese2\Parafia\Sylas\1.6.0\Parafia-sylas3.exe" />
+    <copy SourceFiles="$(TargetPath)" DestinationFiles="E:\DANE\wrobese2\Parafia\chang\Parafia-chang.exe" />
+    <copy SourceFiles="$(TargetPath)" DestinationFiles="E:\DANE\wrobese2\Parafia\solar_fields\Parafia-solar.exe" />
+    <copy SourceFiles="$(TargetPath)" DestinationFiles="E:\DANE\wrobese2\Parafia\gobenitosa\Parafia-gobeni.exe" />
   </Target>
-  
 </Project>

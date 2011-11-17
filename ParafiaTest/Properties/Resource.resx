@@ -1,0 +1,2945 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ParafiaBizBankEmptyContent" xml:space="preserve">
+    <value>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Gra internetowa Parafia.biz - podbij wirtualną  rzeczywistość - gra przeglądarkowa przez www&lt;/title&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;link href="https://plus.google.com/102903768040082646276" rel="publisher"/&gt;
+    &lt;meta property="og:site_name" content="Parafia.biz" /&gt;
+	&lt;meta property="og:title" content="Parafia.biz" /&gt;
+	&lt;meta property="og:description" content="Gra internetowa Parafia.biz - podbij wirtualną  rzeczywistość - gra przeglądarkowa przez www" /&gt;
+	&lt;meta property="og:image" content="http://parafia.biz/img/fb_like.jpg" /&gt;
+	&lt;meta property="og:url" content="http://parafia.biz" /&gt;
+	&lt;meta property="og:type" content="website" /&gt;
+	&lt;meta property="fb:app_id" content="184584424910997" /&gt;
+	    	&lt;link rel="stylesheet" type="text/css" href="http://parafia.biz/css/reset.css?m=240" /&gt;
+	&lt;link rel="stylesheet" type="text/css" href="http://parafia.biz/css/style.css?m=240" /&gt;
+	&lt;!--[if IE]&gt;&lt;link rel="stylesheet" type="text/css" href="http://parafia.biz/css/ie.css?m=240" /&gt;&lt;![endif]--&gt;
+	&lt;link rel="stylesheet" type="text/css" href="http://parafia.biz/css/parafia/jquery-ui-1.8.9.custom.css?m=240" /&gt;
+    	&lt;script type="text/javascript" src="http://parafia.biz/js/jquery-1.4.4.min.js?m=240"&gt;&lt;/script&gt;
+	&lt;script type="text/javascript" src="http://parafia.biz/js/jquery-ui-1.8.9.custom.min.js?m=240"&gt;&lt;/script&gt;
+	&lt;script type="text/javascript" src="http://parafia.biz/js/jquery.placeholder.js?m=240"&gt;&lt;/script&gt;
+	&lt;script type="text/javascript" src="http://parafia.biz/js/main.js?m=240"&gt;&lt;/script&gt;
+    &lt;script type="text/javascript"&gt;
+           if(location != top.location) top.location.href = location.href;
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+    &lt;div id="topline"&gt;&lt;/div&gt;
+
+    &lt;div id="container"&gt;
+        &lt;ul id="nav"&gt;
+			&lt;li&gt;&lt;a href="http://parafia.biz/premium" title="Odpusty" class=""&gt;Odpusty&lt;/a&gt;&lt;/li&gt;
+			&lt;li class="selected"&gt;&lt;a href="http://parafia.biz/dashboard" title="Moja Parafia" class=""&gt;Moja Parafia&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="http://parafia.biz/battle" title="Walka" class=""&gt;Walka&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="http://parafia.biz/relics/market" title="Wolny rynek" class=""&gt;Wolny rynek&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="http://parafia.biz/quests" title="Questy" class=""&gt;Questy&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="http://parafia.biz/roulette" title="Ruletka" class=""&gt;Ruletka&lt;/a&gt;&lt;/li&gt;
+		&lt;/ul&gt;
+
+        &lt;h1 id="header"&gt;
+			&lt;a href="http://parafia.biz/" title="Parafia - zdobądź władzę, wiernych i pieniądze"&gt;
+                &lt;img src="http://parafia.biz/img/logo.png" alt="Parafia - zdobądź władzę, wiernych i pieniądze" /&gt;
+            &lt;/a&gt;
+		&lt;/h1&gt;
+
+        &lt;div id="main"&gt;
+                            &lt;div class="title"&gt;
+                    &lt;span class="left"&gt;Takie cudo można zdobyć w queście stałym &lt;a href="http://blog.parafia.biz/?p=2876" title="http://blog.parafia.biz/?p=2876" class=""&gt;http://blog.parafia.biz/?p=2876&lt;/a&gt;&lt;/span&gt;
+                    &lt;a href="http://parafia.biz/auth/logout" class="right" title="Wracaj na ziemię!"&gt;Wracaj na ziemię!&lt;/a&gt;                &lt;/div&gt;
+            
+                            &lt;div class="sidebar"&gt;
+                    &lt;div class="sidebar-top"&gt;&lt;/div&gt;
+                    &lt;div class="sidebar-content"&gt;
+                        &lt;div class="info_player"&gt;
+    &lt;ul class="stats list_style_none"&gt;
+        &lt;li&gt;&lt;strong&gt;Proboszcz:&lt;/strong&gt; chang&lt;/li&gt;
+        &lt;li&gt;&lt;strong&gt;Parafia:&lt;/strong&gt; chang hell&lt;/li&gt;
+        &lt;li&gt;&lt;strong&gt;Odpusty:&lt;/strong&gt; 0&lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;ul class="stats list_style_none mt10"&gt;
+        &lt;li&gt;&lt;strong&gt;Poziom:&lt;/strong&gt; Poziom 29 ( 3419 / 3771 )&lt;/li&gt;
+        &lt;li title="+155 C$ co 5 minut"&gt;&lt;strong&gt;Kasa:&lt;/strong&gt; 0 C$ / 754 000 C$&lt;/li&gt;
+        &lt;li&gt;&lt;strong&gt;Sejf:&lt;/strong&gt; 485 293 C$ / 760 000 C$&lt;/li&gt;
+        &lt;li title="+23 co 5 minut"&gt;&lt;strong&gt;Zdrowie:&lt;/strong&gt; 46 / 230&lt;/li&gt;
+        &lt;li title="+21 co 5 minut"&gt;&lt;strong&gt;Energia:&lt;/strong&gt; 31 / 257&lt;/li&gt;
+        &lt;li title="+35 co 5 minut"&gt;&lt;strong&gt;Wierzących:&lt;/strong&gt; 45 / 532&lt;/li&gt;
+        &lt;li&gt;&lt;strong&gt;Wikarych:&lt;/strong&gt; 0 / 4&lt;/li&gt;
+        &lt;li&gt;&lt;strong&gt;Relikwie:&lt;/strong&gt; 24, w sejfie 24 / 76&lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;ul class="menu mt20 list_style_none"&gt;
+        &lt;li&gt;&lt;a href="http://parafia.biz/dashboard" class="dashboard" title="Dashboard"&gt;Dashboard&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="http://parafia.biz/buildings/safe" class="safe" title="Sejf"&gt;Sejf&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="http://parafia.biz/buildings" class="buildings" title="Budynki"&gt;Budynki&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="http://parafia.biz/property" class="buildings" title="Dewocjonalnik"&gt;Dewocjonalnik&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="http://parafia.biz/units" class="units" title="Siły zbrojne"&gt;Siły zbrojne&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="http://parafia.biz/units/expeditions" class="quests" title="Pielgrzymki"&gt;Pielgrzymki&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="http://parafia.biz/battle/players" class="battle" title="Walka"&gt;Walka&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="http://parafia.biz/relics/my" class="relics_my" title="Relikwie w parafii"&gt;Relikwie w parafii&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="http://parafia.biz/relics" class="relics" title="Relikwie"&gt;Relikwie&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="http://parafia.biz/relics/market" class="relics_market" title="Wolny rynek"&gt;Wolny rynek&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="http://parafia.biz/quests" class="quests" title="Questy"&gt;Questy&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="http://parafia.biz/mailbox" class="mailbox" title="Poczta"&gt;Poczta&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="http://parafia.biz/papacy" class="papacy" title="Papiestwo"&gt;Papiestwo&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="http://parafia.biz/premium" class="premium" title="Odpusty"&gt;Odpusty&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="http://parafia.biz/roulette" class="premium" title="Ruletka Czarownic"&gt;Ruletka Czarownic&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="http://parafia.biz/stats/battle" class="stats" title="Statystyki"&gt;Statystyki&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="http://parafia.biz/account/edit" class="account" title="Edytuj Konto"&gt;Edytuj Konto&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+        
+    
+    &lt;div class="mt20"&gt;
+        &lt;iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fparafia.biz%2F&amp;amp;layout=button_count&amp;amp;show_faces=false&amp;amp;width=200&amp;amp;action=like&amp;amp;font&amp;amp;colorscheme=light&amp;amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:200px; height:21px;" allowTransparency="true"&gt;&lt;/iframe&gt;
+        &lt;script type="text/javascript" src="https://apis.google.com/js/plusone.js"&gt;&lt;/script&gt;
+        &lt;g:plusone href="http://parafia.biz"&gt;&lt;/g:plusone&gt;
+    &lt;/div&gt;
+    
+    &lt;div class="mt20"&gt;
+            &lt;/div&gt;
+&lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div class="sidebar-bottom"&gt;&lt;/div&gt;
+                &lt;/div&gt;
+            
+            &lt;div class="content"&gt;
+			                                &lt;h2&gt;Bank&lt;/h2&gt;
+&lt;p&gt;Brak pieniędzy w Banku&lt;/p&gt;
+
+            &lt;/div&gt;
+            &lt;div class="clear"&gt;&lt;/div&gt;
+        &lt;/div&gt;
+		&lt;div id="footer"&gt;
+			&lt;ul&gt;
+				&lt;li&gt;&lt;a href="http://blog.parafia.biz/" target="_blank" title="Blog" class=""&gt;Blog&lt;/a&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;a href="http://parafia.biz/info/tos" title="Regulamin" class=""&gt;Regulamin&lt;/a&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;a href="http://parafia.biz/info/informacje" title="Informacje" class=""&gt;Informacje&lt;/a&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;a href="http://parafia.biz/info/faq" title="FAQ" class=""&gt;FAQ&lt;/a&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;a href="http://parafia.biz/nawracaj_heretykow" title="Program Partnerski" class=""&gt;Program Partnerski&lt;/a&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;a href="http://parafia.biz/info/contact" title="Kontakt" class=""&gt;Kontakt&lt;/a&gt;&lt;/li&gt;
+			&lt;/ul&gt;
+			&lt;p class="left"&gt;Wykonanie i &lt;a href="http://www.netbomb.pl/" title="Domeny i hosting"&gt;hosting&lt;/a&gt;: &lt;a href="http://www.netbomb.pl/kocham/parafia" id="netbomb" title="Created by netBOMB"&gt;&lt;img src="http://parafia.biz/img/netbomb.png" alt="netBOMB" /&gt;&lt;/a&gt;&lt;/p&gt;
+			&lt;p class="right"&gt;Copyright &amp;copy; 2010 - 2011 &lt;a href="http://parafia.biz/"&gt;&lt;strong&gt;Parafia.biz&lt;/strong&gt;&lt;/a&gt;. Wszelkie prawa zastrzeżone.&lt;/p&gt;
+		&lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;script type="text/javascript" src="/js/jquery.plugins.js"&gt;&lt;/script&gt;
+    &lt;script type="text/javascript" src="/js/jquery.functions.js?new"&gt;&lt;/script&gt;
+                &lt;script type="text/javascript"&gt;
+                  var _gaq = _gaq || [];
+                  _gaq.push(['_setAccount', 'UA-20337387-1']);
+                  _gaq.push(['_trackPageview']);
+
+                  (function() {
+                    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+                  })();
+
+            &lt;/script&gt;            &lt;script src="http://static.getclicky.com/js" type="text/javascript"&gt;&lt;/script&gt;
+            &lt;script type="text/javascript"&gt;try{ clicky.init(66419170); }catch(err){}&lt;/script&gt;    &lt;!-- T: 0.0652 M: 4.21MB --&gt;
+&lt;/body&gt;
+&lt;/html&gt;</value>
+  </data>
+  <data name="ParafiaBizBankFullContent" xml:space="preserve">
+    <value>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Gra internetowa Parafia.biz - podbij wirtualną  rzeczywistość - gra przeglądarkowa przez www&lt;/title&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;link href="https://plus.google.com/102903768040082646276" rel="publisher"/&gt;
+    &lt;meta property="og:site_name" content="Parafia.biz" /&gt;
+	&lt;meta property="og:title" content="Parafia.biz" /&gt;
+	&lt;meta property="og:description" content="Gra internetowa Parafia.biz - podbij wirtualną  rzeczywistość - gra przeglądarkowa przez www" /&gt;
+	&lt;meta property="og:image" content="http://parafia.biz/img/fb_like.jpg" /&gt;
+	&lt;meta property="og:url" content="http://parafia.biz" /&gt;
+	&lt;meta property="og:type" content="website" /&gt;
+	&lt;meta property="fb:app_id" content="184584424910997" /&gt;
+	    	&lt;link rel="stylesheet" type="text/css" href="http://parafia.biz/css/reset.css?m=240" /&gt;
+	&lt;link rel="stylesheet" type="text/css" href="http://parafia.biz/css/style.css?m=240" /&gt;
+	&lt;!--[if IE]&gt;&lt;link rel="stylesheet" type="text/css" href="http://parafia.biz/css/ie.css?m=240" /&gt;&lt;![endif]--&gt;
+	&lt;link rel="stylesheet" type="text/css" href="http://parafia.biz/css/parafia/jquery-ui-1.8.9.custom.css?m=240" /&gt;
+    	&lt;script type="text/javascript" src="http://parafia.biz/js/jquery-1.4.4.min.js?m=240"&gt;&lt;/script&gt;
+	&lt;script type="text/javascript" src="http://parafia.biz/js/jquery-ui-1.8.9.custom.min.js?m=240"&gt;&lt;/script&gt;
+	&lt;script type="text/javascript" src="http://parafia.biz/js/jquery.placeholder.js?m=240"&gt;&lt;/script&gt;
+	&lt;script type="text/javascript" src="http://parafia.biz/js/main.js?m=240"&gt;&lt;/script&gt;
+    &lt;script type="text/javascript"&gt;
+           if(location != top.location) top.location.href = location.href;
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+    &lt;div id="topline"&gt;&lt;/div&gt;
+
+    &lt;div id="container"&gt;
+        &lt;ul id="nav"&gt;
+			&lt;li&gt;&lt;a href="http://parafia.biz/premium" title="Odpusty" class=""&gt;Odpusty&lt;/a&gt;&lt;/li&gt;
+			&lt;li class="selected"&gt;&lt;a href="http://parafia.biz/dashboard" title="Moja Parafia" class=""&gt;Moja Parafia&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="http://parafia.biz/battle" title="Walka" class=""&gt;Walka&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="http://parafia.biz/relics/market" title="Wolny rynek" class=""&gt;Wolny rynek&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="http://parafia.biz/quests" title="Questy" class=""&gt;Questy&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="http://parafia.biz/roulette" title="Ruletka" class=""&gt;Ruletka&lt;/a&gt;&lt;/li&gt;
+		&lt;/ul&gt;
+
+        &lt;h1 id="header"&gt;
+			&lt;a href="http://parafia.biz/" title="Parafia - zdobądź władzę, wiernych i pieniądze"&gt;
+                &lt;img src="http://parafia.biz/img/logo.png" alt="Parafia - zdobądź władzę, wiernych i pieniądze" /&gt;
+            &lt;/a&gt;
+		&lt;/h1&gt;
+
+        &lt;div id="main"&gt;
+                            &lt;div class="title"&gt;
+                    &lt;span class="left"&gt;Takie cudo można zdobyć w queście stałym &lt;a href="http://blog.parafia.biz/?p=2876" title="http://blog.parafia.biz/?p=2876" class=""&gt;http://blog.parafia.biz/?p=2876&lt;/a&gt;&lt;/span&gt;
+                    &lt;a href="http://parafia.biz/auth/logout" class="right" title="Wracaj na ziemię!"&gt;Wracaj na ziemię!&lt;/a&gt;                &lt;/div&gt;
+            
+                            &lt;div class="sidebar"&gt;
+                    &lt;div class="sidebar-top"&gt;&lt;/div&gt;
+                    &lt;div class="sidebar-content"&gt;
+                        &lt;div class="info_player"&gt;
+    &lt;ul class="stats list_style_none"&gt;
+        &lt;li&gt;&lt;strong&gt;Proboszcz:&lt;/strong&gt; sairo&lt;/li&gt;
+        &lt;li&gt;&lt;strong&gt;Parafia:&lt;/strong&gt; sairo&lt;/li&gt;
+        &lt;li&gt;&lt;strong&gt;Odpusty:&lt;/strong&gt; 2&lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;ul class="stats list_style_none mt10"&gt;
+        &lt;li&gt;&lt;strong&gt;Poziom:&lt;/strong&gt; Poziom 35 ( 8370 / 8811 )&lt;/li&gt;
+        &lt;li title="+5117 C$ co 5 minut"&gt;&lt;strong&gt;Kasa:&lt;/strong&gt; 0 C$ / 5 898 939 C$&lt;/li&gt;
+        &lt;li&gt;&lt;strong&gt;Sejf:&lt;/strong&gt; 811 501 C$ / 2 100 000 C$&lt;/li&gt;
+        &lt;li title="+82 co 5 minut"&gt;&lt;strong&gt;Zdrowie:&lt;/strong&gt; 457 / 579&lt;/li&gt;
+        &lt;li title="+79 co 5 minut"&gt;&lt;strong&gt;Energia:&lt;/strong&gt; 392 / 976&lt;/li&gt;
+        &lt;li title="+489 co 5 minut"&gt;&lt;strong&gt;Wierzących:&lt;/strong&gt; 3922 / 5164&lt;/li&gt;
+        &lt;li&gt;&lt;strong&gt;Wikarych:&lt;/strong&gt; 32 / 32&lt;/li&gt;
+        &lt;li&gt;&lt;strong&gt;Relikwie:&lt;/strong&gt; 221, w sejfie 210 / 210&lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;ul class="menu mt20 list_style_none"&gt;
+        &lt;li&gt;&lt;a href="http://parafia.biz/dashboard" class="dashboard" title="Dashboard"&gt;Dashboard&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="http://parafia.biz/buildings/safe" class="safe" title="Sejf"&gt;Sejf&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="http://parafia.biz/buildings" class="buildings" title="Budynki"&gt;Budynki&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="http://parafia.biz/property" class="buildings" title="Dewocjonalnik"&gt;Dewocjonalnik&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="http://parafia.biz/units" class="units" title="Siły zbrojne"&gt;Siły zbrojne&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="http://parafia.biz/units/expeditions" class="quests" title="Pielgrzymki"&gt;Pielgrzymki&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="http://parafia.biz/battle/players" class="battle" title="Walka"&gt;Walka&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="http://parafia.biz/relics/my" class="relics_my" title="Relikwie w parafii"&gt;Relikwie w parafii&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="http://parafia.biz/relics" class="relics" title="Relikwie"&gt;Relikwie&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="http://parafia.biz/relics/market" class="relics_market" title="Wolny rynek"&gt;Wolny rynek&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="http://parafia.biz/quests" class="quests" title="Questy"&gt;Questy&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="http://parafia.biz/mailbox" class="mailbox" title="Poczta"&gt;Poczta&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="http://parafia.biz/papacy" class="papacy" title="Papiestwo"&gt;Papiestwo&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="http://parafia.biz/premium" class="premium" title="Odpusty"&gt;Odpusty&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="http://parafia.biz/roulette" class="premium" title="Ruletka Czarownic"&gt;Ruletka Czarownic&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="http://parafia.biz/stats/battle" class="stats" title="Statystyki"&gt;Statystyki&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="http://parafia.biz/account/edit" class="account" title="Edytuj Konto"&gt;Edytuj Konto&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+        
+    
+    &lt;div class="mt20"&gt;
+        &lt;iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fparafia.biz%2F&amp;amp;layout=button_count&amp;amp;show_faces=false&amp;amp;width=200&amp;amp;action=like&amp;amp;font&amp;amp;colorscheme=light&amp;amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:200px; height:21px;" allowTransparency="true"&gt;&lt;/iframe&gt;
+        &lt;script type="text/javascript" src="https://apis.google.com/js/plusone.js"&gt;&lt;/script&gt;
+        &lt;g:plusone href="http://parafia.biz"&gt;&lt;/g:plusone&gt;
+    &lt;/div&gt;
+    
+    &lt;div class="mt20"&gt;
+            &lt;/div&gt;
+&lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div class="sidebar-bottom"&gt;&lt;/div&gt;
+                &lt;/div&gt;
+            
+            &lt;div class="content"&gt;
+			                                &lt;h2&gt;Bank&lt;/h2&gt;
+&lt;ul class="banks"&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            446000 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/91366" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            446000 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/91376" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            753001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/91385" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            419001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/91395" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            753001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/91398" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            419001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/91411" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            446000 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/91414" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            753001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/91429" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            446000 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/91433" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            753001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/91441" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            419001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/91443" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            419001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/91455" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            446000 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/91457" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            753001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/91465" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            419001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/91473" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            446000 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/91475" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            419001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/91482" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            446000 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/91484" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            753001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/91486" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            753001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/91497" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            753001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/91515" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            419001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/91517" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            446000 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/91523" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            419001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/91547" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            446000 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/91549" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            753001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/91559" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            419001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/91594" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            446000 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/91596" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            753001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/91600" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            419001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/91609" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            753001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/91624" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            446000 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/91627" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            753001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/91646" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            419001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/91648" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            446000 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/91653" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            419001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/91730" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            446000 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/91734" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            753001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/91736" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            419001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/91748" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            446000 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/91757" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            753001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/91775" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            753001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/91785" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            419001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/91792" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            446000 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/91795" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            419001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/91824" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            419001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/91841" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            446000 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/91844" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            446000 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/91857" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            753001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/91859" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            419001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/91872" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            419001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/91907" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            446000 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/91910" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            753001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/91918" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            419001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/91923" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            446000 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/91927" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            419001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/91935" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            446000 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/91937" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            753001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/91954" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            419001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/91957" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            446000 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/91961" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            419001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/91980" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            446000 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/91993" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            419001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/92020" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            446000 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/92025" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            753001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/92031" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            419001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/92039" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            446000 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/92049" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            419001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/92095" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            446000 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/92099" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            753001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/92121" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            419001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/92135" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            446000 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/92138" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            419001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/92176" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            446000 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/92197" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            419001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/92245" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            419001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/92247" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            446000 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/92249" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            419001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/92270" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            446000 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/92315" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            419001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/92334" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            446000 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/92337" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            419001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/92407" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            419001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/92440" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            446000 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/92445" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            446000 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/92472" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            753001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/92480" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            419001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/92491" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            419001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/92513" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            446000 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/92516" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            446000 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/92534" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            419001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/92553" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            419001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/92561" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            446000 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/92563" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            446000 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/92578" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            419001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/92615" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            446000 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/92617" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            419001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/92632" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            446000 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/92635" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            419001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/92646" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            419001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/92760" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            446000 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/92780" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            446000 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/92826" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            419001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/92905" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            446000 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/92907" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            419001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/92967" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            446000 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/92989" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            419001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/93057" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            446000 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/93061" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            419001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/93101" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            446000 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/93104" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            419001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/93205" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            419001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/93299" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            446000 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/93320" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            446000 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/93384" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            419001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/93459" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            419001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/93497" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            446000 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/93509" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            419001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/93572" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            446000 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/93581" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            753001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/93597" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            753001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/93599" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            419001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/93810" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            753001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/93812" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            753001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/93815" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            446000 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/93818" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            753001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/93843" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            446000 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/93846" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            753001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/93859" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            419001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/93874" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            753001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/93882" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            753001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/93884" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            419001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/93892" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            446000 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/93894" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            753001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/93916" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            419001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/93931" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            446000 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/93933" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            753001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/93939" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            446000 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/93947" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            753001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/93949" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            753001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/93951" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            753001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/93964" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            753001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/93966" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            419001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/93968" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            753001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/93973" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            419001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/93981" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            446000 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/93989" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            753001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/94005" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            446000 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/94020" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            753001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/94031" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            753001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/94033" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            419001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/94040" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            753001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/94056" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            753001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/94060" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            419001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/94109" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            446000 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/94191" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            446000 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/94207" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            419001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/94209" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            419001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/94211" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            446000 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/94213" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            753001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/94225" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            753001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/94236" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            753001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/94238" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            753001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/94241" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            419001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/94243" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            419001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/94247" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            419001 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/94249" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            446000 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/94252" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            446000 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/94254" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            10000 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/94314" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            753000 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/94367" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            419000 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/94373" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            446000 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/94390" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            753000 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/94419" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            419000 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/94424" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            446000 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/94428" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            753000 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/94458" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            753000 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/94507" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+        &lt;li&gt;
+        &lt;div class="bank_relic"&gt;
+            &lt;img src="http://parafia.biz/_img/2011/05/1306321694_1794_50x50.jpg" /&gt;        &lt;/div&gt;
+        &lt;div class="bank_money"&gt;
+            415000 C$
+        &lt;/div&gt;
+        &lt;div class="bank_button"&gt;
+            &lt;a href="http://parafia.biz/bank/withdraw/94541" class="button" title="Wypłać"&gt;&lt;span&gt;Wypłać&lt;/span&gt;&lt;/a&gt;        &lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+        
+    &lt;/li&gt;
+    &lt;/ul&gt;
+
+            &lt;/div&gt;
+            &lt;div class="clear"&gt;&lt;/div&gt;
+        &lt;/div&gt;
+		&lt;div id="footer"&gt;
+			&lt;ul&gt;
+				&lt;li&gt;&lt;a href="http://blog.parafia.biz/" target="_blank" title="Blog" class=""&gt;Blog&lt;/a&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;a href="http://parafia.biz/info/tos" title="Regulamin" class=""&gt;Regulamin&lt;/a&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;a href="http://parafia.biz/info/informacje" title="Informacje" class=""&gt;Informacje&lt;/a&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;a href="http://parafia.biz/info/faq" title="FAQ" class=""&gt;FAQ&lt;/a&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;a href="http://parafia.biz/nawracaj_heretykow" title="Program Partnerski" class=""&gt;Program Partnerski&lt;/a&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;a href="http://parafia.biz/info/contact" title="Kontakt" class=""&gt;Kontakt&lt;/a&gt;&lt;/li&gt;
+			&lt;/ul&gt;
+			&lt;p class="left"&gt;Wykonanie i &lt;a href="http://www.netbomb.pl/" title="Domeny i hosting"&gt;hosting&lt;/a&gt;: &lt;a href="http://www.netbomb.pl/kocham/parafia" id="netbomb" title="Created by netBOMB"&gt;&lt;img src="http://parafia.biz/img/netbomb.png" alt="netBOMB" /&gt;&lt;/a&gt;&lt;/p&gt;
+			&lt;p class="right"&gt;Copyright &amp;copy; 2010 - 2011 &lt;a href="http://parafia.biz/"&gt;&lt;strong&gt;Parafia.biz&lt;/strong&gt;&lt;/a&gt;. Wszelkie prawa zastrzeżone.&lt;/p&gt;
+		&lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;script type="text/javascript" src="/js/jquery.plugins.js"&gt;&lt;/script&gt;
+    &lt;script type="text/javascript" src="/js/jquery.functions.js?new"&gt;&lt;/script&gt;
+                &lt;script type="text/javascript"&gt;
+                  var _gaq = _gaq || [];
+                  _gaq.push(['_setAccount', 'UA-20337387-1']);
+                  _gaq.push(['_trackPageview']);
+
+                  (function() {
+                    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+                  })();
+
+            &lt;/script&gt;            &lt;script src="http://static.getclicky.com/js" type="text/javascript"&gt;&lt;/script&gt;
+            &lt;script type="text/javascript"&gt;try{ clicky.init(66419170); }catch(err){}&lt;/script&gt;    &lt;!-- T: 0.1831 M: 9.18MB --&gt;
+&lt;/body&gt;
+&lt;/html&gt;</value>
+  </data>
+  <data name="ParafiaBizExpeditionsContent" xml:space="preserve">
+    <value>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Gra internetowa Parafia.biz - podbij wirtualną  rzeczywistość - gra przeglądarkowa przez www&lt;/title&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta property="og:site_name" content="Parafia.biz" /&gt;
+	&lt;meta property="og:title" content="Parafia.biz" /&gt;
+	&lt;meta property="og:description" content="Gra internetowa Parafia.biz - podbij wirtualną  rzeczywistość - gra przeglądarkowa przez www" /&gt;
+	&lt;meta property="og:image" content="http://parafia.biz/img/fb_like.jpg" /&gt;
+	&lt;meta property="og:url" content="http://parafia.biz" /&gt;
+	&lt;meta property="og:type" content="website" /&gt;
+	&lt;meta property="fb:app_id" content="184584424910997" /&gt;
+	    	&lt;link rel="stylesheet" type="text/css" href="http://parafia.biz/css/reset.css?m=240" /&gt;
+	&lt;link rel="stylesheet" type="text/css" href="http://parafia.biz/css/style.css?m=240" /&gt;
+	&lt;!--[if IE]&gt;&lt;link rel="stylesheet" type="text/css" href="http://parafia.biz/css/ie.css?m=240" /&gt;&lt;![endif]--&gt;
+	&lt;link rel="stylesheet" type="text/css" href="http://parafia.biz/css/parafia/jquery-ui-1.8.9.custom.css?m=240" /&gt;
+    	&lt;script type="text/javascript" src="http://parafia.biz/js/jquery-1.4.4.min.js?m=240"&gt;&lt;/script&gt;
+	&lt;script type="text/javascript" src="http://parafia.biz/js/jquery-ui-1.8.9.custom.min.js?m=240"&gt;&lt;/script&gt;
+	&lt;script type="text/javascript" src="http://parafia.biz/js/jquery.placeholder.js?m=240"&gt;&lt;/script&gt;
+	&lt;script type="text/javascript" src="http://parafia.biz/js/main.js?m=240"&gt;&lt;/script&gt;
+    &lt;script type="text/javascript"&gt;
+           if(location != top.location) top.location.href = location.href;
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+    &lt;div id="topline"&gt;&lt;/div&gt;
+
+    &lt;div id="container"&gt;
+        &lt;ul id="nav"&gt;
+			&lt;li&gt;&lt;a href="http://parafia.biz/premium" title="Odpusty" class=""&gt;Odpusty&lt;/a&gt;&lt;/li&gt;
+			&lt;li class="selected"&gt;&lt;a href="http://parafia.biz/dashboard" title="Moja Parafia" class=""&gt;Moja Parafia&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="http://parafia.biz/battle" title="Walka" class=""&gt;Walka&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="http://parafia.biz/relics/market" title="Wolny rynek" class=""&gt;Wolny rynek&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="http://parafia.biz/quests" title="Questy" class=""&gt;Questy&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="http://parafia.biz/roulette" title="Ruletka" class=""&gt;Ruletka&lt;/a&gt;&lt;/li&gt;
+		&lt;/ul&gt;
+
+        &lt;h1 id="header"&gt;
+			&lt;a href="http://parafia.biz/" title="Parafia - zdobądź władzę, wiernych i pieniądze"&gt;
+                &lt;img src="http://parafia.biz/img/logo.png" alt="Parafia - zdobądź władzę, wiernych i pieniądze" /&gt;
+            &lt;/a&gt;
+		&lt;/h1&gt;
+
+        &lt;div id="main"&gt;
+                            &lt;div class="title"&gt;
+                    &lt;span class="left"&gt;Quest E-learning 2 już jest - więcej: &lt;a href="http://blog.parafia.biz/questy/e-learning-2/" title="http://blog.parafia.biz/questy/e-learning-2/" class=""&gt;http://blog.parafia.biz/questy/e-learning-2/&lt;/a&gt; &lt;/span&gt;
+                    &lt;a href="http://parafia.biz/auth/logout" class="right" title="Wracaj na ziemię!"&gt;Wracaj na ziemię!&lt;/a&gt;                &lt;/div&gt;
+            
+                            &lt;div class="sidebar"&gt;
+                    &lt;div class="sidebar-top"&gt;&lt;/div&gt;
+                    &lt;div class="sidebar-content"&gt;
+                        &lt;div class="info_player"&gt;
+    &lt;ul class="stats list_style_none"&gt;
+        &lt;li&gt;&lt;strong&gt;Proboszcz:&lt;/strong&gt; sairo&lt;/li&gt;
+        &lt;li&gt;&lt;strong&gt;Parafia:&lt;/strong&gt; sairo&lt;/li&gt;
+        &lt;li&gt;&lt;strong&gt;Odpusty:&lt;/strong&gt; 0&lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;ul class="stats list_style_none mt10"&gt;
+        &lt;li&gt;&lt;strong&gt;Poziom:&lt;/strong&gt; Poziom 34 ( 7407 / 7653 )&lt;/li&gt;
+        &lt;li title="+5062 C$ co 5 minut"&gt;&lt;strong&gt;Kasa:&lt;/strong&gt; 143 731 C$ / 4 618 939 C$&lt;/li&gt;
+        &lt;li&gt;&lt;strong&gt;Sejf:&lt;/strong&gt; 1 760 000 C$ / 1 760 000 C$&lt;/li&gt;
+        &lt;li title="+32 co 5 minut"&gt;&lt;strong&gt;Zdrowie:&lt;/strong&gt; 104 / 520&lt;/li&gt;
+        &lt;li title="+28 co 5 minut"&gt;&lt;strong&gt;Energia:&lt;/strong&gt; 505 / 955&lt;/li&gt;
+        &lt;li title="+383 co 5 minut"&gt;&lt;strong&gt;Wierzących:&lt;/strong&gt; 4203 / 4839&lt;/li&gt;
+        &lt;li&gt;&lt;strong&gt;Wikarych:&lt;/strong&gt; 15 / 30&lt;/li&gt;
+        &lt;li&gt;&lt;strong&gt;Relikwie:&lt;/strong&gt; 176, w sejfie 176 / 176&lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;ul class="menu mt20 list_style_none"&gt;
+        &lt;li&gt;&lt;a href="http://parafia.biz/dashboard" class="dashboard" title="Dashboard"&gt;Dashboard&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="http://parafia.biz/buildings/safe" class="safe" title="Sejf"&gt;Sejf&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="http://parafia.biz/buildings" class="buildings" title="Budynki"&gt;Budynki&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="http://parafia.biz/property" class="buildings" title="Dewocjonalnik"&gt;Dewocjonalnik&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="http://parafia.biz/units" class="units selected" title="Siły zbrojne"&gt;Siły zbrojne&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="http://parafia.biz/units/expeditions" class="quests selected" title="Pielgrzymki"&gt;Pielgrzymki&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="http://parafia.biz/battle/players" class="battle" title="Walka"&gt;Walka&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="http://parafia.biz/relics/my" class="relics_my" title="Relikwie w parafii"&gt;Relikwie w parafii&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="http://parafia.biz/relics" class="relics" title="Relikwie"&gt;Relikwie&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="http://parafia.biz/relics/market" class="relics_market" title="Wolny rynek"&gt;Wolny rynek&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="http://parafia.biz/quests" class="quests" title="Questy"&gt;Questy&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="http://parafia.biz/mailbox" class="mailbox" title="Poczta"&gt;Poczta&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="http://parafia.biz/papacy" class="papacy" title="Papiestwo"&gt;Papiestwo&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="http://parafia.biz/premium" class="premium" title="Odpusty"&gt;Odpusty&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="http://parafia.biz/roulette" class="premium" title="Ruletka Czarownic"&gt;Ruletka Czarownic&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="http://parafia.biz/stats/battle" class="stats" title="Statystyki"&gt;Statystyki&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="http://parafia.biz/account/edit" class="account" title="Edytuj Konto"&gt;Edytuj Konto&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+        
+    
+    &lt;div class="mt20"&gt;
+        &lt;iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fparafia.biz%2F&amp;amp;layout=button_count&amp;amp;show_faces=false&amp;amp;width=200&amp;amp;action=like&amp;amp;font&amp;amp;colorscheme=light&amp;amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:200px; height:21px;" allowTransparency="true"&gt;&lt;/iframe&gt;
+        &lt;script type="text/javascript" src="https://apis.google.com/js/plusone.js"&gt;&lt;/script&gt;
+        &lt;g:plusone href="http://parafia.biz"&gt;&lt;/g:plusone&gt;
+    &lt;/div&gt;
+    
+    &lt;div class="mt20"&gt;
+        &lt;a href="http://mastah.pl" title="Pomiędzy walkami - trochę rozrywki" class=""&gt;Pomiędzy walkami - trochę rozrywki&lt;/a&gt;    &lt;/div&gt;
+&lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div class="sidebar-bottom"&gt;&lt;/div&gt;
+                &lt;/div&gt;
+            
+            &lt;div class="content"&gt;
+			                                &lt;table class="expeditions"&gt;
+    &lt;tr&gt;
+        &lt;th class="who"&gt;&lt;h2 class="tooltip" tooltip="Chcesz aby twoje wojsko było bezpieczne? Wyślij je na pielgrzymkę. Co prawda parafia nie będzie chroniona, ale w przypadku ataku nie stracisz wojska będącego na pielgrzymce."&gt;Pielgrzymka&lt;/h2&gt;&lt;/th&gt;
+        &lt;th class="back"&gt;&lt;h2&gt;Koniec&lt;/h2&gt;&lt;/th&gt;
+        &lt;th&gt;&lt;h2 class="tooltip" tooltip="Natychmiastowy powrót z pielgrzymki kosztuje: 1 odpust"&gt;Powrót*&lt;/h2&gt;&lt;/th&gt;
+    &lt;/tr&gt;
+    
+            &lt;tr class="expedition"&gt;
+            &lt;td class="who"&gt;&lt;div class="unit"&gt;&lt;div class="unit_image"&gt;&lt;img src="http://parafia.biz/_img/2011/04/1302239627_588_50x50.jpg" /&gt;&lt;/div&gt;&lt;div class="unit_amount"&gt;1392&lt;/div&gt;&lt;/div&gt;&lt;div class="clear"&gt;&lt;/div&gt;&lt;/td&gt;
+            &lt;td class="back"&gt;16.10.2012, 10:55&lt;/td&gt;
+            &lt;td class="pay"&gt; &lt;a href="http://parafia.biz/units/back_expedition/49106" class="button" title="1 odpust"&gt;&lt;span&gt;1 odpust&lt;/span&gt;&lt;/a&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+            &lt;tr class="expedition"&gt;
+            &lt;td class="who"&gt;&lt;div class="unit"&gt;&lt;div class="unit_image"&gt;&lt;img src="http://parafia.biz/_img/2011/04/1302239627_588_50x50.jpg" /&gt;&lt;/div&gt;&lt;div class="unit_amount"&gt;1314&lt;/div&gt;&lt;/div&gt;&lt;div class="clear"&gt;&lt;/div&gt;&lt;/td&gt;
+            &lt;td class="back"&gt;9.10.2012, 9:27&lt;/td&gt;
+            &lt;td class="pay"&gt; &lt;a href="http://parafia.biz/units/back_expedition/50261" class="button" title="1 odpust"&gt;&lt;span&gt;1 odpust&lt;/span&gt;&lt;/a&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+            &lt;tr class="expedition"&gt;
+            &lt;td class="who"&gt;&lt;div class="unit"&gt;&lt;div class="unit_image"&gt;&lt;img src="http://parafia.biz/_img/2011/04/1302239627_588_50x50.jpg" /&gt;&lt;/div&gt;&lt;div class="unit_amount"&gt;1070&lt;/div&gt;&lt;/div&gt;&lt;div class="clear"&gt;&lt;/div&gt;&lt;/td&gt;
+            &lt;td class="back"&gt;19.10.2012, 16:51&lt;/td&gt;
+            &lt;td class="pay"&gt; &lt;a href="http://parafia.biz/units/back_expedition/50970" class="button" title="1 odpust"&gt;&lt;span&gt;1 odpust&lt;/span&gt;&lt;/a&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+            &lt;tr class="expedition"&gt;
+            &lt;td class="who"&gt;&lt;div class="unit"&gt;&lt;div class="unit_image"&gt;&lt;img src="http://parafia.biz/_img/2011/04/1302239627_588_50x50.jpg" /&gt;&lt;/div&gt;&lt;div class="unit_amount"&gt;1177&lt;/div&gt;&lt;/div&gt;&lt;div class="clear"&gt;&lt;/div&gt;&lt;/td&gt;
+            &lt;td class="back"&gt;21.10.2012, 8:21&lt;/td&gt;
+            &lt;td class="pay"&gt; &lt;a href="http://parafia.biz/units/back_expedition/51996" class="button" title="1 odpust"&gt;&lt;span&gt;1 odpust&lt;/span&gt;&lt;/a&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+            &lt;tr class="expedition"&gt;
+            &lt;td class="who"&gt;&lt;div class="unit"&gt;&lt;div class="unit_image"&gt;&lt;img src="http://parafia.biz/_img/2011/04/1302239627_588_50x50.jpg" /&gt;&lt;/div&gt;&lt;div class="unit_amount"&gt;7537&lt;/div&gt;&lt;/div&gt;&lt;div class="clear"&gt;&lt;/div&gt;&lt;/td&gt;
+            &lt;td class="back"&gt;17.10.2012, 21:01&lt;/td&gt;
+            &lt;td class="pay"&gt; &lt;a href="http://parafia.biz/units/back_expedition/52406" class="button" title="1 odpust"&gt;&lt;span&gt;1 odpust&lt;/span&gt;&lt;/a&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+            &lt;tr class="expedition"&gt;
+            &lt;td class="who"&gt;&lt;div class="unit"&gt;&lt;div class="unit_image"&gt;&lt;img src="http://parafia.biz/_img/2011/04/1302239627_588_50x50.jpg" /&gt;&lt;/div&gt;&lt;div class="unit_amount"&gt;1066&lt;/div&gt;&lt;/div&gt;&lt;div class="clear"&gt;&lt;/div&gt;&lt;/td&gt;
+            &lt;td class="back"&gt;22.10.2012, 9:18&lt;/td&gt;
+            &lt;td class="pay"&gt; &lt;a href="http://parafia.biz/units/back_expedition/52744" class="button" title="1 odpust"&gt;&lt;span&gt;1 odpust&lt;/span&gt;&lt;/a&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+            &lt;tr class="expedition"&gt;
+            &lt;td class="who"&gt;&lt;div class="unit"&gt;&lt;div class="unit_image"&gt;&lt;img src="http://parafia.biz/_img/2011/04/1302239627_588_50x50.jpg" /&gt;&lt;/div&gt;&lt;div class="unit_amount"&gt;1097&lt;/div&gt;&lt;/div&gt;&lt;div class="clear"&gt;&lt;/div&gt;&lt;/td&gt;
+            &lt;td class="back"&gt;23.10.2012, 9:47&lt;/td&gt;
+            &lt;td class="pay"&gt; &lt;a href="http://parafia.biz/units/back_expedition/53504" class="button" title="1 odpust"&gt;&lt;span&gt;1 odpust&lt;/span&gt;&lt;/a&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+            &lt;tr class="expedition"&gt;
+            &lt;td class="who"&gt;&lt;div class="unit"&gt;&lt;div class="unit_image"&gt;&lt;img src="http://parafia.biz/_img/2011/04/1302239627_588_50x50.jpg" /&gt;&lt;/div&gt;&lt;div class="unit_amount"&gt;1066&lt;/div&gt;&lt;/div&gt;&lt;div class="clear"&gt;&lt;/div&gt;&lt;/td&gt;
+            &lt;td class="back"&gt;24.10.2012, 8:55&lt;/td&gt;
+            &lt;td class="pay"&gt; &lt;a href="http://parafia.biz/units/back_expedition/54449" class="button" title="1 odpust"&gt;&lt;span&gt;1 odpust&lt;/span&gt;&lt;/a&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+            &lt;tr class="expedition"&gt;
+            &lt;td class="who"&gt;&lt;div class="unit"&gt;&lt;div class="unit_image"&gt;&lt;img src="http://parafia.biz/_img/2011/04/1302239627_588_50x50.jpg" /&gt;&lt;/div&gt;&lt;div class="unit_amount"&gt;1149&lt;/div&gt;&lt;/div&gt;&lt;div class="clear"&gt;&lt;/div&gt;&lt;/td&gt;
+            &lt;td class="back"&gt;25.10.2012, 10:15&lt;/td&gt;
+            &lt;td class="pay"&gt; &lt;a href="http://parafia.biz/units/back_expedition/55587" class="button" title="1 odpust"&gt;&lt;span&gt;1 odpust&lt;/span&gt;&lt;/a&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+            &lt;tr class="expedition"&gt;
+            &lt;td class="who"&gt;&lt;div class="unit"&gt;&lt;div class="unit_image"&gt;&lt;img src="http://parafia.biz/_img/2011/04/1302239627_588_50x50.jpg" /&gt;&lt;/div&gt;&lt;div class="unit_amount"&gt;1042&lt;/div&gt;&lt;/div&gt;&lt;div class="clear"&gt;&lt;/div&gt;&lt;/td&gt;
+            &lt;td class="back"&gt;26.10.2012, 8:46&lt;/td&gt;
+            &lt;td class="pay"&gt; &lt;a href="http://parafia.biz/units/back_expedition/56531" class="button" title="1 odpust"&gt;&lt;span&gt;1 odpust&lt;/span&gt;&lt;/a&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+            &lt;tr class="expedition"&gt;
+            &lt;td class="who"&gt;&lt;div class="unit"&gt;&lt;div class="unit_image"&gt;&lt;img src="http://parafia.biz/_img/2011/04/1302239627_588_50x50.jpg" /&gt;&lt;/div&gt;&lt;div class="unit_amount"&gt;1129&lt;/div&gt;&lt;/div&gt;&lt;div class="clear"&gt;&lt;/div&gt;&lt;/td&gt;
+            &lt;td class="back"&gt;27.10.2012, 9:12&lt;/td&gt;
+            &lt;td class="pay"&gt; &lt;a href="http://parafia.biz/units/back_expedition/57512" class="button" title="1 odpust"&gt;&lt;span&gt;1 odpust&lt;/span&gt;&lt;/a&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+            &lt;tr class="expedition"&gt;
+            &lt;td class="who"&gt;
+				&lt;div class="unit"&gt;
+					&lt;div class="unit_image"&gt;&lt;img src="http://parafia.biz/_img/2011/03/1298977331_21_50x50.jpg" /&gt;&lt;/div&gt;
+					&lt;div class="unit_amount"&gt;10&lt;/div&gt;
+				&lt;/div&gt;
+				&lt;div class="unit"&gt;
+					&lt;div class="unit_image"&gt;&lt;img src="http://parafia.biz/_img/2011/04/1302501474_651_50x50.jpg" /&gt;&lt;/div&gt;
+					&lt;div class="unit_amount"&gt;10&lt;/div&gt;
+				&lt;/div&gt;
+				&lt;div class="unit"&gt;
+					&lt;div class="unit_image"&gt;&lt;img src="http://parafia.biz/_img/2011/03/1298977355_22_50x50.jpg" /&gt;&lt;/div&gt;
+					&lt;div class="unit_amount"&gt;10&lt;/div&gt;
+				&lt;/div&gt;
+				&lt;div class="unit"&gt;
+					&lt;div class="unit_image"&gt;&lt;img src="http://parafia.biz/_img/2011/03/1298977380_24_50x50.jpg" /&gt;&lt;/div&gt;
+					&lt;div class="unit_amount"&gt;1&lt;/div&gt;
+				&lt;/div&gt;
+				&lt;div class="clear"&gt;&lt;/div&gt;
+			&lt;/td&gt;
+            &lt;td class="back"&gt;Dzisiaj, 10:52&lt;/td&gt;
+            &lt;td class="pay"&gt; &lt;a href="http://parafia.biz/units/back_expedition/57575" class="button" title="1 odpust"&gt;&lt;span&gt;1 odpust&lt;/span&gt;&lt;/a&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/table&gt;
+&lt;div class="mt50"&gt;
+    &lt;a href="http://parafia.biz/units/to_holy_land" class="button" title="Nowa pielgrzymka"&gt;&lt;span&gt;Nowa pielgrzymka&lt;/span&gt;&lt;/a&gt;    
+&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="clear"&gt;&lt;/div&gt;
+        &lt;/div&gt;
+		&lt;div id="footer"&gt;
+			&lt;ul&gt;
+				&lt;li&gt;&lt;a href="http://blog.parafia.biz/" target="_blank" title="Blog" class=""&gt;Blog&lt;/a&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;a href="http://parafia.biz/info/tos" title="Regulamin" class=""&gt;Regulamin&lt;/a&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;a href="http://parafia.biz/info/informacje" title="Informacje" class=""&gt;Informacje&lt;/a&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;a href="http://parafia.biz/info/faq" title="FAQ" class=""&gt;FAQ&lt;/a&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;a href="http://parafia.biz/nawracaj_heretykow" title="Program Partnerski" class=""&gt;Program Partnerski&lt;/a&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;a href="http://parafia.biz/info/contact" title="Kontakt" class=""&gt;Kontakt&lt;/a&gt;&lt;/li&gt;
+			&lt;/ul&gt;
+			&lt;p class="left"&gt;Wykonanie i &lt;a href="http://www.netbomb.pl/" title="Domeny i hosting"&gt;hosting&lt;/a&gt;: &lt;a href="http://www.netbomb.pl/kocham/parafia" id="netbomb" title="Created by netBOMB"&gt;&lt;img src="http://parafia.biz/img/netbomb.png" alt="netBOMB" /&gt;&lt;/a&gt;&lt;/p&gt;
+			&lt;p class="right"&gt;Copyright &amp;copy; 2010 - 2011 &lt;a href="http://parafia.biz/"&gt;&lt;strong&gt;Parafia.biz&lt;/strong&gt;&lt;/a&gt;. Wszelkie prawa zastrzeżone.&lt;/p&gt;
+		&lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;script type="text/javascript" src="/js/jquery.plugins.js"&gt;&lt;/script&gt;
+    &lt;script type="text/javascript" src="/js/jquery.functions.js?new"&gt;&lt;/script&gt;
+                &lt;script type="text/javascript"&gt;
+                  var _gaq = _gaq || [];
+                  _gaq.push(['_setAccount', 'UA-20337387-1']);
+                  _gaq.push(['_trackPageview']);
+
+                  (function() {
+                    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+                  })();
+
+            &lt;/script&gt;            &lt;script src="http://static.getclicky.com/js" type="text/javascript"&gt;&lt;/script&gt;
+            &lt;script type="text/javascript"&gt;try{ clicky.init(66419170); }catch(err){}&lt;/script&gt;    &lt;!-- T: 0.1894 M: 8.52MB --&gt;
+&lt;/body&gt;
+&lt;/html&gt;</value>
+  </data>
+  <data name="ParafiaBizUnitsContent" xml:space="preserve">
+    <value>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Gra internetowa Parafia.biz - podbij wirtualną  rzeczywistość - gra przeglądarkowa przez www&lt;/title&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta property="og:site_name" content="Parafia.biz" /&gt;
+	&lt;meta property="og:title" content="Parafia.biz" /&gt;
+	&lt;meta property="og:description" content="Gra internetowa Parafia.biz - podbij wirtualną  rzeczywistość - gra przeglądarkowa przez www" /&gt;
+	&lt;meta property="og:image" content="http://parafia.biz/img/fb_like.jpg" /&gt;
+	&lt;meta property="og:url" content="http://parafia.biz" /&gt;
+	&lt;meta property="og:type" content="website" /&gt;
+	&lt;meta property="fb:app_id" content="184584424910997" /&gt;
+	    	&lt;link rel="stylesheet" type="text/css" href="http://parafia.biz/css/reset.css?m=240" /&gt;
+	&lt;link rel="stylesheet" type="text/css" href="http://parafia.biz/css/style.css?m=240" /&gt;
+	&lt;!--[if IE]&gt;&lt;link rel="stylesheet" type="text/css" href="http://parafia.biz/css/ie.css?m=240" /&gt;&lt;![endif]--&gt;
+	&lt;link rel="stylesheet" type="text/css" href="http://parafia.biz/css/parafia/jquery-ui-1.8.9.custom.css?m=240" /&gt;
+    	&lt;script type="text/javascript" src="http://parafia.biz/js/jquery-1.4.4.min.js?m=240"&gt;&lt;/script&gt;
+	&lt;script type="text/javascript" src="http://parafia.biz/js/jquery-ui-1.8.9.custom.min.js?m=240"&gt;&lt;/script&gt;
+	&lt;script type="text/javascript" src="http://parafia.biz/js/jquery.placeholder.js?m=240"&gt;&lt;/script&gt;
+	&lt;script type="text/javascript" src="http://parafia.biz/js/main.js?m=240"&gt;&lt;/script&gt;
+    &lt;script type="text/javascript"&gt;
+           if(location != top.location) top.location.href = location.href;
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+    &lt;div id="topline"&gt;&lt;/div&gt;
+
+    &lt;div id="container"&gt;
+        &lt;ul id="nav"&gt;
+			&lt;li&gt;&lt;a href="http://parafia.biz/premium" title="Odpusty" class=""&gt;Odpusty&lt;/a&gt;&lt;/li&gt;
+			&lt;li class="selected"&gt;&lt;a href="http://parafia.biz/dashboard" title="Moja Parafia" class=""&gt;Moja Parafia&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="http://parafia.biz/battle" title="Walka" class=""&gt;Walka&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="http://parafia.biz/relics/market" title="Wolny rynek" class=""&gt;Wolny rynek&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="http://parafia.biz/quests" title="Questy" class=""&gt;Questy&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="http://parafia.biz/roulette" title="Ruletka" class=""&gt;Ruletka&lt;/a&gt;&lt;/li&gt;
+		&lt;/ul&gt;
+
+        &lt;h1 id="header"&gt;
+			&lt;a href="http://parafia.biz/" title="Parafia - zdobądź władzę, wiernych i pieniądze"&gt;
+                &lt;img src="http://parafia.biz/img/logo.png" alt="Parafia - zdobądź władzę, wiernych i pieniądze" /&gt;
+            &lt;/a&gt;
+		&lt;/h1&gt;
+
+        &lt;div id="main"&gt;
+                            &lt;div class="title"&gt;
+                    &lt;span class="left"&gt;Quest E-learning 2 już jest - więcej: &lt;a href="http://blog.parafia.biz/questy/e-learning-2/" title="http://blog.parafia.biz/questy/e-learning-2/" class=""&gt;http://blog.parafia.biz/questy/e-learning-2/&lt;/a&gt; &lt;/span&gt;
+                    &lt;a href="http://parafia.biz/auth/logout" class="right" title="Wracaj na ziemię!"&gt;Wracaj na ziemię!&lt;/a&gt;                &lt;/div&gt;
+            
+                            &lt;div class="sidebar"&gt;
+                    &lt;div class="sidebar-top"&gt;&lt;/div&gt;
+                    &lt;div class="sidebar-content"&gt;
+                        &lt;div class="info_player"&gt;
+    &lt;ul class="stats list_style_none"&gt;
+        &lt;li&gt;&lt;strong&gt;Proboszcz:&lt;/strong&gt; sairo&lt;/li&gt;
+        &lt;li&gt;&lt;strong&gt;Parafia:&lt;/strong&gt; sairo&lt;/li&gt;
+        &lt;li&gt;&lt;strong&gt;Odpusty:&lt;/strong&gt; 500&lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;ul class="stats list_style_none mt10"&gt;
+        &lt;li&gt;&lt;strong&gt;Poziom:&lt;/strong&gt; Poziom 34 ( 7407 / 7653 )&lt;/li&gt;
+        &lt;li title="+1635 C$ co 5 minut"&gt;&lt;strong&gt;Kasa:&lt;/strong&gt; 8 072 C$ / 4 618 939 C$&lt;/li&gt;
+        &lt;li&gt;&lt;strong&gt;Sejf:&lt;/strong&gt; 1 741 312 C$ / 1 760 000 C$&lt;/li&gt;
+        &lt;li title="+32 co 5 minut"&gt;&lt;strong&gt;Zdrowie:&lt;/strong&gt; 520 / 520&lt;/li&gt;
+        &lt;li title="+28 co 5 minut"&gt;&lt;strong&gt;Energia:&lt;/strong&gt; 825 / 955&lt;/li&gt;
+        &lt;li title="+383 co 5 minut"&gt;&lt;strong&gt;Wierzących:&lt;/strong&gt; 1542 / 4839&lt;/li&gt;
+        &lt;li&gt;&lt;strong&gt;Wikarych:&lt;/strong&gt; 15 / 30&lt;/li&gt;
+        &lt;li&gt;&lt;strong&gt;Relikwie:&lt;/strong&gt; 176, w sejfie 176 / 176&lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;ul class="menu mt20 list_style_none"&gt;
+        &lt;li&gt;&lt;a href="http://parafia.biz/dashboard" class="dashboard" title="Dashboard"&gt;Dashboard&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="http://parafia.biz/buildings/safe" class="safe" title="Sejf"&gt;Sejf&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="http://parafia.biz/buildings" class="buildings" title="Budynki"&gt;Budynki&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="http://parafia.biz/property" class="buildings" title="Dewocjonalnik"&gt;Dewocjonalnik&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="http://parafia.biz/units" class="units selected" title="Siły zbrojne"&gt;Siły zbrojne&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="http://parafia.biz/units/expeditions" class="quests" title="Pielgrzymki"&gt;Pielgrzymki&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="http://parafia.biz/battle/players" class="battle" title="Walka"&gt;Walka&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="http://parafia.biz/relics/my" class="relics_my" title="Relikwie w parafii"&gt;Relikwie w parafii&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="http://parafia.biz/relics" class="relics" title="Relikwie"&gt;Relikwie&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="http://parafia.biz/relics/market" class="relics_market" title="Wolny rynek"&gt;Wolny rynek&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="http://parafia.biz/quests" class="quests" title="Questy"&gt;Questy&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="http://parafia.biz/mailbox" class="mailbox" title="Poczta"&gt;Poczta&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="http://parafia.biz/papacy" class="papacy" title="Papiestwo"&gt;Papiestwo&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="http://parafia.biz/premium" class="premium" title="Odpusty"&gt;Odpusty&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="http://parafia.biz/roulette" class="premium" title="Ruletka Czarownic"&gt;Ruletka Czarownic&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="http://parafia.biz/stats/battle" class="stats" title="Statystyki"&gt;Statystyki&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="http://parafia.biz/account/edit" class="account" title="Edytuj Konto"&gt;Edytuj Konto&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+        
+    
+    &lt;div class="mt20"&gt;
+        &lt;iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fparafia.biz%2F&amp;amp;layout=button_count&amp;amp;show_faces=false&amp;amp;width=200&amp;amp;action=like&amp;amp;font&amp;amp;colorscheme=light&amp;amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:200px; height:21px;" allowTransparency="true"&gt;&lt;/iframe&gt;
+        &lt;script type="text/javascript" src="https://apis.google.com/js/plusone.js"&gt;&lt;/script&gt;
+        &lt;g:plusone href="http://parafia.biz"&gt;&lt;/g:plusone&gt;
+    &lt;/div&gt;
+    
+    &lt;div class="mt20"&gt;
+        &lt;a href="http://mastah.pl" title="Pomiędzy walkami - trochę rozrywki" class=""&gt;Pomiędzy walkami - trochę rozrywki&lt;/a&gt;    &lt;/div&gt;
+&lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div class="sidebar-bottom"&gt;&lt;/div&gt;
+                &lt;/div&gt;
+            
+            &lt;div class="content"&gt;
+			                                &lt;h2&gt;Twoja potęga&lt;/h2&gt;
+&lt;table class="items vertical" cellspacing="0" cellpadding="0"&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;td class="head align-center"&gt;&lt;strong&gt;Siła ataku&lt;/strong&gt;&lt;/td&gt;
+			&lt;td&gt;1675907,9 (W tym 1  od proboszcza)&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td class="head align-center"&gt;&lt;strong&gt;Siła obrony&lt;/strong&gt;&lt;/td&gt;
+			&lt;td&gt;57692704,2 (W tym 1  od proboszcza)&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2&gt;Pierwsze szeregi&lt;/h2&gt;
+&lt;table class="items" cellspacing="0" cellpadding="0"&gt;
+	&lt;thead&gt;
+		&lt;tr&gt;
+			&lt;th class="wp-40"&gt;Jednostka&lt;/th&gt;
+			&lt;th class="wp-20"&gt;Ilość&lt;/th&gt;
+			&lt;th class="wp-20"&gt;Siła ataku&lt;/th&gt;
+			&lt;th class="wp-20"&gt;Siła obrony&lt;/th&gt;
+		&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;td&gt;&lt;strong&gt;Ministranci&lt;/strong&gt;&lt;/td&gt;
+			&lt;td class="align-center"&gt;12998&lt;/td&gt;
+			&lt;td class="align-center"&gt;1149023,2&lt;/td&gt;
+			&lt;td class="align-center"&gt;148177,2&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;&lt;strong&gt;Lektorzy&lt;/strong&gt;&lt;/td&gt;
+			&lt;td class="align-center"&gt;10&lt;/td&gt;
+			&lt;td class="align-center"&gt;17300&lt;/td&gt;
+			&lt;td class="align-center"&gt;233&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;&lt;strong&gt;Organiści&lt;/strong&gt;&lt;/td&gt;
+			&lt;td class="align-center"&gt;0&lt;/td&gt;
+			&lt;td class="align-center"&gt;0&lt;/td&gt;
+			&lt;td class="align-center"&gt;0&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2&gt;Zawsze wierni&lt;/h2&gt;
+&lt;table class="items" cellspacing="0" cellpadding="0"&gt;
+	&lt;thead&gt;
+		&lt;tr&gt;
+			&lt;th class="wp-40"&gt;Jednostka&lt;/th&gt;
+			&lt;th class="wp-20"&gt;Ilość&lt;/th&gt;
+			&lt;th class="wp-20"&gt;Siła ataku&lt;/th&gt;
+			&lt;th class="wp-20"&gt;Siła obrony&lt;/th&gt;
+		&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;td&gt;&lt;strong&gt;Małe Dewotki&lt;/strong&gt;&lt;/td&gt;
+			&lt;td class="align-center"&gt;10&lt;/td&gt;
+			&lt;td class="align-center"&gt;45&lt;/td&gt;
+			&lt;td class="align-center"&gt;549&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;&lt;strong&gt;Babcie Moherowe&lt;/strong&gt;&lt;/td&gt;
+			&lt;td class="align-center"&gt;1&lt;/td&gt;
+			&lt;td class="align-center"&gt;48,4&lt;/td&gt;
+			&lt;td class="align-center"&gt;1459&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;&lt;strong&gt;Gospodynie Proboszcza&lt;/strong&gt;&lt;/td&gt;
+			&lt;td class="align-center"&gt;2531&lt;/td&gt;
+			&lt;td class="align-center"&gt;509490,3&lt;/td&gt;
+			&lt;td class="align-center"&gt;57542285&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2&gt;Przezorny zawsze uzbrojony&lt;/h2&gt;
+&lt;ul class="units-buy"&gt;
+	&lt;li class="first"&gt;
+		&lt;div class="img_box"&gt;
+			&lt;img src="http://parafia.biz/_img/2011/03/1298977331_21_150x150.jpg" /&gt;		&lt;/div&gt;
+		&lt;div class="left"&gt;
+			&lt;h3&gt;Ministranci&lt;/h3&gt;
+            &lt;p&gt;&lt;strong&gt;Opis:&lt;/strong&gt; Podstawowa jednostka ofensywna. Ministrantem może zostać każdy z parafian. To bardzo zaszczytna funkcja. Wszak każdy od dziecka marzy o tym aby zostać mięsem armatnim. &lt;/p&gt;
+			&lt;p&gt;
+                Siła ataku: 1                (88,4)                &lt;br/&gt;Siła obrony: 0,5                (11,4)            &lt;/p&gt;
+			&lt;h5&gt;By kupić nowego potrzebujesz:&lt;/h5&gt;
+			&lt;p&gt;&amp;bull; 20 C$&lt;br/&gt;&amp;bull; Wierni: 1&lt;/p&gt;
+		&lt;/div&gt;
+		&lt;div class="right"&gt;
+				&lt;p&gt;&lt;a href="http://parafia.biz/units/buy/1/amount/1" class="button" title="Kup 1"&gt;&lt;span&gt;Kup 1&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+	            
+				&lt;p&gt;&lt;a href="http://parafia.biz/units/buy/1/amount/10" class="button" title="Kup 10"&gt;&lt;span&gt;Kup 10&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+	            
+				&lt;p&gt;&lt;a href="http://parafia.biz/units/buy/1/amount/50" class="button" title="Kup 50"&gt;&lt;span&gt;Kup 50&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+	    
+                        &lt;p&gt;&lt;a href="http://parafia.biz/units/buy/1/amount/403" class="button" title="Kup 403"&gt;&lt;span&gt;Kup 403&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+	            
+		&lt;/div&gt;
+	&lt;/li&gt;
+	&lt;li class=""&gt;
+		&lt;div class="img_box"&gt;
+			&lt;img src="http://parafia.biz/_img/2011/04/1302501474_651_150x150.jpg" /&gt;		&lt;/div&gt;
+		&lt;div class="left"&gt;
+			&lt;h3&gt;Lektorzy&lt;/h3&gt;
+            &lt;p&gt;&lt;strong&gt;Opis:&lt;/strong&gt; Ministranci, którym uda się przeżyć mają szansę zostać lektorami. Jest to niesamowity przywilej. Będąc lektorem można wyrywać laski z kółka różańcowego. Najłatwiej wyrwać te, które właśnie obchodziły swoje 69 urodziny. &lt;/p&gt;
+			&lt;p&gt;
+                Siła ataku: 20                (1730)                &lt;br/&gt;Siła obrony: 0,6                (23,3)            &lt;/p&gt;
+			&lt;h5&gt;By kupić nowego potrzebujesz:&lt;/h5&gt;
+			&lt;p&gt;&amp;bull; 150 C$&lt;br/&gt;&amp;bull; Ministranci: 10&lt;/p&gt;
+		&lt;/div&gt;
+		&lt;div class="right"&gt;
+				&lt;p&gt;&lt;a href="http://parafia.biz/units/buy/2/amount/1" class="button" title="Kup 1"&gt;&lt;span&gt;Kup 1&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+					&lt;p&gt;&lt;a href="http://parafia.biz/units/buy/2/amount/10" class="button" title="Kup 10"&gt;&lt;span&gt;Kup 10&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+					&lt;p&gt;&lt;a href="http://parafia.biz/units/buy/2/amount/50" class="button" title="Kup 50"&gt;&lt;span&gt;Kup 50&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+	            
+                        &lt;p&gt;&lt;a href="http://parafia.biz/units/buy/2/amount/53" class="button" title="Kup 53"&gt;&lt;span&gt;Kup 53&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+	    
+            
+		&lt;/div&gt;
+	&lt;/li&gt;
+	&lt;li class=""&gt;
+		&lt;div class="img_box"&gt;
+			&lt;img src="http://parafia.biz/_img/2011/04/1302239627_588_150x150.jpg" /&gt;		&lt;/div&gt;
+		&lt;div class="left"&gt;
+			&lt;h3&gt;Organiści&lt;/h3&gt;
+            &lt;p&gt;&lt;strong&gt;Opis:&lt;/strong&gt; Każde dziecko chce być strażakiem, policjantem, lekarzem no i oczywiście organistą. Niestety spełnienie marzeń z dzieciństwa nie jest proste. Jednak ci którym się to udało cieszą się ogromnymi przywilejami. Nie każdy wie, że ksiądz tańczy tak jak oni mu zagrają. Ich ogromne organy budzą grozę nie tylko wśród panien...&lt;/p&gt;
+			&lt;p&gt;
+                Siła ataku: 280                (23747)                &lt;br/&gt;Siła obrony: 0,8                (58,8)            &lt;/p&gt;
+			&lt;h5&gt;By kupić nowego potrzebujesz:&lt;/h5&gt;
+			&lt;p&gt;&amp;bull; 1000 C$&lt;br/&gt;&amp;bull; Lektorzy: 10&lt;/p&gt;
+		&lt;/div&gt;
+		&lt;div class="right"&gt;
+				&lt;p&gt;&lt;a href="http://parafia.biz/units/buy/3/amount/1" class="button" title="Kup 1"&gt;&lt;span&gt;Kup 1&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+					&lt;p&gt;&lt;span class="button inactive"&gt;&lt;span&gt;Kup 10&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+					&lt;p&gt;&lt;span class="button inactive"&gt;&lt;span&gt;Kup 50&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+	            
+        
+            
+		&lt;/div&gt;
+	&lt;/li&gt;
+	&lt;li class=""&gt;
+		&lt;div class="img_box"&gt;
+			&lt;img src="http://parafia.biz/_img/2011/03/1298977355_22_150x150.jpg" /&gt;		&lt;/div&gt;
+		&lt;div class="left"&gt;
+			&lt;h3&gt;Małe Dewotki&lt;/h3&gt;
+            &lt;p&gt;&lt;strong&gt;Opis:&lt;/strong&gt; Jeszcze nie odrosły od ziemi a już wiadomo, że zostaną dewotkami jak ich matki, babki i prababki. Ich największą zaletą jest to, że głuche są na wszelkie racjonalne argumenty i ślepo bronią stanowiska swojego księdza. &lt;/p&gt;
+			&lt;p&gt;
+                Siła ataku: 0,5                (4,5)                &lt;br/&gt;Siła obrony: 1                (54,9)            &lt;/p&gt;
+			&lt;h5&gt;By kupić nowego potrzebujesz:&lt;/h5&gt;
+			&lt;p&gt;&amp;bull; 20 C$&lt;br/&gt;&amp;bull; Wierni: 1&lt;/p&gt;
+		&lt;/div&gt;
+		&lt;div class="right"&gt;
+				&lt;p&gt;&lt;a href="http://parafia.biz/units/buy/4/amount/1" class="button" title="Kup 1"&gt;&lt;span&gt;Kup 1&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+	            
+				&lt;p&gt;&lt;a href="http://parafia.biz/units/buy/4/amount/10" class="button" title="Kup 10"&gt;&lt;span&gt;Kup 10&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+	            
+				&lt;p&gt;&lt;a href="http://parafia.biz/units/buy/4/amount/50" class="button" title="Kup 50"&gt;&lt;span&gt;Kup 50&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+	    
+                        &lt;p&gt;&lt;a href="http://parafia.biz/units/buy/4/amount/403" class="button" title="Kup 403"&gt;&lt;span&gt;Kup 403&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+	            
+		&lt;/div&gt;
+	&lt;/li&gt;
+	&lt;li class=""&gt;
+		&lt;div class="img_box"&gt;
+			&lt;img src="http://parafia.biz/_img/2011/03/1298977380_24_150x150.jpg" /&gt;		&lt;/div&gt;
+		&lt;div class="left"&gt;
+			&lt;h3&gt;Babcie Moherowe&lt;/h3&gt;
+            &lt;p&gt;&lt;strong&gt;Opis:&lt;/strong&gt; Prawdziwe mistrzynie w ryciu beretów. W razie potrzeby potrafią własną - dziewiczą -  piersią zasłonić całą prawdę. Do bólu subiektywne, walczą do końca. Nie znoszą dziennikarzy prywatnych mediów. &lt;/p&gt;
+			&lt;p&gt;
+                Siła ataku: 0,6                (48,4)                &lt;br/&gt;Siła obrony: 20                (1459)            &lt;/p&gt;
+			&lt;h5&gt;By kupić nowego potrzebujesz:&lt;/h5&gt;
+			&lt;p&gt;&amp;bull; 150 C$&lt;br/&gt;&amp;bull; Małe Dewotki: 10&lt;/p&gt;
+		&lt;/div&gt;
+		&lt;div class="right"&gt;
+				&lt;p&gt;&lt;a href="http://parafia.biz/units/buy/5/amount/1" class="button" title="Kup 1"&gt;&lt;span&gt;Kup 1&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+					&lt;p&gt;&lt;span class="button inactive"&gt;&lt;span&gt;Kup 10&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+					&lt;p&gt;&lt;span class="button inactive"&gt;&lt;span&gt;Kup 50&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+	            
+        
+            
+		&lt;/div&gt;
+	&lt;/li&gt;
+	&lt;li class=""&gt;
+		&lt;div class="img_box"&gt;
+			&lt;img src="http://parafia.biz/_img/2011/03/1298977367_23_150x150.jpg" /&gt;		&lt;/div&gt;
+		&lt;div class="left"&gt;
+			&lt;h3&gt;Gospodynie Proboszcza&lt;/h3&gt;
+            &lt;p&gt;&lt;strong&gt;Opis:&lt;/strong&gt; Dzierżą w swoim ręku największą władzę na parafii. To one karmią swojego księdza najnowszymi plotkami. Wiedzą kto, gdzie, z kim, kiedy i za ile. Stoją na straży kasy i moralności. Ponoć wzrokiem potrafią zamienić wroga w słup soli. &lt;/p&gt;
+			&lt;p&gt;
+                Siła ataku: 0,8                (201,3)                &lt;br/&gt;Siła obrony: 280                (22735)            &lt;/p&gt;
+			&lt;h5&gt;By kupić nowego potrzebujesz:&lt;/h5&gt;
+			&lt;p&gt;&amp;bull; 1000 C$&lt;br/&gt;&amp;bull; Babcie Moherowe: 10&lt;/p&gt;
+		&lt;/div&gt;
+		&lt;div class="right"&gt;
+				&lt;p&gt;&lt;span class="button inactive"&gt;&lt;span&gt;Kup 1&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+					&lt;p&gt;&lt;span class="button inactive"&gt;&lt;span&gt;Kup 10&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+					&lt;p&gt;&lt;span class="button inactive"&gt;&lt;span&gt;Kup 50&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+	            
+        
+            
+		&lt;/div&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+            &lt;/div&gt;
+            &lt;div class="clear"&gt;&lt;/div&gt;
+        &lt;/div&gt;
+		&lt;div id="footer"&gt;
+			&lt;ul&gt;
+				&lt;li&gt;&lt;a href="http://blog.parafia.biz/" target="_blank" title="Blog" class=""&gt;Blog&lt;/a&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;a href="http://parafia.biz/info/tos" title="Regulamin" class=""&gt;Regulamin&lt;/a&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;a href="http://parafia.biz/info/informacje" title="Informacje" class=""&gt;Informacje&lt;/a&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;a href="http://parafia.biz/info/faq" title="FAQ" class=""&gt;FAQ&lt;/a&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;a href="http://parafia.biz/nawracaj_heretykow" title="Program Partnerski" class=""&gt;Program Partnerski&lt;/a&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;a href="http://parafia.biz/info/contact" title="Kontakt" class=""&gt;Kontakt&lt;/a&gt;&lt;/li&gt;
+			&lt;/ul&gt;
+			&lt;p class="left"&gt;Wykonanie i &lt;a href="http://www.netbomb.pl/" title="Domeny i hosting"&gt;hosting&lt;/a&gt;: &lt;a href="http://www.netbomb.pl/kocham/parafia" id="netbomb" title="Created by netBOMB"&gt;&lt;img src="http://parafia.biz/img/netbomb.png" alt="netBOMB" /&gt;&lt;/a&gt;&lt;/p&gt;
+			&lt;p class="right"&gt;Copyright &amp;copy; 2010 - 2011 &lt;a href="http://parafia.biz/"&gt;&lt;strong&gt;Parafia.biz&lt;/strong&gt;&lt;/a&gt;. Wszelkie prawa zastrzeżone.&lt;/p&gt;
+		&lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;script type="text/javascript" src="/js/jquery.plugins.js"&gt;&lt;/script&gt;
+    &lt;script type="text/javascript" src="/js/jquery.functions.js?new"&gt;&lt;/script&gt;
+                &lt;script type="text/javascript"&gt;
+                  var _gaq = _gaq || [];
+                  _gaq.push(['_setAccount', 'UA-20337387-1']);
+                  _gaq.push(['_trackPageview']);
+
+                  (function() {
+                    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+                  })();
+
+            &lt;/script&gt;            &lt;script src="http://static.getclicky.com/js" type="text/javascript"&gt;&lt;/script&gt;
+            &lt;script type="text/javascript"&gt;try{ clicky.init(66419170); }catch(err){}&lt;/script&gt;    &lt;!-- T: 0.2059 M: 9.36MB --&gt;
+&lt;/body&gt;
+&lt;/html&gt;</value>
+  </data>
+</root>

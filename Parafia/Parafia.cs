@@ -21,6 +21,8 @@ using System.Xml.Serialization;
 namespace Parafia
 {
     using Model.Stat;
+    using Model.Bank;
+    using Model.Relics;
 
     public class Parafia
     {
@@ -28,6 +30,9 @@ namespace Parafia
         public DefaultHttpClient httpClient;
         public Attributes.Attributes attributes;
         public Units.Units units;
+
+        public Units.Units unitsOnExpeditions;
+
         public String csrf;
 
         public int riseSafeCost;
@@ -37,9 +42,13 @@ namespace Parafia
 
         private List<Quest> newQuests;
 
+        public Relics relics;
+
         public bool papacyParty;
 
         private Worker worker;
+
+        public Transfers bank;
 
         public Parafia(Worker worker)
         {
@@ -68,6 +77,11 @@ namespace Parafia
             String temp = MainUtils.removeAllNotNumberCharacters(HtmlUtils.GetSingleNodeByXPathExpression(httpClient.SendHttpGetAndReturnResponseContent("http://blog.parafia.biz/czas/", 5000), "//body").InnerText).Replace(" ", String.Empty);
             String[] tempTable = temp.Split(',');
             return new TimeSpan(0, int.Parse(tempTable[0]), int.Parse(tempTable[1]), int.Parse(tempTable[2]), 0);
+        }
+
+        public void updateMyRelics()
+        {
+            relics = new Relics(httpClient.SendHttpGetAndReturnResponseContent("http://parafia.biz/relics/my"));
         }
 
         public List<String> hideRelicsToSafe()
@@ -119,6 +133,57 @@ namespace Parafia
                     catch (WebException we)
                     {
                         worker.printLog("[ERROR] Wystąpił błąd. login!!!");
+                        worker.printLog("[ERROR] Treść błędu: " + we.Message);
+                        worker.printLog("[ERROR] Ponawiam proces.");
+                        timeout++;
+                    }
+                }
+                while ((timeout != 0) && timeout < 5);
+
+                if (timeout == 0)
+                {
+                    String errorMessage = HtmlUtils.GetStringValueByXPathExpression(responseContent, "//div[@class='form-error']/text()");
+
+                    if (!String.IsNullOrEmpty(errorMessage))
+                    {
+                        throw new LoginException(errorMessage);
+                    }
+                    else
+                    {
+                        attributes = new Attributes.Attributes(responseContent);
+                        papacyParty = !checkPapacParty(responseContent);
+                    }
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public bool loginRoot()
+        {
+            String responseContent = httpClient.SendHttpGetAndReturnResponseContent("http://parafia.biz/");
+            csrf = HtmlUtils.GetStringValueByXPathExpression(responseContent, "//input[@name='login_csrf']");
+
+            if (checkDependencies(responseContent, new String[] { "formo_login_form", "login_csrf", "user_name", "user_pass", "login_submit" }))
+            {
+                FormData formData = new FormData();
+                formData.addValue("formo_login_form", "login_form");
+                formData.addValue("login_csrf", csrf);
+                formData.addValue("user_name", config.MasterLogin);
+                formData.addValue("user_pass", config.MasterPassword);
+                formData.addValue("login_submit", "");
+
+                int timeout = 0;
+                do
+                {
+                    try
+                    {
+                        responseContent = httpClient.SendHttpPostAndReturnResponseContent("http://parafia.biz/", formData);
+                        timeout = 0;
+                    }
+                    catch (WebException we)
+                    {
+                        worker.printLog("[ERROR] Wystąpił błąd. loginRoot!!!");
                         worker.printLog("[ERROR] Treść błędu: " + we.Message);
                         worker.printLog("[ERROR] Ponawiam proces.");
                         timeout++;
@@ -279,7 +344,8 @@ namespace Parafia
             {
                 try
                 {
-                    httpClient.SendHttpGetAndReturnResponseContent("http://parafia.biz/relics/hide/70");
+                    String content = httpClient.SendHttpGetAndReturnResponseContent("http://parafia.biz/relics/hide/70");
+                    attributes = new Attributes.Attributes(content);
                     timeout = 0;
                 }
                 catch (WebException we)
@@ -318,7 +384,7 @@ namespace Parafia
         {
             string idTxt = "0";
 
-            int valueToPut = GetValueToPutOnMarket(11642);
+            int valueToPut = GetValueToPutOnMarket(55432);
 
             if (valueToPut != 0)
             {
@@ -360,7 +426,7 @@ namespace Parafia
                     responseContent = httpClient.SendHttpPostAndReturnResponseContent("http://parafia.biz/relics/market_sell/70", formData);
                     timeout = 0;
                 }
-                catch (WebException we)
+                catch (Exception we)
                 {
                     worker.printLog("[ERROR] Wystąpił błąd. SellGreatChange!!!");
                     worker.printLog("[ERROR] Treść błędu: " + we.Message);
@@ -381,6 +447,16 @@ namespace Parafia
                     {
                         return 1;
                     }
+                    else
+                    {
+                        worker.printLog("[ERROR] Wystąpił błąd. SellGreatChange!!!");
+                        worker.printLog("[ERROR] Treść błędu: " + message);
+                    }
+                }
+                else
+                {
+                    worker.printLog("[ERROR] Wystąpił błąd. SellGreatChange!!!");
+                    worker.printLog("[ERROR] Brak okna potwierdzenia sprzedaży...");
                 }
             }
 
@@ -447,7 +523,7 @@ namespace Parafia
             do
             {
                 try { content = getContentOfGreatChange(); timeout = 0; }
-                catch (WebException we)
+                catch (Exception we)
                 {
                     worker.printLog("[ERROR] Wystąpił błąd. GetValueToPutOnMarket!!!");
                     worker.printLog("[ERROR] Treść błędu: " + we.Message);
@@ -477,11 +553,19 @@ namespace Parafia
                         {
                             int valueForOption = int.Parse(MainUtils.removeAllNotNumberCharacters(txtValueForOption));
                             if (valueForOption == value)
+                            {
+                                worker.printLog("[TRANSFER][WARN] Uwaga do. GetValueToPutOnMarket!!!");
+                                worker.printLog("[TRANSFER][WARN] Paczka o wartości: " + value + " jest już wystawiona na rynku.");
                                 counter++;
+                                break;
+                            }
                         }
                     }
                     if (counter != 0)
+                    {
                         value = rand.Next(maxValue - 100, maxValue);
+                        worker.printLog("[TRANSFER][WARN] Wylosowano nową wartość paczki: " + value);
+                    }
                     attemtpsNo++;
                 }
                 while (counter != 0 && attemtpsNo < 100);
@@ -489,8 +573,14 @@ namespace Parafia
                 if (attemtpsNo < 100)
                     return value;
                 else
+                {
+                    worker.printLog("[WARN] Uwaga do. GetValueToPutOnMarket!!!");
+                    worker.printLog("[WARN] Zwracam 0, Przyczyna: attemtps > 100 ");
                     return 0;
+                }
             }
+            worker.printLog("[WARN] Uwaga do. GetValueToPutOnMarket!!!");
+            worker.printLog("[WARN] Zwracam 0, Przyczyna: attemtps > 100 ");
             return 0;
         }
 
@@ -513,6 +603,60 @@ namespace Parafia
             {
                 riseSafeButtonActive = false;
             }
+        }
+
+        public Boolean getFromBank(int value)
+        {
+            Transfer trans = bank.GetGt(value);
+            int timeout = 0;
+
+            if (trans != null && !String.IsNullOrEmpty(trans.Url))
+            {
+                do
+                {
+                    try
+                    {
+                        httpClient.SendHttpGetAndReturnResponseContent(trans.Url);
+                        timeout = 0;
+                        return true;
+                    }
+                    catch (WebException we)
+                    {
+                        worker.printLog("[ERROR] Wystąpił błąd. getFromBank!!!");
+                        worker.printLog("[ERROR] Treść błędu: " + we.Message);
+                        worker.printLog("[ERROR] Ponawiam proces.");
+                        timeout++;
+                    }
+                }
+                while ((timeout != 0) && timeout < 5);
+            }
+            else
+            {
+                worker.printLog("[WARN] Pieniądze nie zostały wypłacone!!!");
+            }
+            return false;
+        }
+
+        public void updateBank()
+        {
+             int timeout = 0;
+
+                do
+                {
+                    try
+                    {
+                        this.bank = new Transfers(httpClient.SendHttpGetAndReturnResponseContent("http://parafia.biz/bank"));
+                        timeout = 0;
+                    }
+                    catch (WebException we)
+                    {
+                        worker.printLog("[ERROR] Wystąpił błąd. updateBank!!!");
+                        worker.printLog("[ERROR] Treść błędu: " + we.Message);
+                        worker.printLog("[ERROR] Ponawiam proces.");
+                        timeout++;
+                    }
+                }
+                while ((timeout != 0) && timeout < 5);
         }
 
         public void putIntoSafe()
@@ -711,13 +855,6 @@ namespace Parafia
             }
         }
 
-        public void getFromBank(int minValue)
-        {
-            String content = httpClient.SendHttpGetAndReturnResponseContent("http://parafia.biz/bank");
-
-            
-        }
-
         public bool riseSafe()
         {
             if (riseSafeCost != 0) {
@@ -775,7 +912,19 @@ namespace Parafia
                 {
                     int value = cashNeed - attributes.Cash.Actual;
                     if (attributes.Safe.Actual < value)
-                        value = attributes.Safe.Actual;
+                    {
+                        worker.printLog("Wyplacam z banku na jednostki...");
+                        if (getFromBank(value))
+                        {
+                            worker.printLog("Wyplacone");
+                            putIntoSafe();
+                        }
+                        else
+                        {
+                            worker.printLog("[ERROR] Brak kasy na jednostki w banku...");
+                        }
+                        //value = attributes.Safe.Actual;
+                    }
 
                     getFromSafe(value);
                 }
@@ -1003,6 +1152,19 @@ namespace Parafia
             
         }
 
+        public void getUnitsOnExpeditionsInfo()
+        {
+            String unitsPage = httpClient.SendHttpGetAndReturnResponseContent("http://parafia.biz/units");
+            String expeditionsPage = httpClient.SendHttpGetAndReturnResponseContent("http://parafia.biz/units/expeditions");
+
+            unitsOnExpeditions = new Units.Units(expeditionsPage, true);
+            unitsOnExpeditions.setSingleAttackAndDefenseForUnits(unitsPage);
+
+            unitsOnExpeditions.calculateStrength();
+
+            Units.Units allUnits = units.mergeWithExpeditions(unitsOnExpeditions);
+        }
+
         public void sendPilgrimage(int hours)
         {
             if (units.hasUnits(config.ArmyType))
@@ -1110,13 +1272,13 @@ namespace Parafia
             return relicsNo;
         }
 
-        public void doQuestTasks(String[] selectedNames)
+        public void doQuestTasks()
         {
-            ArrayList quests = questContainer.GetQuestsByNameList(selectedNames);
+            Queue<Quest> quests = questContainer.GetSelectedQuests();
 
             foreach (Quest quest in quests)
             {
-                questContainer.checkQuest(quest);
+                //questContainer.checkQuest(quest);
                 if (quest.GetProgress() < 99)
                 {
                     foreach (Task task in quest.ListOfTasks)
@@ -1131,14 +1293,46 @@ namespace Parafia
                                 {
                                     if (task.Cost.health <= attributes.Health.Actual)
                                     {
-                                        if (task.Cost.cash <= attributes.Cash.Actual)
+                                        bool cashFlag = true;
+
+                                        if (task.Cost.cash > attributes.Cash.Actual)
+                                        {
+                                            worker.printLog("[QUESTS] Brak kasy...");
+                                            if (attributes.Safe.Actual > task.Cost.cash)
+                                            {
+                                                worker.printLog("[QUESTS] Pobieram z sejfu...");
+                                                getFromSafe(task.Cost.cash + 100);
+                                            }
+                                            else 
+                                            {
+                                                worker.printLog("[QUESTS] Brak kasy w sejfie... Pobieram z banku.");
+                                                if (!getFromBank(task.Cost.cash))
+                                                {
+                                                    worker.printLog("[QUESTS][WARN] Brak kasy w banku... Przerywam proces.");
+                                                    cashFlag = false;
+                                                }
+                                            }
+                                        }
+
+                                        if (cashFlag)
                                         {
                                             String questResult = httpClient.SendHttpGetAndReturnResponseContent(task.Link);
                                             String content = httpClient.SendHttpGetAndReturnResponseContent(quest.Link);
                                             updateQuestInfo(content, task);
-                                            
-                                            if (HtmlUtils.GetSingleNodeByXPathExpression(questResult, "//div[@class='flashinfo error']") != null)
+
+                                            HtmlNode errorNode = HtmlUtils.GetSingleNodeByXPathExpression(questResult, "//div[@class='flashinfo error']");
+
+                                            if (errorNode != null)
+                                            {
+                                                String errorMsg = HtmlUtils.GetStringValueByXPathExpression(questResult, "//div[@class='flashinfo_message']/text()");
+                                                worker.printLog("[QUESTS][ERROR] Wystąpił błąd.");
+                                                worker.printLog("[QUESTS][ERROR] Tresc. " + errorMsg);
                                                 break;
+                                            }
+                                            else 
+                                            {
+                                                 worker.printLog("[QUESTS] Zadanie \"" + task.Name + "\" w quescie \"" + quest.Name + "\" na etapie " + task.Progress + " %");
+                                            }
 
                                             updateAttributes(content);
                                             flag = true;

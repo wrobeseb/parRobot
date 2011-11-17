@@ -88,7 +88,7 @@ namespace ParafiaTest
             Assert.AreEqual(6, counter);
         }
 
-        [TestMethod]
+        //[TestMethod]
         public void test()
         {
             String openSessionText = "201/00046/O/60/12618566199/2/1/1///0100//////";

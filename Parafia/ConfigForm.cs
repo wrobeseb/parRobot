@@ -71,6 +71,9 @@ namespace Parafia
 
             tbArmyTimeStart.Text = String.Empty;
             tbArmyTimeStop.Text = String.Empty;
+
+            tbMasterLogin.Text = String.Empty;
+            tbMasterPassword.Text = String.Empty;
             //tbQuestTimeStart.Text = String.Empty;
           //  tbQuestTimeStop.Text = String.Empty;
         }
@@ -104,6 +107,9 @@ namespace Parafia
                 config.ArmyTimeStart = int.Parse(tbArmyTimeStart.Text);
             if (!String.IsNullOrEmpty(tbArmyTimeStop.Text))
                 config.ArmyTimeStop = int.Parse(tbArmyTimeStop.Text);
+
+            config.MasterLogin = tbMasterLogin.Text;
+            config.MasterPassword = tbMasterPassword.Text;
            // if (!String.IsNullOrEmpty(tbQuestTimeStart.Text))
             //    config.QuestTimeStart = int.Parse(tbQuestTimeStart.Text);
            // if (!String.IsNullOrEmpty(tbQuestTimeStop.Text))
@@ -147,6 +153,8 @@ namespace Parafia
                     cbEnableSSL.Checked = config.SmtpEnableSSL;
                     tbArmyTimeStart.Text = new StringBuilder().Append(config.ArmyTimeStart).ToString();
                     tbArmyTimeStop.Text = new StringBuilder().Append(config.ArmyTimeStop).ToString();
+                    tbMasterLogin.Text = config.MasterLogin;
+                    tbMasterPassword.Text = config.MasterPassword;
                    // tbQuestTimeStart.Text = new StringBuilder().Append(config.QuestTimeStart).ToString();
                    // tbQuestTimeStop.Text = new StringBuilder().Append(config.QuestTimeStop).ToString();
                 }

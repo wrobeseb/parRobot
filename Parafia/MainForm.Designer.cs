@@ -46,9 +46,6 @@
             this.bConfig = new System.Windows.Forms.Button();
             this.tbControl = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.cbClient = new System.Windows.Forms.CheckBox();
-            this.cbServer = new System.Windows.Forms.CheckBox();
-            this.cbHoldSession = new System.Windows.Forms.CheckBox();
             this.pbStatDownload = new System.Windows.Forms.ProgressBar();
             this.btStatDownload = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -74,8 +71,28 @@
             this.tbDefense = new System.Windows.Forms.TextBox();
             this.tbAttack = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.lbLog = new System.Windows.Forms.ListBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.nudTranfersNo = new System.Windows.Forms.NumericUpDown();
+            this.nudTransferVolume = new System.Windows.Forms.NumericUpDown();
+            this.btTransferRun = new System.Windows.Forms.Button();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.btQSave = new System.Windows.Forms.Button();
+            this.btQStop = new System.Windows.Forms.Button();
+            this.btQStart = new System.Windows.Forms.Button();
+            this.pbArrowDown = new System.Windows.Forms.PictureBox();
+            this.pbArrowUp = new System.Windows.Forms.PictureBox();
+            this.pbRefresh = new System.Windows.Forms.PictureBox();
+            this.pbArrowRight = new System.Windows.Forms.PictureBox();
+            this.pbArrowLeft = new System.Windows.Forms.PictureBox();
+            this.lvSelectedQuests = new System.Windows.Forms.ListView();
+            this.chSelectedNames = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lvQuests = new System.Windows.Forms.ListView();
+            this.chNames = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.cbClient = new System.Windows.Forms.CheckBox();
+            this.cbServer = new System.Windows.Forms.CheckBox();
+            this.cbHoldSession = new System.Windows.Forms.CheckBox();
+            this.lbLog = new System.Windows.Forms.ListBox();
             this.ofdAttackFile = new System.Windows.Forms.OpenFileDialog();
             this.sfdStatsFile = new System.Windows.Forms.SaveFileDialog();
             this.niMain = new System.Windows.Forms.NotifyIcon(this.components);
@@ -88,17 +105,28 @@
             this.tssCashValue = new System.Windows.Forms.ToolStripStatusLabel();
             this.tssSafe = new System.Windows.Forms.ToolStripStatusLabel();
             this.tssSafeValue = new System.Windows.Forms.ToolStripStatusLabel();
+            this.pbClear = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
             this.tbControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            this.ssMain.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudTranfersNo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudTransferVolume)).BeginInit();
+            this.tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbArrowDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbArrowUp)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbRefresh)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbArrowRight)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbArrowLeft)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbClear)).BeginInit();
             this.SuspendLayout();
             // 
             // btStart
             // 
-            this.btStart.Location = new System.Drawing.Point(688, 273);
+            this.btStart.Location = new System.Drawing.Point(699, 309);
             this.btStart.Name = "btStart";
             this.btStart.Size = new System.Drawing.Size(58, 30);
             this.btStart.TabIndex = 0;
@@ -110,7 +138,7 @@
             // btStop
             // 
             this.btStop.Enabled = false;
-            this.btStop.Location = new System.Drawing.Point(752, 273);
+            this.btStop.Location = new System.Drawing.Point(763, 309);
             this.btStop.Name = "btStop";
             this.btStop.Size = new System.Drawing.Size(58, 30);
             this.btStop.TabIndex = 1;
@@ -246,7 +274,7 @@
             // 
             // bConfig
             // 
-            this.bConfig.Location = new System.Drawing.Point(687, 309);
+            this.bConfig.Location = new System.Drawing.Point(698, 345);
             this.bConfig.Name = "bConfig";
             this.bConfig.Size = new System.Drawing.Size(122, 53);
             this.bConfig.TabIndex = 5;
@@ -260,17 +288,15 @@
             this.tbControl.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
             this.tbControl.Controls.Add(this.tabPage1);
             this.tbControl.Controls.Add(this.tabPage2);
+            this.tbControl.Controls.Add(this.tabPage3);
             this.tbControl.Location = new System.Drawing.Point(2, 7);
             this.tbControl.Name = "tbControl";
             this.tbControl.SelectedIndex = 0;
-            this.tbControl.Size = new System.Drawing.Size(824, 397);
+            this.tbControl.Size = new System.Drawing.Size(822, 259);
             this.tbControl.TabIndex = 10;
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.cbClient);
-            this.tabPage1.Controls.Add(this.cbServer);
-            this.tabPage1.Controls.Add(this.cbHoldSession);
             this.tabPage1.Controls.Add(this.pbStatDownload);
             this.tabPage1.Controls.Add(this.btStatDownload);
             this.tabPage1.Controls.Add(this.groupBox2);
@@ -279,51 +305,15 @@
             this.tabPage1.Controls.Add(this.btAttackOFF);
             this.tabPage1.Controls.Add(this.lvAttackList);
             this.tabPage1.Controls.Add(this.groupBox3);
-            this.tabPage1.Controls.Add(this.btStop);
-            this.tabPage1.Controls.Add(this.lbLog);
-            this.tabPage1.Controls.Add(this.btStart);
-            this.tabPage1.Controls.Add(this.bConfig);
             this.tabPage1.Controls.Add(this.groupBox1);
+            this.tabPage1.ForeColor = System.Drawing.SystemColors.ControlText;
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(816, 368);
+            this.tabPage1.Size = new System.Drawing.Size(814, 230);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Automat";
             this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // cbClient
-            // 
-            this.cbClient.AutoSize = true;
-            this.cbClient.Location = new System.Drawing.Point(753, 252);
-            this.cbClient.Name = "cbClient";
-            this.cbClient.Size = new System.Drawing.Size(52, 17);
-            this.cbClient.TabIndex = 28;
-            this.cbClient.Text = "Klient";
-            this.cbClient.UseVisualStyleBackColor = true;
-            this.cbClient.CheckedChanged += new System.EventHandler(this.cbClient_CheckedChanged);
-            // 
-            // cbServer
-            // 
-            this.cbServer.AutoSize = true;
-            this.cbServer.Location = new System.Drawing.Point(688, 252);
-            this.cbServer.Name = "cbServer";
-            this.cbServer.Size = new System.Drawing.Size(59, 17);
-            this.cbServer.TabIndex = 27;
-            this.cbServer.Text = "Serwer";
-            this.cbServer.UseVisualStyleBackColor = true;
-            this.cbServer.CheckedChanged += new System.EventHandler(this.cbServer_CheckedChanged);
-            // 
-            // cbHoldSession
-            // 
-            this.cbHoldSession.AutoSize = true;
-            this.cbHoldSession.Location = new System.Drawing.Point(688, 232);
-            this.cbHoldSession.Name = "cbHoldSession";
-            this.cbHoldSession.Size = new System.Drawing.Size(93, 17);
-            this.cbHoldSession.TabIndex = 26;
-            this.cbHoldSession.Text = "Utrzymuj sesje";
-            this.cbHoldSession.UseVisualStyleBackColor = true;
-            this.cbHoldSession.CheckedChanged += new System.EventHandler(this.cbHoldSession_CheckedChanged);
             // 
             // pbStatDownload
             // 
@@ -560,28 +550,270 @@
             this.label6.TabIndex = 1;
             this.label6.Text = "Atak:";
             // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.groupBox4);
+            this.tabPage2.Location = new System.Drawing.Point(4, 25);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(814, 230);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Obsługa Ręczna";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.nudTranfersNo);
+            this.groupBox4.Controls.Add(this.nudTransferVolume);
+            this.groupBox4.Controls.Add(this.btTransferRun);
+            this.groupBox4.Location = new System.Drawing.Point(6, 6);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(136, 104);
+            this.groupBox4.TabIndex = 1;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Transfer";
+            // 
+            // nudTranfersNo
+            // 
+            this.nudTranfersNo.Location = new System.Drawing.Point(6, 45);
+            this.nudTranfersNo.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nudTranfersNo.Name = "nudTranfersNo";
+            this.nudTranfersNo.Size = new System.Drawing.Size(120, 20);
+            this.nudTranfersNo.TabIndex = 2;
+            this.nudTranfersNo.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // nudTransferVolume
+            // 
+            this.nudTransferVolume.Increment = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.nudTransferVolume.Location = new System.Drawing.Point(6, 19);
+            this.nudTransferVolume.Maximum = new decimal(new int[] {
+            10000000,
+            0,
+            0,
+            0});
+            this.nudTransferVolume.Minimum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.nudTransferVolume.Name = "nudTransferVolume";
+            this.nudTransferVolume.Size = new System.Drawing.Size(120, 20);
+            this.nudTransferVolume.TabIndex = 1;
+            this.nudTransferVolume.Value = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            // 
+            // btTransferRun
+            // 
+            this.btTransferRun.Location = new System.Drawing.Point(6, 71);
+            this.btTransferRun.Name = "btTransferRun";
+            this.btTransferRun.Size = new System.Drawing.Size(120, 23);
+            this.btTransferRun.TabIndex = 0;
+            this.btTransferRun.Text = "Wykonaj";
+            this.btTransferRun.UseVisualStyleBackColor = true;
+            this.btTransferRun.Click += new System.EventHandler(this.btTransferRun_Click);
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.pbClear);
+            this.tabPage3.Controls.Add(this.btQSave);
+            this.tabPage3.Controls.Add(this.btQStop);
+            this.tabPage3.Controls.Add(this.btQStart);
+            this.tabPage3.Controls.Add(this.pbArrowDown);
+            this.tabPage3.Controls.Add(this.pbArrowUp);
+            this.tabPage3.Controls.Add(this.pbRefresh);
+            this.tabPage3.Controls.Add(this.pbArrowRight);
+            this.tabPage3.Controls.Add(this.pbArrowLeft);
+            this.tabPage3.Controls.Add(this.lvSelectedQuests);
+            this.tabPage3.Controls.Add(this.lvQuests);
+            this.tabPage3.Location = new System.Drawing.Point(4, 25);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(814, 230);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Questy";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // btQSave
+            // 
+            this.btQSave.Location = new System.Drawing.Point(489, 87);
+            this.btQSave.Name = "btQSave";
+            this.btQSave.Size = new System.Drawing.Size(59, 36);
+            this.btQSave.TabIndex = 9;
+            this.btQSave.Text = "Zapisz";
+            this.btQSave.UseVisualStyleBackColor = true;
+            this.btQSave.Click += new System.EventHandler(this.btQSave_Click);
+            // 
+            // btQStop
+            // 
+            this.btQStop.Enabled = false;
+            this.btQStop.Location = new System.Drawing.Point(489, 45);
+            this.btQStop.Name = "btQStop";
+            this.btQStop.Size = new System.Drawing.Size(59, 36);
+            this.btQStop.TabIndex = 8;
+            this.btQStop.Text = "Stop";
+            this.btQStop.UseVisualStyleBackColor = true;
+            this.btQStop.Click += new System.EventHandler(this.btQStop_Click);
+            // 
+            // btQStart
+            // 
+            this.btQStart.Location = new System.Drawing.Point(489, 3);
+            this.btQStart.Name = "btQStart";
+            this.btQStart.Size = new System.Drawing.Size(59, 36);
+            this.btQStart.TabIndex = 7;
+            this.btQStart.Text = "Start";
+            this.btQStart.UseVisualStyleBackColor = true;
+            this.btQStart.Click += new System.EventHandler(this.btQStart_Click);
+            // 
+            // pbArrowDown
+            // 
+            this.pbArrowDown.Image = global::Parafia.Properties.Resources.arrow_down;
+            this.pbArrowDown.Location = new System.Drawing.Point(231, 203);
+            this.pbArrowDown.Name = "pbArrowDown";
+            this.pbArrowDown.Size = new System.Drawing.Size(24, 24);
+            this.pbArrowDown.TabIndex = 6;
+            this.pbArrowDown.TabStop = false;
+            this.pbArrowDown.Click += new System.EventHandler(this.pbArrowDown_Click);
+            // 
+            // pbArrowUp
+            // 
+            this.pbArrowUp.Image = global::Parafia.Properties.Resources.arrow_up;
+            this.pbArrowUp.Location = new System.Drawing.Point(231, 173);
+            this.pbArrowUp.Name = "pbArrowUp";
+            this.pbArrowUp.Size = new System.Drawing.Size(24, 24);
+            this.pbArrowUp.TabIndex = 5;
+            this.pbArrowUp.TabStop = false;
+            this.pbArrowUp.Click += new System.EventHandler(this.pbArrowUp_Click);
+            // 
+            // pbRefresh
+            // 
+            this.pbRefresh.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbRefresh.Image = global::Parafia.Properties.Resources.refresh_24;
+            this.pbRefresh.Location = new System.Drawing.Point(231, 3);
+            this.pbRefresh.Name = "pbRefresh";
+            this.pbRefresh.Size = new System.Drawing.Size(24, 24);
+            this.pbRefresh.TabIndex = 4;
+            this.pbRefresh.TabStop = false;
+            this.pbRefresh.Click += new System.EventHandler(this.pbRefresh_Click);
+            // 
+            // pbArrowRight
+            // 
+            this.pbArrowRight.Image = global::Parafia.Properties.Resources.arrow_left;
+            this.pbArrowRight.Location = new System.Drawing.Point(231, 117);
+            this.pbArrowRight.Name = "pbArrowRight";
+            this.pbArrowRight.Size = new System.Drawing.Size(24, 24);
+            this.pbArrowRight.TabIndex = 3;
+            this.pbArrowRight.TabStop = false;
+            this.pbArrowRight.Click += new System.EventHandler(this.pbArrowRight_Click);
+            // 
+            // pbArrowLeft
+            // 
+            this.pbArrowLeft.Image = global::Parafia.Properties.Resources.arrow_right;
+            this.pbArrowLeft.Location = new System.Drawing.Point(231, 87);
+            this.pbArrowLeft.Name = "pbArrowLeft";
+            this.pbArrowLeft.Size = new System.Drawing.Size(24, 24);
+            this.pbArrowLeft.TabIndex = 2;
+            this.pbArrowLeft.TabStop = false;
+            this.pbArrowLeft.Click += new System.EventHandler(this.pbArrowLeft_Click);
+            // 
+            // lvSelectedQuests
+            // 
+            this.lvSelectedQuests.AutoArrange = false;
+            this.lvSelectedQuests.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lvSelectedQuests.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.chSelectedNames});
+            this.lvSelectedQuests.FullRowSelect = true;
+            this.lvSelectedQuests.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvSelectedQuests.Location = new System.Drawing.Point(261, 3);
+            this.lvSelectedQuests.Name = "lvSelectedQuests";
+            this.lvSelectedQuests.Size = new System.Drawing.Size(222, 224);
+            this.lvSelectedQuests.TabIndex = 1;
+            this.lvSelectedQuests.UseCompatibleStateImageBehavior = false;
+            this.lvSelectedQuests.View = System.Windows.Forms.View.Details;
+            // 
+            // chSelectedNames
+            // 
+            this.chSelectedNames.Text = "";
+            this.chSelectedNames.Width = 200;
+            // 
+            // lvQuests
+            // 
+            this.lvQuests.AutoArrange = false;
+            this.lvQuests.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lvQuests.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.chNames});
+            this.lvQuests.FullRowSelect = true;
+            this.lvQuests.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvQuests.Location = new System.Drawing.Point(3, 3);
+            this.lvQuests.Name = "lvQuests";
+            this.lvQuests.Size = new System.Drawing.Size(222, 224);
+            this.lvQuests.TabIndex = 0;
+            this.lvQuests.UseCompatibleStateImageBehavior = false;
+            this.lvQuests.View = System.Windows.Forms.View.Details;
+            // 
+            // chNames
+            // 
+            this.chNames.Text = "";
+            this.chNames.Width = 200;
+            // 
+            // cbClient
+            // 
+            this.cbClient.AutoSize = true;
+            this.cbClient.Location = new System.Drawing.Point(764, 288);
+            this.cbClient.Name = "cbClient";
+            this.cbClient.Size = new System.Drawing.Size(52, 17);
+            this.cbClient.TabIndex = 28;
+            this.cbClient.Text = "Klient";
+            this.cbClient.UseVisualStyleBackColor = true;
+            this.cbClient.CheckedChanged += new System.EventHandler(this.cbClient_CheckedChanged);
+            // 
+            // cbServer
+            // 
+            this.cbServer.AutoSize = true;
+            this.cbServer.Location = new System.Drawing.Point(699, 288);
+            this.cbServer.Name = "cbServer";
+            this.cbServer.Size = new System.Drawing.Size(59, 17);
+            this.cbServer.TabIndex = 27;
+            this.cbServer.Text = "Serwer";
+            this.cbServer.UseVisualStyleBackColor = true;
+            this.cbServer.CheckedChanged += new System.EventHandler(this.cbServer_CheckedChanged);
+            // 
+            // cbHoldSession
+            // 
+            this.cbHoldSession.AutoSize = true;
+            this.cbHoldSession.Location = new System.Drawing.Point(699, 268);
+            this.cbHoldSession.Name = "cbHoldSession";
+            this.cbHoldSession.Size = new System.Drawing.Size(93, 17);
+            this.cbHoldSession.TabIndex = 26;
+            this.cbHoldSession.Text = "Utrzymuj sesje";
+            this.cbHoldSession.UseVisualStyleBackColor = true;
+            this.cbHoldSession.CheckedChanged += new System.EventHandler(this.cbHoldSession_CheckedChanged);
+            // 
             // lbLog
             // 
             this.lbLog.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.lbLog.Cursor = System.Windows.Forms.Cursors.Default;
             this.lbLog.FormattingEnabled = true;
-            this.lbLog.Location = new System.Drawing.Point(6, 232);
+            this.lbLog.Location = new System.Drawing.Point(6, 268);
             this.lbLog.Name = "lbLog";
             this.lbLog.ScrollAlwaysVisible = true;
             this.lbLog.SelectionMode = System.Windows.Forms.SelectionMode.None;
-            this.lbLog.Size = new System.Drawing.Size(675, 130);
+            this.lbLog.Size = new System.Drawing.Size(681, 130);
             this.lbLog.TabIndex = 0;
             this.lbLog.TabStop = false;
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 25);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(816, 368);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Obsługa Ręczna";
-            this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // ofdAttackFile
             // 
@@ -601,18 +833,9 @@
             // 
             // ssMain
             // 
-            this.ssMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tssTransferedCash,
-            this.tssTransferedCashValue,
-            this.tssTransferNo,
-            this.tssTransferNoValue,
-            this.tssCash,
-            this.tssCashValue,
-            this.tssSafe,
-            this.tssSafeValue});
-            this.ssMain.Location = new System.Drawing.Point(0, 404);
+            this.ssMain.Location = new System.Drawing.Point(0, 406);
             this.ssMain.Name = "ssMain";
-            this.ssMain.Size = new System.Drawing.Size(828, 22);
+            this.ssMain.Size = new System.Drawing.Size(823, 22);
             this.ssMain.SizingGrip = false;
             this.ssMain.TabIndex = 11;
             // 
@@ -682,13 +905,31 @@
             this.tssSafeValue.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.tssSafeValue.Visible = false;
             // 
+            // pbClear
+            // 
+            this.pbClear.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbClear.Image = global::Parafia.Properties.Resources.Delete;
+            this.pbClear.Location = new System.Drawing.Point(231, 33);
+            this.pbClear.Name = "pbClear";
+            this.pbClear.Size = new System.Drawing.Size(24, 24);
+            this.pbClear.TabIndex = 10;
+            this.pbClear.TabStop = false;
+            this.pbClear.Click += new System.EventHandler(this.pbClear_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(828, 426);
+            this.ClientSize = new System.Drawing.Size(823, 428);
+            this.Controls.Add(this.cbClient);
             this.Controls.Add(this.ssMain);
+            this.Controls.Add(this.cbServer);
             this.Controls.Add(this.tbControl);
+            this.Controls.Add(this.cbHoldSession);
+            this.Controls.Add(this.lbLog);
+            this.Controls.Add(this.bConfig);
+            this.Controls.Add(this.btStart);
+            this.Controls.Add(this.btStop);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -700,13 +941,21 @@
             this.groupBox1.PerformLayout();
             this.tbControl.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            this.ssMain.ResumeLayout(false);
-            this.ssMain.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
+            this.groupBox4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.nudTranfersNo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudTransferVolume)).EndInit();
+            this.tabPage3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbArrowDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbArrowUp)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbRefresh)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbArrowRight)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbArrowLeft)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbClear)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -772,6 +1021,24 @@
         public System.Windows.Forms.ToolStripStatusLabel tssTransferNoValue;
         public System.Windows.Forms.ToolStripStatusLabel tssCashValue;
         public System.Windows.Forms.ToolStripStatusLabel tssSafeValue;
+        private System.Windows.Forms.GroupBox groupBox4;
+        public System.Windows.Forms.Button btTransferRun;
+        public System.Windows.Forms.NumericUpDown nudTransferVolume;
+        public System.Windows.Forms.NumericUpDown nudTranfersNo;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.ListView lvQuests;
+        private System.Windows.Forms.ColumnHeader chNames;
+        private System.Windows.Forms.PictureBox pbArrowLeft;
+        private System.Windows.Forms.ListView lvSelectedQuests;
+        private System.Windows.Forms.ColumnHeader chSelectedNames;
+        private System.Windows.Forms.PictureBox pbArrowRight;
+        private System.Windows.Forms.PictureBox pbArrowUp;
+        private System.Windows.Forms.PictureBox pbRefresh;
+        private System.Windows.Forms.Button btQStop;
+        private System.Windows.Forms.Button btQStart;
+        private System.Windows.Forms.PictureBox pbArrowDown;
+        private System.Windows.Forms.Button btQSave;
+        private System.Windows.Forms.PictureBox pbClear;
     }
 }
 

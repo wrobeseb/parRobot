@@ -70,18 +70,23 @@
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.tbArmyTimeStart = new System.Windows.Forms.TextBox();
+            this.tbMasterLogin = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.tbMasterPassword = new System.Windows.Forms.TextBox();
             this.gbProxyConfig.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.gbMailConfig.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // bSave
             // 
             this.bSave.Location = new System.Drawing.Point(90, 299);
             this.bSave.Name = "bSave";
-            this.bSave.Size = new System.Drawing.Size(341, 39);
+            this.bSave.Size = new System.Drawing.Size(508, 39);
             this.bSave.TabIndex = 0;
             this.bSave.Text = "Zapisz";
             this.bSave.UseVisualStyleBackColor = true;
@@ -453,7 +458,7 @@
             this.groupBox1.Controls.Add(this.tbArmyTimeStart);
             this.groupBox1.Location = new System.Drawing.Point(225, 215);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(100, 78);
+            this.groupBox1.Size = new System.Drawing.Size(206, 78);
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Wojsko";
@@ -464,7 +469,7 @@
             this.tbArmyTimeStop.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tbArmyTimeStop.Location = new System.Drawing.Point(34, 45);
             this.tbArmyTimeStop.Name = "tbArmyTimeStop";
-            this.tbArmyTimeStop.Size = new System.Drawing.Size(60, 20);
+            this.tbArmyTimeStop.Size = new System.Drawing.Size(166, 20);
             this.tbArmyTimeStop.TabIndex = 4;
             // 
             // label14
@@ -491,22 +496,60 @@
             this.tbArmyTimeStart.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tbArmyTimeStart.Location = new System.Drawing.Point(34, 19);
             this.tbArmyTimeStart.Name = "tbArmyTimeStart";
-            this.tbArmyTimeStart.Size = new System.Drawing.Size(60, 20);
+            this.tbArmyTimeStart.Size = new System.Drawing.Size(166, 20);
             this.tbArmyTimeStart.TabIndex = 0;
+            // 
+            // tbMasterLogin
+            // 
+            this.tbMasterLogin.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbMasterLogin.Location = new System.Drawing.Point(45, 14);
+            this.tbMasterLogin.Name = "tbMasterLogin";
+            this.tbMasterLogin.Size = new System.Drawing.Size(100, 20);
+            this.tbMasterLogin.TabIndex = 9;
             // 
             // groupBox3
             // 
-            this.groupBox3.Location = new System.Drawing.Point(331, 217);
+            this.groupBox3.Controls.Add(this.label16);
+            this.groupBox3.Controls.Add(this.tbMasterPassword);
+            this.groupBox3.Controls.Add(this.label15);
+            this.groupBox3.Controls.Add(this.tbMasterLogin);
+            this.groupBox3.Location = new System.Drawing.Point(437, 43);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(100, 76);
-            this.groupBox3.TabIndex = 9;
+            this.groupBox3.Size = new System.Drawing.Size(161, 72);
+            this.groupBox3.TabIndex = 10;
             this.groupBox3.TabStop = false;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(6, 16);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(33, 13);
+            this.label15.TabIndex = 10;
+            this.label15.Text = "Login";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(6, 42);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(36, 13);
+            this.label16.TabIndex = 12;
+            this.label16.Text = "Hasło";
+            // 
+            // tbMasterPassword
+            // 
+            this.tbMasterPassword.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbMasterPassword.Location = new System.Drawing.Point(45, 39);
+            this.tbMasterPassword.Name = "tbMasterPassword";
+            this.tbMasterPassword.Size = new System.Drawing.Size(100, 20);
+            this.tbMasterPassword.TabIndex = 11;
             // 
             // ConfigForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(442, 344);
+            this.ClientSize = new System.Drawing.Size(610, 344);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.cbSentMail);
@@ -535,6 +578,8 @@
             this.gbMailConfig.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -584,6 +629,10 @@
         private System.Windows.Forms.TextBox tbMailSubject;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.TextBox tbMailTo;
+        private System.Windows.Forms.TextBox tbMasterLogin;
         private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.TextBox tbMasterPassword;
+        private System.Windows.Forms.Label label15;
     }
 }

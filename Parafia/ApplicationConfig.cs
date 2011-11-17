@@ -34,6 +34,9 @@ namespace Parafia
         private int questTimeStart;
         private int questTimeStop;
 
+        private String masterLogin;
+        private String masterPassword;
+
         public bool UseProxy
         {
             get { return this.useProxy; }
@@ -164,6 +167,18 @@ namespace Parafia
         {
             get { return this.questTimeStop; }
             set { this.questTimeStop = value; }
+        }
+
+        public String MasterLogin
+        {
+            get { return this.masterLogin; }
+            set { this.masterLogin = value; }
+        }
+
+        public String MasterPassword
+        {
+            get { return this.masterPassword; }
+            set { this.masterPassword = value; }
         }
     }
 }
