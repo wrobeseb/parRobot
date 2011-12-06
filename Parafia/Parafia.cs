@@ -315,8 +315,19 @@ namespace Parafia
                 int cost = int.Parse(relicCost);
                 if (cost != 0)
                 {
+                    updateAttributes();
 
-                    getFromSafe(cost + 100);
+                    if (attributes.Cash.Actual < cost)
+                    {
+                        if (attributes.Safe.Actual >= cost)
+                        {
+                            getFromSafe(cost + 100);
+                        }
+                        else
+                        {
+                            getFromBank(cost + 100);
+                        }
+                    }
 
                     int id = 0;
 

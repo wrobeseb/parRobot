@@ -41,6 +41,9 @@
     <Reference Include="Common.Logging.Log4Net">
       <HintPath>lib\Common.Logging.Log4Net.dll</HintPath>
     </Reference>
+    <Reference Include="HtmlAgilityPack">
+      <HintPath>..\HttpUtils\bin\Debug\HtmlAgilityPack.dll</HintPath>
+    </Reference>
     <Reference Include="log4net">
       <HintPath>lib\log4net.dll</HintPath>
     </Reference>
@@ -58,6 +61,8 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -74,9 +79,32 @@
     <Compile Include="Controller\Impl\AbstractController.cs" />
     <Compile Include="Controller\Impl\AccountControllerImpl.cs" />
     <Compile Include="Controller\Impl\MainControllerImpl.cs" />
-    <Compile Include="Model\Account.cs" />
+    <Compile Include="Controller\Impl\SettingsControllerImpl.cs" />
+    <Compile Include="Controller\ISettingsController.cs" />
+    <Compile Include="Core\Exceptions\LoginException.cs" />
+    <Compile Include="Core\Logging\Logger.cs" />
+    <Compile Include="Core\Logging\LoggerAppender.cs" />
+    <Compile Include="Core\Properties\Properties.cs" />
+    <Compile Include="Core\Properties\Properties.Proxy.cs" />
+    <Compile Include="Core\Session\Session.cs" />
+    <Compile Include="Core\Settings.cs" />
+    <Compile Include="Core\Utils\AccountUtils.cs" />
+    <Compile Include="Core\Utils\Utils.cs" />
+    <Compile Include="Dao\Impl\DaoSupport.cs" />
+    <Compile Include="Dao\Core\ParafiaDataContext.cs" />
+    <Compile Include="Dao\IAccountDao.cs" />
+    <Compile Include="Dao\Impl\AccountDaoImpl.cs" />
+    <Compile Include="Model\Account\Account.cs" />
+    <Compile Include="Model\Account\Attributes.cs" />
+    <Compile Include="Model\Content\Bank.cs" />
+    <Compile Include="Model\Content\Transfer.cs" />
+    <Compile Include="Providers\IContentProvider.cs" />
+    <Compile Include="Providers\Impl\ContentProviderImpl.cs" />
     <Compile Include="Scheduler\Job\AccountJob.cs" />
     <Compile Include="Scheduler\Job\TimerJob.cs" />
+    <Compile Include="Service\IHttpService.cs" />
+    <Compile Include="Service\Impl\AccountServiceImpl.cs" />
+    <Compile Include="Service\Impl\HttpServiceImpl.cs" />
     <Compile Include="Service\Impl\SchedulerServiceImpl.cs" />
     <Compile Include="Service\ISchedulerService.cs" />
     <Compile Include="Shell.cs">
@@ -90,12 +118,26 @@
     <Compile Include="Service\IAccountService.cs" />
     <Compile Include="Service\IBattleService.cs" />
     <Compile Include="View\IControlPanelView.cs" />
+    <Compile Include="View\ILoggerPanelView.cs" />
     <Compile Include="View\Impl\ControlPanelView.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="View\Impl\ControlPanelView.Designer.cs">
       <DependentUpon>ControlPanelView.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\Impl\LoggerPanelViewImpl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Impl\LoggerPanelViewImpl.Designer.cs">
+      <DependentUpon>LoggerPanelViewImpl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Impl\SettingsPanelViewImpl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Impl\SettingsPanelViewImpl.Designer.cs">
+      <DependentUpon>SettingsPanelViewImpl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\ISettingsPanelView.cs" />
     <Compile Include="View\IView.cs" />
     <Compile Include="View\IAccountListItemView.cs" />
     <Compile Include="View\IAccountListView.cs" />
@@ -136,27 +178,18 @@
     <EmbeddedResource Include="View\Impl\ControlPanelView.resx">
       <DependentUpon>ControlPanelView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\Impl\LoggerPanelViewImpl.resx">
+      <DependentUpon>LoggerPanelViewImpl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Impl\SettingsPanelViewImpl.resx">
+      <DependentUpon>SettingsPanelViewImpl.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PBizBotLoggerAppender\PBizBotLoggerAppender.csproj">
-      <Project>{3BB6A8E3-1347-4324-BA0D-FAC180AACA74}</Project>
-      <Name>PBizBotLoggerAppender</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Dao\" />
+    <None Include="Resources\spinner.gif" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\updown_small.gif" />
@@ -190,6 +223,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\yellow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\spinner16.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HttpUtils\HttpUtils.csproj">
+      <Project>{64161EC6-E310-4916-919D-4E5F417C488F}</Project>
+      <Name>HttpUtils</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

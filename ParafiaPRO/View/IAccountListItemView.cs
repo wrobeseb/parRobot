@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ParafiaPRO.View
 {
-    using Model;
+    using Model.Account;
 
     public interface IAccountListItemView : IView
     {

@@ -9,6 +9,8 @@ namespace ParafiaPRO.Controller
 
     public interface IMainController
     {
+        Shell Shell { set; }
+
         IControlPanelView ControlPanelView { set; }
         IAccountListView AccountListView { set; }
         bool Started { get; }

@@ -60,7 +60,7 @@ namespace Parafia
             {
                 if (((int)character < 48 || (int)character > 57) && (int)character != 44)
                 {
-                    builder.Append(" ");
+                    builder.Append("");
                 }
                 else
                 {

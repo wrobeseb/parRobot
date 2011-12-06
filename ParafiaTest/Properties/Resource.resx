@@ -2366,6 +2366,217 @@
 &lt;/body&gt;
 &lt;/html&gt;</value>
   </data>
+  <data name="ParafiaBizDashboardContent" xml:space="preserve">
+    <value>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Gra internetowa Parafia.biz - podbij wirtualną  rzeczywistość - gra przeglądarkowa przez www&lt;/title&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;link href="https://plus.google.com/102903768040082646276" rel="publisher"/&gt;
+    &lt;meta property="og:site_name" content="Parafia.biz" /&gt;
+	&lt;meta property="og:title" content="Parafia.biz" /&gt;
+	&lt;meta property="og:description" content="Gra internetowa Parafia.biz - podbij wirtualną  rzeczywistość - gra przeglądarkowa przez www" /&gt;
+	&lt;meta property="og:image" content="http://parafia.biz/img/fb_like.jpg" /&gt;
+	&lt;meta property="og:url" content="http://parafia.biz" /&gt;
+	&lt;meta property="og:type" content="website" /&gt;
+	&lt;meta property="fb:app_id" content="184584424910997" /&gt;
+	    	&lt;link rel="stylesheet" type="text/css" href="http://parafia.biz/css/reset.css?m=240" /&gt;
+	&lt;link rel="stylesheet" type="text/css" href="http://parafia.biz/css/style.css?m=240" /&gt;
+	&lt;!--[if IE]&gt;&lt;link rel="stylesheet" type="text/css" href="http://parafia.biz/css/ie.css?m=240" /&gt;&lt;![endif]--&gt;
+	&lt;link rel="stylesheet" type="text/css" href="http://parafia.biz/css/parafia/jquery-ui-1.8.9.custom.css?m=240" /&gt;
+    	&lt;script type="text/javascript" src="http://parafia.biz/js/jquery-1.4.4.min.js?m=240"&gt;&lt;/script&gt;
+	&lt;script type="text/javascript" src="http://parafia.biz/js/jquery-ui-1.8.9.custom.min.js?m=240"&gt;&lt;/script&gt;
+	&lt;script type="text/javascript" src="http://parafia.biz/js/jquery.placeholder.js?m=240"&gt;&lt;/script&gt;
+	&lt;script type="text/javascript" src="http://parafia.biz/js/main.js?m=240"&gt;&lt;/script&gt;
+    &lt;script type="text/javascript"&gt;
+           if(location != top.location) top.location.href = location.href;
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+    &lt;div id="topline"&gt;&lt;/div&gt;
+
+    &lt;div id="container" class="my"&gt;
+        &lt;ul id="nav"&gt;
+			&lt;li&gt;&lt;a href="http://parafia.biz/premium" title="Odpusty" class=""&gt;Odpusty&lt;/a&gt;&lt;/li&gt;
+			&lt;li class="selected"&gt;&lt;a href="http://parafia.biz/dashboard" title="Moja Parafia" class=""&gt;Moja Parafia&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="http://parafia.biz/battle" title="Walka" class=""&gt;Walka&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="http://parafia.biz/relics/market" title="Wolny rynek" class=""&gt;Wolny rynek&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="http://parafia.biz/quests" title="Questy" class=""&gt;Questy&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="http://parafia.biz/roulette" title="Ruletka" class=""&gt;Ruletka&lt;/a&gt;&lt;/li&gt;
+		&lt;/ul&gt;
+
+        &lt;h1 id="header"&gt;
+			&lt;a href="http://parafia.biz/" title="Parafia - zdobądź władzę, wiernych i pieniądze"&gt;
+                &lt;img src="http://parafia.biz/img/logo_my.png" alt="Parafia - zdobądź władzę, wiernych i pieniądze" /&gt;
+            &lt;/a&gt;
+		&lt;/h1&gt;
+
+        &lt;div id="main"&gt;
+                            &lt;div class="title"&gt;
+                    &lt;span class="left"&gt;Przypominamy o Mikołajkowym Prezencie: &lt;a href="http://blog.parafia.biz/?p=3070" title="http://blog.parafia.biz/?p=3070" class=""&gt;http://blog.parafia.biz/?p=3070&lt;/a&gt;&lt;/span&gt;
+                    &lt;a href="http://parafia.biz/auth/logout" class="right" title="Wracaj na ziemię!"&gt;Wracaj na ziemię!&lt;/a&gt;                &lt;/div&gt;
+            
+                            &lt;div class="sidebar"&gt;
+                    &lt;div class="sidebar-top"&gt;&lt;/div&gt;
+                    &lt;div class="sidebar-content"&gt;
+                        &lt;div class="info_player"&gt;
+    &lt;ul class="stats list_style_none"&gt;
+        &lt;li&gt;&lt;strong&gt;Proboszcz:&lt;/strong&gt; sairo&lt;/li&gt;
+        &lt;li&gt;&lt;strong&gt;Parafia:&lt;/strong&gt; sairo&lt;/li&gt;
+        &lt;li&gt;&lt;strong&gt;Odpusty:&lt;/strong&gt; 0&lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;ul class="stats list_style_none mt10"&gt;
+        &lt;li&gt;&lt;strong&gt;Poziom:&lt;/strong&gt; Poziom 45 ( 31966 / 35851 )&lt;/li&gt;
+        &lt;li title="+6762 C$ co 5 minut"&gt;&lt;strong&gt;Kasa:&lt;/strong&gt; 33 048 C$ / 12 168 939 C$&lt;/li&gt;
+        &lt;li&gt;&lt;strong&gt;Sejf:&lt;/strong&gt; 1 439 078 C$ / 2 680 000 C$&lt;/li&gt;
+        &lt;li title="+83 co 5 minut"&gt;&lt;strong&gt;Zdrowie:&lt;/strong&gt; 498 / 676&lt;/li&gt;
+        &lt;li title="+92 co 5 minut"&gt;&lt;strong&gt;Energia:&lt;/strong&gt; 626 / 1178&lt;/li&gt;
+        &lt;li title="+836 co 5 minut"&gt;&lt;strong&gt;Wierzących:&lt;/strong&gt; 5026 / 6986&lt;/li&gt;
+        &lt;li&gt;&lt;strong&gt;Wikarych:&lt;/strong&gt; 35 / 35&lt;/li&gt;
+        &lt;li&gt;&lt;strong&gt;Relikwie:&lt;/strong&gt; 305, w sejfie 268 / 268&lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;ul class="menu mt20 list_style_none"&gt;
+        &lt;li&gt;&lt;a href="http://parafia.biz/dashboard" class="dashboard selected" title="Dashboard"&gt;Dashboard&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="http://parafia.biz/buildings/safe" class="safe" title="Sejf"&gt;Sejf&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="http://parafia.biz/buildings" class="buildings" title="Budynki"&gt;Budynki&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="http://parafia.biz/property" class="buildings" title="Dewocjonalnik"&gt;Dewocjonalnik&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="http://parafia.biz/units" class="units" title="Siły zbrojne"&gt;Siły zbrojne&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="http://parafia.biz/units/expeditions" class="quests" title="Pielgrzymki"&gt;Pielgrzymki&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="http://parafia.biz/battle/players" class="battle" title="Walka"&gt;Walka&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="http://parafia.biz/relics/my" class="relics_my" title="Relikwie w parafii"&gt;Relikwie w parafii&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="http://parafia.biz/relics" class="relics" title="Relikwie"&gt;Relikwie&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="http://parafia.biz/relics/market" class="relics_market" title="Wolny rynek"&gt;Wolny rynek&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="http://parafia.biz/quests" class="quests" title="Questy"&gt;Questy&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="http://parafia.biz/mailbox" class="mailbox" title="Poczta"&gt;Poczta&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="http://parafia.biz/papacy" class="papacy" title="Papiestwo"&gt;Papiestwo&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="http://parafia.biz/premium" class="premium" title="Odpusty"&gt;Odpusty&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="http://parafia.biz/roulette" class="premium" title="Ruletka Czarownic"&gt;Ruletka Czarownic&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="http://parafia.biz/stats/battle" class="stats" title="Statystyki"&gt;Statystyki&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="http://parafia.biz/account/edit" class="account" title="Edytuj Konto"&gt;Edytuj Konto&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+        
+    
+    &lt;div class="mt20"&gt;
+        &lt;iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fparafia.biz%2F&amp;amp;layout=button_count&amp;amp;show_faces=false&amp;amp;width=200&amp;amp;action=like&amp;amp;font&amp;amp;colorscheme=light&amp;amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:200px; height:21px;" allowTransparency="true"&gt;&lt;/iframe&gt;
+        &lt;script type="text/javascript" src="https://apis.google.com/js/plusone.js"&gt;&lt;/script&gt;
+        &lt;g:plusone href="http://parafia.biz"&gt;&lt;/g:plusone&gt;
+    &lt;/div&gt;
+    
+    &lt;div class="mt20"&gt;
+            &lt;/div&gt;
+&lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div class="sidebar-bottom"&gt;&lt;/div&gt;
+                &lt;/div&gt;
+            
+            &lt;div class="content"&gt;
+			                                &lt;div id="dashboard"&gt;
+    &lt;h2&gt;Witaj sairo&lt;/h2&gt;
+
+    &lt;h3 class="left"&gt;Tytuł: Prałat&lt;/h3&gt;
+    &lt;h3 class="right mr10"&gt;Aktualny Poziom 45 ( 31966 / 35851 )&lt;/h3&gt;
+    &lt;div class="clear"&gt;&lt;/div&gt;
+    &lt;div class="right wp-58"&gt;
+        &lt;h3 class="left"&gt;Następny poziom:&lt;/h3&gt;
+        &lt;div class="progressbar left" rel="17"&gt;&lt;span&gt;17 %&lt;/span&gt;&lt;/div&gt;
+        &lt;div class="clear"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="clear"&gt;&lt;/div&gt;
+
+    
+    &lt;ul id="dashboard_stats"&gt;
+        &lt;li class="stats"&gt;
+            &lt;h4 class="name"&gt;Energia&lt;/h4&gt;
+                &lt;div class="value"&gt;+0% (1178)&lt;/div&gt;
+        &lt;/li&gt;
+        &lt;li class="stats"&gt;
+            &lt;h4 class="name"&gt;Zdrowie&lt;/h4&gt;
+                &lt;div class="value"&gt;+0% (676)&lt;/div&gt;
+        &lt;/li&gt;
+        &lt;li class="stats"&gt;
+            &lt;h4 class="name"&gt;Atak&lt;/h4&gt;
+                &lt;div class="value"&gt;1 (2143638,2)&lt;/div&gt;
+        &lt;/li&gt;
+        &lt;li class="stats"&gt;
+            &lt;h4 class="name"&gt;Obrona&lt;/h4&gt;
+                &lt;div class="value"&gt;1 (46698503,5)&lt;/div&gt;
+        &lt;/li&gt;
+        &lt;li class="stats"&gt;
+            &lt;h4 class="name"&gt;Przyrost Kasy&lt;/h4&gt;
+                &lt;div class="value"&gt;+0% (+6762 C$)&lt;/div&gt;
+        &lt;/li&gt;
+        &lt;li class="stats"&gt;
+            &lt;h4 class="name"&gt;Przyrost Wiernych &lt;/h4&gt;
+                &lt;div class="value"&gt;+44% (+836)&lt;/div&gt;
+        &lt;/li&gt;
+        &lt;li class="stats"&gt;
+            &lt;h4 class="name"&gt;Przyrost Doświadczenia &lt;/h4&gt;
+                &lt;div class="value"&gt;+0%&lt;/div&gt;
+        &lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;div class="left wp-25 mt50"&gt;
+        &lt;div class="img_box right"&gt;
+                    &lt;/div&gt;
+        &lt;div class="align-center"&gt;
+            &lt;a href="http://parafia.biz/account/edit" title="Zmień Avatar" class=""&gt;Zmień Avatar&lt;/a&gt;        &lt;/div&gt;
+    &lt;/div&gt;
+    
+    &lt;div class="clear"&gt;&lt;/div&gt;
+    &lt;div class="mt20"&gt;
+                    Kolejna impreza u Papieża już za 22 godziny i 1 minutę            &lt;/div&gt;
+    
+    &lt;h3 class="mt30"&gt;Notatki&lt;/h3&gt;
+    
+    &lt;form id="notes" action="" method="post" class="form"&gt;
+	&lt;input type="hidden" name="formo_notes" value="notes" id="formo_notes" class="form-input" /&gt;
+	&lt;div class="form-item"&gt;&lt;div class="form-element"&gt;&lt;textarea name="notes" id="notes" class="form-input" cols="30" rows="8"&gt;&lt;/textarea&gt;&lt;/div&gt;&lt;/div&gt;
+	&lt;div class="form-buttons"&gt;&lt;div class="form-buttons-in"&gt;&lt;div class="form-element"&gt;&lt;button type="submit" name="notes_submit" id="notes_submit" class="button"&gt;&lt;span&gt;Zapisz&lt;/span&gt;&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/form&gt;
+    
+    &lt;div class="mt20"&gt;
+        &lt;script src="http://connect.facebook.net/en_US/all.js#xfbml=1"&gt;&lt;/script&gt;&lt;fb:like-box href="http://www.facebook.com/pages/parafiabiz/184864234859536" width="700" show_faces="true" height="400" stream="false" header="false"&gt;&lt;/fb:like-box&gt;
+    &lt;/div&gt;
+    
+&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="clear"&gt;&lt;/div&gt;
+        &lt;/div&gt;
+		&lt;div id="footer"&gt;
+			&lt;ul&gt;
+				&lt;li&gt;&lt;a href="http://blog.parafia.biz/" target="_blank" title="Blog" class=""&gt;Blog&lt;/a&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;a href="http://parafia.biz/info/tos" title="Regulamin" class=""&gt;Regulamin&lt;/a&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;a href="http://parafia.biz/info/informacje" title="Informacje" class=""&gt;Informacje&lt;/a&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;a href="http://parafia.biz/info/faq" title="FAQ" class=""&gt;FAQ&lt;/a&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;a href="http://parafia.biz/nawracaj_heretykow" title="Program Partnerski" class=""&gt;Program Partnerski&lt;/a&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;a href="http://parafia.biz/info/contact" title="Kontakt" class=""&gt;Kontakt&lt;/a&gt;&lt;/li&gt;
+			&lt;/ul&gt;
+			&lt;p class="left"&gt;Wykonanie i &lt;a href="http://www.netbomb.pl/" title="Domeny i hosting"&gt;hosting&lt;/a&gt;: &lt;a href="http://www.netbomb.pl/kocham/parafia" id="netbomb" title="Created by netBOMB"&gt;&lt;img src="http://parafia.biz/img/netbomb.png" alt="netBOMB" /&gt;&lt;/a&gt;&lt;/p&gt;
+			&lt;p class="right"&gt;Copyright &amp;copy; 2010 - 2011 &lt;a href="http://parafia.biz/"&gt;&lt;strong&gt;Parafia.biz&lt;/strong&gt;&lt;/a&gt;. Wszelkie prawa zastrzeżone.&lt;/p&gt;
+		&lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;script type="text/javascript" src="/js/jquery.plugins.js"&gt;&lt;/script&gt;
+    &lt;script type="text/javascript" src="/js/jquery.functions.js?new"&gt;&lt;/script&gt;
+                &lt;script type="text/javascript"&gt;
+                  var _gaq = _gaq || [];
+                  _gaq.push(['_setAccount', 'UA-20337387-1']);
+                  _gaq.push(['_trackPageview']);
+
+                  (function() {
+                    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+                  })();
+
+            &lt;/script&gt;            &lt;script src="http://static.getclicky.com/js" type="text/javascript"&gt;&lt;/script&gt;
+            &lt;script type="text/javascript"&gt;try{ clicky.init(66419170); }catch(err){}&lt;/script&gt;    &lt;!-- T: 0.3142 M: 11.12MB --&gt;
+&lt;/body&gt;
+&lt;/html&gt;</value>
+  </data>
   <data name="ParafiaBizExpeditionsContent" xml:space="preserve">
     <value>&lt;!DOCTYPE html&gt;
 &lt;html&gt;

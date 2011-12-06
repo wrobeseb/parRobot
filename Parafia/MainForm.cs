@@ -16,6 +16,8 @@ namespace Parafia
 {
 
     using Model.Stat;
+    using System.Net;
+    using System.Threading.Tasks;
 
     public partial class MainForm : Form
     {
@@ -349,8 +351,8 @@ namespace Parafia
                 }
             }
             listOfSelectedQuest.Sort();
-            foreach (Quest quest in listOfSelectedQuest)
-                lvSelectedQuests.Items.Insert(quest.Priority - 1, new ListViewItem(quest.Name));
+            //foreach (Quest quest in listOfSelectedQuest)
+//lvSelectedQuests.Items.Insert(quest.Priority - 1, new ListViewItem(quest.Name));
         }
 
         private void pbRefresh_Click(object sender, EventArgs e)
@@ -472,6 +474,100 @@ namespace Parafia
         {
             lvQuests.Items.Clear();
             lvSelectedQuests.Items.Clear();
+        }
+
+        private void btHit_Click(object sender, EventArgs e)
+        {
+            Parafia para = worker.getInstance();
+
+            if (para.login())
+            {
+                List<WaitHandle> handles = new List<WaitHandle>();
+
+                ServicePointManager.DefaultConnectionLimit = 100;//Please test different numbers here
+
+                var tasks = new List<Task<string>>();
+                for (int i = 0; i < 45; i++)
+                {
+                    tasks.Add(Task.Factory.StartNew(() => { return GetWebResponse(para.httpClient.CookieContainer); }));
+                    //handles.Add(MakeAsyncRequest(para.httpClient.CookieContainer));
+                }
+
+                Task.WaitAll(tasks.ToArray());
+
+                //WaitHandle.WaitAll(handles.ToArray<WaitHandle>());
+
+                para.logout();
+            }
+        }
+
+        class RequestState
+        {
+            public RequestState(WebRequest request, ManualResetEvent waitHandle)
+            {
+                Request = request;
+                WaitHandle = waitHandle;
+            }
+            public Delegate Callback;
+            public WebRequest Request;
+            public ManualResetEvent WaitHandle;
+        }
+
+        private static WaitHandle MakeAsyncRequest(CookieContainer container)
+        {
+            WebProxy proxy = null;
+            proxy = new WebProxy("126.179.0.200", 3128);
+            proxy.Credentials = new NetworkCredential("wrobese2", "#Listopad2011#", "TP");
+
+            HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create("http://parafia.biz/start/use_point/believers");
+            request.Proxy = proxy;
+            request.Method = "GET";
+            request.Headers.Add("Accept-Charset", "ISO-8859-2,utf-8;q=0.7,*;q=0.7");
+            request.Headers.Add("Accept-Language", "pl-PL,pl;q=0.8,en-US;q=0.6,en;q=0.4");
+            request.Headers.Add("Accept-Encoding", "gzip,deflate,sdch");
+            request.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
+            request.UserAgent = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/13.0.782.215 Safari/535.1";
+            request.AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip;
+
+            request.CookieContainer = container;
+
+            ManualResetEvent waitHandle = new ManualResetEvent(false);
+            RequestState state = new RequestState(request, waitHandle);
+            IAsyncResult result = request.BeginGetResponse(GetResponseComplete, state);
+            return waitHandle;
+        }
+
+        private static void GetResponseComplete(IAsyncResult result)
+        {
+            RequestState state = (RequestState)result.AsyncState;
+            WebResponse response = state.Request.EndGetResponse(result);
+            state.WaitHandle.Set();
+        }
+
+        static string GetWebResponse(CookieContainer container)
+        {
+            WebProxy proxy = null;
+            proxy = new WebProxy("126.179.0.200", 3128);
+            proxy.Credentials = new NetworkCredential("wrobese2", "#Listopad2011#", "TP");
+
+            HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create("http://parafia.biz/start/use_point/believers");
+            request.Proxy = proxy;
+            request.Method = "GET";
+            request.Headers.Add("Accept-Charset", "ISO-8859-2,utf-8;q=0.7,*;q=0.7");
+            request.Headers.Add("Accept-Language", "pl-PL,pl;q=0.8,en-US;q=0.6,en;q=0.4");
+            request.Headers.Add("Accept-Encoding", "gzip,deflate,sdch");
+            request.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
+            request.UserAgent = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/13.0.782.215 Safari/535.1";
+            request.AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip;
+
+            request.CookieContainer = container;
+
+            Task<WebResponse> responseTask = Task.Factory.FromAsync<WebResponse>(request.BeginGetResponse, request.EndGetResponse, null);
+            using (var responseStream = responseTask.Result.GetResponseStream())
+            {
+                var reader = new StreamReader(responseStream);
+                return reader.ReadToEnd();
+            }
         }
     }
 }

@@ -12,18 +12,24 @@ namespace ParafiaPRO.Controller.Impl
 {
     using View;
     using View.Impl;
-    using Model;
+    using Model.Account;
     using Service;
     using Scheduler.Job;
 
     public class AccountControllerImpl : AbstractController, IAccountController, IApplicationContextAware
     {
         private IAccountListView m_AccountListView;
+        private IAccountService mAccountService;
         private IApplicationContext m_ApplicationContext;
 
         public IApplicationContext ApplicationContext
         {
             set { this.m_ApplicationContext = value; }
+        }
+
+        public IAccountService AccountService
+        {
+            set { this.mAccountService = value; }
         }
 
         public IAccountListView AccountListView
@@ -32,6 +38,7 @@ namespace ParafiaPRO.Controller.Impl
             {
                 this.m_AccountListView = value;
                 this.m_AccountListView.AddAccountEvent += new EventHandler(AddAccount);
+                this.m_AccountListView.OnLoadEvent += new EventHandler(OnLoad);
             }
             get
             {
@@ -49,29 +56,24 @@ namespace ParafiaPRO.Controller.Impl
             m_AccountListView.SetStartTimeForAccountToZero();
         }
 
+        void OnLoad(object sender, EventArgs e)
+        {
+            List<Account> accounts = mAccountService.Accounts();
+            foreach (Account account in accounts)
+                PrepareAccount(account);
+        }
+
         void AddAccount(object sender, EventArgs e)
         {
-            Debug.Assert(m_AccountListView != null, "Widok listy kont nie został zainicjowany.");
-
-            Account account = NewAccountInstance();
-
-            IAccountListItemView accountListItemView = new AccountListItemView();
-            accountListItemView.RemoveAccountEvent += new EventHandler(RemoveAccount);
-            accountListItemView.EnabledCheckedChangedEvent += new EventHandler(EnabledCheckedChange);
-            accountListItemView.Account = account;
-
-            BeginInvoke(delegate
-            {
-                m_AccountListView.AddAccountListItemView(accountListItemView);
-            });
+            PrepareAccount();
         }
 
         void RemoveAccount(object sender, EventArgs e)
         {
-            BeginInvoke(delegate
-            {
+            //BeginInvoke(delegate
+            //{
                 m_AccountListView.RemoveAccountListItemView((AccountListItemView)sender);
-            });
+           // });
         }
 
         void EnabledCheckedChange(object sender, EventArgs e)
@@ -79,8 +81,8 @@ namespace ParafiaPRO.Controller.Impl
             IAccountListItemView item = (IAccountListItemView)sender;
             IControlPanelView controlPanelView = (IControlPanelView)m_ApplicationContext.GetObject("ControlPanelView"); 
 
-            BeginInvoke(delegate
-            {
+            //BeginInvoke(delegate
+            //{
                 Account account = item.Account;
 
                 if (controlPanelView.Started) {
@@ -94,18 +96,52 @@ namespace ParafiaPRO.Controller.Impl
                         schedulerService.UnScheduleAccount(account);
                     }
                 }   
-            });
+            //});
         }
 
-        private Account NewAccountInstance()
+        private void PrepareAccount()
+        {
+            Debug.Assert(m_AccountListView != null, "Widok listy kont nie został zainicjowany.");
+            AddAccountListItem(PrepareAccountScheduler());
+        }
+
+        private void PrepareAccount(Account account)
+        {
+            AddAccountListItem(PrepareAccountScheduler(account));
+        }
+
+        private void AddAccountListItem(Account account)
+        {
+            IAccountListItemView accountListItemView = new AccountListItemView();
+            accountListItemView.RemoveAccountEvent += new EventHandler(RemoveAccount);
+            accountListItemView.EnabledCheckedChangedEvent += new EventHandler(EnabledCheckedChange);
+            accountListItemView.Account = account;
+
+            //BeginInvoke(delegate
+            //{
+                m_AccountListView.AddAccountListItemView(accountListItemView);
+            //});
+        }
+
+        private Account PrepareAccountScheduler()
+        {
+            return PrepareAccountScheduler(m_AccountListView.Login, m_AccountListView.Passwd);
+        }
+
+        private Account PrepareAccountScheduler(String login, String passwd)
         {
             Account account = new Account();
-            account.Login = m_AccountListView.Login;
-            account.Passwd = m_AccountListView.Passwd;
+            account.Login = login;
+            account.Passwd = passwd;
+            return PrepareAccountScheduler(account);
+        }
 
+        private Account PrepareAccountScheduler(Account account)
+        {
             AccountJob accountJobObject = (AccountJob)m_ApplicationContext.GetObject("AccountJobObject");
             accountJobObject.Account = account;
-            accountJobObject.SchedulerService = (ISchedulerService)m_ApplicationContext.GetObject("SchedulerService");
+            accountJobObject.AfterPropertiesSet();
+            //accountJobObject.SchedulerService = (ISchedulerService)m_ApplicationContext.GetObject("SchedulerService");
 
             MethodInvokingJobDetailFactoryObject job = new MethodInvokingJobDetailFactoryObject();
             job.Concurrent = false;

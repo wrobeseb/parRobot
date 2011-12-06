@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace ParafiaPRO.View.Impl
 {
-    using Model;
+    using Model.Account;
 
     public partial class AccountListItemView : AbstractView, IAccountListItemView
     {

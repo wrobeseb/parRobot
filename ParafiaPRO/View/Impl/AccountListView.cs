@@ -10,12 +10,13 @@ using System.Windows.Forms;
 namespace ParafiaPRO.View.Impl
 {
     using Controller;
-    using Model;
+    using Model.Account;
     using View;
 
     public partial class AccountListView : AbstractView, IAccountListView
     {
         public event EventHandler AddAccountEvent;
+        public event EventHandler OnLoadEvent;
 
         private IAccountController m_AccountController;
         private IMainController m_MainController;
@@ -117,13 +118,31 @@ namespace ParafiaPRO.View.Impl
         {
             foreach (AccountListItemView item in this.pAccounts.Controls)
             {
-                 Action(delegate 
-                 {
+                 //Action(delegate 
+                 //{
+                     Account account = item.Account;
+
                      if (item.cbEnabled.Checked)
-                         item.tbNextLogin.Text = (DateTime.UtcNow - item.Account.SchedulerTrigger.StartTimeUtc).ToString(@"hh\:mm\:ss");
+                     {
+                         account.NextLoginTime = TimeSpan.FromSeconds(account.NextLoginTime.TotalSeconds - 1);
+                        /* if (account.NextLoginTime != TimeSpan.Zero)
+                         {
+                             item.pbLight.Image = global::ParafiaPRO.Properties.Resources.green;
+                         }
+                         else
+                         {
+
+                         }*/
+                         //item.tbNextLogin.Text = (DateTime.UtcNow - item.Account.SchedulerTrigger.StartTimeUtc).ToString(@"hh\:mm\:ss");
+                     }
                      else
-                         item.tbNextLogin.Text = "00:00:00";
-                 });
+                     {
+                         account.NextLoginTime = new TimeSpan(0, 0, 5);
+                         //item.tbNextLogin.Text = "00:00:00";
+                     }
+
+                     item.Account = account;
+                // });
             }
         }
 
@@ -140,16 +159,22 @@ namespace ParafiaPRO.View.Impl
 
         private void pbAdd_Click(object sender, EventArgs e)
         {
-            if (Validate())
+            if (ValidateFields())
             {
                 if (AddAccountEvent != null)
                     AddAccountEvent(this, EventArgs.Empty);
             }
         }
 
+        private void AccountListView_Load(object sender, EventArgs e)
+        {
+            if (OnLoadEvent != null)
+                OnLoadEvent(this, EventArgs.Empty);
+        }
+
         #endregion
 
-        private bool Validate()
+        private bool ValidateFields()
         {
             if (String.IsNullOrEmpty(tbLogin.Text) || String.IsNullOrEmpty(tbPasswd.Text))
             {
@@ -169,6 +194,36 @@ namespace ParafiaPRO.View.Impl
             }
 
             return true;
+        }
+
+        public void OnAccountScheduledActions(Account account)
+        {
+            SetLightImageForAccount(account, global::ParafiaPRO.Properties.Resources.green);
+        }
+
+
+        public void OnAccountUnScheduledActions(Account account)
+        {
+            SetLightImageForAccount(account, global::ParafiaPRO.Properties.Resources.grey);
+        }
+
+
+        public void OnAccountJobStartedActions(Account account)
+        {
+            SetLightImageForAccount(account, global::ParafiaPRO.Properties.Resources.spinner16);
+        }
+
+        private void SetLightImageForAccount(Account account, Bitmap image)
+        {
+            foreach (UserControl control in this.pAccounts.Controls)
+            {
+                AccountListItemView accountListItem = (AccountListItemView)control;
+                if (accountListItem.Account.Login.Equals(account.Login))
+                {
+                    accountListItem.pbLight.Image = image;
+                    break;
+                }
+            }
         }
     }
 }

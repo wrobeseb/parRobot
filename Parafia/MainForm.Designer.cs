@@ -77,6 +77,7 @@
             this.nudTransferVolume = new System.Windows.Forms.NumericUpDown();
             this.btTransferRun = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.pbClear = new System.Windows.Forms.PictureBox();
             this.btQSave = new System.Windows.Forms.Button();
             this.btQStop = new System.Windows.Forms.Button();
             this.btQStart = new System.Windows.Forms.Button();
@@ -105,7 +106,9 @@
             this.tssCashValue = new System.Windows.Forms.ToolStripStatusLabel();
             this.tssSafe = new System.Windows.Forms.ToolStripStatusLabel();
             this.tssSafeValue = new System.Windows.Forms.ToolStripStatusLabel();
-            this.pbClear = new System.Windows.Forms.PictureBox();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.nudHits = new System.Windows.Forms.NumericUpDown();
+            this.btHit = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.tbControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -116,12 +119,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudTranfersNo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudTransferVolume)).BeginInit();
             this.tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbClear)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbArrowDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbArrowUp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbRefresh)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbArrowRight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbArrowLeft)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbClear)).BeginInit();
+            this.groupBox5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudHits)).BeginInit();
             this.SuspendLayout();
             // 
             // btStart
@@ -552,6 +557,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.groupBox5);
             this.tabPage2.Controls.Add(this.groupBox4);
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
@@ -646,6 +652,17 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Questy";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // pbClear
+            // 
+            this.pbClear.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbClear.Image = global::Parafia.Properties.Resources.Delete;
+            this.pbClear.Location = new System.Drawing.Point(231, 33);
+            this.pbClear.Name = "pbClear";
+            this.pbClear.Size = new System.Drawing.Size(24, 24);
+            this.pbClear.TabIndex = 10;
+            this.pbClear.TabStop = false;
+            this.pbClear.Click += new System.EventHandler(this.pbClear_Click);
             // 
             // btQSave
             // 
@@ -905,16 +922,33 @@
             this.tssSafeValue.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.tssSafeValue.Visible = false;
             // 
-            // pbClear
+            // groupBox5
             // 
-            this.pbClear.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbClear.Image = global::Parafia.Properties.Resources.Delete;
-            this.pbClear.Location = new System.Drawing.Point(231, 33);
-            this.pbClear.Name = "pbClear";
-            this.pbClear.Size = new System.Drawing.Size(24, 24);
-            this.pbClear.TabIndex = 10;
-            this.pbClear.TabStop = false;
-            this.pbClear.Click += new System.EventHandler(this.pbClear_Click);
+            this.groupBox5.Controls.Add(this.btHit);
+            this.groupBox5.Controls.Add(this.nudHits);
+            this.groupBox5.Location = new System.Drawing.Point(148, 10);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(222, 100);
+            this.groupBox5.TabIndex = 2;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "groupBox5";
+            // 
+            // nudHits
+            // 
+            this.nudHits.Location = new System.Drawing.Point(6, 15);
+            this.nudHits.Name = "nudHits";
+            this.nudHits.Size = new System.Drawing.Size(120, 20);
+            this.nudHits.TabIndex = 0;
+            // 
+            // btHit
+            // 
+            this.btHit.Location = new System.Drawing.Point(6, 67);
+            this.btHit.Name = "btHit";
+            this.btHit.Size = new System.Drawing.Size(120, 23);
+            this.btHit.TabIndex = 1;
+            this.btHit.Text = "Jebnij";
+            this.btHit.UseVisualStyleBackColor = true;
+            this.btHit.Click += new System.EventHandler(this.btHit_Click);
             // 
             // MainForm
             // 
@@ -950,12 +984,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudTranfersNo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudTransferVolume)).EndInit();
             this.tabPage3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbClear)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbArrowDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbArrowUp)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbRefresh)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbArrowRight)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbArrowLeft)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbClear)).EndInit();
+            this.groupBox5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.nudHits)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1039,6 +1075,9 @@
         private System.Windows.Forms.PictureBox pbArrowDown;
         private System.Windows.Forms.Button btQSave;
         private System.Windows.Forms.PictureBox pbClear;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.Button btHit;
+        private System.Windows.Forms.NumericUpDown nudHits;
     }
 }
 

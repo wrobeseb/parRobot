@@ -43,14 +43,16 @@
             this.tbPasswd = new System.Windows.Forms.TextBox();
             this.pbMinus = new System.Windows.Forms.PictureBox();
             this.pbSettings = new System.Windows.Forms.PictureBox();
+            this.pbLight = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbMinus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbSettings)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbLight)).BeginInit();
             this.SuspendLayout();
             // 
             // tbCash
             // 
             this.tbCash.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbCash.Location = new System.Drawing.Point(181, 4);
+            this.tbCash.Location = new System.Drawing.Point(201, 5);
             this.tbCash.Name = "tbCash";
             this.tbCash.ReadOnly = true;
             this.tbCash.Size = new System.Drawing.Size(150, 13);
@@ -61,7 +63,7 @@
             // tbSafe
             // 
             this.tbSafe.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbSafe.Location = new System.Drawing.Point(335, 4);
+            this.tbSafe.Location = new System.Drawing.Point(355, 5);
             this.tbSafe.Name = "tbSafe";
             this.tbSafe.ReadOnly = true;
             this.tbSafe.Size = new System.Drawing.Size(150, 13);
@@ -72,7 +74,7 @@
             // tbNextLogin
             // 
             this.tbNextLogin.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbNextLogin.Location = new System.Drawing.Point(711, 4);
+            this.tbNextLogin.Location = new System.Drawing.Point(731, 5);
             this.tbNextLogin.Name = "tbNextLogin";
             this.tbNextLogin.ReadOnly = true;
             this.tbNextLogin.Size = new System.Drawing.Size(72, 13);
@@ -83,7 +85,7 @@
             // cbEnabled
             // 
             this.cbEnabled.AutoSize = true;
-            this.cbEnabled.Location = new System.Drawing.Point(24, 4);
+            this.cbEnabled.Location = new System.Drawing.Point(44, 5);
             this.cbEnabled.Name = "cbEnabled";
             this.cbEnabled.Size = new System.Drawing.Size(15, 14);
             this.cbEnabled.TabIndex = 8;
@@ -93,7 +95,7 @@
             // tbMailMessages
             // 
             this.tbMailMessages.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbMailMessages.Location = new System.Drawing.Point(659, 4);
+            this.tbMailMessages.Location = new System.Drawing.Point(679, 5);
             this.tbMailMessages.Name = "tbMailMessages";
             this.tbMailMessages.ReadOnly = true;
             this.tbMailMessages.Size = new System.Drawing.Size(20, 13);
@@ -104,7 +106,7 @@
             // tbAttack
             // 
             this.tbAttack.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbAttack.Location = new System.Drawing.Point(491, 4);
+            this.tbAttack.Location = new System.Drawing.Point(511, 5);
             this.tbAttack.Name = "tbAttack";
             this.tbAttack.ReadOnly = true;
             this.tbAttack.Size = new System.Drawing.Size(78, 13);
@@ -115,7 +117,7 @@
             // tbDefense
             // 
             this.tbDefense.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbDefense.Location = new System.Drawing.Point(575, 4);
+            this.tbDefense.Location = new System.Drawing.Point(595, 5);
             this.tbDefense.Name = "tbDefense";
             this.tbDefense.ReadOnly = true;
             this.tbDefense.Size = new System.Drawing.Size(78, 13);
@@ -126,7 +128,7 @@
             // tbHitCount
             // 
             this.tbHitCount.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbHitCount.Location = new System.Drawing.Point(685, 4);
+            this.tbHitCount.Location = new System.Drawing.Point(705, 5);
             this.tbHitCount.Name = "tbHitCount";
             this.tbHitCount.ReadOnly = true;
             this.tbHitCount.Size = new System.Drawing.Size(20, 13);
@@ -137,7 +139,7 @@
             // cbSentEmail
             // 
             this.cbSentEmail.AutoSize = true;
-            this.cbSentEmail.Location = new System.Drawing.Point(798, 4);
+            this.cbSentEmail.Location = new System.Drawing.Point(1000, 4);
             this.cbSentEmail.Name = "cbSentEmail";
             this.cbSentEmail.Size = new System.Drawing.Size(15, 14);
             this.cbSentEmail.TabIndex = 15;
@@ -146,7 +148,7 @@
             // rbSelectedAccount
             // 
             this.rbSelectedAccount.AutoSize = true;
-            this.rbSelectedAccount.Location = new System.Drawing.Point(4, 4);
+            this.rbSelectedAccount.Location = new System.Drawing.Point(24, 5);
             this.rbSelectedAccount.Name = "rbSelectedAccount";
             this.rbSelectedAccount.Size = new System.Drawing.Size(14, 13);
             this.rbSelectedAccount.TabIndex = 18;
@@ -159,7 +161,7 @@
             this.cbTransferToAccount.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbTransferToAccount.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.cbTransferToAccount.ItemHeight = 12;
-            this.cbTransferToAccount.Location = new System.Drawing.Point(819, 1);
+            this.cbTransferToAccount.Location = new System.Drawing.Point(1021, 1);
             this.cbTransferToAccount.MaxDropDownItems = 10;
             this.cbTransferToAccount.Name = "cbTransferToAccount";
             this.cbTransferToAccount.Size = new System.Drawing.Size(80, 20);
@@ -169,7 +171,7 @@
             // tbLogin
             // 
             this.tbLogin.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbLogin.Location = new System.Drawing.Point(45, 4);
+            this.tbLogin.Location = new System.Drawing.Point(65, 5);
             this.tbLogin.Name = "tbLogin";
             this.tbLogin.ReadOnly = true;
             this.tbLogin.Size = new System.Drawing.Size(60, 13);
@@ -178,7 +180,7 @@
             // tbPasswd
             // 
             this.tbPasswd.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbPasswd.Location = new System.Drawing.Point(107, 4);
+            this.tbPasswd.Location = new System.Drawing.Point(127, 5);
             this.tbPasswd.Name = "tbPasswd";
             this.tbPasswd.ReadOnly = true;
             this.tbPasswd.Size = new System.Drawing.Size(72, 13);
@@ -191,7 +193,7 @@
             // 
             this.pbMinus.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pbMinus.Image = global::ParafiaPRO.Properties.Resources.minus;
-            this.pbMinus.Location = new System.Drawing.Point(928, 3);
+            this.pbMinus.Location = new System.Drawing.Point(1130, 3);
             this.pbMinus.Name = "pbMinus";
             this.pbMinus.Size = new System.Drawing.Size(16, 16);
             this.pbMinus.TabIndex = 20;
@@ -202,16 +204,26 @@
             // 
             this.pbSettings.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pbSettings.Image = global::ParafiaPRO.Properties.Resources.settings;
-            this.pbSettings.Location = new System.Drawing.Point(905, 3);
+            this.pbSettings.Location = new System.Drawing.Point(1107, 3);
             this.pbSettings.Name = "pbSettings";
             this.pbSettings.Size = new System.Drawing.Size(16, 16);
             this.pbSettings.TabIndex = 21;
             this.pbSettings.TabStop = false;
             // 
-            // AccountListItem
+            // pbLight
+            // 
+            this.pbLight.Image = global::ParafiaPRO.Properties.Resources.grey;
+            this.pbLight.Location = new System.Drawing.Point(3, 3);
+            this.pbLight.Name = "pbLight";
+            this.pbLight.Size = new System.Drawing.Size(16, 16);
+            this.pbLight.TabIndex = 22;
+            this.pbLight.TabStop = false;
+            // 
+            // AccountListItemView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.pbLight);
             this.Controls.Add(this.pbSettings);
             this.Controls.Add(this.pbMinus);
             this.Controls.Add(this.cbTransferToAccount);
@@ -227,10 +239,11 @@
             this.Controls.Add(this.tbCash);
             this.Controls.Add(this.tbLogin);
             this.Controls.Add(this.tbPasswd);
-            this.Name = "AccountListItem";
-            this.Size = new System.Drawing.Size(950, 22);
+            this.Name = "AccountListItemView";
+            this.Size = new System.Drawing.Size(1150, 22);
             ((System.ComponentModel.ISupportInitialize)(this.pbMinus)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbSettings)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbLight)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -253,5 +266,6 @@
         public System.Windows.Forms.ComboBox cbTransferToAccount;
         private System.Windows.Forms.PictureBox pbMinus;
         private System.Windows.Forms.PictureBox pbSettings;
+        public System.Windows.Forms.PictureBox pbLight;
     }
 }

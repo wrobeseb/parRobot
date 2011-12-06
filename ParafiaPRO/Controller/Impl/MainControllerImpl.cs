@@ -6,6 +6,7 @@ using System.Text;
 namespace ParafiaPRO.Controller.Impl
 {
     using View;
+    using Model.Account;
     using Quartz;
     using Service;
     using Scheduler.Job;
@@ -17,7 +18,14 @@ namespace ParafiaPRO.Controller.Impl
         private IControlPanelView m_ControlPanelView;
         private IAccountListView m_AccountListView;
 
+        private Shell mShell;
+
         private TimerJob m_TimerJobObject;
+
+        public Shell Shell
+        {
+            set { this.mShell = value; }
+        }
 
         public TimerJob TimerJobObject
         {
@@ -30,7 +38,14 @@ namespace ParafiaPRO.Controller.Impl
 
         public ISchedulerService SchedulerService
         {
-            set { this.m_SchedulerService = value; }
+            set 
+            { 
+                this.m_SchedulerService = value;
+                this.m_SchedulerService.OnSchedule += new EventHandler(OnSchedule);
+                this.m_SchedulerService.OnReSchedule += new EventHandler(OnReSchedule);
+                this.m_SchedulerService.OnUnSchedule += new EventHandler(OnUnSchedule);
+                this.m_SchedulerService.OnJobStarted += new EventHandler(OnJobStarted);
+            }
         }
 
         public IAccountListView AccountListView
@@ -45,6 +60,26 @@ namespace ParafiaPRO.Controller.Impl
                 this.m_ControlPanelView = value;
                 this.m_ControlPanelView.StartStopEvent += new EventHandler(StartStop);
             }
+        }
+
+        public void OnSchedule(object sender, EventArgs args)
+        {
+            m_AccountListView.OnAccountScheduledActions((Account)sender);
+        }
+
+        public void OnReSchedule(object sender, EventArgs args)
+        {
+            m_AccountListView.OnAccountScheduledActions((Account)sender);
+        }
+
+        public void OnUnSchedule(object sender, EventArgs args)
+        {
+            m_AccountListView.OnAccountUnScheduledActions((Account)sender);
+        }
+
+        public void OnJobStarted(object sender, EventArgs args)
+        {
+            m_AccountListView.OnAccountJobStartedActions((Account)sender);
         }
 
         public bool Started

@@ -26,8 +26,8 @@ namespace ParafiaPRO.Scheduler.Job
         {
             if (m_mainController.Started)
                 m_accountController.UpdateStartTimeForAccounts();
-            else
-                m_accountController.SetStartTimeForAccountToZero();
+            //else
+                //m_accountController.SetStartTimeForAccountToZero();
         }
     }
 }

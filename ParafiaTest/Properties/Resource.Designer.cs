@@ -102,6 +102,24 @@ namespace ParafiaTest.Properties {
         ///&lt;head&gt;
         ///    &lt;title&gt;Gra internetowa Parafia.biz - podbij wirtualną  rzeczywistość - gra przeglądarkowa przez www&lt;/title&gt;
         ///    &lt;meta charset=&quot;UTF-8&quot;&gt;
+        ///    &lt;link href=&quot;https://plus.google.com/102903768040082646276&quot; rel=&quot;publisher&quot;/&gt;
+        ///    &lt;meta property=&quot;og:site_name&quot; content=&quot;Parafia.biz&quot; /&gt;
+        ///	&lt;meta property=&quot;og:title&quot; content=&quot;Parafia.biz&quot; /&gt;
+        ///	&lt;meta property=&quot;og:description&quot; content=&quot;Gra internetowa Parafia.biz - podbij wirtualną  rzeczywistość - gra przeglądarkowa przez www&quot; /&gt;
+        ///	&lt;m [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string ParafiaBizDashboardContent {
+            get {
+                return ResourceManager.GetString("ParafiaBizDashboardContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;!DOCTYPE html&gt;
+        ///&lt;html&gt;
+        ///&lt;head&gt;
+        ///    &lt;title&gt;Gra internetowa Parafia.biz - podbij wirtualną  rzeczywistość - gra przeglądarkowa przez www&lt;/title&gt;
+        ///    &lt;meta charset=&quot;UTF-8&quot;&gt;
         ///    &lt;meta property=&quot;og:site_name&quot; content=&quot;Parafia.biz&quot; /&gt;
         ///	&lt;meta property=&quot;og:title&quot; content=&quot;Parafia.biz&quot; /&gt;
         ///	&lt;meta property=&quot;og:description&quot; content=&quot;Gra internetowa Parafia.biz - podbij wirtualną  rzeczywistość - gra przeglądarkowa przez www&quot; /&gt;

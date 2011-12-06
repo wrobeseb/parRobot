@@ -10,20 +10,52 @@ using System.Windows.Forms;
 namespace ParafiaPRO
 {
     using View;
+    using Controller;
+    using Core;
 
     public partial class Shell : Form
     {
-        private IAccountListView m_AccountListView;
-        private IControlPanelView m_ControlPanelView;
+        private Settings mSetting;
+
+        private IAccountListView mAccountListView;
+        private IControlPanelView mControlPanelView;
+        private ISettingsPanelView mSettingsPanelView;
+        private ILoggerPanelView mLoggerPanelView;
+
+        private IMainController mMainController;
 
         public IAccountListView AccountListView
         {
-            set { this.m_AccountListView = value; }
+            set { this.mAccountListView = value; }
         }
 
         public IControlPanelView ControlPanelView
         {
-            set { this.m_ControlPanelView = value; }
+            set { this.mControlPanelView = value; }
+        }
+
+        public ISettingsPanelView SettingsPanelView
+        {
+            set { this.mSettingsPanelView = value; }
+        }
+
+        public ILoggerPanelView LoggerPanelView
+        {
+            set { this.mLoggerPanelView = value; }
+        }
+
+        public Settings Settings
+        {
+            set { this.mSetting = value; }
+        }
+
+        public IMainController MainController
+        {
+            set 
+            { 
+                this.mMainController = value;
+                this.mMainController.Shell = this;
+            }
         }
 
         public Shell()
@@ -33,8 +65,12 @@ namespace ParafiaPRO
 
         private void Shell_Load(object sender, EventArgs e)
         {
-            this.AccountRegion.Controls.Add(m_AccountListView.Control);
-            this.ControlPanelRegion.Controls.Add(m_ControlPanelView.Control);
+            this.mSettingsPanelView.Properties = this.mSetting.Default;
+
+            this.AccountRegion.Controls.Add(mAccountListView.Control);
+            this.ControlPanelRegion.Controls.Add(mControlPanelView.Control);
+            this.SettingsPanelRegion.Controls.Add(mSettingsPanelView.Control);
+            this.tpLog.Controls.Add(mLoggerPanelView.Control);
         }
     }
 }
